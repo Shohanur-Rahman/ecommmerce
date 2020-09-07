@@ -150,7 +150,17 @@
 								<span>/</span>
 								<a href="{{route('login')}}">Sign in</a>
 								@else
-								<a href="" target="_blank">Dashboard</a>
+								<a href="{{route('dashboard')}}" target="_blank">Dashboard</a>
+								<span>/</span>
+								<a href="{{ route('logout') }}"
+                                       onclick="event.preventDefault();
+                                                     document.getElementById('logout-form').submit();">
+                                        {{ __('Logout') }}
+                                    </a>
+
+                                    <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
+                                        @csrf
+                                    </form>
 								@endif
 							</div>
 						</div>
