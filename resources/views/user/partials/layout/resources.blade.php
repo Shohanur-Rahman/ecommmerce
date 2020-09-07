@@ -1,6 +1,6 @@
 <meta charset="utf-8">
 	<meta http-equiv="x-ua-compatible" content="ie=edge">
-	<title>HakDuck - Home Four</title>
+	<title>Demo - @yield('title')</title>
 	<meta name="description" content="">
 	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
@@ -34,6 +34,8 @@
 	<link rel="stylesheet" href="{{asset('user/assets/css/helper.css')}}">
 	<!-- style css -->
 	<link rel="stylesheet" href="{{asset('user/style.css')}}">
+	
+	<link rel="stylesheet" href="{{asset('user/custom.css')}}">
 	<!-- responsive css -->
 	<link rel="stylesheet" href="{{asset('user/assets/css/responsive.css')}}">
 	<!-- responsive css -->
@@ -44,6 +46,7 @@
 	<script src="{{asset('user/assets/js/vendor/jquery-3.2.1.min.js')}}"></script>
 	<!-- bootstra.min js -->
 	<script src="{{asset('user/assets/js/bootstrap.min.js')}}"></script>
+	<script src="{{asset('user/assets/parsley/parsley.min.js')}}"></script>
 	<!-- mmenu js -->
 	<script src="{{asset('user/assets/js/jquery.mmenu.js')}}"></script>
 	<!-- easing js -->
