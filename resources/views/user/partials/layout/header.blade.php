@@ -147,7 +147,7 @@
 							<div class="register-login pull-right">
 								<a href="{{route('register')}}">Register</a>
 								<span>/</span>
-								<a href="#">Sign in</a>
+								<a href="{{route('login')}}">Sign in</a>
 							</div>
 						</div>
 					</div>

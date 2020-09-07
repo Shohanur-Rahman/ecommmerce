@@ -11,11 +11,11 @@
                         <div class="card-body p-4">
                             <h4 class="font-24 mb-30">Create account.</h4>
 
-                            <form action="{{route('register.store')}}" method="post">
+                            <form action="{{route('register.store')}}" method="post" data-parsley-validate>
                                 @csrf
                                 <div class="form-group">
                                     <label for="username">Username</label>
-                                    <input class="form-control "  type="text" name="name" id="username" placeholder="Enter your name" value="{{old('name')}}" autocomplete="name" >
+                                    <input class="form-control "  type="text" name="name" id="username" placeholder="Enter your name" value="{{old('name')}}" autocomplete="name" required="required" data-parsley-error-message="Enter your name">
 
                                     @error('name')
                                     <span class="text-danger">
@@ -26,7 +26,7 @@
 
                                 <div class="form-group">
                                     <label for="email">Email</label>
-                                    <input class="form-control" type="email" name="email" id="email" placeholder="Enter your email" value="{{old('email')}}" autocomplete="email" >
+                                    <input class="form-control" type="email" name="email" id="email" placeholder="Enter your email" value="{{old('email')}}" autocomplete="email" required="required" data-parsley-error-message="Enter your email">
 
                                     @error('email')
                                     <span class="text-danger">
@@ -37,7 +37,7 @@
 
                                 <div class="form-group">
                                     <label for="password">Password</label>
-                                    <input class="form-control" type="password" name="password"  id="password" placeholder="Enter your password">
+                                    <input class="form-control" type="password" name="password"  id="password" placeholder="Enter your password" required="required" data-parsley-error-message="Enter your password">
 
                                     @error('password')
                                     <span class="text-danger">
@@ -48,7 +48,7 @@
 
                                 <div class="form-group">
                                     <label for="confirm-password">Password</label>
-                                    <input class="form-control" type="password" name="password_confirmation"  id="password_confirmation" placeholder="Enter your password">
+                                    <input class="form-control" type="password" name="password_confirmation"  id="password_confirmation" placeholder="Enter your password" required="required" data-parsley-error-message="Please confirm your password" data-parsley-equalto="#password">
                                 </div>
 
                                 <div class="form-group mb-0 mt-15">

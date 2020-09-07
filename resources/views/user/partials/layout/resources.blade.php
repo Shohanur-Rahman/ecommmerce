@@ -46,7 +46,8 @@
 	<script src="{{asset('user/assets/js/vendor/jquery-3.2.1.min.js')}}"></script>
 	<!-- bootstra.min js -->
 	<script src="{{asset('user/assets/js/bootstrap.min.js')}}"></script>
-	<script src="{{asset('user/assets/parsley/parsley.min.js')}}"></script>
+
+	<script src="{{asset('parsley/parsley.min.js')}}"></script>
 	<!-- mmenu js -->
 	<script src="{{asset('user/assets/js/jquery.mmenu.js')}}"></script>
 	<!-- easing js -->
