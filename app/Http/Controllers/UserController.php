@@ -9,6 +9,7 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Session;
+use Illuminate\Support\Str;
 
 class UserController extends Controller
 {
@@ -57,12 +58,78 @@ class UserController extends Controller
             'password'=>'required|min:8'
         ]);
 
+        $remember = $request->get('remember');
+
         $attempts =['email' => $request['email'], 'password' => $request['password']];
 
-        if(Auth::attempt($attempts)) {
+        if(Auth::attempt($attempts,$remember)) {
             return view('user.welcome');
         }
 
         return redirect()->back()->with('error-message','Email or Password is Wrong');
+    }
+
+    public function forgetPasswordIndex()
+    {
+        return view('user.pages.accounts.forget-password');
+    }
+
+    public function forgetPasswordStore(Request $request)
+    {
+        $email = $request['email'];
+        $code = ['code'=>Str::random(5),'email'=>$email];
+
+        Session::put('password-recovery-code',$code);
+
+        Mail::send('emails.forget-password', $code, function($message) use($email){
+            $message->to($email)->subject('Recover Password via the code');
+        });
+
+        return redirect(route('password.recovery.index'));
+    }
+
+    public function passwordRecovery(Request $request)
+    {
+        $this->validate($request,[
+            'code'=>'required|min:5|max:5'
+        ]);
+
+        $code =  Session::get('password-recovery-code');
+
+        if($code['code'] === $request['code']){
+            return redirect(route('password.update'));
+        }
+
+        return redirect()->back()->with('error-message','Recovery Code is Wrong');
+
+    }
+
+    public function passwordRecoveryIndex()
+    {
+        return view('user.pages.accounts.recover-password-code');
+    }
+
+    public function passwordUpdateGet()
+    {
+        return view('user.pages.accounts.password-update');
+    }
+
+    public function passwordUpdateStore(Request $request)
+    {
+        $this->validate( $request,[
+            'password' => ['required', 'string', 'min:8','required_with:confirm-password','same:confirm-password'],
+        ]);
+
+        $code =  Session::get('password-recovery-code');
+
+        if(Session::has('password-recovery-code')){
+            $user = User::where('email',$code['email'])->first();
+
+            $user->update(['password'=>$request['password']]);
+
+            return redirect(route('user.welcome'));
+        }
+
+        return redirect(route('login'));
     }
 }

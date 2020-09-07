@@ -41,10 +41,10 @@
 
                                 <div class="form-group d-flex justify-content-between align-items-center mb-3">
                                     <div class="checkbox d-inline mb-0">
-                                        <input type="checkbox" name="checkbox-1" id="checkbox-8">
+                                        <input type="checkbox"  id="checkbox-8" name="remember" id="remember" {{ old('remember') ? 'checked' : '' }}>
                                         <label for="checkbox-8" class="cr mb-0">Remember me</label>
                                     </div>
-                                    <span class="font-13 text-primary"><a href="forget-password.html">Forgot your password?</a></span>
+                                    <span class="font-13 text-primary"><a href="{{route('forget-password.index')}}">Forgot your password?</a></span>
                                 </div>
 
                                 <div class="form-group mb-0">
