@@ -145,9 +145,13 @@
 						</div>
 						<div class="col-lg-2">
 							<div class="register-login pull-right">
+								@guest
 								<a href="{{route('register')}}">Register</a>
 								<span>/</span>
 								<a href="{{route('login')}}">Sign in</a>
+								@else
+								<a href="" target="_blank">Dashboard</a>
+								@endif
 							</div>
 						</div>
 					</div>
