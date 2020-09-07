@@ -3,6 +3,16 @@
 @section('content')
 
 <div class="row">
+    @if(session()->get("message"))
+    <div class="col-md-12">
+        <div class="alert alert-success alert-dismissible bg-success text-white border-0 fade show" role="alert">
+            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                <span aria-hidden="true">×</span>
+            </button>
+            <strong>{{session()->get("message")}}</strong>
+        </div>
+    </div>
+    @endif
 	<div class="col-md-12">
 		<div class="card">
 	        <div class="card-body">
@@ -30,13 +40,18 @@
 
 
                     <tbody>
+                        @foreach($brands as $aBrand)
                         <tr>
-                            <td>Tiger Nixon</td>
-                            <td>System Architect</td>
-                            <td>Edinburgh</td>
-                            <td>61</td>
-                            <td>2011/04/25</td>
+                            <td>{{$aBrand->id}}</td>
+                            <td>{{$aBrand->name}}</td>
+                            <td><img src="{{asset($aBrand->image)}}" class="table-image"></td>
+                            <td>{{$aBrand->created_at->format('d F Y')}}</td>
+                            <td>
+                                <a class="btn btn-outline-primary table-btn btn-sm" href="{{route('edit_brand', $aBrand->id)}}" title="Edit"><i class="zmdi zmdi-edit"></i></a>
+                                <a class="btn btn-outline-danger table-btn btn-sm" href="{{route('delet_brand', $aBrand->id)}}" title="Delete"><i class="zmdi zmdi-delete"></i></a>
+                            </td>
                         </tr>
+                        @endforeach
                     </tbody>
                 </table>
 
