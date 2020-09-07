@@ -76,7 +76,7 @@
 
                                 <div class="form-group">
                                     <label for="confirm-password">Password</label>
-                                    <input class="form-control" type="password" name="password-confirmation"  id="confirm-password" placeholder="Enter your password">
+                                    <input class="form-control" type="password" name="password_confirmation"  id="password_confirmation" placeholder="Enter your password">
                                 </div>
 
                                 <div class="form-group mb-0 mt-15">
