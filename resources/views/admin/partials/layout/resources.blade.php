@@ -20,6 +20,22 @@
 <script src="{{asset('admin/js/bundle.js')}}"></script>
 <script src="{{asset('admin/js/default-assets/setting.js')}}"></script>
 <script src="{{asset('admin/js/default-assets/fullscreen.js')}}"></script>
+<script src="{{asset('parsley/parsley.min.js')}}"></script>
+
+<script src="{{asset('admin/js/default-assets/jquery.datatables.min.js')}}"></script>
+<script src="{{asset('admin/js/default-assets/datatables.bootstrap4.js')}}"></script>
+<script src="{{asset('admin/js/default-assets/datatable-responsive.min.js')}}"></script>
+<script src="{{asset('admin/js/default-assets/responsive.bootstrap4.min.js')}}"></script>
+<script src="{{asset('admin/js/default-assets/datatable-button.min.js')}}"></script>
+<script src="{{asset('admin/js/default-assets/button.bootstrap4.min.js')}}"></script>
+<script src="{{asset('admin/js/default-assets/button.html5.min.js')}}"></script>
+<script src="{{asset('admin/js/default-assets/button.flash.min.js')}}"></script>
+<script src="{{asset('admin/plugins/jquery-datatable/extensions/export/jszip.min.js')}}"></script>
+<script src="{{asset('admin/plugins/jquery-datatable/extensions/export/pdfmake.min.js')}}"></script>
+<script src="{{asset('admin/plugins/jquery-datatable/extensions/export/vfs_fonts.js')}}"></script>
+<script src="{{asset('admin/js/default-assets/datatables.keytable.min.js')}}"></script>
+<script src="{{asset('admin/js/default-assets/datatables.select.min.js')}}"></script>
+<script src="{{asset('admin/js/default-assets/button.print.min.js')}}"></script>
 
 <!-- Active JS -->
 <script src="{{asset('admin/js/default-assets/active.js')}}"></script>

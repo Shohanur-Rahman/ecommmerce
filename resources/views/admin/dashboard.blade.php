@@ -1,3 +1,6 @@
+@extends('admin.layouts.admin')
+@section('title', "Home")
+@section('content')
 <div class="row justify-content-center">
     <div class="col-md-6 col-xl-4">
         <div class="card box-margin">
@@ -586,3 +589,5 @@
         <!-- ./card -->
     </div>
 </div>
+
+@endsection
