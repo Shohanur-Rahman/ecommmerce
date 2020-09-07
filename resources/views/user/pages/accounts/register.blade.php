@@ -29,7 +29,7 @@
 <!-- ======================================
 ******* Page Wrapper Area Start **********
 ======================================= -->
-<div class="main-content- h-100vh">
+<div class="main-content- h-100vh py-5">
     <div class="container h-100">
         <div class="row h-100 align-items-center justify-content-center">
             <div class="col-md-8 col-lg-5">
@@ -46,7 +46,7 @@
                                     <input class="form-control "  type="text" name="name" id="username" placeholder="Enter your name" value="{{old('name')}}" autocomplete="name" >
 
                                     @error('name')
-                                        <span class="text-danger">
+                                    <span class="text-danger">
                                             <strong>{{ $message }}</strong>
                                         </span>
                                     @enderror
@@ -54,7 +54,7 @@
 
                                 <div class="form-group">
                                     <label for="email">Email</label>
-                                    <input class="form-control" type="email" name="name" id="email" placeholder="Enter your email" value="{{old('email')}}" autocomplete="email" >
+                                    <input class="form-control" type="email" name="email" id="email" placeholder="Enter your email" value="{{old('email')}}" autocomplete="email" >
 
                                     @error('email')
                                     <span class="text-danger">
@@ -68,7 +68,7 @@
                                     <input class="form-control" type="password" name="password"  id="password" placeholder="Enter your password">
 
                                     @error('password')
-                                        <span class="text-danger">
+                                    <span class="text-danger">
                                             <strong>{{ $message }}</strong>
                                         </span>
                                     @enderror
