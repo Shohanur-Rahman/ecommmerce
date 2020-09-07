@@ -7,6 +7,7 @@ use App\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Session;
 
 class UserController extends Controller
@@ -40,9 +41,13 @@ class UserController extends Controller
             'password' => Hash::make($data['password']),
         ]);
 
+         $email = $data['email'];
 
+         Mail::send('emails.welcome-mail', $user->toArray(), function($message) use($email){
+             $message->to($email)->subject('Welcome to Our Site');
+         });
 
-        return redirect()->back()->with('success-message','registration successfully complete');
+        return redirect()->back()->with('success-message','registration successfully complete. Please Check Your Email!!');
     }
 
     public function show(Request $request)
