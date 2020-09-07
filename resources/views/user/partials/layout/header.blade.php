@@ -53,7 +53,7 @@
 					<div class="row align-items-center">
 						<div class="col-lg-2">
 							<div class="logo">
-								<a href="index.html"><img src="{{asset('user/assets/images/logos/logo-blue.png')}}" alt="logo" /></a>
+								<a href="/"><img src="{{asset('user/assets/images/logos/logo-blue.png')}}" alt="logo" /></a>
 							</div>
 						</div>
 						<div class="col-lg-8">
