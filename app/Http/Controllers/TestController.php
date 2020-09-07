@@ -16,4 +16,9 @@ class TestController extends Controller
     {
         return view('pages.test');
     }
+
+    public function user_ui()
+    {
+        return view('pages.ui');
+    }
 }

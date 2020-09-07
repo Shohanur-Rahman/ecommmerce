@@ -22,3 +22,4 @@ Auth::routes();
 Route::get('/home', 'HomeController@index')->name('home');
 
 Route::get('/test', 'TestController@test_page')->name('test_page');
+Route::get('/user-ui', 'TestController@user_ui')->name('user_ui');
