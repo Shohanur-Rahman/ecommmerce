@@ -145,7 +145,7 @@
 						</div>
 						<div class="col-lg-2">
 							<div class="register-login pull-right">
-								<a href="#">Register</a>
+								<a href="{{route('register')}}">Register</a>
 								<span>/</span>
 								<a href="#">Sign in</a>
 							</div>
