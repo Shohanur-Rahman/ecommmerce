@@ -58,11 +58,14 @@ class UserController extends Controller
             'password'=>'required|min:8'
         ]);
 
-        $remember_me = $request->has('remember') ? true : false;
+        $remember_me = $request['remember'] ? true : false;
 
         $attempts =['email' => $request['email'], 'password' => $request['password']];
 
+        $user = User::where('email',$request['email'])->first();
+
         if(Auth::attempt($attempts,$remember_me)) {
+            Auth::login($user, true);
             return view('user.welcome');
         }
 
@@ -125,9 +128,9 @@ class UserController extends Controller
         if(Session::has('password-recovery-code')){
             $user = User::where('email',$code['email'])->first();
 
-            $user->update(['password'=>$request['password']]);
+            $user->update(['password'=>Hash::make($request['password']),]);
 
-            return redirect(route('user.welcome'));
+            return view('user.welcome');
         }
 
         return redirect(route('login'));
