@@ -10,11 +10,14 @@ class ProductCategory extends Model
 
     protected $guarded = [];
 
-    public function children(){
+    public function parent()
+    {
         return $this->hasMany(ProductCategory::class,'parent_id');
     }
 
-    public function parent(){
+
+    public function children()
+    {
         return $this->belongsTo(ProductCategory::class,'parent_id');
     }
 
