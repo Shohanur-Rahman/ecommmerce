@@ -28,7 +28,7 @@
                                         <select name="parent_id" id="" class="form-control">
                                             <option value="">Selection Category</option>
                                             @foreach($Categories as $category)
-                                                <option value="{{$category->id}}" {{($category->id === $productCategory->id) ? 'selected' : ''}}>{{$category->category_name}} <b class="text-black-50">({{$category->user->name}})</b></option>
+                                                <option value="{{$category->id}}" {{($category->id === $productCategory->id) ? 'selected' : ''}}>{{$category->category_name}} <b class="text-black-50">({{$category->user->user_type}})</b></option>
                                             @endforeach
                                         </select>
                                     </div>

@@ -38,7 +38,7 @@
                         @foreach($productCategories as $category)
                             <tr>
                                 <td>{{$category->id}}</td>
-                                <td>{{($category->parent_id === 0) ?  $category->parent_id : $category->parent->category_name}}</td>
+                                <td></td>
                                 <td>{{$category->category_name}}</td>
                                 <td>
                                     @if($category->menu === 0)
