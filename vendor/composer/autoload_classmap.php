@@ -30,7 +30,9 @@ return array(
     'App\\Http\\Middleware\\TrustProxies' => $baseDir . '/app/Http/Middleware/TrustProxies.php',
     'App\\Http\\Middleware\\VerifyCsrfToken' => $baseDir . '/app/Http/Middleware/VerifyCsrfToken.php',
     'App\\Http\\Middleware\\VerifyRecoveryCode' => $baseDir . '/app/Http/Middleware/VerifyRecoveryCode.php',
+
     'App\\Models\\Category' => $baseDir . '/app/Models/Category.php',
+
     'App\\Models\\Dashboard' => $baseDir . '/app/Models/Dashboard.php',
     'App\\Models\\ProductBrands' => $baseDir . '/app/Models/ProductBrands.php',
     'App\\Providers\\AppServiceProvider' => $baseDir . '/app/Providers/AppServiceProvider.php',

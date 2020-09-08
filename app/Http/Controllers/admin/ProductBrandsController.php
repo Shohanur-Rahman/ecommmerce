@@ -9,12 +9,21 @@ use Carbon\Carbon;
 use File;
 use Mail;
 use Illuminate\Support\Str;
+use Auth;
 
 class ProductBrandsController extends Controller
 {
     public function index()
     {
-    	$brands = ProductBrands::all();
+        $brands = null;
+        $userType = Auth::user()->user_type;
+
+        if($userType == "vendor")
+    	   $brands = ProductBrands::where('user_id', Auth::id())->get();
+
+        elseif ($userType == "admin")
+            $brands = ProductBrands::all();
+
     	return view('admin.modules.brands.index', compact("brands"));
     }
 
@@ -22,9 +31,21 @@ class ProductBrandsController extends Controller
     {
     	return view('admin.modules.brands.add');
     }
+
+
     public function edit_brand($id)
     {
-    	$brand = ProductBrands::find($id);
+    	$brand = null;
+        $userType = Auth::user()->user_type;
+
+        if($userType == "vendor"){
+
+            $cmtQry = ['user_id' => Auth::id(), 'id' => $id];
+            $brand = ProductBrands::where($cmtQry)->get();
+        }
+        elseif ($userType == "admin")
+            $brand = ProductBrands::find($id);
+
     	if($brand == null)
     		return view('not_found');
 
