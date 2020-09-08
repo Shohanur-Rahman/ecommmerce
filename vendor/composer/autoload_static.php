@@ -527,6 +527,7 @@ class ComposerStaticInit4ff1e1c5660f37789a257002b964f8de
         'App\\Models\\ProductBrandCategoryMap' => __DIR__ . '/../..' . '/app/Models/ProductBrandCategoryMap.php',
         'App\\Models\\ProductBrands' => __DIR__ . '/../..' . '/app/Models/ProductBrands.php',
         'App\\Models\\ProductTags' => __DIR__ . '/../..' . '/app/Models/ProductTags.php',
+        'App\\Models\\Products' => __DIR__ . '/../..' . '/app/Models/Products.php',
         'App\\Providers\\AppServiceProvider' => __DIR__ . '/../..' . '/app/Providers/AppServiceProvider.php',
         'App\\Providers\\AuthServiceProvider' => __DIR__ . '/../..' . '/app/Providers/AuthServiceProvider.php',
         'App\\Providers\\BroadcastServiceProvider' => __DIR__ . '/../..' . '/app/Providers/BroadcastServiceProvider.php',

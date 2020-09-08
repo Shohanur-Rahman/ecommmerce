@@ -37,6 +37,7 @@ return array(
     'App\\Models\\ProductBrandCategoryMap' => $baseDir . '/app/Models/ProductBrandCategoryMap.php',
     'App\\Models\\ProductBrands' => $baseDir . '/app/Models/ProductBrands.php',
     'App\\Models\\ProductTags' => $baseDir . '/app/Models/ProductTags.php',
+    'App\\Models\\Products' => $baseDir . '/app/Models/Products.php',
     'App\\Providers\\AppServiceProvider' => $baseDir . '/app/Providers/AppServiceProvider.php',
     'App\\Providers\\AuthServiceProvider' => $baseDir . '/app/Providers/AuthServiceProvider.php',
     'App\\Providers\\BroadcastServiceProvider' => $baseDir . '/app/Providers/BroadcastServiceProvider.php',

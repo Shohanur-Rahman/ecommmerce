@@ -19,3 +19,7 @@ Route::group(['prefix' => 'tags'], function () {
 	Route::post('/edit/{id}', 'ProductTagController@update_tag')->name('update_tag');
 	Route::get('/delete/{id}', 'ProductTagController@delete_tag')->name('delete_tag');
 }); 
+
+Route::group(['prefix' => 'products'], function () {
+	Route::get('/', 'ProductsController@index')->name('products');
+});

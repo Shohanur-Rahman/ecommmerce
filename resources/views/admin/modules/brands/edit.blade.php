@@ -49,7 +49,7 @@
                             </div>
                             
                             <button type="submit" class="btn btn-primary mr-2">Submit</button>
-                            <button type="submit" class="btn btn-danger">Cancel</button>
+                            <a href="{{route('brands')}}" class="btn btn-danger">Back to Brands</a>
                         </form>
                     </div>
                 </div>
