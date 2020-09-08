@@ -40,15 +40,32 @@
                                     <td>{{$category->id}}</td>
                                     <td>{{$category->parent_id}}</td>
                                     <td>{{$category->category_name}}</td>
-                                    <td>{{$category->menu}}</td>
-                                    <td>{{$category->top_menu}}</td>
-                                    <td>{{$category->top_menu}}</td>
+                                    <td>
+                                        @if($category->menu === 1)
+                                            <span class="text-success">Active</span>
+                                        @else
+                                            <span class="text-danger">Deactivate</span>
+                                        @endif
+                                    </td>
+                                    <td>
+                                        @if($category->top_menu === 1)
+                                            <span class="text-success">Active</span>
+                                        @else
+                                            <span class="text-danger">Deactivate</span>
+                                        @endif
+                                    </td>
+                                    <td>{{$category->created_at->format('d F Y')}}</td>
                                     <td>
                                         <a class="btn btn-outline-primary table-btn btn-sm" href="{{route('categories.edit', $category->id)}}" title="Edit"><i class="zmdi zmdi-edit"></i></a>
-                                        <a class="btn btn-outline-danger table-btn btn-sm" href="{{route('categories.destroy', $category->id)}}" title="Delete"><i class="zmdi zmdi-delete"></i></a>
-                                    </td>
+                                        <form class="d-inline"  action="{{route('categories.destroy',$category->id)}}" method="post">
+                                            @method('DELETE')
+                                            @csrf
 
+                                            <button class="btn btn-outline-danger table-btn btn-sm"  title="Delete"><i class="zmdi zmdi-delete"></i></button>
+                                        </form>
+                                    </td>
                                 </tr>
+
                              @endforeach
                         </tbody>
                     </table>

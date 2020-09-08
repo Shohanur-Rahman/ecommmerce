@@ -18,7 +18,7 @@
                                 @csrf
                                 <div class="form-group">
                                     <label for="name">Category Name</label>
-                                    <input type="text" class="form-control" id="name" placeholder="Enter Category name" name="category_name" required="required" data-parsley-error-message="Enter Category name">
+                                    <input type="text" class="form-control" id="name" placeholder="Enter Category name" name="category_name" value="{{old('category_name')}}" required="required" data-parsley-error-message="Enter Category name">
 
                                     @error('category_name')
                                         <span class="text-danger">{{$message}}</span>
