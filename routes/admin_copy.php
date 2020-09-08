@@ -17,5 +17,5 @@ Route::group(['prefix' => 'tags'], function () {
 	Route::post('/add', 'ProductTagController@save_tag')->name('save_tag');
 	Route::get('/edit/{id}', 'ProductTagController@edit_tag')->name('edit_tag');
 	Route::post('/edit/{id}', 'ProductTagController@update_tag')->name('update_tag');
-	Route::get('/delete/{id}', 'ProductTagController@delet_tag')->name('delet_tag');
-});
+	Route::get('/delete/{id}', 'ProductTagController@delete_tag')->name('delete_tag');
+}); 
