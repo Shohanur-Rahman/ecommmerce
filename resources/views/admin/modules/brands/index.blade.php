@@ -40,6 +40,8 @@
 
 
                     <tbody>
+
+                        @if($brands)
                         @foreach($brands as $aBrand)
                         <tr>
                             <td>{{$aBrand->id}}</td>
@@ -52,6 +54,7 @@
                             </td>
                         </tr>
                         @endforeach
+                        @endif
                     </tbody>
                 </table>
 
