@@ -14,15 +14,22 @@
 
                     <div class="row">
                         <div class="col-sm-12 col-xs-12">
-                            <form method="post" action="{{route('categories.store')}}">
+                            <form method="post" action="{{route('product_categories.store')}}">
                                 @csrf
                                 <div class="form-group">
                                     <label for="name">Category Name</label>
-                                    <input type="text" class="form-control" id="name" placeholder="Enter Category name" name="category_name" value="{{old('category_name')}}" required="required" data-parsley-error-message="Enter Category name">
+                                    <input type="text" class="form-control" id="name" placeholder="Enter Category name" name="category_name" required="required" data-parsley-error-message="Enter Category name">
+                                </div>
 
-                                    @error('category_name')
-                                        <span class="text-danger">{{$message}}</span>
-                                    @enderror
+                                <div class="form-group">
+                                    <div class="checkbox d-inline">
+                                        <select name="parent_id" id="" class="form-control">
+                                            <option value="">Selected Category</option>
+                                            @foreach($Categories as $category)
+                                                <option value="{{$category->id}}">{{$category->category_name}} <b class="text-black-50">({{$category->user->name}})</b></option>
+                                            @endforeach
+                                        </select>
+                                    </div>
                                 </div>
 
                                 <div class="form-group">

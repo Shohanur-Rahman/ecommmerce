@@ -15,7 +15,11 @@ class CreateProductCategoriesTable extends Migration
     {
         Schema::create('product_categories', function (Blueprint $table) {
             $table->id();
-
+            $table->unsignedBigInteger('parent_id');
+            $table->unsignedBigInteger('user_id');
+            $table->string('category_name');
+            $table->boolean('menu');
+            $table->boolean('top_menu');
             $table->timestamps();
         });
     }
