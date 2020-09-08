@@ -63,8 +63,8 @@ class ProductCategoryController extends Controller
     public function destroy(ProductCategory $productCategory)
     {
         $this->authorize('isAdmin');
-        $productCategory->delete();
 
+        $productCategory->delete();
 
         return redirect(route('product_categories.index'))->with('success','Category Deleted Successfully');
     }
