@@ -14,7 +14,7 @@
 
                     <div class="row">
                         <div class="col-sm-12 col-xs-12">
-                            <form method="post" action="{{route('product_categories.store')}}">
+                            <form method="post" action="{{route('product_categories.store')}}" class="d-inline">
                                 @csrf
                                 <div class="form-group">
                                     <label for="name">Category Name</label>
@@ -49,6 +49,8 @@
                                 <button type="submit" class="btn btn-primary mr-2">Submit</button>
 
                             </form>
+
+                            <a href="{{route('product_categories.index')}}" class="btn btn-danger">Back to Categories</a>
                         </div>
                     </div>
 
