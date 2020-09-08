@@ -32,10 +32,14 @@ Route::get('/forget-password','UserController@forgetPasswordIndex')->name('forge
 Route::post('/forget-password','UserController@forgetPasswordStore')->name('forget-password.store');
 
 //password recovery code
-Route::get('/password-recovery','UserController@passwordRecoveryIndex')->name('password.recovery.index');
-Route::post('/password-recovery','UserController@passwordRecovery')->name('password.recovery');
 
-Route::get('/password-update','UserController@passwordUpdateGet')->name('password.update');
-Route::post('/password-update','UserController@passwordUpdateStore')->name('password.update.store');
+Route::group(['middleware' => 'recovery_code'], function() {
+
+    Route::get('/password-recovery', 'UserController@passwordRecoveryIndex')->name('password.recovery.index');
+    Route::post('/password-recovery', 'UserController@passwordRecovery')->name('password.recovery');
+
+    Route::get('/password-update', 'UserController@passwordUpdateGet')->name('password.update');
+    Route::post('/password-update', 'UserController@passwordUpdateStore')->name('password.update.store');
+});
 
 Route::get('/user-ui', 'TestController@user_ui')->name('user_ui');

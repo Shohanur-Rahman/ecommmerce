@@ -14,6 +14,17 @@ use Illuminate\Support\Str;
 class UserController extends Controller
 {
 
+    /**
+     * Create a new controller instance.
+     *
+     * @return void
+     */
+    public function __construct()
+    {
+        $this->middleware('passwordRecoveryIndex')->only('verify');
+        $this->middleware('throttle:6,1')->only('verify', 'resend');
+    }
+
     public function login()
     {
         return view('user.pages.accounts.login');
@@ -59,13 +70,15 @@ class UserController extends Controller
         ]);
 
         $remember_me = $request['remember'] ? true : false;
-
         $attempts =['email' => $request['email'], 'password' => $request['password']];
-
         $user = User::where('email',$request['email'])->first();
 
         if(Auth::attempt($attempts,$remember_me)) {
-            Auth::login($user, true);
+
+            if($remember_me == true){
+                Auth::login($user, true);
+            }
+
             return view('user.welcome');
         }
 
@@ -98,6 +111,8 @@ class UserController extends Controller
         ]);
 
         $code =  Session::get('password-recovery-code');
+        if( $code == null)
+            return redirect(route('login'));
 
         if($code['code'] === $request['code']){
             return redirect(route('password.update'));
@@ -109,6 +124,7 @@ class UserController extends Controller
 
     public function passwordRecoveryIndex()
     {
+
         return view('user.pages.accounts.recover-password-code');
     }
 
