@@ -71,3 +71,21 @@ img.table-image {
     max-height: 46px;
     box-shadow: 0px 1px 3px black;
 }
+
+.inline-widged {
+    display: inline-block;
+    margin-right: 15px;
+    margin-left: 15px;
+    padding: 10px 25px;
+    border: 1px solid #ddd;
+}
+
+.inline-widged .single-label {
+    padding: 7px 0;
+    display: block;
+}
+
+.bootstrap-touchspin .btn {
+    padding: 5px 15px;
+    font-size: 16px; 
+}

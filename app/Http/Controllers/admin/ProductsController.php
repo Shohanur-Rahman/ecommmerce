@@ -5,6 +5,7 @@ namespace App\Http\Controllers\admin;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\Products;
+use Auth;
 
 class ProductsController extends Controller
 {
@@ -20,5 +21,11 @@ class ProductsController extends Controller
             $products = Products::all();
 
     	return view('admin.modules.products.index', compact("products"));
+    }
+
+
+    public function add_product()
+    {
+    	return view('admin.modules.products.add');
     }
 }

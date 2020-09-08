@@ -15,9 +15,10 @@
                     <li class="treeview">
                         <a href="javascript:void(0)"><i class="zmdi zmdi-code-smartphone"></i> <span>Catalog</span> <i class="fa fa-angle-right"></i></a>
                         <ul class="treeview-menu">
+                            <li><a href="{{route('products')}}">- Products</a></li>
+                            <li><a href="{{route('product_categories.index')}}">- Categories</a></li>
                             <li><a href="{{route('brands')}}">- Brands</a></li>
                             <li><a href="{{route('tags')}}">- Tags</a></li>
-                            <li><a href="{{route('product_categories.index')}}">- Categories</a></li>
                         </ul>
                     </li>
                 </ul>

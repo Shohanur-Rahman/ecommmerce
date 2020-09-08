@@ -15,12 +15,28 @@ class CreateProductsTable extends Migration
     {
         Schema::create('products', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->string('title')->nullable();
-            $table->string('short_description')->nullable();
+            $table->string('title')->default('This is a demo product');
             $table->string('short_description')->nullable();
             $table->text('description')->nullable();
             $table->string('sku')->nullable();
-            $table->decimal('amount', 8, 2)->nullable();
+            $table->decimal('old_price', 8, 2)->nullable();
+            $table->decimal('new_price', 8, 2)->nullable();
+            $table->boolean('is_published')->default(1); 
+            $table->boolean('is_new')->default(0); 
+            $table->boolean('allow_review')->default(1); 
+            $table->boolean('show_on_home')->default(0); 
+            $table->bigInteger('user_id')->nullable();
+            $table->dateTime('available_start_date')->nullable();
+            $table->dateTime('available_end_date')->nullable();
+            $table->boolean('is_inventory')->default(0);
+            $table->bigInteger('inventory_qty')->nullable();
+            $table->integer('minimum_inventory_qty')->nullable();
+            $table->boolean('notify_low_inventory')->nullable();
+            $table->bigInteger('Warehouse_id')->nullable();
+            $table->boolean('show_availability')->default(0);
+            $table->integer('minimum_cart_qty')->nullable();
+            $table->string('featured_image')->nullable();
+            $table->boolean('allow_seo')->default(0); 
             $table->timestamps();
         });
     }
