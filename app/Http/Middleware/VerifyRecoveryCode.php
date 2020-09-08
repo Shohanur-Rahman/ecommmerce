@@ -22,7 +22,6 @@ class VerifyRecoveryCode
             return redirect(route('login'));
         }
 
-
         return $next($request);
     }
 }

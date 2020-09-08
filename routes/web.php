@@ -32,9 +32,7 @@ Route::get('/forget-password','UserController@forgetPasswordIndex')->name('forge
 Route::post('/forget-password','UserController@forgetPasswordStore')->name('forget-password.store');
 
 //password recovery code
-
 Route::group(['middleware' => 'recovery_code'], function() {
-
     Route::get('/password-recovery', 'UserController@passwordRecoveryIndex')->name('password.recovery.index');
     Route::post('/password-recovery', 'UserController@passwordRecovery')->name('password.recovery');
 

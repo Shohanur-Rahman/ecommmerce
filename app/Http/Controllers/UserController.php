@@ -14,17 +14,6 @@ use Illuminate\Support\Str;
 class UserController extends Controller
 {
 
-    /**
-     * Create a new controller instance.
-     *
-     * @return void
-     */
-    public function __construct()
-    {
-        $this->middleware('passwordRecoveryIndex')->only('verify');
-        $this->middleware('throttle:6,1')->only('verify', 'resend');
-    }
-
     public function login()
     {
         return view('user.pages.accounts.login');
