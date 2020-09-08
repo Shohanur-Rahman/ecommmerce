@@ -10,6 +10,7 @@ class CategoryController extends Controller
 {
     public function index()
     {
+
         $categories = Category::all();
         return view('admin.modules.categories.index',compact('categories'));
     }
@@ -66,6 +67,8 @@ class CategoryController extends Controller
 
     public function destroy(Category $category)
     {
+        $this->authorize('isAdmin');
+
         $category->delete();
 
         return redirect(route('categories.index'))->with('success','Category Deleted Successfully');
