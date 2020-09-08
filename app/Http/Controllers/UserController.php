@@ -58,11 +58,11 @@ class UserController extends Controller
             'password'=>'required|min:8'
         ]);
 
-        $remember = $request->get('remember');
+        $remember_me = $request->has('remember') ? true : false;
 
         $attempts =['email' => $request['email'], 'password' => $request['password']];
 
-        if(Auth::attempt($attempts,$remember)) {
+        if(Auth::attempt($attempts,$remember_me)) {
             return view('user.welcome');
         }
 
