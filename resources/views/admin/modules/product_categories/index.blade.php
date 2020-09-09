@@ -27,7 +27,6 @@
                             <th>Id</th>
                             <th>Parent ID</th>
                             <th>Category Name</th>
-                            <th>Show Menu</th>
                             <th>Show Top Menu</th>
                             <th>Created date</th>
                             <th>Action</th>
@@ -38,17 +37,11 @@
                         @foreach($productCategories as $category)
                             <tr>
                                 <td>{{$category->id}}</td>
-                                <td>{{($category->parent_id != 0) ?  $category->children->category_name ?? '' : $category->parent_id}}</td>
+                                <td>{{($category->parent_id != 0) ?  $category->parent->category_name ?? '' : $category->parent_id}}</td>
                                 <td>{{$category->category_name}}</td>
+
                                 <td>
-                                    @if($category->menu === 0)
-                                        <i class="zmdi zmdi-close text-danger"></i>
-                                    @else
-                                        <i class="zmdi zmdi-check text-success"></i>
-                                    @endif
-                                </td>
-                                <td>
-                                    @if($category->top_menu=== 0)
+                                    @if($category->is_top_menu=== 0)
                                         <i class="zmdi zmdi-close text-danger"></i>
                                     @else
                                         <i class="zmdi zmdi-check text-success"></i>

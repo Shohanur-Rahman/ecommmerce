@@ -11,7 +11,7 @@ class ProductCategoryController extends Controller
 
     public function index()
     {
-        $productCategories = ProductCategory::with('parent')->get();
+        $productCategories = ProductCategory::with('children')->get();
 
         return view('admin.modules.product_categories.index',compact('productCategories'));
     }
@@ -31,8 +31,7 @@ class ProductCategoryController extends Controller
             'category_name'=>$request['category_name'],
             'parent_id'=>$request['parent_id'] ?? 0,
             'user_id'=>$userId,
-            'menu'=>$request['menu'] ?? '0',
-            'top_menu'=>$request['top_menu'] ?? '0'
+            'is_top_menu'=>$request['is_top_menu'] ?? '0'
         ]);
 
         return redirect(route('product_categories.index'))->with('success','New ProductCategory Added Successfully');
@@ -53,8 +52,7 @@ class ProductCategoryController extends Controller
             'category_name'=>$request['category_name'],
             'parent_id'=>$request['parent_id'] ?? 0,
             'user_id'=>$userId,
-            'menu'=>$request['menu'] ?? '0',
-            'top_menu'=>$request['top_menu'] ?? '0'
+            'is_top_menu'=>$request['is_top_menu'] ?? '0'
         ]);
 
         return redirect(route('product_categories.index'))->with('success','Category Updated Successfully');
@@ -62,6 +60,7 @@ class ProductCategoryController extends Controller
 
     public function destroy(ProductCategory $productCategory)
     {
+        $productCategory->load('children');
         $this->authorize('isAdmin');
 
         $productCategory->delete();

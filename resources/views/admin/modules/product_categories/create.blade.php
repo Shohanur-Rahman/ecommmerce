@@ -34,14 +34,7 @@
 
                                 <div class="form-group">
                                     <div class="checkbox d-inline">
-                                        <input type="checkbox" name="menu" id="checkbox-13" value="1">
-                                        <label for="checkbox-13" class="cr">Show On Menu</label>
-                                    </div>
-                                </div>
-
-                                <div class="form-group">
-                                    <div class="checkbox d-inline">
-                                        <input type="checkbox" name="top_menu" id="checkbox-14" value="1">
+                                        <input type="checkbox" name="is_top_menu" id="checkbox-14" value="1">
                                         <label for="checkbox-14" class="cr">Show On Top Menu</label>
                                     </div>
                                 </div>

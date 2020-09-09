@@ -28,7 +28,7 @@
                                         <select name="parent_id" id="" class="form-control">
                                             <option value="">Selection Category</option>
                                             @foreach($Categories as $category)
-                                                <option value="{{$category->id}}" {{($category->id === $productCategory->id) ? 'selected' : ''}}>{{$category->category_name}} <b class="text-black-50">({{$category->user->user_type}})</b></option>
+                                                <option value="{{$category->parent_id}}" {{($category->id === $productCategory->parent_id) ? 'selected' : ''}}>{{$category->category_name}} <b class="text-black-50">({{$category->user->user_type}})</b></option>
                                             @endforeach
                                         </select>
                                     </div>
@@ -36,14 +36,7 @@
 
                                 <div class="form-group">
                                     <div class="checkbox d-inline">
-                                        <input type="checkbox" name="menu" id="checkbox-13" value="1" {{($productCategory->menu===1) ? 'checked' : ''}}>
-                                        <label for="checkbox-13" class="cr">Show On Menu</label>
-                                    </div>
-                                </div>
-
-                                <div class="form-group">
-                                    <div class="checkbox d-inline">
-                                        <input type="checkbox" name="top_menu" id="checkbox-14" value="1" {{($productCategory->top_menu===1) ? 'checked' : ''}}>
+                                        <input type="checkbox" name="is_top_menu" id="checkbox-14" value="1" {{($productCategory->is_top_menu===1) ? 'checked' : ''}}>
                                         <label for="checkbox-14" class="cr">Show On Top Menu</label>
                                     </div>
                                 </div>
