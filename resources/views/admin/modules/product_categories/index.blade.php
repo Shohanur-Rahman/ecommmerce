@@ -50,17 +50,17 @@
 
                                 <td>{{$category->created_at->format('d F Y')}}</td>
 
-                                    <td>
-                                        <a class="btn btn-outline-primary table-btn btn-sm" href="{{route('product_categories.edit', $category->id)}}" title="Edit"><i class="zmdi zmdi-edit"></i></a>
-                                        @can('isAdmin')
-                                            <form class="d-inline"  action="{{route('product_categories.destroy',$category->id)}}" method="post">
-                                                @method('DELETE')
-                                                @csrf
+                                <td>
+                                    <a class="btn btn-outline-primary table-btn btn-sm" href="{{route('product_categories.edit', $category->id)}}" title="Edit"><i class="zmdi zmdi-edit"></i></a>
+                                    @can('isAdmin')
+                                        <form class="d-inline"  action="{{route('product_categories.destroy',$category->id)}}" method="post">
+                                            @method('DELETE')
+                                            @csrf
 
-                                                <button class="btn btn-outline-danger table-btn btn-sm"  title="Delete"><i class="zmdi zmdi-delete"></i></button>
-                                            </form>
-                                        @endcan
-                                    </td>
+                                            <button class="btn btn-outline-danger table-btn btn-sm"  title="Delete"><i class="zmdi zmdi-delete"></i></button>
+                                        </form>
+                                    @endcan
+                                </td>
 
                             </tr>
 

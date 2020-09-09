@@ -37,9 +37,14 @@
                                 <td>{{$user->name}}</td>
                                 <td>{{$user->email}}</td>
                                 <td>{{$user->user_type}}</td>
-                                <td>{{$user->is_active}}</td>
+                                <td>
+                                    @if($user->is_active=== 0)
+                                        <i class="zmdi zmdi-close text-danger"></i>
+                                    @else
+                                        <i class="zmdi zmdi-check text-success"></i>
+                                    @endif
+                                </td>
                                 <td>{{$user->created_at->format('d F Y')}}</td>
-
                                 <td>
                                     <a class="btn btn-outline-primary table-btn btn-sm" href="{{route('users.edit',[$user->user_type,$user->id] )}}" title="Edit"><i class="zmdi zmdi-edit"></i></a>
                                 </td>
