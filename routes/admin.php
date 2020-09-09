@@ -32,6 +32,14 @@ Route::group(['middleware' => 'auth'], function() {
         Route::delete('/{productAvailability}','ProductAvailabilityController@destroy')->name('product.availabilities.destroy');
     });
 
+    Route::group(['prefix'=>'main-sliders'], function(){
+        Route::get('','MainSliderController@index')->name('main-sliders.index');
+        Route::get('/create','MainSliderController@create')->name('main-sliders.create');
+        Route::post('','MainSliderController@store')->name('main-sliders.store');
+        Route::get('/{mainSlider}/edit','MainSliderController@edit')->name('main-sliders.edit');
+        Route::patch('/{mainSlider}','MainSliderController@update')->name('main-sliders.update');
+        Route::delete('/{mainSlider}','MainSliderController@destroy')->name('main-sliders.destroy');
+    });
 });
 
 

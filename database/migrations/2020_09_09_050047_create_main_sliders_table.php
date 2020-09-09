@@ -15,6 +15,11 @@ class CreateMainSlidersTable extends Migration
     {
         Schema::create('main_sliders', function (Blueprint $table) {
             $table->id();
+            $table->unsignedBigInteger('product_id')->nullable();
+            $table->unsignedBigInteger('category_id')->nullable();
+            $table->string('name');
+            $table->string('caption');
+            $table->string('image_url');
             $table->timestamps();
         });
     }
