@@ -53,7 +53,7 @@
                                 <button type="submit" class="btn btn-primary mr-2">Submit</button>
                             </form>
 
-                            <a href="{{route('users.index',$user->user_type)}}" class="btn btn-danger">Back to Warehouses</a>
+                            <a href="{{route('users.index',strtolower($user->user_type))}}" class="btn btn-danger">Back to Warehouses</a>
                         </div>
                     </div>
 

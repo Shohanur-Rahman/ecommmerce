@@ -12,14 +12,14 @@ class UserController extends Controller
     {
         $users = User::where('user_type',$type)->get();
 
-        return view('admin.modules.users.index',compact('users'));
+        return view('admin.modules.users.index',compact('users','type'));
     }
 
     public function edit($type, User $user)
     {
         $types = User::distinct()->get(['user_type']); ;
 
-        return view('admin.modules.users.edit',compact('user','types'));
+        return view('admin.modules.users.edit',compact('user','types','type'));
     }
 
     public function update($type, User $user,Request $request)

@@ -34,7 +34,7 @@
                     <li class="treeview">
                         <a href="javascript:void(0)"><i class="zmdi zmdi-code-smartphone"></i> <span>Users</span> <i class="fa fa-angle-right"></i></a>
                         <ul class="treeview-menu">
-                            <li><a href="{{route('users.index',['type'=>'Super Admin'])}}">- Super Admin</a></li>
+                            <li><a href="{{route('users.index',['type'=>'super-admin'])}}">- Super Admin</a></li>
                             <li><a href="{{route('users.index',['type'=>'admin'])}}">- Admin</a></li>
                             <li><a href="{{route('users.index',['type'=>'customer'])}}">- Vendor</a></li>
                             <li><a href="{{route('users.index',['type'=>'editor'])}}">- Editor</a></li>

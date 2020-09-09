@@ -46,7 +46,7 @@
                                 </td>
                                 <td>{{$user->created_at->format('d F Y')}}</td>
                                 <td>
-                                    <a class="btn btn-outline-primary table-btn btn-sm" href="{{route('users.edit',[$user->user_type,$user->id] )}}" title="Edit"><i class="zmdi zmdi-edit"></i></a>
+                                    <a class="btn btn-outline-primary table-btn btn-sm" href="{{route('users.edit',['type'=>$type,$user->id] )}}" title="Edit"><i class="zmdi zmdi-edit"></i></a>
                                 </td>
 
                             </tr>

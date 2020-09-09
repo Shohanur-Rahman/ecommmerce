@@ -41,7 +41,7 @@ Route::group(['middleware' => 'auth'], function() {
         Route::delete('/{mainSlider}','MainSliderController@destroy')->name('main-sliders.destroy');
     });
 
-     Route::group(['prefix'=>''], function(){
+     Route::group(['prefix'=>'users'], function(){
             Route::get('{type}','UserController@index')->name('users.index');
 //            Route::get('/create','MainSliderController@create')->name('main-sliders.create');
 //            Route::post('','MainSliderController@store')->name('main-sliders.store');
