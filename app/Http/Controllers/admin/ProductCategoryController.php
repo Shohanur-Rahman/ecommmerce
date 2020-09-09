@@ -60,8 +60,11 @@ class ProductCategoryController extends Controller
 
     public function destroy(ProductCategory $productCategory)
     {
-        $productCategory->load('children');
         $this->authorize('isAdmin');
+
+        $productCategory->children->each(function ($children){
+            $children->update(['parent_id'=>0]);
+        });
 
         $productCategory->delete();
 
