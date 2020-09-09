@@ -11,7 +11,7 @@ Route::group(['middleware' => 'auth'], function() {
         Route::post('','ProductCategoryController@store')->name('product_categories.store');
         Route::get('/{productCategory}/edit','ProductCategoryController@edit')->name('product_categories.edit');
         Route::patch('/{productCategory}','ProductCategoryController@update')->name('product_categories.update');
-        Route::delete('/{productCategory}','ProductCategoryController@destroy')->name('product_categories.destroy');
+        Route::delete('/{productCatego_ry}','ProductCategoryController@destroy')->name('product_categories.destroy');
     });
 });
 
