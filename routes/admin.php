@@ -22,7 +22,17 @@ Route::group(['middleware' => 'auth'], function() {
         Route::patch('/{warehouse}','WarehouseController@update')->name('warehouses.update');
         Route::delete('/{warehouse}','WarehouseController@destroy')->name('warehouses.destroy');
     });
+
+    Route::group(['product/availabilities'=>'warehouses'], function(){
+        Route::get('','ProductAvailabilityController@index')->name('product_availabilities.index');
+        Route::get('/create','ProductAvailabilityController@create')->name('product_availabilities.create');
+        Route::post('','ProductAvailabilityController@store')->name('product_availabilities.store');
+        Route::get('/{productAvailability}/edit','ProductAvailabilityController@edit')->name('product_availabilities.edit');
+        Route::patch('/{productAvailability}','ProductAvailabilityController@update')->name('product_availabilities.update');
+        Route::delete('/{productAvailability}','ProductAvailabilityController@destroy')->name('product_availabilities.destroy');
+    });
 });
+
 
 
 
