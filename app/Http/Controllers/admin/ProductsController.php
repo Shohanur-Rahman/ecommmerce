@@ -5,6 +5,11 @@ namespace App\Http\Controllers\admin;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\Products;
+use App\Models\Warehouse;
+use App\Models\ProductAvailability;
+use App\Models\ProductBrands;
+use App\Models\ProductCategory;
+use App\Models\ProductTags;
 use Auth;
 
 class ProductsController extends Controller
@@ -26,6 +31,12 @@ class ProductsController extends Controller
 
     public function add_product()
     {
-    	return view('admin.modules.products.add');
+        $warehouses = Warehouse::all();
+        $avalabilitites = ProductAvailability::all();
+        $brands = ProductBrands::all();
+        $categories = ProductCategory::all();
+        $categories = ProductCategory::all();
+        $tags = ProductTags::all();
+    	return view('admin.modules.products.add', compact("warehouses", "avalabilitites", "categories", "brands","tags"));
     }
 }

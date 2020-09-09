@@ -74,8 +74,6 @@ img.table-image {
 
 .inline-widged {
     display: inline-block;
-    margin-right: 15px;
-    margin-left: 15px;
     padding: 10px 25px;
     border: 1px solid #ddd;
 }
