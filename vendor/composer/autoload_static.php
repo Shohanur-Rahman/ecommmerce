@@ -526,6 +526,7 @@ class ComposerStaticInit4ff1e1c5660f37789a257002b964f8de
         'App\\Http\\Middleware\\VerifyCsrfToken' => __DIR__ . '/../..' . '/app/Http/Middleware/VerifyCsrfToken.php',
         'App\\Http\\Middleware\\VerifyRecoveryCode' => __DIR__ . '/../..' . '/app/Http/Middleware/VerifyRecoveryCode.php',
         'App\\Models\\Dashboard' => __DIR__ . '/../..' . '/app/Models/Dashboard.php',
+        'App\\Models\\ProductAvailability' => __DIR__ . '/../..' . '/app/Models/ProductAvailability.php',
         'App\\Models\\ProductBrandCategoryMap' => __DIR__ . '/../..' . '/app/Models/ProductBrandCategoryMap.php',
         'App\\Models\\ProductBrands' => __DIR__ . '/../..' . '/app/Models/ProductBrands.php',
         'App\\Models\\ProductCategory' => __DIR__ . '/../..' . '/app/Models/ProductCategory.php',

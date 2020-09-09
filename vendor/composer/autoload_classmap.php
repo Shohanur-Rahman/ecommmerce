@@ -36,6 +36,7 @@ return array(
     'App\\Http\\Middleware\\VerifyCsrfToken' => $baseDir . '/app/Http/Middleware/VerifyCsrfToken.php',
     'App\\Http\\Middleware\\VerifyRecoveryCode' => $baseDir . '/app/Http/Middleware/VerifyRecoveryCode.php',
     'App\\Models\\Dashboard' => $baseDir . '/app/Models/Dashboard.php',
+    'App\\Models\\ProductAvailability' => $baseDir . '/app/Models/ProductAvailability.php',
     'App\\Models\\ProductBrandCategoryMap' => $baseDir . '/app/Models/ProductBrandCategoryMap.php',
     'App\\Models\\ProductBrands' => $baseDir . '/app/Models/ProductBrands.php',
     'App\\Models\\ProductCategory' => $baseDir . '/app/Models/ProductCategory.php',
