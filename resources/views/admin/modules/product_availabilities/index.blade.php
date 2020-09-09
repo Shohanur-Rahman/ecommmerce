@@ -17,7 +17,7 @@
                     </p>
 
                     <p>
-                        <a class="btn btn-primary" href="{{route('product_categories.create')}}">New Availability</a>
+                        <a class="btn btn-primary" href="{{route('product.availabilities.create')}}">New Availability</a>
                     </p>
 
 
@@ -33,26 +33,17 @@
                         </thead>
 
                         <tbody>
-                        @foreach($productCategories as $category)
+                        @foreach($availabilities as $availability)
                             <tr>
-                                <td>{{$category->id}}</td>
-                                <td>{{($category->parent_id != 0) ?  $category->parent->category_name ?? '' : $category->parent_id}}</td>
-                                <td>{{$category->category_name}}</td>
+                                <td>{{$availability->id}}</td>
+                                <td>{{$availability->name}}</td>
+                                <td>{{$availability->days}}</td>
+                                <td>{{$availability->created_at->format('d F Y')}}</td>
 
                                 <td>
-                                    @if($category->is_top_menu=== 0)
-                                        <i class="zmdi zmdi-close text-danger"></i>
-                                    @else
-                                        <i class="zmdi zmdi-check text-success"></i>
-                                    @endif
-                                </td>
-
-                                <td>{{$category->created_at->format('d F Y')}}</td>
-
-                                <td>
-                                    <a class="btn btn-outline-primary table-btn btn-sm" href="{{route('product_categories.edit', $category->id)}}" title="Edit"><i class="zmdi zmdi-edit"></i></a>
+                                    <a class="btn btn-outline-primary table-btn btn-sm" href="{{route('product.availabilities.edit', $availability->id)}}" title="Edit"><i class="zmdi zmdi-edit"></i></a>
                                     @can('isAdmin')
-                                        <form class="d-inline"  action="{{route('product_categories.destroy',$category->id)}}" method="post">
+                                        <form class="d-inline"  action="{{route('product.availabilities.destroy',$availability->id)}}" method="post">
                                             @method('DELETE')
                                             @csrf
 

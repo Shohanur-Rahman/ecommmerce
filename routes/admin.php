@@ -23,7 +23,7 @@ Route::group(['middleware' => 'auth'], function() {
         Route::delete('/{warehouse}','WarehouseController@destroy')->name('warehouses.destroy');
     });
 
-    Route::group(['product/availabilities'=>'warehouses'], function(){
+    Route::group(['prefix'=>'product/availabilities'], function(){
         Route::get('','ProductAvailabilityController@index')->name('product.availabilities.index');
         Route::get('/create','ProductAvailabilityController@create')->name('product.availabilities.create');
         Route::post('','ProductAvailabilityController@store')->name('product.availabilities.store');
@@ -31,6 +31,7 @@ Route::group(['middleware' => 'auth'], function() {
         Route::patch('/{productAvailability}','ProductAvailabilityController@update')->name('product.availabilities.update');
         Route::delete('/{productAvailability}','ProductAvailabilityController@destroy')->name('product.availabilities.destroy');
     });
+
 });
 
 
