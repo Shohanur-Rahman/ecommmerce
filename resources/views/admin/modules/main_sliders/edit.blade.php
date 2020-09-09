@@ -34,20 +34,20 @@
 
                                 <div class="form-group">
                                     <label for="categoryId">Category Name</label>
-                                    <select name="category_id" class="form-control" id="categoryId" data-parsley-error-message="Enter Slider category_id">
+                                    <select {{($mainSlider->category_id) ? '' : 'disabled'}} name="category_id" class="form-control" id="categoryId" data-parsley-error-message="Enter Slider category_id">
                                         <option value="">Select Category Name</option>
                                         @foreach($categories as $category)
-                                            <option value="{{$category->id}}">{{$category->category_name}}</option>
+                                            <option value="{{$category->id}}" {{($category->id===$mainSlider->category_id) ? 'selected' : ''}}>{{$category->category_name}}</option>
                                         @endforeach
                                     </select>
                                 </div>
 
                                 <div class="form-group">
                                     <label for="productId">Product Id</label>
-                                    <select  name="product_id" class="form-control" id="productId" data-parsley-error-message="Enter Slider product_id">
+                                    <select {{($mainSlider->product_id) ? '' : 'disabled'}}  name="product_id" class="form-control" id="productId" data-parsley-error-message="Enter Slider product_id">
                                         <option value="">Select Product Id</option>
                                         @foreach($products as $product)
-                                            <option value="{{$product->id}}">{{$product->title}}</option>
+                                            <option value="{{$product->id}}" {{($product->id===$mainSlider->product_id) ? 'selected' : ''}}>{{$product->title}}</option>
                                         @endforeach
                                     </select>
                                 </div>
@@ -59,7 +59,31 @@
                         </div>
                     </div>
 
-                </div>
+                </div><script>
+                    $(document).ready(function(){
+
+                        $("#categoryId").click(function(){
+                            var categoryVal = $(this).val();
+
+                            if(categoryVal.length>=1){
+                                $('#productId').prop('disabled', 'disabled');
+                            }else{
+                                $('#productId').removeAttr('disabled');
+                            }
+                        });
+
+                        $("#productId").click(function(){
+                            var productVal = $(this).val();
+
+                            if(productVal.length>=1){
+                                $('#categoryId').prop('disabled', 'disabled');
+                            }else{
+                                $('#categoryId').removeAttr('disabled');
+                            }
+                        });
+
+                    });
+                </script>
             </div>
         </div>
     </div>

@@ -33,7 +33,7 @@
 
                                 <div class="form-group">
                                     <label for="categoryId">Category Name</label>
-                                    <select name="category_id" class="form-control" id="categoryId" data-parsley-error-message="Enter Slider category_id">
+                                    <select  name="category_id" class="form-control" id="categoryId" data-parsley-error-message="Enter Slider category_id">
                                         <option value="">Select Category Name</option>
                                         @foreach($categories as $category)
                                             <option value="{{$category->id}}">{{$category->category_name}}</option>
@@ -63,4 +63,28 @@
         </div>
     </div>
 
+    <script>
+        $(document).ready(function(){
+            $("#categoryId").click(function(){
+                var categoryVal = $(this).val();
+
+                if(categoryVal.length>=1){
+                    $('#productId').prop('disabled', 'disabled');
+                }else{
+                    $('#productId').removeAttr('disabled');
+                }
+            });
+
+            $("#productId").click(function(){
+                var productVal = $(this).val();
+
+                if(productVal.length>=1){
+                    $('#categoryId').prop('disabled', 'disabled');
+                }else{
+                    $('#categoryId').removeAttr('disabled');
+                }
+            });
+
+        });
+    </script>
 @endsection
