@@ -46,7 +46,7 @@ Route::group(['middleware' => 'auth'], function() {
 //            Route::get('/create','MainSliderController@create')->name('main-sliders.create');
 //            Route::post('','MainSliderController@store')->name('main-sliders.store');
             Route::get('{type}/{user}/edit','UserController@edit')->name('users.edit');
-//            Route::patch('/{mainSlider}','MainSliderController@update')->name('main-sliders.update');
+            Route::patch('/{type}/{user}','UserController@update')->name('users.update');
 //            Route::delete('/{mainSlider}','MainSliderController@destroy')->name('main-sliders.destroy');
      });
 });

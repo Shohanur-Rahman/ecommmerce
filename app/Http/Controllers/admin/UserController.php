@@ -15,8 +15,24 @@ class UserController extends Controller
         return view('admin.modules.users.index',compact('users'));
     }
 
-    public function edit()
+    public function edit($type, User $user)
     {
-        return view('admin.modules.users.edit');
+        $types = User::distinct()->get(['user_type']); ;
+
+        return view('admin.modules.users.edit',compact('user','types'));
+    }
+
+    public function update($type, User $user,Request $request)
+    {
+
+        $user->update([
+            'name'=>$request['name'],
+            'email'=>$request['email'],
+            'user_type'=>$request['user_type'],
+            'is_active'=>$request['is_active'] ?? 0,
+            'admin_comment'=>$request['admin_comment'],
+        ]);
+
+        return redirect(route('users.index',$type))->with('success','User Information Updated Successfully');
     }
 }
