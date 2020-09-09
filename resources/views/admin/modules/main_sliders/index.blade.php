@@ -10,14 +10,14 @@
         <div class="col-md-12">
             <div class="card">
                 <div class="card-body">
-                    <h4 class="card-title mb-2">Our Warehouses</h4>
+                    <h4 class="card-title mb-2">Our Main Slider</h4>
                     <p class="text-muted font-14 mb-4">
                         The Buttons extension for DataTables provides a common set of options, API methods and styling to display buttons on a page
                         that will interact with a DataTable. The core library provides the based framework upon which plug-ins can built.
                     </p>
 
                     <p>
-                        <a class="btn btn-primary" href="{{route('warehouses.create')}}">New Warehouse</a>
+                        <a class="btn btn-primary" href="{{route('main-sliders.create')}}">New Main Slider</a>
                     </p>
 
 
@@ -25,27 +25,31 @@
                         <thead>
                         <tr>
                             <th>Id</th>
-                            <th>User ID</th>
-                            <th>Warehouse Name</th>
-                            <th>Location</th>
+                            <th>Product ID</th>
+                            <th>Category ID</th>
+                            <th>Name</th>
+                            <th>Caption</th>
+                            <th>Image Url</th>
                             <th>Created date</th>
                             <th>Action</th>
                         </tr>
                         </thead>
 
                         <tbody>
-                        @foreach($warehouses as $warehouse)
+                        @foreach($mainSliders as $mainSlider)
                             <tr>
-                                <td>{{$warehouse->id}}</td>
-                                <td>{{$warehouse->user_id  }}</td>
-                                <td>{{$warehouse->name}}</td>
-                                <td>{{$warehouse->location}}</td>
-                                <td>{{$warehouse->created_at->format('d F Y')}}</td>
+                                <td>{{$mainSlider->id}}</td>
+                                <td>{{$mainSlider->product_id  }}</td>
+                                <td>{{$mainSlider->category_id}}</td>
+                                <td>{{$mainSlider->name}}</td>
+                                <td>{{$mainSlider->caption}}</td>
+                                <td>{{$mainSlider->image_url}}</td>
+                                <td>{{$mainSlider->created_at->format('d F Y')}}</td>
 
                                 <td>
-                                    <a class="btn btn-outline-primary table-btn btn-sm" href="{{route('warehouses.edit', $warehouse->id)}}" title="Edit"><i class="zmdi zmdi-edit"></i></a>
+                                    <a class="btn btn-outline-primary table-btn btn-sm" href="{{route('main-sliders.edit', $mainSlider->id)}}" title="Edit"><i class="zmdi zmdi-edit"></i></a>
 
-                                    <form class="d-inline"  action="{{route('warehouses.destroy',$warehouse->id)}}" method="post">
+                                    <form class="d-inline"  action="{{route('main-sliders.destroy',$mainSlider->id)}}" method="post">
                                         @method('DELETE')
                                         @csrf
 
