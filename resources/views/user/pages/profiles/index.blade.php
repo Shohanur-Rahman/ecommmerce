@@ -76,7 +76,7 @@
                             </div>
                             <div class="">
                                 <h4>Address Book</h4>
-                                <div class="manage_add"><a class="text-success" href="#">New Shipping Addresses</a></div>
+                                <div class="manage_add"><a class="text-success" href="{{route('shipping-address.create')}}">New Shipping Addresses</a></div>
                                 <div class="d-flex justify-content-between flex-wrap">
                                     <div class="">
                                         <h5>Primary Billing Address</h5>
