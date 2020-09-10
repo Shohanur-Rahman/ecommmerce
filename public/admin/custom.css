@@ -136,3 +136,6 @@ overflow-y: hidden;
 .repeat-area{
     margin-bottom: 50px;
 }
+.image-uploader .upload-text {
+    cursor: pointer;
+}
