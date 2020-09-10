@@ -63,4 +63,7 @@
         </div>
     </div>
 
+
+    @include('admin.partials.partial_assets.datatable')
+
 @endsection

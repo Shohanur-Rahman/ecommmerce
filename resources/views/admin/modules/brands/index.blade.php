@@ -64,20 +64,6 @@
 	</div>
 </div>
 
-
-
-<script type="text/javascript">
-    $(document).ready(function () {
-       
-    //Exportable table
-    $('.js-exportable').DataTable({
-        dom: 'Bfrtip',
-        responsive: true,
-        buttons: [
-            'csv', 'excel', 'pdf', 'print'
-        ]
-    });
-    });
-</script>
+@include('admin.partials.partial_assets.datatable')
 
 @endsection

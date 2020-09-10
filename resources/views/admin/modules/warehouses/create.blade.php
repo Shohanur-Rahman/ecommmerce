@@ -14,7 +14,7 @@
 
                     <div class="row">
                         <div class="col-sm-12 col-xs-12">
-                            <form method="post" action="{{route('warehouses.store')}}" class="d-inline">
+                            <form method="post" action="{{route('warehouses.store')}}" class="d-inline" data-parsley-validate>
                                 @csrf
                                 <div class="form-group">
                                     <label for="name">Warehouses Name</label>

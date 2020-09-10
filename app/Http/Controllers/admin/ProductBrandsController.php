@@ -4,7 +4,7 @@ namespace App\Http\Controllers\admin;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\ProductBrands;
-use App\Models\Category;
+use App\Models\ProductCategory;
 use App\Models\ProductBrandCategoryMap;
 use DB;
 use Carbon\Carbon;
@@ -32,7 +32,7 @@ class ProductBrandsController extends Controller
 
     public function add_brand()
     {
-        $categories = Category::all();
+        $categories = ProductCategory::all();
     	return view('admin.modules.brands.add', compact("categories"));
     }
 
@@ -62,7 +62,7 @@ class ProductBrandsController extends Controller
                 $existingCatMap =$existingCatMap.",".$key->cat_id;
         }
 
-        $categories = Category::all();
+        $categories = ProductCategory::all();
 
     	return view('admin.modules.brands.edit', compact("brand", "categories", "existingCatMap"));
     }
@@ -70,7 +70,7 @@ class ProductBrandsController extends Controller
     public function delet_brand($id)
     {
     	$brand = ProductBrands::find($id);
-        
+
     	if($brand == null)
     		return view('not_found');
 
@@ -88,7 +88,7 @@ class ProductBrandsController extends Controller
     	$brand->name = $req->name;
         $brand->user_id = Auth::id();
 
-        
+
 
     	$fileURL = "";
 

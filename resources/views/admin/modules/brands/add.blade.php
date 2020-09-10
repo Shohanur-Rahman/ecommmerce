@@ -29,7 +29,7 @@
                                     <img src="{{asset('images/noimage.PNG')}}" id="uploadPreview" />
                                 </label>
                                 <input type="file" name="imgInp" class="hdn-uploder" id="imgInp" required="required" accept="image/*" data-parsley-error-message="Upload featured image"/>
-                            
+
                             </div>
 
                             <div class="form-group">
@@ -41,7 +41,7 @@
                                 </select>
                             </div>
 
-                            
+
                             <button type="submit" class="btn btn-primary mr-2">Submit</button>
                             <a href="{{route('brands')}}" class="btn btn-danger">Back to Brands</a>
                         </form>
@@ -59,7 +59,7 @@
     var mltCategories;
 
     $(document).ready(function () {
-        
+
         mltCategories = $("#mltCategories").kendoMultiSelect().data("kendoMultiSelect");
 
         mltCategories.bind("change", function () {
