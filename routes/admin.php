@@ -6,12 +6,12 @@ Route::group(['middleware' => 'auth'], function() {
     Route::get('/dashboard','DashboardController@index')->name('dashboard');
 
     Route::group(['prefix'=>'categories'], function(){
-        Route::get('','ProductCategoryController@index')->name('product_categories.index');
-        Route::get('/create','ProductCategoryController@create')->name('product_categories.create');
-        Route::post('','ProductCategoryController@store')->name('product_categories.store');
-        Route::get('/{productCategory}/edit','ProductCategoryController@edit')->name('product_categories.edit');
-        Route::patch('/{productCategory}','ProductCategoryController@update')->name('product_categories.update');
-        Route::delete('/{productCategory}','ProductCategoryController@destroy')->name('product_categories.destroy');
+        Route::get('','ProductCategoryController@index')->name('product-categories.index');
+        Route::get('/create','ProductCategoryController@create')->name('product-categories.create');
+        Route::post('','ProductCategoryController@store')->name('product-categories.store');
+        Route::get('/{productCategory}/edit','ProductCategoryController@edit')->name('product-categories.edit');
+        Route::patch('/{productCategory}','ProductCategoryController@update')->name('product-categories.update');
+        Route::delete('/{productCategory}','ProductCategoryController@destroy')->name('product-categories.destroy');
     });
 
     Route::group(['prefix'=>'warehouses'], function(){
@@ -49,15 +49,6 @@ Route::group(['middleware' => 'auth'], function() {
             Route::patch('/{type}/{user}','UserController@update')->name('users.update');
 //            Route::delete('/{mainSlider}','MainSliderController@destroy')->name('main-sliders.destroy');
      });
-
-//    Route::group(['prefix'=>'product-sizes'], function(){
-//        Route::get('','ProductSizeController@index')->name('product-sizes.index');
-//        Route::get('/create','ProductSizeController@create')->name('product-sizes.create');
-//        Route::post('','ProductSizeController@store')->name('product-sizes.store');
-//        Route::get('/{productSize}/edit','ProductSizeController@edit')->name('product-sizes.edit');
-//        Route::patch('/{productSize}','ProductSizeController@update')->name('product-sizes.update');
-//        Route::delete('/{productSize}','ProductSizeController@destroy')->name('product-sizes.destroy');
-//    });
 
      Route::resource('product-sizes','ProductSizeController');
      Route::resource('product-colors','ProductColorController');

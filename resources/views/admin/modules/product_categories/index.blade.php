@@ -17,7 +17,7 @@
                     </p>
 
                     <p>
-                        <a class="btn btn-primary" href="{{route('product_categories.create')}}">New Category</a>
+                        <a class="btn btn-primary" href="{{route('product-categories.create')}}">New Category</a>
                     </p>
 
 
@@ -51,9 +51,9 @@
                                 <td>{{$category->created_at->format('d F Y')}}</td>
 
                                 <td>
-                                    <a class="btn btn-outline-primary table-btn btn-sm" href="{{route('product_categories.edit', $category->id)}}" title="Edit"><i class="zmdi zmdi-edit"></i></a>
+                                    <a class="btn btn-outline-primary table-btn btn-sm" href="{{route('product-categories.edit', $category->id)}}" title="Edit"><i class="zmdi zmdi-edit"></i></a>
                                     @can('isAdmin')
-                                        <form class="d-inline"  action="{{route('product_categories.destroy',$category->id)}}" method="post">
+                                        <form class="d-inline"  action="{{route('product-categories.destroy',$category->id)}}" method="post">
                                             @method('DELETE')
                                             @csrf
 
