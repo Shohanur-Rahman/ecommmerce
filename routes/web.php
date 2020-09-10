@@ -42,4 +42,9 @@ Route::group(['middleware' => 'recovery_code'], function() {
 
 Route::get('/user-ui', 'TestController@user_ui')->name('user_ui');
 
-Route::get('dashboard','User\UserProfileController@index')->name('user-profiles.index');
+Route::get('dashboard','User\UserProfileController@index')->name('dashboard.index');
+Route::get('dashboard/{user}/edit','User\UserProfileController@edit')->name('dashboard.edit');
+Route::patch('dashboard/{user}','User\UserProfileController@update')->name('dashboard.update');
+
+Route::get('dashboard/{user}/change-password','User\UserProfileController@changePasswordEdit')->name('change-password.edit');
+Route::patch('dashboard/{user}/change-password','User\UserProfileController@changePasswordUpdate')->name('change-password.update');
