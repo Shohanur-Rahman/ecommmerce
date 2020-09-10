@@ -22,7 +22,7 @@
                                     <div class="new-checkbox">
                                         <!-- Rectangular switch -->
                                         <div class="inline-widged">
-                                            <label for="is_published" class="single-label">Published</label>
+                                          <label for="is_published" class="single-label">Published</label>
                                             <label class="switch">
                                                 <input type="checkbox" id="is_published" name="is_published" checked="checked" />
                                                 <span class="slider round"></span>
@@ -124,7 +124,62 @@
                     </div>
                 </div>
             </div>
-            <div class="tab-pane" id="tabMapping"></div>
+            <div class="tab-pane" id="tabMapping">
+                <div class="card mb-30">
+                    <div class="card-body py-3">
+                        <div class="d-flex align-items-center pb-3">
+                            <div class="icon font-30 text-primary">
+                                <i class="fa fa-ravelry" aria-hidden="true"></i>
+                            </div>
+                            <div class="icon-text pl-4">
+                                <h5 class="mb-0">Mapping</h5>
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="col-sm-3">
+                                <div class="form-group">
+                                    <label class="form-label">Featured Image</label>
+                                    <label for="imgInp" class="upload-preview">
+                                        <img src="{{asset('images/noimage.PNG')}}" id="uploadPreview" />
+                                    </label>
+                                    <input type="file" name="imgInp" class="hdn-uploder" id="imgInp" required="required" accept="image/*" data-parsley-error-message="Upload featured image" />
+                                </div>
+                            </div>
+                            <div class="col-sm-9">
+                               <div class="input-field">
+                                    <label class="active">Photos</label>
+                                    <div class="input-images-1" style="padding-top: .5rem;"></div>
+                                </div>
+
+                            </div>
+
+                            <div class="col-sm-12 col-xs-12">
+                        <div class="form-group">
+                            <label for="mltCategories" class="col-form-label">Categories</label>
+                            <select id="mltCategories" class="form-control" data-placeholder="Select at least one category" required="required" data-parsley-error-message="Choose at least one category">
+                                @foreach($categories as $cat)
+                                <option value="{{$cat->id}}">{{$cat->category_name}}</option>
+                                @endforeach
+                            </select>
+                        </div>
+                    </div>
+
+                    <div class="col-sm-12 col-xs-12">
+                        <div class="form-group">
+                            <label for="mltTags" class="col-form-label">Tags</label>
+                            <select id="mltTags" class="form-control" data-placeholder="Select at least one tag" required="required" data-parsley-error-message="Choose at least one tag">
+                                @foreach($tags as $cat)
+                                <option value="{{$cat->id}}">{{$cat->name}}</option>
+                                @endforeach
+                            </select>
+                        </div>
+                    </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
             <div class="tab-pane" id="tabInventory"></div>
         </div>
     </div>
@@ -160,13 +215,18 @@
 
 
 
-@include('admin.partials.partial_assets.kendo_init') @include('admin.partials.partial_assets.touchspin')
+@include('admin.partials.partial_assets.kendo_init')
+@include('admin.partials.partial_assets.dropzone')
+@include('admin.partials.partial_assets.touchspin')
 
 <script type="text/javascript">
     var mltCategories;
     var mltTags;
 
     $(document).ready(function () {
+        
+        $('.input-images-1').imageUploader();
+
         mltCategories = $("#mltCategories").kendoMultiSelect().data("kendoMultiSelect");
         mltTags = $("#mltTags").kendoMultiSelect().data("kendoMultiSelect");
 

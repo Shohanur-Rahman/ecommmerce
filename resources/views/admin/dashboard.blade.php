@@ -590,4 +590,12 @@
     </div>
 </div>
 
+
+<!-- These plugins only need for the run this page -->
+<script src="{{asset('admin/js/default-assets/ammap.min.js')}}"></script>
+<script src="{{asset('admin/js/default-assets/radar.js')}}"></script>
+<script src="{{asset('admin/js/default-assets/widget-page-chart-active.js')}}"></script>
+<script src="{{asset('admin/js/default-assets/apexchart.min.js')}}"></script>
+<script src="{{asset('admin/js/default-assets/dashboard-active.js')}}"></script>
+
 @endsection

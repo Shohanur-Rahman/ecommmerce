@@ -128,3 +128,11 @@ overflow-y: hidden;
 .form-tab{
     right: 30px;
 }
+.footer-area {
+    position: fixed;
+    bottom: 0;
+}
+
+.repeat-area{
+    margin-bottom: 50px;
+}
