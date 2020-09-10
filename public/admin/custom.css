@@ -95,6 +95,7 @@ img.table-image {
 .sidebar-menu li .treeview-menu li a{
     height: 25px;
     color: #e0dde4;
+    border: none;
 }
 
 .sidebar-menu > li.active > a, .sidebar-menu > li.menu-open > a,
@@ -121,4 +122,8 @@ overflow-y: hidden;
 
 .ecaps-sidemenu-area {
     background: linear-gradient(50deg, #273444, #272b44) !important;
+}
+
+.form-tab{
+    right: 0;
 }
