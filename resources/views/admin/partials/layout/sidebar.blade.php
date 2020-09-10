@@ -20,7 +20,7 @@
                             <li><a href="{{route('brands')}}">- Brands</a></li>
                             <li><a href="{{route('tags')}}">- Tags</a></li>
                             <li><a href="{{route('warehouses.index')}}">- Warehouses</a></li>
-                            <li><a href="{{route('product.availabilities.index')}}">- Availability</a></li>
+                            <li><a href="{{route('product-availabilities.index')}}">- Availability</a></li>
                             <li><a href="{{route('product-sizes.index')}}">- Product Sizes</a></li>
                             <li><a href="{{route('product-colors.index')}}">- Product Colors</a></li>
                         </ul>

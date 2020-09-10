@@ -14,7 +14,7 @@
 
                     <div class="row">
                         <div class="col-sm-12 col-xs-12">
-                            <form method="post" action="{{route('product.availabilities.store')}}" class="d-inline">
+                            <form method="post" action="{{route('product-availabilities.store')}}" class="d-inline">
                                 @csrf
                                 <div class="form-group">
                                     <label for="name">Availability Name</label>
@@ -32,7 +32,7 @@
 
                             </form>
 
-                            <a href="{{route('product.availabilities.index')}}" class="btn btn-danger">Back to Availabilities</a>
+                            <a href="{{route('product-availabilities.index')}}" class="btn btn-danger">Back to Availabilities</a>
                         </div>
                     </div>
 

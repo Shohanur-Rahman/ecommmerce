@@ -14,7 +14,7 @@
 
                     <div class="row">
                         <div class="col-sm-12 col-xs-12">
-                            <form method="post" action="{{route('product.availabilities.update',$productAvailability->id)}}" class="d-inline">
+                            <form method="post" action="{{route('product-availabilities.update',$productAvailability->id)}}" class="d-inline">
                                 @method('PATCH')
                                 @csrf
 
@@ -33,7 +33,7 @@
                                 <button type="submit" class="btn btn-primary mr-2">Submit</button>
                             </form>
 
-                            <a href="{{route('product.availabilities.index')}}" class="btn btn-danger">Back to Warehouses</a>
+                            <a href="{{route('product-availabilities.index')}}" class="btn btn-danger">Back to Warehouses</a>
                         </div>
                     </div>
 
@@ -42,4 +42,5 @@
         </div>
     </div>
 
+    @include('admin.partials.partial_assets.touchspin')
 @endsection
