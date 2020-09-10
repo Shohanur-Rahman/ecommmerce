@@ -50,8 +50,10 @@ Route::group(['middleware' => 'auth'], function() {
 //            Route::delete('/{mainSlider}','MainSliderController@destroy')->name('main-sliders.destroy');
      });
 
-     Route::resource('product-sizes','ProductSizeController');
-     Route::resource('product-colors','ProductColorController');
+    Route::resources([
+        'product-sizes' => 'ProductSizeController',
+        'product-colors' => 'ProductColorController',
+    ]);
 });
 
 
