@@ -74,12 +74,13 @@ img.table-image {
 
 .inline-widged {
     display: inline-block;
-    padding: 10px 25px;
+    padding: 3px 25px;
     border: 1px solid #ddd;
+    margin-right: 20px;
 }
 
 .inline-widged .single-label {
-    padding: 7px 0;
+    padding: 0px 0;
     display: block;
 }
 
@@ -125,5 +126,5 @@ overflow-y: hidden;
 }
 
 .form-tab{
-    right: 0;
+    right: 30px;
 }

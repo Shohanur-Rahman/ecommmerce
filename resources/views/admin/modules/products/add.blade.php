@@ -1,12 +1,13 @@
 @extends('admin.layouts.admin') @section('title', "New Product") @section('content') @include('admin.partials.partial_assets.kendo')
 
+
 <div class="row">
     <div class="col-md-9">
-        <div class="tab-content">
+        <div class="tab-content pt-0">
             <div class="tab-pane active" id="tabProductOverview">
                 <div class="card mb-30">
-                    <div class="card-body py-5">
-                        <div class="d-flex align-items-center">
+                    <div class="card-body py-3">
+                        <div class="d-flex align-items-center pb-3">
                             <div class="icon font-30 text-primary">
                                 <i class="fa fa-ravelry" aria-hidden="true"></i>
                             </div>
@@ -55,65 +56,64 @@
 
                         <div class="row">
                             <div class="col-md-12">
-                                <div class="form-group">
-                                    <div class="row">
-                                        <div class="col-sm-6">
-                                            <div class="form-group">
-                                                <label for="title">Title</label>
-                                                <input type="text" class="form-control" id="title" placeholder="Product title" name="title" required="required" data-parsley-error-message="Product title is required" />
-                                            </div>
+                                <div class="row">
+                                    <div class="col-sm-6">
+                                        <div class="form-group">
+                                            <label for="title">Title</label>
+                                            <input type="text" class="form-control" id="title" placeholder="Product title" name="title" required="required" data-parsley-error-message="Product title is required" />
                                         </div>
+                                    </div>
 
-                                        <div class="col-sm-3">
-                                            <div class="form-group">
-                                                <label for="old_price">Old Price</label>
-                                                <input class="currancy_touchspin" type="text" name="old_price" id="old_price" />
-                                            </div>
+                                    <div class="col-sm-3">
+                                        <div class="form-group">
+                                            <label for="old_price">Old Price</label>
+                                            <input class="currancy_touchspin" type="text" name="old_price" id="old_price" />
                                         </div>
+                                    </div>
 
-                                        <div class="col-sm-3">
-                                            <div class="form-group">
-                                                <label for="new_price">New Price</label>
-                                                <input class="currancy_touchspin" type="text" name="new_price" id="new_price" />
-                                            </div>
+                                    <div class="col-sm-3">
+                                        <div class="form-group">
+                                            <label for="new_price">New Price</label>
+                                            <input class="currancy_touchspin" type="text" name="new_price" id="new_price" />
                                         </div>
+                                    </div>
 
-                                        <div class="col-sm-3">
-                                            <div class="form-group">
-                                                <label for="sku">Stock keeping unit</label>
-                                                <input class="form-control" type="text" name="sku" id="sku" />
-                                            </div>
+                                    <div class="col-sm-3">
+                                        <div class="form-group">
+                                            <label for="sku">Stock keeping unit</label>
+                                            <input class="form-control" type="text" name="sku" id="sku" />
                                         </div>
+                                    </div>
 
-                                        <div class="col-sm-3">
-                                            <div class="form-group">
-                                                <label for="available_start_date">Available On</label>
-                                                <input class="form-control rounded-0 form-control-md" type="date" id="available_start_date" name="available_start_date" />
-                                            </div>
+                                    <div class="col-sm-3">
+                                        <div class="form-group">
+                                            <label for="available_start_date">Available On</label>
+                                            <input class="form-control rounded-0 form-control-md" type="date" id="available_start_date" name="available_start_date" />
                                         </div>
+                                    </div>
 
-                                        <div class="col-sm-3">
-                                            <div class="form-group">
-                                                <label for="available_end_date">Available End</label>
-                                                <input class="form-control rounded-0 form-control-md" type="date" id="available_end_date" name="available_end_date" />
-                                            </div>
-                                        </div>
-
-                                        <div class="col-sm-3">
-                                            <div class="form-group">
-                                                <label class="form-label">Featured Image</label>
-                                                <label for="imgInp" class="upload-preview">
-                                                    <img src="{{asset('images/noimage.PNG')}}" id="uploadPreview" />
-                                                </label>
-                                                <input type="file" name="imgInp" class="hdn-uploder" id="imgInp" required="required" accept="image/*" data-parsley-error-message="Upload featured image" />
-                                            </div>
+                                    <div class="col-sm-3">
+                                        <div class="form-group">
+                                            <label for="available_end_date">Available End</label>
+                                            <input class="form-control rounded-0 form-control-md" type="date" id="available_end_date" name="available_end_date" />
                                         </div>
                                     </div>
                                 </div>
-
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-12">
                                 <div class="form-group">
                                     <label for="name">Sort Description</label>
-                                    <textarea class="form-control rounded-0 form-control-md" rows="6" id="name" placeholder="Sort Description" name="name" required="required" data-parsley-error-message="Enter product short description"></textarea>
+                                    <textarea
+                                        class="form-control rounded-0 form-control-md"
+                                        rows="6"
+                                        id="name"
+                                        placeholder="Sort Description"
+                                        name="name"
+                                        required="required"
+                                        data-parsley-error-message="Enter product short description"
+                                    ></textarea>
                                 </div>
                                 <div class="form-group">
                                     <label for="name">Product Description</label>
@@ -121,7 +121,6 @@
                                 </div>
                             </div>
                         </div>
-
                     </div>
                 </div>
             </div>
@@ -131,30 +130,30 @@
     </div>
     <div class="col-md-3">
         <div class="position-fixed form-tab">
-            <div class="card mb-30">
-            <div class="card-body py-5">
-                <div class="d-flex align-items-center">
-                    <div class="icon font-30 text-primary">
-                        <i class="fa fa-ravelry" aria-hidden="true"></i>
+            <div class="card mb-30" align="center">
+                <div class="card-body py-3">
+                    <div class="d-flex align-items-center pb-4">
+                        <div class="icon font-30 text-primary">
+                            <i class="fa fa-ravelry" aria-hidden="true"></i>
+                        </div>
+                        <div class="icon-text pl-4">
+                            <h5 class="mb-0">Fill up all field</h5>
+                        </div>
                     </div>
-                    <div class="icon-text pl-4">
-                        <h5 class="mb-0">Fill up all field</h5>
-                    </div>
-                </div>
 
-                <div class="list-group">
-                    <a href="#tabProductOverview" data-toggle="tab" aria-expanded="false" class="list-group-item list-group-item-action nav-link active">
-                        Product Details
-                    </a>
-                    <a href="#tabMapping" data-toggle="tab" aria-expanded="true" class="list-group-item list-group-item-action nav-link">
-                        Mapping
-                    </a>
-                    <a href="#tabInventory" data-toggle="tab" aria-expanded="false" class="list-group-item list-group-item-action nav-link">
-                        Inventory
-                    </a>
+                    <div class="list-group pb-4">
+                        <a href="#tabProductOverview" data-toggle="tab" aria-expanded="false" class="list-group-item list-group-item-action nav-link active">
+                            Product Details
+                        </a>
+                        <a href="#tabMapping" data-toggle="tab" aria-expanded="true" class="list-group-item list-group-item-action nav-link">
+                            Mapping
+                        </a>
+                        <a href="#tabInventory" data-toggle="tab" aria-expanded="false" class="list-group-item list-group-item-action nav-link">
+                            Inventory
+                        </a>
+                    </div>
                 </div>
             </div>
-        </div>
         </div>
     </div>
 </div>
