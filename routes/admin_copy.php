@@ -23,4 +23,5 @@ Route::group(['prefix' => 'tags'], function () {
 Route::group(['prefix' => 'products'], function () {
 	Route::get('/', 'ProductsController@index')->name('products');
 	Route::get('/add', 'ProductsController@add_product')->name('add_product');
+	Route::post('/add', 'ProductsController@save_product')->name('save_product');
 });

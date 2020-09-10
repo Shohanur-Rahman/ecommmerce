@@ -27,6 +27,9 @@ class CreateProductsTable extends Migration
             $table->boolean('show_on_home')->default(0); 
             $table->bigInteger('user_id')->nullable();
             $table->integer('availability_id')->nullable();
+            $table->bigInteger('brand_id')->nullable();
+            $table->bigInteger('size_id')->nullable();
+            $table->bigInteger('color_id')->nullable();
             $table->dateTime('available_start_date')->nullable();
             $table->dateTime('available_end_date')->nullable();
             $table->boolean('is_inventory')->default(0);
@@ -38,6 +41,8 @@ class CreateProductsTable extends Migration
             $table->integer('minimum_cart_qty')->nullable();
             $table->string('featured_image')->nullable();
             $table->boolean('allow_seo')->default(0); 
+            $table->text('meta_keywords')->nullable();
+            $table->text('meta_description')->nullable();
             $table->timestamps();
         });
     }

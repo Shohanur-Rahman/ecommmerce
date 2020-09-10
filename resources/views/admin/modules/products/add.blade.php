@@ -3,6 +3,12 @@
 
 <div class="row">
     <div class="col-md-9">
+        <form method="post" action="{{route('save_product')}}" enctype="multipart/form-data" data-parsley-validate>
+            @csrf
+
+            <input type="hidden" name="categories" id="categories" />
+            <input type="hidden" name="tags" id="hdnTagsId" />
+
         <div class="tab-content pt-0">
             <div class="tab-pane active" id="tabProductOverview">
                 <div class="card mb-30">
@@ -120,8 +126,11 @@
                                     <textarea class="kendo_editor" rows="6" id="name" placeholder="Sort Description" name="name" required="required" data-parsley-error-message="Enter product description"> </textarea>
                                 </div>
                             </div>
+
+                            
                         </div>
                     </div>
+
                 </div>
             </div>
             <div class="tab-pane" id="tabMapping">
@@ -146,12 +155,48 @@
                                     <input type="file" name="imgInp" class="hdn-uploder" id="imgInp" required="required" accept="image/*" data-parsley-error-message="Upload featured image" />
                                 </div>
                             </div>
-                            <div class="col-sm-9">
+
+                            <div class="col-sm-3">
+                                <div class="form-group">
+                                    <label for="brand_id">Brand</label>
+                                    <select id="brand_id" class="form-control" data-placeholder="Select at least one category" required="required" data-parsley-error-message="Choose your brand id">
+                                        <option value="">-- Select One --</option>
+                                        @foreach($brands as $cat)
+                                        <option value="{{$cat->id}}">{{$cat->name}}</option>
+                                        @endforeach
+                                    </select>
+                                </div>
+                            </div>
+
+                            <div class="col-sm-3">
+                                <div class="form-group">
+                                    <label for="size_id">Size</label>
+                                    <select id="size_id" class="form-control" data-placeholder="Select at least one category" data-parsley-error-message="Choose your product size">
+                                        <option value="">-- Select One --</option>
+                                        @foreach($productSizes as $size)
+                                        <option value="{{$size->id}}">{{$size->size}}</option>
+                                        @endforeach
+                                    </select>
+                                </div>
+                            </div>
+
+                            <div class="col-sm-3">
+                                <div class="form-group">
+                                    <label for="color_id">Colour</label>
+                                    <select id="color_id" class="form-control" data-placeholder="Select at least one category" data-parsley-error-message="Choose your product colour">
+                                        <option value="">-- Select One --</option>
+                                        @foreach($productColors as $color)
+                                        <option value="{{$color->id}}">{{$color->color}}</option>
+                                        @endforeach
+                                    </select>
+                                </div>
+                            </div>
+
+                            <div class="col-sm-12 col-xs-12">
                                <div class="input-field">
                                     <label class="active">Photos</label>
                                     <div class="input-images-1" style="padding-top: .5rem;"></div>
                                 </div>
-
                             </div>
 
                             <div class="col-sm-12 col-xs-12">
@@ -180,8 +225,156 @@
                 </div>
 
             </div>
-            <div class="tab-pane" id="tabInventory"></div>
+            <div class="tab-pane" id="tabInventory">
+                
+                <div class="card mb-30">
+                    <div class="card-body py-3">
+                        <div class="d-flex align-items-center pb-3">
+                            <div class="icon font-30 text-primary">
+                                <i class="fa fa-ravelry" aria-hidden="true"></i>
+                            </div>
+                            <div class="icon-text pl-4">
+                                <h5 class="mb-0">Inventory</h5>
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="col-sm-3">
+                                <div class="form-group">
+                                    <div class="new-checkbox">
+                                        <div class="inline-widged">
+                                            <label for="is_inventory" class="single-label">Manage Inventory</label>
+                                            <label class="switch">
+                                                <input type="checkbox" id="is_inventory" name="is_inventory" checked="checked" />
+                                                <span class="slider round"></span>
+                                            </label>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="col-sm-3">
+                                <div class="form-group">
+                                    <label for="availability_id">Available for</label>
+                                    <select id="availability_id" class="form-control dummy_inventory_control" data-placeholder="Select at least one category" required="required" data-parsley-error-message="Choose your store id">
+                                        <option value="">-- Select One --</option>
+                                        @foreach($avalabilitites as $cat)
+                                        <option value="{{$cat->id}}">{{$cat->name}}</option>
+                                        @endforeach
+                                    </select>
+                                </div>
+                            </div>
+
+                            <div class="col-sm-3">
+                                <div class="form-group">
+                                    <label for="inventory_qty">QTY</label>
+                                    <input class="number_touchspin dummy_inventory_control" type="text" name="inventory_qty" id="inventory_qty" />
+                                </div>
+                            </div>
+
+                            <div class="col-sm-3">
+                                <div class="form-group">
+                                    <label for="minimum_cart_qty">Minimum Inventory QTY</label>
+                                    <input class="number_touchspin dummy_inventory_control" type="text" name="minimum_inventory_qty" id="minimum_inventory_qty" value="1" />
+                                </div>
+                            </div>
+
+                            <div class="col-sm-3">
+                                <div class="form-group">
+                                    <label for="availability_id">Warehouse</label>
+                                    <select id="availability_id" class="form-control dummy_inventory_control" data-placeholder="Select at least one category" required="required" data-parsley-error-message="Choose your store id">
+                                        <option value="">-- Select One --</option>
+                                        @foreach($warehouses as $cat)
+                                        <option value="{{$cat->id}}">{{$cat->name}}</option>
+                                        @endforeach
+                                    </select>
+                                </div>
+                            </div>
+
+                            <div class="col-sm-3">
+                                <div class="form-group">
+                                    <label for="minimum_cart_qty">Minimum Cart QTY</label>
+                                    <input class="number_touchspin dummy_inventory_control" type="text" name="minimum_cart_qty" id="minimum_cart_qty" value="1" />
+                                </div>
+                            </div>
+
+                            <div class="col-sm-3">
+                                <div class="form-group">
+                                    <div class="new-checkbox">
+                                        <div class="inline-widged">
+                                            <label for="show_availability" class="single-label">Show Availability</label>
+                                            <label class="switch">
+                                                <input type="checkbox" class="dummy_inventory_control" id="show_availability" name="show_availability" />
+                                                <span class="slider round"></span>
+                                            </label>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="tab-pane" id="tabSEO">
+                
+                <div class="card mb-30">
+                    <div class="card-body py-3">
+                        <div class="d-flex align-items-center pb-3">
+                            <div class="icon font-30 text-primary">
+                                <i class="fa fa-ravelry" aria-hidden="true"></i>
+                            </div>
+                            <div class="icon-text pl-4">
+                                <h5 class="mb-0">SEO</h5>
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="col-sm-3">
+                                <div class="form-group">
+                                    <div class="new-checkbox">
+                                        <div class="inline-widged">
+                                            <label for="is_inventory" class="single-label">Allow SEO</label>
+                                            <label class="switch">
+                                                <input type="checkbox" id="allow_seo" name="allow_seo" checked="checked" />
+                                                <span class="slider round"></span>
+                                            </label>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="col-sm-3">
+                                <div class="form-group">
+                                    <label for="meta_keywords">Meta Keywords</label>
+                                    <input class="dummy_seo_control form-control" type="text" name="meta_keywords" id="meta_keywords" />
+                                </div>
+                            </div>
+
+                            <div class="col-sm-6">
+                                <div class="form-group">
+                                    <label for="meta_description">Meta Description</label>
+                                    <input class="dummy_seo_control form-control" type="text" name="meta_description" id="meta_description" />
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+
+
+
+                    <div class="card-footer">
+                        <div class="col-md-12">
+                            <button type="submit" class="btn btn-primary mr-2">Save Product</button>
+                            <a href="{{route('brands')}}" class="btn btn-danger">Back to Brands</a>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
         </div>
+    </form>
     </div>
     <div class="col-md-3">
         <div class="position-fixed form-tab">
@@ -204,6 +397,9 @@
                             Mapping
                         </a>
                         <a href="#tabInventory" data-toggle="tab" aria-expanded="false" class="list-group-item list-group-item-action nav-link">
+                            Inventory
+                        </a>
+                        <a href="#tabSEO" data-toggle="tab" aria-expanded="false" class="list-group-item list-group-item-action nav-link">
                             Inventory
                         </a>
                     </div>
@@ -257,9 +453,21 @@
 
         $("#is_inventory").change(function () {
             if (this.checked) {
-                alert("checked");
+                $(".dummy_inventory_control").prop("disabled", false);
+                $(".dummy_inventory_control").attr("required","required")
             } else {
-                alert("Not checked");
+                $(".dummy_inventory_control").prop("disabled", true);
+                $(".dummy_inventory_control").removeAttr("required")
+            }
+        });
+
+        $("#allow_seo").change(function () {
+            if (this.checked) {
+                $(".dummy_seo_control").prop("disabled", false);
+                $(".dummy_seo_control").attr("required","required")
+            } else {
+                $(".dummy_seo_control").prop("disabled", true);
+                $(".dummy_seo_control").removeAttr("required")
             }
         });
     });
