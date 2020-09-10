@@ -7,7 +7,7 @@
 	<link rel="manifest" href="site.html">
 	<link rel="apple-touch-icon" href="icon.html">
 	<!-- Place favicon.ico in the root directory -->
-  
+
 	<!-- bootstrap v4.0.0 -->
 	<link rel="stylesheet" href="{{asset('user/assets/css/bootstrap.min.css')}}">
 	<!-- fontawesome-icons css -->
@@ -29,12 +29,12 @@
 	<!-- cssanimation css -->
 	<link rel="stylesheet" href="{{asset('user/assets/css/cssanimation.min.css')}}" />
 	<!-- animate css -->
-	<link rel="stylesheet" href="{{asset('user/assets/css/animate.css')}}" />	
+	<link rel="stylesheet" href="{{asset('user/assets/css/animate.css')}}" />
 	<!-- helper css -->
 	<link rel="stylesheet" href="{{asset('user/assets/css/helper.css')}}">
 	<!-- style css -->
 	<link rel="stylesheet" href="{{asset('user/style.css')}}">
-	
+
 	<link rel="stylesheet" href="{{asset('user/custom.css')}}">
 	<!-- responsive css -->
 	<link rel="stylesheet" href="{{asset('user/assets/css/responsive.css')}}">

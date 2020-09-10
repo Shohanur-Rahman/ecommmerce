@@ -39,7 +39,14 @@ textarea.parsley-error {
         opacity: 1;
     }
 
+.ProfileCategory li a{
+    text-decoration: none;
+    color: #0d0a0a;
+}
 
+.ProfileCategory li:hover,.ProfileCategory li a:hover{
+    color: #59b210;
+}
 /**
 *
 *End parsley style
