@@ -87,3 +87,10 @@ img.table-image {
     padding: 5px 15px;
     font-size: 16px; 
 }
+
+.sidebar-menu li a{
+    height: 30px;
+}
+.sidebar-menu li .treeview-menu li a{
+    height: 25px;
+}
