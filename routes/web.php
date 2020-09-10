@@ -41,3 +41,5 @@ Route::group(['middleware' => 'recovery_code'], function() {
 });
 
 Route::get('/user-ui', 'TestController@user_ui')->name('user_ui');
+
+Route::get('user-profiles','User\UserProfileController@index')->name('user-profiles.index');
