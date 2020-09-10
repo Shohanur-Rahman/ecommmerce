@@ -22,8 +22,8 @@ $factory->define(User::class, function (Faker $faker) {
     return [
         'name' => $faker->name,
         'email' => $faker->unique()->safeEmail,
-        'user_type' => 'developer',
-        'is_active' => 1,
+        'user_type' => \Illuminate\Support\Arr::random(['super-admin','admin','vendor','editor','developer','customer']),
+        'is_active' => rand(0,1),
         'admin_comment' => $faker->paragraph,
         'email_verified_at' => now(),
         'password' => '$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi', // password
