@@ -50,8 +50,17 @@ Route::group(['middleware' => 'auth'], function() {
 //            Route::delete('/{mainSlider}','MainSliderController@destroy')->name('main-sliders.destroy');
      });
 
+//    Route::group(['prefix'=>'product-sizes'], function(){
+//        Route::get('','ProductSizeController@index')->name('product-sizes.index');
+//        Route::get('/create','ProductSizeController@create')->name('product-sizes.create');
+//        Route::post('','ProductSizeController@store')->name('product-sizes.store');
+//        Route::get('/{productSize}/edit','ProductSizeController@edit')->name('product-sizes.edit');
+//        Route::patch('/{productSize}','ProductSizeController@update')->name('product-sizes.update');
+//        Route::delete('/{productSize}','ProductSizeController@destroy')->name('product-sizes.destroy');
+//    });
+
+     Route::resource('product-sizes','ProductSizeController');
      Route::resource('product-colors','ProductColorController');
-     Route::resource('product-sizes','ProductColorController');
 });
 
 

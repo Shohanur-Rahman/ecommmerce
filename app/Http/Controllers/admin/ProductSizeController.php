@@ -5,6 +5,7 @@ namespace App\Http\Controllers\admin;
 use App\Http\Controllers\Controller;
 use App\Models\ProductSize;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class ProductSizeController extends Controller
 {
@@ -22,7 +23,11 @@ class ProductSizeController extends Controller
 
     public function store(Request $request)
     {
-        dd($request->all());
+        ProductSize::create([
+            'user_id'=>Auth::id(),
+            'size'=>$request['size'],
+        ]);
+
         return redirect(route('product-sizes.index'))->with('success','New Product Size Created Successfully');
     }
 
@@ -34,7 +39,11 @@ class ProductSizeController extends Controller
 
     public function update(Request $request, ProductSize $productSize)
     {
-        dd($request->all());
+        $productSize->update([
+            'user_id'=>Auth::id(),
+            'size'=>$request['size'],
+        ]);
+
         return redirect(route('product-sizes.index'))->with('success','Product Size Updated Successfully');
     }
 

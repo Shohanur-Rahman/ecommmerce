@@ -5,6 +5,7 @@ namespace App\Http\Controllers\admin;
 use App\Http\Controllers\Controller;
 use App\Models\ProductColor;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class ProductColorController extends Controller
 {
@@ -22,7 +23,11 @@ class ProductColorController extends Controller
 
     public function store(Request $request)
     {
-        dd($request->all());
+        ProductColor::create([
+            'user_id'=>Auth::id(),
+            'color'=>$request['color'],
+        ]);
+
         return redirect(route('product-colors.index'))->with('success','New Product Color Created Successfully');
     }
 
@@ -34,7 +39,11 @@ class ProductColorController extends Controller
 
     public function update(Request $request, ProductColor $productColor)
     {
-        dd($request->all());
+        $productColor->update([
+            'user_id'=>Auth::id(),
+            'color'=>$request['color'],
+        ]);
+
         return redirect(route('product-colors.index'))->with('success','Product Color Updated Successfully');
     }
 
