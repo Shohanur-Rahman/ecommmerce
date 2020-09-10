@@ -14,7 +14,7 @@
 
                     <div class="row">
                         <div class="col-sm-12 col-xs-12">
-                            <form method="post" action="{{route('main-sliders.store')}}" class="d-inline">
+                            <form method="post" action="{{route('main-sliders.store')}}" class="d-inline" enctype="multipart/form-data" data-parsley-validate>
                                 @csrf
                                 <div class="form-group">
                                     <label for="name">Slider Name</label>
@@ -27,8 +27,12 @@
                                 </div>
 
                                 <div class="form-group">
-                                    <label for="imageUrl">Image Url</label>
-                                    <input type="text" class="form-control" id="imageUrl" placeholder="Enter Slider Image Url" name="image_url" required="required" data-parsley-error-message="Enter Slider Image Url">
+                                    <label class="form-label">Image Url</label>
+                                    <label for="imgInp" class="upload-preview">
+                                        <img src="{{asset('images/noimage.PNG')}}" id="uploadPreview" />
+                                    </label>
+                                    <input type="file" name="image_url" class="hdn-uploder" id="imgInp" required="required" accept="image/*" data-parsley-error-message="Upload Main Slider image"/>
+
                                 </div>
 
                                 <div class="form-group">
@@ -65,6 +69,12 @@
 
     <script>
         $(document).ready(function(){
+
+            $("#imgInp").change(function () {
+                readURL(this);
+            });
+
+
             $("#categoryId").click(function(){
                 var categoryVal = $(this).val();
 
@@ -86,5 +96,18 @@
             });
 
         });
+
+        function readURL(input) {
+            if (input.files && input.files[0]) {
+                var reader = new FileReader();
+
+                reader.onload = function (e) {
+                    $("#uploadPreview").attr("src", e.target.result);
+                };
+
+                reader.readAsDataURL(input.files[0]);
+            }
+        }
     </script>
+
 @endsection

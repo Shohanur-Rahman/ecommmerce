@@ -6,6 +6,8 @@ use App\Http\Controllers\Controller;
 use App\models\MainSlider;
 use App\Models\ProductCategory;
 use App\Models\Products;
+use Carbon\Carbon;
+use Faker\Provider\File;
 use Illuminate\Http\Request;
 
 class MainSliderController extends Controller
@@ -32,7 +34,7 @@ class MainSliderController extends Controller
             'category_id'=>$request['category_id'],
             'name'=>$request['name'],
             'caption'=>$request['caption'],
-            'image_url'=>$request['image_url'],
+            'image_url'=>$this->imageUpload($request->File('image_url')),
         ]);
 
         return redirect(route('main-sliders.index'))->with('success','Main Slider is Created Successfully');
@@ -48,12 +50,17 @@ class MainSliderController extends Controller
 
     public function update(Request $request,  MainSlider $mainSlider)
     {
+
+        if($mainSlider->image_url){
+            @unlink($mainSlider->image_url);
+        }
+
         $mainSlider->update([
             'product_id'=>$request['product_id'],
             'category_id'=>$request['category_id'],
             'name'=>$request['name'],
             'caption'=>$request['caption'],
-            'image_url'=>$request['image_url'],
+            'image_url'=>$this->imageUpload($request->File('image_url')),
         ]);
 
         return redirect(route('main-sliders.index'))->with('success','Main Slider is Updated Successfully');
@@ -64,5 +71,27 @@ class MainSliderController extends Controller
         $mainSlider->delete();
 
         return redirect(route('main-sliders.index'))->with('success','Main Slider is Deleted Successfully');
+    }
+
+    public function imageUpload($image)
+    {
+        if($image){
+            $file = $image;
+            $originalName = $file->getClientOriginalName();
+            $mainFolder = Carbon::now()->format('F_Y');
+            $subFolder = Carbon::now()->format('d');
+            $destinationPath = 'uploads/sliders/mainSlider'.'/' . $mainFolder .'/'. $subFolder.'/';
+
+            $fileName = time().'_'.$originalName;
+            $path = $destinationPath . $fileName;
+
+            $file->move($destinationPath,$fileName);
+
+            if (!is_dir($destinationPath)) {
+                mkdir($destinationPath, 0755, true);
+            }
+        }
+
+        return $path;
     }
 }

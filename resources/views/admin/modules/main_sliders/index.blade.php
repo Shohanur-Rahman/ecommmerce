@@ -43,7 +43,7 @@
                                 <td>{{$mainSlider->category_id}}</td>
                                 <td>{{$mainSlider->name}}</td>
                                 <td>{{$mainSlider->caption}}</td>
-                                <td>{{$mainSlider->image_url}}</td>
+                                <td><img src="{{asset($mainSlider->image_url)}}" class="table-image" id="uploadPreview" /></td>
                                 <td>{{$mainSlider->created_at->format('d F Y')}}</td>
 
                                 <td>
