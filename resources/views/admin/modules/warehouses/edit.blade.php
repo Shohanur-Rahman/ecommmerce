@@ -3,8 +3,8 @@
 @section('content')
 
     <div class="row">
-        <div class="col-md-12">
-            <div class="card">
+        <div class="col-md-9">
+            <div class="card tab-pane active" id="tabProductOverview">
                 <div class="card-body">
                     <h4 class="card-title mb-2">New Warehouse</h4>
                     <p class="text-muted font-14 mb-4">
@@ -34,6 +34,29 @@
                         </div>
                     </div>
 
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-3">
+            <div class="position-fixed form-tab">
+                <div class="card mb-30" align="center">
+                    <div class="card-body py-3">
+                        <div class="d-flex align-items-center pb-4">
+                            <div class="icon font-30 text-primary">
+                                <i class="fa fa-ravelry" aria-hidden="true"></i>
+                            </div>
+                            <div class="icon-text pl-4">
+                                <h5 class="mb-0">Fill up all field</h5>
+                            </div>
+                        </div>
+
+                        <div class="list-group pb-4">
+                            <a href="#tabProductOverview" data-toggle="tab" aria-expanded="false" class="list-group-item list-group-item-action nav-link active">
+                                Warehouse Information
+                            </a>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
