@@ -5,7 +5,7 @@
         <div class="row mt-3 ">
 
             @include('user.pages.profiles.partial.sidebar')
-            <div class="col-md-9 col-sm-8 col-xs-12 col-sm-push-4 col-md-push-3 ">
+            <div class="col-md-9 col-sm-8 col-xs-12 col-sm-push-4 col-md-push-3 pb-4">
                 <div class="card border-0">
                     <div class="bg-white">
                         <h3 class="text-uppercase font-weight-bold h5">Update User Profile</h3>
