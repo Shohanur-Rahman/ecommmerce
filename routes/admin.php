@@ -49,6 +49,9 @@ Route::group(['middleware' => 'auth'], function() {
             Route::patch('/{type}/{user}','UserController@update')->name('users.update');
 //            Route::delete('/{mainSlider}','MainSliderController@destroy')->name('main-sliders.destroy');
      });
+
+     Route::resource('product-colors','ProductColorController');
+     Route::resource('product-sizes','ProductColorController');
 });
 
 
