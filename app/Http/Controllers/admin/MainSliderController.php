@@ -34,7 +34,7 @@ class MainSliderController extends Controller
             'category_id'=>$request['category_id'],
             'name'=>$request['name'],
             'caption'=>$request['caption'],
-            'image_url'=>$this->imageUpload($request->File('image_url')),
+            'image_url'=>$this->imageUpload($request->File('image_url')) ?? '',
         ]);
 
         return redirect(route('main-sliders.index'))->with('success','Main Slider is Created Successfully');
@@ -60,7 +60,7 @@ class MainSliderController extends Controller
             'category_id'=>$request['category_id'],
             'name'=>$request['name'],
             'caption'=>$request['caption'],
-            'image_url'=>$this->imageUpload($request->File('image_url')),
+            'image_url'=>$this->imageUpload($request->File('image_url')) ?? '',
         ]);
 
         return redirect(route('main-sliders.index'))->with('success','Main Slider is Updated Successfully');
