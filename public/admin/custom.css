@@ -90,7 +90,35 @@ img.table-image {
 
 .sidebar-menu li a{
     height: 30px;
+    color: #e0dde4;
 }
 .sidebar-menu li .treeview-menu li a{
     height: 25px;
+    color: #e0dde4;
+}
+
+.sidebar-menu > li.active > a, .sidebar-menu > li.menu-open > a,
+.sidebar-menu li .treeview-menu li a:hover,
+.sidebar-menu > li.active > a i, .sidebar-menu li a:hover i,
+.sidebar-menu > li > a:hover, .sidebar-menu > li.active > a, .sidebar-menu > li.menu-open > a,
+.sidebar-menu > li.active > a, .sidebar-menu > li.menu-open > a > i {
+    color: #fff;
+    background: #000;
+}
+
+.sidebar-menu li .treeview-menu {
+    margin: 0;
+    padding: 10px 10px 20px;
+}
+
+.sidebar-menu .treeview.menu-open .treeview-menu{
+    background: #000;
+}
+
+.ecaps-sidenav{
+overflow-y: hidden;
+}
+
+.ecaps-sidemenu-area {
+    background: linear-gradient(50deg, #273444, #272b44) !important;
 }
