@@ -49,7 +49,7 @@ class ProductsController extends Controller
 
     public function save_product(Request $request)
     {
-        dd($request->all());
+        //dd($request->all());
 
         $product = new Products();
         $product->title = $request->title;

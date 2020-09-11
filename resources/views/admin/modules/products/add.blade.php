@@ -335,7 +335,7 @@
                                 <div class="form-group">
                                     <div class="new-checkbox">
                                         <div class="inline-widged">
-                                            <label for="is_inventory" class="single-label">Allow SEO</label>
+                                            <label for="allow_seo" class="single-label">Allow SEO</label>
                                             <label class="switch">
                                                 <input type="checkbox" id="allow_seo" name="allow_seo" checked="checked" />
                                                 <span class="slider round"></span>
@@ -345,17 +345,17 @@
                                 </div>
                             </div>
 
-                            <div class="col-sm-3">
+                            <div class="col-sm-12">
                                 <div class="form-group">
                                     <label for="meta_keywords">Meta Keywords</label>
-                                    <input class="dummy_seo_control form-control" type="text" name="meta_keywords" id="meta_keywords" />
+                                    <input class="dummy_seo_control form-control" type="text" name="meta_keywords" id="meta_keywords" required="required" />
                                 </div>
                             </div>
 
-                            <div class="col-sm-6">
+                            <div class="col-sm-12">
                                 <div class="form-group">
                                     <label for="meta_description">Meta Description</label>
-                                    <input class="dummy_seo_control form-control" type="text" name="meta_description" id="meta_description" />
+                                    <input class="dummy_seo_control form-control" type="text" name="meta_description" id="meta_description" required="required" />
                                 </div>
                             </div>
 
@@ -366,8 +366,8 @@
 
                     <div class="card-footer">
                         <div class="col-md-12">
+                            <a href="{{route('products')}}" class="btn btn-danger">Back to Products</a>
                             <button type="submit" class="btn btn-primary mr-2">Save Product</button>
-                            <a href="{{route('brands')}}" class="btn btn-danger">Back to Brands</a>
                         </div>
                     </div>
 
@@ -400,7 +400,7 @@
                             Inventory
                         </a>
                         <a href="#tabSEO" data-toggle="tab" aria-expanded="false" class="list-group-item list-group-item-action nav-link">
-                            Inventory
+                            SEO
                         </a>
                     </div>
                 </div>
