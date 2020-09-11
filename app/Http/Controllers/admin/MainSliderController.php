@@ -1,7 +1,7 @@
 <?php
 
 namespace App\Http\Controllers\admin;
-
+use App\Http\Controllers\admin\HelperController;
 use App\Http\Controllers\Controller;
 use App\models\MainSlider;
 use App\Models\ProductCategory;
@@ -29,12 +29,14 @@ class MainSliderController extends Controller
 
     public function store(Request $request)
     {
+        $helper = new HelperController();
+
         MainSlider::create([
             'product_id'=>$request['product_id'],
             'category_id'=>$request['category_id'],
             'name'=>$request['name'],
             'caption'=>$request['caption'],
-            'image_url'=>$this->imageUpload($request->File('image_url')) ?? '',
+            'image_url'=>$helper->imageUpload($request->File('image_url'), 'uploads/sliders/mainSlider/'),
         ]);
 
         return redirect(route('main-sliders.index'))->with('success','Main Slider is Created Successfully');
@@ -51,6 +53,8 @@ class MainSliderController extends Controller
     public function update(Request $request,  MainSlider $mainSlider)
     {
 
+        $helper = new HelperController();
+
         if($mainSlider->image_url){
             @unlink($mainSlider->image_url);
         }
@@ -60,7 +64,7 @@ class MainSliderController extends Controller
             'category_id'=>$request['category_id'],
             'name'=>$request['name'],
             'caption'=>$request['caption'],
-            'image_url'=>$this->imageUpload($request->File('image_url')) ?? '',
+            'image_url'=>$helper->imageUpload($request->File('image_url'), 'uploads/sliders/mainSlider/'),
         ]);
 
         return redirect(route('main-sliders.index'))->with('success','Main Slider is Updated Successfully');
@@ -71,27 +75,5 @@ class MainSliderController extends Controller
         $mainSlider->delete();
 
         return redirect(route('main-sliders.index'))->with('success','Main Slider is Deleted Successfully');
-    }
-
-    public function imageUpload($image)
-    {
-        if($image){
-            $file = $image;
-            $originalName = $file->getClientOriginalName();
-            $mainFolder = Carbon::now()->format('F_Y');
-            $subFolder = Carbon::now()->format('d');
-            $destinationPath = 'uploads/sliders/mainSlider'.'/' . $mainFolder .'/'. $subFolder.'/';
-
-            $fileName = time().'_'.$originalName;
-            $path = $destinationPath . $fileName;
-
-            $file->move($destinationPath,$fileName);
-
-            if (!is_dir($destinationPath)) {
-                mkdir($destinationPath, 0755, true);
-            }
-        }
-
-        return $path;
     }
 }

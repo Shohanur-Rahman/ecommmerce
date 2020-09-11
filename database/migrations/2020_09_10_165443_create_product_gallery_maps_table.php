@@ -15,7 +15,7 @@ class CreateProductGalleryMapsTable extends Migration
     {
         Schema::create('product_gallery_maps', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->bigInteger('image_url')->nullable();
+            $table->text('image_url')->nullable();
             $table->bigInteger('product_id')->nullable();
             $table->timestamps();
         });

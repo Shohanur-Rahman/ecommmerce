@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\admin;
 
 use App\Http\Controllers\Controller;
+use App\Http\Controllers\admin\HelperController;
 use Illuminate\Http\Request;
 use App\Models\Products;
 use App\Models\Warehouse;
@@ -16,8 +17,7 @@ use App\Models\ProductCategoryMap;
 use App\Models\ProductTagMap;
 use App\Models\ProductGalleryMap;
 use Auth;
-
-class ProductsController extends Controller
+class ProductsController extends CommonController
 {
     public function index()
     {
@@ -50,7 +50,7 @@ class ProductsController extends Controller
     public function save_product(Request $request)
     {
         //dd($request->all());
-
+        $helper = new HelperController();
         $product = new Products();
         $product->title = $request->title;
         $product->short_description = $request->short_description;
@@ -87,28 +87,12 @@ class ProductsController extends Controller
             $product->meta_description = $request->meta_description;
         }
 
-        $fileURL = "";
+        
 
-        if ($request->file('imgInp')) {
-            $file = $request->file('imgInp');
-            $filename = $file->getClientOriginalName();
-            $mainFolder = Carbon::now()->format('F_Y');
-            $subFolder = Carbon::now()->format('d');
-            $destinationPath = 'uploads/products/u_'.Auth::id() . "/" . $mainFolder . "/" . $subFolder;
-            $current_timestamp = Carbon::now()->timestamp;
+        $fileURL = $helper->uploadImage($request->file('imgInp'),'uploads/products/u_'.Auth::id() . "/");
 
-            if (!File::isDirectory($destinationPath)) {
-                //File::makeDirectory($destinationPath);
-                File::makeDirectory(public_path() . '/' . $destinationPath, 0777, true);
-            }
+        $product->featured_image = $fileURL;
 
-            $savingFileName = $current_timestamp . "_" . $file->getClientOriginalName();
-
-            $file->move($destinationPath, $savingFileName);
-
-            $fileURL = $destinationPath . "/" . $savingFileName;
-            $product->featured_image = $fileURL;
-        }
 
 
         $product->save();
@@ -116,37 +100,18 @@ class ProductsController extends Controller
 
         if($files=$request->file('images')){
             foreach($files as $file){
-                $glURL="";
-                $filename = $file->getClientOriginalName();
-                $mainFolder = Carbon::now()->format('F_Y');
-                $subFolder = Carbon::now()->format('d');
-                $destinationPath = 'uploads/products/u_'.Auth::id() . "/gallery/" . $mainFolder . "/" . $subFolder;
-                $current_timestamp = Carbon::now()->timestamp;
-
-                if (!File::isDirectory($destinationPath)) {
-                    //File::makeDirectory($destinationPath);
-                    File::makeDirectory(public_path() . '/' . $destinationPath, 0777, true);
-                }
-
-                $savingFileName = $current_timestamp . "_" . $file->getClientOriginalName();
-
-                $file->move($destinationPath, $savingFileName);
-
-                $glURL = $destinationPath . "/" . $savingFileName;
-                $product->featured_image = $glURL;
-
+                $glURL = $helper->uploadImage($file,'uploads/products/u_'.Auth::id() . "/gallery/");
                 $gallery = new ProductGalleryMap();
-
                 $gallery->image_url = $glURL;
-                $categoryMap->product_id = $product->id;
+                $gallery->product_id = $product->id;
                 $gallery->save();
             }
         }
 
 
 
-        if($req->categories){
-            $catArray = explode(',', $req->categories);
+        if($request->categories){
+            $catArray = explode(',', $request->categories);
 
             foreach($catArray as $catId) {
                 $categoryMap = new ProductCategoryMap();
@@ -156,8 +121,8 @@ class ProductsController extends Controller
             }
         }
 
-        if($req->tags){
-            $tagArray = explode(',', $req->tags);
+        if($request->tags){
+            $tagArray = explode(',', $request->tags);
 
             foreach($tagArray as $catId) {
                 $tagMap = new ProductTagMap();

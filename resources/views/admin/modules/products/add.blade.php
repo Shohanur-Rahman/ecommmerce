@@ -268,14 +268,15 @@
                             <div class="col-sm-3">
                                 <div class="form-group">
                                     <label for="inventory_qty">QTY</label>
-                                    <input class="number_touchspin dummy_inventory_control" type="text" name="inventory_qty" id="inventory_qty" />
+                                    <input class="number_touchspin dummy_inventory_control" type="text" name="inventory_qty" id="inventory_qty" required="required" data-parsley-errors-container=".qtyError"/>
+                                    <span class="qtyError"></span>
                                 </div>
                             </div>
 
                             <div class="col-sm-3">
                                 <div class="form-group">
                                     <label for="minimum_cart_qty">Minimum Inventory QTY</label>
-                                    <input class="number_touchspin dummy_inventory_control" type="text" name="minimum_inventory_qty" id="minimum_inventory_qty" value="1" />
+                                    <input class="number_touchspin dummy_inventory_control" type="text" name="minimum_inventory_qty" id="minimum_inventory_qty" value="1" required="required" />
                                 </div>
                             </div>
 
@@ -294,7 +295,7 @@
                             <div class="col-sm-3">
                                 <div class="form-group">
                                     <label for="minimum_cart_qty">Minimum Cart QTY</label>
-                                    <input class="number_touchspin dummy_inventory_control" type="text" name="minimum_cart_qty" id="minimum_cart_qty" value="1" />
+                                    <input class="number_touchspin dummy_inventory_control" type="text" name="minimum_cart_qty" id="minimum_cart_qty" value="1" required="required" />
                                 </div>
                             </div>
 
@@ -304,7 +305,7 @@
                                         <div class="inline-widged">
                                             <label for="show_availability" class="single-label">Show Availability</label>
                                             <label class="switch">
-                                                <input type="checkbox" class="dummy_inventory_control" id="show_availability" name="show_availability" />
+                                                <input type="checkbox" class="availability_checkbox" id="show_availability" name="show_availability" />
                                                 <span class="slider round"></span>
                                             </label>
                                         </div>
