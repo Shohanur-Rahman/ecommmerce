@@ -7,11 +7,14 @@
             <h5>Account Information</h5>
             <address>
                 {{Auth::user()->name}}<br>
-                {{Auth::user()->userProfile->city}}<br>
-                {{Auth::user()->userProfile->house}}, {{Auth::user()->userProfile->road}}, {{Auth::user()->userProfile->state}}<br>
-                {{Auth::user()->userProfile->country}}<br>
-                {{Auth::user()->userProfile->describe_address}}<br>
-                Phone: {{Auth::user()->userProfile->phone}} <br>
+
+                @if(Auth::user()->userProfile != null)
+                    {{Auth::user()->userProfile->city}}<br>
+                    {{Auth::user()->userProfile->house}}, {{Auth::user()->userProfile->road}}, {{Auth::user()->userProfile->state}}<br>
+                    {{Auth::user()->userProfile->country}}<br>
+                    {{Auth::user()->userProfile->describe_address}}<br>
+                    Phone: {{Auth::user()->userProfile->phone}} <br>
+                @endif
             </address>
         </div>
     </div>
