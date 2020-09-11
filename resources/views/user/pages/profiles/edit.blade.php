@@ -10,7 +10,7 @@
                     <div class="bg-white">
                         <h3 class="text-uppercase font-weight-bold h5">Update User Profile</h3>
                     </div>
-                    <form class="py-3" action="{{route('dashboard.update',$user->id)}}" method="post" data-parsley-validate>
+                    <form class="py-3" action="{{route('profiles.update',$user->id)}}" method="post" data-parsley-validate>
                         @method('PATCH')
                         @csrf
                         <div class="form-group">

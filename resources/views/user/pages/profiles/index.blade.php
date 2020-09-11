@@ -63,7 +63,7 @@
                             <div class="d-flex justify-content-between flex-wrap">
                                 <div class="">
                                     <h5>Contact Information</h5>
-                                    <a class="text-success" href="{{route('dashboard.edit',Auth::id())}}">Edit</a>
+                                    <a class="text-success" href="{{route('profiles.edit',Auth::id())}}">Edit</a>
                                     <p> John Doe<br>
                                         jone-doe@example.com<br>
                                         <a class="text-success" href="{{route('change-password.edit',Auth::id())}}">Change Password</a></p>
@@ -78,39 +78,19 @@
                                 <h4>Address Book</h4>
                                 <div class="manage_add"><a class="text-success" href="{{route('shipping-address.create')}}">New Shipping Addresses</a></div>
                                 <div class="d-flex justify-content-between flex-wrap">
-                                    <div class="">
-                                        <h5>Primary Billing Address</h5>
-                                        <address>
-                                            John Doe<br>
-                                            USA<br>
-                                            Anytown, Alabama, 46532<br>
-                                            United States<br>
-                                            T: 454541 <br>
-                                            <a class="text-success" href="#">Edit Address</a>
-                                        </address>
-                                    </div>
-                                    <div class="">
-                                        <h5>Primary Shipping Address</h5>
-                                        <address>
-                                            John Doe<br>
-                                            USA<br>
-                                            Anytown, Alabama, 46532<br>
-                                            United States<br>
-                                            T: 454541 <br>
-                                            <a class="text-success" href="#">Edit Address</a>
-                                        </address>
-                                    </div>
-                                    <div class="">
-                                        <h5>Primary Shipping Address</h5>
-                                        <address>
-                                            John Doe<br>
-                                            USA<br>
-                                            Anytown, Alabama, 46532<br>
-                                            United States<br>
-                                            T: 454541 <br>
-                                            <a class="text-success" href="#">Edit Address</a>
-                                        </address>
-                                    </div>
+                                    @foreach($shippingAddresses as $shippingAddress)
+                                        <div class="">
+                                            <h5>Primary Billing Address</h5>
+                                            <address>
+                                                John Doe<br>
+                                                USA<br>
+                                                Anytown, Alabama, 46532<br>
+                                                United States<br>
+                                                T: 454541 <br>
+                                                <a class="text-success" href="{{route('shipping-address.edit',$shippingAddress->id)}}">Edit Address</a>
+                                            </address>
+                                        </div>
+                                    @endforeach
                                 </div>
                             </div>
                         </div>

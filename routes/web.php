@@ -42,14 +42,14 @@ Route::group(['middleware' => 'recovery_code'], function() {
 
 Route::get('/user-ui', 'TestController@user_ui')->name('user_ui');
 
-Route::get('dashboard','User\UserProfileController@index')->name('dashboard.index');
-Route::get('dashboard/{user}/edit','User\UserProfileController@edit')->name('dashboard.edit');
-Route::patch('dashboard/{user}','User\UserProfileController@update')->name('dashboard.update');
+Route::get('profiles','User\UserProfileController@index')->name('profiles.index');
+Route::get('profiles/{user}/edit','User\UserProfileController@edit')->name('profiles.edit');
+Route::patch('profiles/{user}','User\UserProfileController@update')->name('profiles.update');
 
-Route::get('dashboard/{user}/change-password','User\UserProfileController@changePasswordEdit')->name('change-password.edit');
-Route::patch('dashboard/{user}/change-password','User\UserProfileController@changePasswordUpdate')->name('change-password.update');
+Route::get('profiles/{user}/change-password','User\UserProfileController@changePasswordEdit')->name('change-password.edit');
+Route::patch('profiles/{user}/change-password','User\UserProfileController@changePasswordUpdate')->name('change-password.update');
 
-Route::get('users/shipping-address','User\ShippingAddressController@create')->name('shipping-address.create');
-Route::post('users/shipping-address','User\ShippingAddressController@store')->name('shipping-address.store');
-Route::get('users/shipping-address/{shippingAddress}/edit','User\ShippingAddressController@edit')->name('shipping-address.edit');
-Route::patch('users/shipping-address','User\ShippingAddressController@update')->name('shipping-address.update');
+Route::get('profiles/shipping-address','User\ShippingAddressController@create')->name('shipping-address.create');
+Route::post('profiles/shipping-address','User\ShippingAddressController@store')->name('shipping-address.store');
+Route::get('profiles/shipping-address/{shippingAddress}/edit','User\ShippingAddressController@edit')->name('shipping-address.edit');
+Route::patch('profiles/shipping-address','User\ShippingAddressController@update')->name('shipping-address.update');
