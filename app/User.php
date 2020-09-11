@@ -3,6 +3,8 @@
 namespace App;
 
 use App\Models\ProductCategory;
+use App\Models\User\ShippingAddress;
+use App\Models\User\UserProfile;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
@@ -45,5 +47,15 @@ class User extends Authenticatable
 
     public function category(){
         return $this->hasMany(ProductCategory::class);
+    }
+
+    public function userProfile()
+    {
+        return $this->hasOne(UserProfile::class);
+    }
+
+    public function shippingAddresses()
+    {
+        return $this->hasMany(ShippingAddress::class);
     }
 }

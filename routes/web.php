@@ -43,13 +43,13 @@ Route::group(['middleware' => 'recovery_code'], function() {
 Route::get('/user-ui', 'TestController@user_ui')->name('user_ui');
 
 Route::get('profiles','User\UserProfileController@index')->name('profiles.index');
-Route::get('profiles/{user}/edit','User\UserProfileController@edit')->name('profiles.edit');
-Route::patch('profiles/{user}','User\UserProfileController@update')->name('profiles.update');
+Route::get('profiles/edit','User\UserProfileController@edit')->name('profiles.edit');
+Route::patch('profiles/','User\UserProfileController@update')->name('profiles.update');
 
-Route::get('profiles/{user}/change-password','User\UserProfileController@changePasswordEdit')->name('change-password.edit');
-Route::patch('profiles/{user}/change-password','User\UserProfileController@changePasswordUpdate')->name('change-password.update');
+Route::get('profiles/change-password','User\UserProfileController@changePasswordEdit')->name('change-password.edit');
+Route::patch('profiles/change-password','User\UserProfileController@changePasswordUpdate')->name('change-password.update');
 
 Route::get('profiles/shipping-address','User\ShippingAddressController@create')->name('shipping-address.create');
 Route::post('profiles/shipping-address','User\ShippingAddressController@store')->name('shipping-address.store');
 Route::get('profiles/shipping-address/{shippingAddress}/edit','User\ShippingAddressController@edit')->name('shipping-address.edit');
-Route::patch('profiles/shipping-address','User\ShippingAddressController@update')->name('shipping-address.update');
+Route::patch('profiles/{shippingAddress}/shipping-address','User\ShippingAddressController@update')->name('shipping-address.update');

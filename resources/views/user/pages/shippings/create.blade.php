@@ -6,69 +6,86 @@
 
             @include('user.pages.profiles.partial.sidebar')
             <div class="col-md-9 col-sm-8 col-xs-12 col-sm-push-4 col-md-push-3 pb-4">
+
+                @include('user.pages.profiles.partial.details')
+
                 <div class="card border-0">
                     <div class="bg-white">
                         <h3 class="text-uppercase font-weight-bold h5">Create New Shipping Address</h3>
                     </div>
-                    <form class="py-3" action="{{route('shipping-address.store')}}" method="post" data-parsley-validate>
+                    <form class="py-3 row" action="{{route('shipping-address.store')}}" method="post" data-parsley-validate>
                         @csrf
-                        <div class="form-group">
+                        <div class="form-group col-12">
                             <label class="float-left" for="name">Username</label>
-                            <input class="form-control" type="text" name="name" id="name" value="{{$user->name ?? old('name')}}"
+                            <input class="form-control" type="text" name="name" id="name" value="{{old('name')}}"
                                    placeholder="Enter your name" required="required" data-parsley-error-message="Enter your name">
 
                         </div>
 
-                        <div class="form-group">
-                            <label class="float-left" for="email">Secondary Email</label>
-                            <input class="form-control" type="text" name="secondary_email" id="email" value="{{$user->secondary ?? old('secondary_email')}}"
-                                   placeholder="Enter your Secondary Email" required="required" data-parsley-error-message="Enter your Secondary Email">
+                        <div class="form-group col-12">
+                            <label class="float-left" for="email">Email</label>
+                            <input class="form-control" type="text" name="email" id="email" value="{{old('email')}}"
+                                   placeholder="Enter Email Address" required="required" data-parsley-error-message="Enter Email Address">
+
+                            @error('email')
+                                <span class="text-danger">{{$message}}</span>
+                            @enderror
                         </div>
 
-                        <div class="form-group">
+                        <div class="form-group col-12">
                             <label class="float-left" for="phone">Phone</label>
-                            <input class="form-control" type="text" name="phone" id="phone" value="{{$user->phone ?? old('phone')}}"
-                                   placeholder="Enter your Secondary Phone" required="required" data-parsley-error-message="Enter your Secondary Phone">
+                            <input class="form-control" type="text" name="phone" id="phone" value="{{old('phone')}}"
+                                   placeholder="Enter your Secondary Phone" required="required" data-parsley-error-message="Enter Phone Number">
                         </div>
 
 
-                        <div class="form-group">
+                        <div class="form-group col-6">
                             <label class="float-left" for="house">House</label>
-                            <input class="form-control" type="text" name="house" id="email" value="{{$user->house ?? old('house')}}"
-                                   placeholder="Enter your House" data-parsley-error-message="Enter your House">
+                            <input class="form-control" type="text" name="house" id="house" value="{{old('house')}}"
+                                   placeholder="Enter House Number" data-parsley-error-message="Enter House Number">
                         </div>
 
-                        <div class="form-group">
+                        <div class="form-group col-6">
                             <label class="float-left" for="road">Road</label>
-                            <input class="form-control" type="text" name="road" id="road" value="{{$user->road ?? old('road')}}"
-                                   placeholder="Enter your Road" required="required" data-parsley-error-message="Enter your Road">
+                            <input class="form-control" type="text" name="road" id="road" value="{{ old('road')}}"
+                                   placeholder="Enter Road Number" required="required" data-parsley-error-message="Enter Road Number">
                         </div>
 
-                        <div class="form-group">
+                        <div class="form-group col-4">
                             <label class="float-left" for="postcode">PostCode</label>
-                            <input class="form-control" type="number" name="postcode" id="postcode" value="{{$user->postcode ?? old('postcode')}}"
-                                   placeholder="Enter your PostCode" required="required" data-parsley-error-message="Enter your PostCode">
+                            <input class="form-control" type="number" name="postcode" id="postcode" value="{{old('postcode')}}"
+                                   placeholder="Enter PostCode Number" required="required" data-parsley-error-message="Enter PostCode Number">
                         </div>
 
-                        <div class="form-group">
+                        <div class="form-group col-4">
                             <label class="float-left" for="state">State</label>
-                            <input class="form-control" type="number" name="state" id="state" value="{{$user->state ?? old('state')}}"
-                                   placeholder="Enter your State" required="required" data-parsley-error-message="Enter your State">
+                            <input class="form-control" type="text" name="state" id="state" value="{{old('state')}}"
+                                   placeholder="Enter State Name" required="required" data-parsley-error-message="Enter State Name">
                         </div>
 
-                        <div class="form-group">
+                        <div class="form-group col-4">
                             <label class="float-left" for="city">City</label>
-                            <input class="form-control" type="number" name="city" id="city" value="{{$user->city ?? old('city')}}"
-                                   placeholder="Enter your City" required="required" data-parsley-error-message="Enter your City">
+                            <input class="form-control" type="text" name="city" id="city" value="{{old('city')}}"
+                                   placeholder="Enter City Name" required="required" data-parsley-error-message="Enter City Name">
                         </div>
 
-                        <div class="form-group">
+                        <div class="form-group col-12">
                             <label class="float-left" for="country">Country</label>
-                            <input class="form-control" type="number" name="country" id="country" value="{{$user->country ?? old('country')}}"
-                                   placeholder="Enter your Country" required="required" data-parsley-error-message="Enter your Country">
+                            <input class="form-control" type="text" name="country" id="country" value="{{old('country')}}"
+                                   placeholder="Enter Country Name" required="required" data-parsley-error-message="Enter Country Name">
                         </div>
 
-                        <button class="btn btn-primary " type="submit"> Update</button>
+                        <div class="form-group col-12">
+                            <label class="float-left" for="full_address">Full Address</label>
+
+                            <textarea class="form-control" name="describe_address" id="full_address" cols="" rows="6">{{old('describe_address')}}</textarea>
+                            <span>Give us your full location address so we can find you and deliver your order accurately.</span>
+                        </div>
+
+                        <div class="form-group col-12">
+                            <button class="btn btn-primary" type="submit"> Update</button>
+                        </div>
+
                     </form>
                 </div>
             </div>

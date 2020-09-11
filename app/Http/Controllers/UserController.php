@@ -68,7 +68,7 @@ class UserController extends Controller
                 Auth::login($user, true);
             }
 
-            return view('user.welcome');
+            return redirect(route('profiles.index'));
         }
 
         return redirect()->back()->with('error-message','Email or Password is Wrong');

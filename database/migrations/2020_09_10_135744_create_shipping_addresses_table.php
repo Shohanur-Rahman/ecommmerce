@@ -25,6 +25,7 @@ class CreateShippingAddressesTable extends Migration
             $table->string('state');
             $table->string('city');
             $table->string('country');
+            $table->text('describe_address');
             $table->timestamps();
         });
     }

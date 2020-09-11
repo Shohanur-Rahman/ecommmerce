@@ -3,8 +3,8 @@
         <div class="card-header bg-white font-weight-bold h5">My Account</div>
         <div class="card-body">
             <ul class="list-unstyled ProfileCategory">
-                <li class=" " ><a href=""> <i class="fa fa-angle-right mr-2" aria-hidden="true"></i>Account Dashboard</a></li>
-                <li ><i class="fa fa-angle-right mr-2" aria-hidden="true"></i></i><a href="http://demo.magentomagik.com/computerstore/customer/account/edit/">Account Information</a></li>
+                <li class=" " ><a href="{{route('profiles.index')}}"> <i class="fa fa-angle-right mr-2" aria-hidden="true"></i>Account Dashboard</a></li>
+                <li ><i class="fa fa-angle-right mr-2" aria-hidden="true"></i></i><a href="">Account Information</a></li>
                 <li><i class="fa fa-angle-right mr-2" aria-hidden="true"></i><a href="http://demo.magentomagik.com/computerstore/customer/address/">Address Book</a></li>
                 <li><i class="fa fa-angle-right mr-2" aria-hidden="true"></i><a href="http://demo.magentomagik.com/computerstore/sales/order/history/">My Orders</a></li>
                 <li><i class="fa fa-angle-right mr-2" aria-hidden="true"></i><a href="http://demo.magentomagik.com/computerstore/sales/billing_agreement/">Billing Agreements</a></li>

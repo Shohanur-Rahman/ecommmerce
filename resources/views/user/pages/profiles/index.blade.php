@@ -7,12 +7,13 @@
             @include('user.pages.profiles.partial.sidebar')
             <div class="col-md-9 col-sm-8 col-xs-12 col-sm-push-4 col-md-push-3 pb-4">
                 <x-inform-users></x-inform-users>
+
                 <div class="card border-0">
                     <div class="bg-white">
                         <h3 class="text-uppercase">My Dashboard</h3>
                     </div>
                     <div class="dashboard">
-                        <div class="welcome-msg"><strong class=" text-black font-weight-bold">Hello, John Doe!</strong>
+                        <div class="welcome-msg"><strong class=" text-black font-weight-bold">Hello, {{$user->name}}!</strong>
                             <p class="text-black-50">From your My Account Dashboard you have the ability to view a snapshot of your recent
                                 account activity and update your account information. Select a link below to view or edit information.</p>
                         </div>
@@ -63,10 +64,10 @@
                             <div class="d-flex justify-content-between flex-wrap">
                                 <div class="">
                                     <h5>Contact Information</h5>
-                                    <a class="text-success" href="{{route('profiles.edit',Auth::id())}}">Edit</a>
-                                    <p> John Doe<br>
-                                        jone-doe@example.com<br>
-                                        <a class="text-success" href="{{route('change-password.edit',Auth::id())}}">Change Password</a></p>
+                                    <a class="text-success" href="{{route('profiles.edit')}}">Edit</a>
+                                    <p> {{$user->name}}<br>
+                                        {{$user->email}}!<br>
+                                        <a class="text-success" href="{{route('change-password.edit')}}">Change Password</a></p>
                                 </div>
                                 <div class="">
                                     <h5>Newsletters</h5>
@@ -82,11 +83,13 @@
                                         <div class="">
                                             <h5>Primary Billing Address</h5>
                                             <address>
-                                                John Doe<br>
-                                                USA<br>
-                                                Anytown, Alabama, 46532<br>
-                                                United States<br>
-                                                T: 454541 <br>
+                                                {{$shippingAddress->name}}<br>
+                                                {{$shippingAddress->email}}<br>
+                                                {{$shippingAddress->city}}<br>
+                                                {{$shippingAddress->house}},{{$shippingAddress->road}},{{$shippingAddress->state}}<br>
+                                                {{$shippingAddress->country}}<br>
+                                                Phone: {{$shippingAddress->phone}}<br>
+                                                Describe Address: {{$shippingAddress->describe_address}}<br>
                                                 <a class="text-success" href="{{route('shipping-address.edit',$shippingAddress->id)}}">Edit Address</a>
                                             </address>
                                         </div>
