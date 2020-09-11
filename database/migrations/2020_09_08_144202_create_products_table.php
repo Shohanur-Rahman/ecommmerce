@@ -30,8 +30,8 @@ class CreateProductsTable extends Migration
             $table->bigInteger('brand_id')->nullable();
             $table->bigInteger('size_id')->nullable();
             $table->bigInteger('color_id')->nullable();
-            $table->dateTime('available_start_date')->nullable();
-            $table->dateTime('available_end_date')->nullable();
+            $table->date('available_start_date')->nullable();
+            $table->date('available_end_date')->nullable();
             $table->boolean('is_inventory')->default(0);
             $table->bigInteger('inventory_qty')->nullable();
             $table->integer('minimum_inventory_qty')->nullable();

@@ -139,3 +139,14 @@ overflow-y: hidden;
 .image-uploader .upload-text {
     cursor: pointer;
 }
+
+.grid-icon {
+    font-size: 28px;
+}
+
+.grid-icon.approve {
+    color: green;
+}
+.grid-icon.not-approve {
+    color: red;
+}

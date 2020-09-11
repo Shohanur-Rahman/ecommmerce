@@ -110,20 +110,20 @@
                         <div class="row">
                             <div class="col-md-12">
                                 <div class="form-group">
-                                    <label for="name">Sort Description</label>
+                                    <label for="short_description">Sort Description</label>
                                     <textarea
                                         class="form-control rounded-0 form-control-md"
                                         rows="6"
-                                        id="name"
+                                        id="short_description"
                                         placeholder="Sort Description"
-                                        name="name"
+                                        name="short_description"
                                         required="required"
                                         data-parsley-error-message="Enter product short description"
                                     ></textarea>
                                 </div>
                                 <div class="form-group">
-                                    <label for="name">Product Description</label>
-                                    <textarea class="kendo_editor" rows="6" id="name" placeholder="Sort Description" name="name" required="required" data-parsley-error-message="Enter product description"> </textarea>
+                                    <label for="description">Product Description</label>
+                                    <textarea class="kendo_editor" rows="6" id="description" placeholder="Sort Description" name="description" required="required" data-parsley-error-message="Enter product description"> </textarea>
                                 </div>
                             </div>
 
@@ -159,7 +159,7 @@
                             <div class="col-sm-3">
                                 <div class="form-group">
                                     <label for="brand_id">Brand</label>
-                                    <select id="brand_id" class="form-control" data-placeholder="Select at least one category" required="required" data-parsley-error-message="Choose your brand id">
+                                    <select id="brand_id" class="form-control" name="brand_id" required="required" data-parsley-error-message="Choose your brand id">
                                         <option value="">-- Select One --</option>
                                         @foreach($brands as $cat)
                                         <option value="{{$cat->id}}">{{$cat->name}}</option>
@@ -171,7 +171,7 @@
                             <div class="col-sm-3">
                                 <div class="form-group">
                                     <label for="size_id">Size</label>
-                                    <select id="size_id" class="form-control" data-placeholder="Select at least one category" data-parsley-error-message="Choose your product size">
+                                    <select id="size_id" class="form-control" name="size_id" data-parsley-error-message="Choose your product size">
                                         <option value="">-- Select One --</option>
                                         @foreach($productSizes as $size)
                                         <option value="{{$size->id}}">{{$size->size}}</option>
@@ -183,7 +183,7 @@
                             <div class="col-sm-3">
                                 <div class="form-group">
                                     <label for="color_id">Colour</label>
-                                    <select id="color_id" class="form-control" data-placeholder="Select at least one category" data-parsley-error-message="Choose your product colour">
+                                    <select id="color_id" class="form-control" name="color_id" data-parsley-error-message="Choose your product colour">
                                         <option value="">-- Select One --</option>
                                         @foreach($productColors as $color)
                                         <option value="{{$color->id}}">{{$color->color}}</option>
@@ -256,7 +256,7 @@
                             <div class="col-sm-3">
                                 <div class="form-group">
                                     <label for="availability_id">Available for</label>
-                                    <select id="availability_id" class="form-control dummy_inventory_control" data-placeholder="Select at least one category" required="required" data-parsley-error-message="Choose your store id">
+                                    <select id="availability_id" class="form-control dummy_inventory_control" name="availability_id" required="required" data-parsley-error-message="Choose your store id">
                                         <option value="">-- Select One --</option>
                                         @foreach($avalabilitites as $cat)
                                         <option value="{{$cat->id}}">{{$cat->name}}</option>
@@ -275,15 +275,15 @@
 
                             <div class="col-sm-3">
                                 <div class="form-group">
-                                    <label for="minimum_cart_qty">Minimum Inventory QTY</label>
+                                    <label for="minimum_inventory_qty">Minimum Inventory QTY</label>
                                     <input class="number_touchspin dummy_inventory_control" type="text" name="minimum_inventory_qty" id="minimum_inventory_qty" value="1" required="required" />
                                 </div>
                             </div>
 
                             <div class="col-sm-3">
                                 <div class="form-group">
-                                    <label for="availability_id">Warehouse</label>
-                                    <select id="availability_id" class="form-control dummy_inventory_control" data-placeholder="Select at least one category" required="required" data-parsley-error-message="Choose your store id">
+                                    <label for="Warehouse_id">Warehouse</label>
+                                    <select id="Warehouse_id" class="form-control dummy_inventory_control" name="Warehouse_id" required="required" data-parsley-error-message="Choose your store id">
                                         <option value="">-- Select One --</option>
                                         @foreach($warehouses as $cat)
                                         <option value="{{$cat->id}}">{{$cat->name}}</option>

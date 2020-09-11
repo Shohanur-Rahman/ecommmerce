@@ -12,7 +12,7 @@
 	<![endif]-->
 
 	<!--header-area start-->
-	@include('user.partials.layout.header')
+	@include('user.partials.layout.header_second')
 	<!--header-area end-->
 	
 	<section class="app_content_area">
@@ -20,7 +20,7 @@
 	</section>
 	
 	<!--footer-area start-->
-	@include('user.partials.layout.footer')
+	@include('user.partials.layout.footer_second')
   
 </body>
 

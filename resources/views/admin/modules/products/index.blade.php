@@ -16,7 +16,7 @@
 	<div class="col-md-12">
 		<div class="card">
 	        <div class="card-body">
-	            <h4 class="card-title mb-2">Tags</h4>
+	            <h4 class="card-title mb-2">Products</h4>
 	            <p class="text-muted font-14 mb-4">
 	                The Buttons extension for DataTables provides a common set of options, API methods and styling to display buttons on a page
 	                that will interact with a DataTable. The core library provides the based framework upon which plug-ins can built.
@@ -31,7 +31,10 @@
                     <thead>
                         <tr>
                             <th>Id</th>
+                            <th>Photo</th>
                             <th>Name</th>
+                            <th>Price</th>
+                            <th>Published</th>
                             <th>Created By</th>
                             <th>Created Date</th>
                             <th>Action</th>
@@ -45,11 +48,14 @@
                         @foreach($products as $aProduct)
                         <tr>
                             <td>{{$aProduct->id}}</td>
+                            <td><img src="{{asset($aProduct->featured_image)}}" class="table-image"></td>
                             <td>{{$aProduct->title}}</td>
                             <td>{{$aProduct->new_price}}</td>
+                            <td><i class="{{ $aProduct->is_published == true ? 'zmdi zmdi-check grid-icon approve' : 'zmdi zmdi-close grid-icon not-approve' }}"></i></td>
+                            <td>{{$aProduct->user->name}}</td>
                             <td>{{$aProduct->created_at->format('d F Y')}}</td>
                             <td>
-                                <a class="btn btn-outline-primary table-btn btn-sm" href="{{route('edit_tag', $aProduct->id)}}" title="Edit"><i class="zmdi zmdi-edit"></i></a>
+                                <a class="btn btn-outline-primary table-btn btn-sm" href="{{route('edit_product', $aProduct->id)}}" title="Edit"><i class="zmdi zmdi-edit"></i></a>
                                 <a class="btn btn-outline-danger table-btn btn-sm" href="{{route('delete_tag', $aProduct->id)}}" title="Delete"><i class="zmdi zmdi-delete"></i></a>
                             </td>
                         </tr>

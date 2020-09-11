@@ -7,7 +7,7 @@
 	<link rel="manifest" href="site.html">
 	<link rel="apple-touch-icon" href="icon.html">
 	<!-- Place favicon.ico in the root directory -->
-
+ 
 	<!-- bootstrap v4.0.0 -->
 	<link rel="stylesheet" href="{{asset('user/assets/css/bootstrap.min.css')}}">
 	<!-- fontawesome-icons css -->
