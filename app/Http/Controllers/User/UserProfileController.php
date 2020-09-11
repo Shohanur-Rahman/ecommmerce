@@ -39,9 +39,9 @@ class UserProfileController extends Controller
         }
 
         if($user->userProfile === null){
-
             $user->userProfile()->create($this->requestField($request));
         }
+
 
         $user->userProfile()->update($this->requestField($request));
 

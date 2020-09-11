@@ -1,6 +1,8 @@
 <div class="d-flex justify-content-between">
-    <div class="">
+    <div class="d-flex flex-column justify-content-center">
         <img class="rounded-circle" src="{{asset('user/assets/images/avatar.png')}}" style="width: 120px;height: 120px" alt="">
+        <span class="text-black-50 font-weight-bold">{{Auth::user()->name}}</span>
+        <span>{{Auth::user()->email}}</span>
     </div>
     <div class="align-content-sm-end ml-auto">
         <div class="">

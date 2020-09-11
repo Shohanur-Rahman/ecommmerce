@@ -57,7 +57,7 @@
 							</div>
 						</div>
 						<div class="col-lg-8">
-							<div class="mainmenu">  
+							<div class="mainmenu">
 								<nav>
 									<ul>
 										<li><a href="index.html">Home <b class="caret"></b></a>
@@ -150,7 +150,7 @@
 								<span>/</span>
 								<a href="{{route('login')}}">Sign in</a>
 								@else
-								<a href="{{route('dashboard')}}" target="_blank">Dashboard</a>
+								<a href="{{route('profiles.index')}}">Dashboard</a>
 								<span>/</span>
 								<a href="{{ route('logout') }}"
                                        onclick="event.preventDefault();
@@ -405,7 +405,7 @@
 				<div class="row mt-sm-10">
 					<div class="col-lg-12">
 						<a href="#my-menu" class="mmenu-icon pull-left"><i class="fa fa-bars"></i></a>
-						
+
 						<div class="mainmenu">
 							<nav id="my-menu">
 								<ul>
@@ -491,7 +491,7 @@
 								</ul>
 							</nav>
 						</div>
-						
+
 						<!--category-->
 						<div class="collapse-menu mt-0 pull-right">
 							<ul>
