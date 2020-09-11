@@ -2,17 +2,6 @@
 
 use Illuminate\Support\Facades\Route;
 
-/*
-|--------------------------------------------------------------------------
-| Web Routes
-|--------------------------------------------------------------------------
-|
-| Here is where you can register web routes for your application. These
-| routes are loaded by the RouteServiceProvider within a group which
-| contains the "web" middleware group. Now create something great!
-|
-*/
-
 Route::get('/', function () {
     return view('user.welcome');
 });
@@ -42,16 +31,20 @@ Route::group(['middleware' => 'recovery_code'], function() {
 
 Route::get('/user-ui', 'TestController@user_ui')->name('user_ui');
 
-Route::get('profiles','User\UserProfileController@index')->name('profiles.index');
-Route::get('profiles/edit','User\UserProfileController@edit')->name('profiles.edit');
-Route::patch('profiles/','User\UserProfileController@update')->name('profiles.update');
+Route::group(['prefix'=>'profiles'],function(){
+    Route::get('','User\UserProfileController@index')->name('profiles.index');
+    Route::get('/edit','User\UserProfileController@edit')->name('profiles.edit');
+    Route::patch('/','User\UserProfileController@update')->name('profiles.update');
 
-Route::get('profiles/change-password','User\UserProfileController@changePasswordEdit')->name('change-password.edit');
-Route::patch('profiles/change-password','User\UserProfileController@changePasswordUpdate')->name('change-password.update');
+    Route::get('/change-password','User\UserProfileController@changePasswordEdit')->name('change-password.edit');
+    Route::patch('/change-password','User\UserProfileController@changePasswordUpdate')->name('change-password.update');
 
-Route::patch('profiles/avatar','User\UserProfileController@avatarUpdate')->name('avatar.update');
+    Route::patch('/avatar','User\UserProfileController@avatarUpdate')->name('avatar.update');
+});
 
-Route::get('profiles/shipping-address','User\ShippingAddressController@create')->name('shipping-address.create');
-Route::post('profiles/shipping-address','User\ShippingAddressController@store')->name('shipping-address.store');
-Route::get('profiles/shipping-address/{shippingAddress}/edit','User\ShippingAddressController@edit')->name('shipping-address.edit');
-Route::patch('profiles/{shippingAddress}/shipping-address','User\ShippingAddressController@update')->name('shipping-address.update');
+Route::group(['prefix'=>'profiles/shipping-address'],function(){
+    Route::get('/','User\ShippingAddressController@create')->name('shipping-address.create');
+    Route::post('/','User\ShippingAddressController@store')->name('shipping-address.store');
+    Route::get('/{shippingAddress}/edit','User\ShippingAddressController@edit')->name('shipping-address.edit');
+    Route::patch('/{shippingAddress}','User\ShippingAddressController@update')->name('shipping-address.update');
+});
