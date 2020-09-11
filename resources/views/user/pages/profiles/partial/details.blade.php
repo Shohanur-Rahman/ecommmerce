@@ -1,10 +1,30 @@
 <div class="d-flex justify-content-between">
     <div class="d-flex flex-column justify-content-center">
-        <img class="rounded-circle" src="{{asset('user/assets/images/avatar.png')}}" style="width: 120px;height: 120px" alt="">
-        <span class="text-black-50 font-weight-bold">{{Auth::user()->name}}</span>
+        <div class="d-flex">
+            @If(Auth()->user()->userProfile->avatar != null)
+                <img class="rounded-circle" src="{{asset(Auth()->user()->userProfile->avatar)}}" id="uploadPreview"   style="width: 120px;height: 120px" alt="">
+            @else
+                <img class="rounded-circle" src="{{asset('user/assets/images/avatar.png')}}" id="uploadPreview"   style="width: 120px;height: 120px" alt="">
+            @endif
+
+            <div class="form-group col-3">
+                <form action="{{route('avatar.update')}}" method="post" enctype="multipart/form-data">
+                    @method('PATCH')
+                    @csrf
+                    <label for="imgInp" class="upload-preview">
+                        <img src="{{asset('images/noimage.PNG')}}" />
+                    </label>
+
+                    <input type="file"  name="avatar" class="hdn-uploder d-none" id="imgInp" required="required" accept="image/*" data-parsley-error-message="Upload Main Slider image"/>
+                    <button class="btn btn-primary btn-sm ml-3"><small>upload</small></button>
+                </form>
+            </div>
+        </div>
+
+        <span class="text-black-50 font-weight-bold mt-2">{{Auth::user()->name}}</span>
         <span>{{Auth::user()->email}}</span>
     </div>
-    <div class="align-content-sm-end ml-auto">
+    <div class="align-content-sm-end ml-auto mt-3">
         <div class="">
             <h5>Account Information</h5>
             <address>
@@ -23,3 +43,23 @@
     <div>
     </div>
 </div>
+<script>
+    $(document).ready(function(){
+        $("#imgInp").change(function () {
+            readURL(this);
+        });
+
+    });
+
+    function readURL(input) {
+        if (input.files && input.files[0]) {
+            var reader = new FileReader();
+
+            reader.onload = function (e) {
+                $("#uploadPreview").attr("src", e.target.result);
+            };
+
+            reader.readAsDataURL(input.files[0]);
+        }
+    }
+</script>

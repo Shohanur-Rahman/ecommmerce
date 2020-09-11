@@ -49,6 +49,8 @@ Route::patch('profiles/','User\UserProfileController@update')->name('profiles.up
 Route::get('profiles/change-password','User\UserProfileController@changePasswordEdit')->name('change-password.edit');
 Route::patch('profiles/change-password','User\UserProfileController@changePasswordUpdate')->name('change-password.update');
 
+Route::patch('profiles/avatar','User\UserProfileController@avatarUpdate')->name('avatar.update');
+
 Route::get('profiles/shipping-address','User\ShippingAddressController@create')->name('shipping-address.create');
 Route::post('profiles/shipping-address','User\ShippingAddressController@store')->name('shipping-address.store');
 Route::get('profiles/shipping-address/{shippingAddress}/edit','User\ShippingAddressController@edit')->name('shipping-address.edit');

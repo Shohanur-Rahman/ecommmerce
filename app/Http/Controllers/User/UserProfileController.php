@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\User;
 
+use App\Http\Controllers\admin\HelperController;
 use App\Http\Controllers\Controller;
 use App\Models\User\ShippingAddress;
 use App\Models\User\UserProfile;
@@ -67,7 +68,25 @@ class UserProfileController extends Controller
             return redirect(route('profiles.index'))->with('success','Password Updated Successfully');
         }
 
-        return redirect()->back()->with('error-message','Current Password is Typing Wrong');
+        return redirect(route('profiles.index'))->with('success','Password Updated Successfully');
+    }
+
+
+    public function avatarUpdate(Request $request)
+    {
+        $userProfile =  Auth::user()->UserProfile;
+
+        if($userProfile->image_url){
+            @unlink($userProfile->image_url);
+        }
+
+        $helper = new HelperController();
+
+        $userProfile->update([
+           'avatar'=>$helper->uploadImage($request->File('avatar'), 'user/profiles/avatar/')
+        ]);
+
+        return redirect(route('profiles.index'))->with('success','Profile Avatar Updated Successfully');
     }
 
     public function requestField($request)

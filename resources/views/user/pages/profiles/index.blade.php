@@ -11,6 +11,7 @@
                 <div class="card border-0">
                     <div class="bg-white">
                         <h3 class="text-uppercase">My Dashboard</h3>
+                        <button class="btn btn-primary w-100 my-2"><a class="text-white" href="{{route('dashboard')}}">Go Seller Page</a></button>
                     </div>
                     <div class="dashboard">
                         <div class="welcome-msg"><strong class=" text-black font-weight-bold">Hello, {{$user->name}}!</strong>
