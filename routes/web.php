@@ -48,3 +48,8 @@ Route::patch('dashboard/{user}','User\UserProfileController@update')->name('dash
 
 Route::get('dashboard/{user}/change-password','User\UserProfileController@changePasswordEdit')->name('change-password.edit');
 Route::patch('dashboard/{user}/change-password','User\UserProfileController@changePasswordUpdate')->name('change-password.update');
+
+Route::get('users/shipping-address','User\ShippingAddressController@create')->name('shipping-address.create');
+Route::post('users/shipping-address','User\ShippingAddressController@store')->name('shipping-address.store');
+Route::get('users/shipping-address/{shippingAddress}/edit','User\ShippingAddressController@edit')->name('shipping-address.edit');
+Route::patch('users/shipping-address','User\ShippingAddressController@update')->name('shipping-address.update');
