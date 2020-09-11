@@ -4,6 +4,7 @@ namespace App\Http\Controllers\User;
 
 use App\Http\Controllers\Controller;
 use App\Models\User\ShippingAddress;
+use App\Models\User\UserProfile;
 use App\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -19,27 +20,38 @@ class UserProfileController extends Controller
         return view('user.pages.profiles.index',compact('shippingAddresses','user'));
     }
 
-    public function edit(User $user)
+    public function edit()
     {
-        return view('user.pages.profiles.edit',compact('user'));
+        $authId = Auth::id() ;
+        $userProfile = UserProfile:: Where('user_id',$authId)->first();
+
+        return view('user.pages.profiles.edit',compact('userProfile'));
     }
 
-    public function update(Request $request, User $user)
+    public function update(Request $request)
     {
         $user = Auth::user();
 
-        $this->validate($request,[
-            'secondary_email' => 'required|string|email|max:255|unique:user_profiles,secondary_email,'.$user->id
-        ]);
+        if($user->userProfile != null){
+            $this->validate($request,[
+                'secondary_email' => 'required|string|email|max:255|unique:user_profiles,secondary_email,'.$user->userProfile->id
+            ]);
+        }
 
-        $user->userProfile()->create($this->requestField($request));
+        if($user->userProfile === null){
+
+            $user->userProfile()->create($this->requestField($request));
+        }
+
+        $user->userProfile()->update($this->requestField($request));
+
+        $user->update(['name'=>$request['name']]);
 
         return redirect(route('profiles.index'))->with('success','Profile Updated Successfully');
     }
 
     public function changePasswordEdit ()
     {
-
         return view('user.pages.profiles.change-password');
     }
 
@@ -48,7 +60,6 @@ class UserProfileController extends Controller
         $user = Auth::user();
 
         if(Hash::check($request['current_password'],$user->password)){
-
             $user->update([
                'password'=>Hash::make($request['new_password'])
             ]);
