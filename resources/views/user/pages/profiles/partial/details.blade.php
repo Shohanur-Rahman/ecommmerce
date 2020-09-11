@@ -7,7 +7,7 @@
                 <img class="rounded-circle" src="{{asset('user/assets/images/avatar.png')}}" id="uploadPreview"   style="width: 120px;height: 120px" alt="">
             @endif
 
-            <div class="form-group col-3">
+            <div class="form-group col-3" style="margin-top: -10px">
                 <form action="{{route('avatar.update')}}" method="post" enctype="multipart/form-data">
                     @method('PATCH')
                     @csrf
@@ -16,7 +16,7 @@
                     </label>
 
                     <input type="file"  name="avatar" class="hdn-uploder d-none" id="imgInp" required="required" accept="image/*" data-parsley-error-message="Upload Main Slider image"/>
-                    <button class="btn btn-primary btn-sm ml-3"><small>upload</small></button>
+                    <button class="btn btn-primary btn-sm ml-4"><small>Upload</small></button>
                 </form>
             </div>
         </div>
