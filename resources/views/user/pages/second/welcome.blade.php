@@ -2,37 +2,8 @@
 @section('title', "Home")
 @section('content')
 
-
-	<!--slider-area start-->
-	<div class="slider-area">
-		<div class="container-fluid">
-			<div class="row align-items-center">
-				<div class="col-lg-12">
-					<div class="main-slider">
-						<div class="slider-single bg-5">
-							<div class="d-table">
-								<div class="slider-caption text-center">
-									<h4>seson sale!</h4>
-									<h2 class="cssanimation leDoorCloseLeft sequence">Clothing 30% Off</h2>
-									<a href="#" class="btn-common mt-43">shop now</a>
-								</div>
-							</div>
-						</div>
-						<div class="slider-single bg-7">
-							<div class="d-table">
-								<div class="slider-caption text-center">
-									<h4>seson sale!</h4>
-									<h2 class="cssanimation leDoorCloseLeft sequence">Clothing 30% Off</h2>
-									<a href="#" class="btn-common mt-43">shop now</a>
-								</div>
-							</div>
-						</div>
-					</div>
-				</div>
-			</div>
-		</div>
-	</div>
-	<!--slider-area end-->
+	@include('user.partials.widget.main_slider')
+	
 	
 	<!--banner-area start-->
 	<div class="banner-area mt-30">
@@ -91,16 +62,19 @@
 					<div class="products-tab">
 						<div class="product-nav-tabs style-2 text-center">
 							<ul class="nav nav-tabs">
+								<?php $arrivalTabs = App\Models\Settings\NewArrivalTab::where('is_published', true)->get(); ?>
 								<li><a class="active" data-toggle="tab" href="#all-products">all products</a></li>
-								<li><a data-toggle="tab" href="#men">men’s</a></li>
-								<li><a data-toggle="tab" href="#women">women’s</a></li>
-								<li><a data-toggle="tab" href="#kid">kid’s</a></li>
-								<li><a data-toggle="tab" href="#accessories">accessories</a></li>
+								@foreach($arrivalTabs as $tab)
+								<li><a data-toggle="tab" href="#arrivalTab{{$tab->id}}">{{$tab->category->category_name}}</a></li>
+								@endforeach
 							</ul>
 						</div>
 						<div class="tab-content">
 							<div id="all-products" class="tab-pane fade in show active">
 								<div class="row four-items cv-visible">
+
+									@include('user.partials.widget.product_list')
+
 									<div class="col-lg-3">
 										<!--single-product-->
 										<div class="product-single">
