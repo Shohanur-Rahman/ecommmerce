@@ -12,4 +12,10 @@ class Products extends Model
 	{
 	    return $this->belongsTo('App\User', 'user_id');
 	}
+
+
+	public function categories()
+    {
+        return $this->belongsToMany(ProductCategory::class,'cat_id');
+    }
 }

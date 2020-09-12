@@ -1,5 +1,9 @@
-<div id="men" class="tab-pane fade">
+@foreach($tabItemList as $aTab)
+
+<div id="{{$tabId.$aTab}}" class="tab-pane fade  in show active">
 	<div class="row four-items cv-visible">
+		<?php $productItems = App\Models\Products::where(["is_published" => true, "show_on_home" => true,])->get(); ?>
+
 		<div class="col-lg-3">
 			<!--single-product-->
 			<div class="product-single">
@@ -208,3 +212,5 @@
 		</div>
 	</div>
 </div>
+
+@endForeach

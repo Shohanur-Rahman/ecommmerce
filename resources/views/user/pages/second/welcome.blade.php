@@ -62,15 +62,15 @@
 					<div class="products-tab">
 						<div class="product-nav-tabs style-2 text-center">
 							<ul class="nav nav-tabs">
-								<?php $arrivalTabs = App\Models\Settings\NewArrivalTab::where('is_published', true)->get(); ?>
+								<?php $tabItemList = App\Models\Settings\NewArrivalTab::where('is_published', true)->get(); ?>
 								<li><a class="active" data-toggle="tab" href="#all-products">all products</a></li>
-								@foreach($arrivalTabs as $tab)
+								@foreach($tabItemList as $tab)
 								<li><a data-toggle="tab" href="#arrivalTab{{$tab->id}}">{{$tab->category->category_name}}</a></li>
 								@endforeach
 							</ul>
 						</div>
 						<div class="tab-content">
-							<div id="all-products" class="tab-pane fade in show active">
+							<div id="all-products" class="tab-pane fade">
 								<div class="row four-items cv-visible">
 
 									@include('user.partials.widget.product_list')
@@ -283,6 +283,9 @@
 									</div>
 								</div>
 							</div>
+
+							@include('user.partials.widget.products_tab', ['tabItemList' => $tabItemList, 'tabId' => "arrivalTab"])
+
 							<div id="men" class="tab-pane fade">
 								<div class="row four-items cv-visible">
 									<div class="col-lg-3">
