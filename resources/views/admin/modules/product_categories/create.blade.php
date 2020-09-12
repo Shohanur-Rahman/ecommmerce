@@ -27,7 +27,10 @@
                                             <option value="">Selected Category</option>
                                             @foreach($Categories as $category)
                                                 <option value="{{$category->id}}">{{$category->category_name}} <b class="text-black-50">({{$category->user->user_type}})</b></option>
-                                            @endforeach
+                                                @foreach($category->childrens as $children)
+                                                    <option value="{{$category->id}}">-> </i>{{$children->category_name}} <b class="text-black-50">({{$category->user->user_type}})</b></option>
+                                                @endforeach
+                                                @endforeach
                                         </select>
                                     </div>
                                 </div>

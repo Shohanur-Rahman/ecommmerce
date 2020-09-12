@@ -11,14 +11,14 @@ class ProductCategoryController extends Controller
 
     public function index()
     {
-        $productCategories = ProductCategory::with('children')->get();
+        $productCategories = ProductCategory::with('childrens')->get();
 
         return view('admin.modules.product_categories.index',compact('productCategories'));
     }
 
     public function create()
     {
-        $Categories = ProductCategory::where('parent_id',0)->with('user')->get();
+        $Categories = ProductCategory::where('parent_id',0)->with('childrens.user')->get();
 
         return view('admin.modules.product_categories.create',compact('Categories'));
     }
