@@ -84,7 +84,7 @@
 
 															@if($childMenu->childrens->count() > 0)
 															<ul>
-																@foreach($childMenu->children as $leaveMenu)
+																@foreach($childMenu->childrens as $leaveMenu)
 																<li><a href="shop.html">{{$leaveMenu->category_name}}</a></li>
 																@endforeach
 															</ul>
