@@ -66,12 +66,12 @@
 							</div>
 						</div>
 						<div class="col-xl-7 col-lg-6">
-							<div class="mainmenu text-center">  
+							<div class="mainmenu text-center">
 								<nav>
 									<ul>
 										<?php $menuCats = App\Models\ProductCategory::where(['parent_id' => 0, 'is_top_menu' => true])->get();?>
 										@foreach($menuCats as $menu)
-											@if($menu->children->count() > 0)
+											@if($menu->childrens->count() > 0)
 												<li>
 													<a href="#">
 														{{$menu->category_name}}
@@ -96,9 +96,9 @@
 											@else
 											<li><a href="/">{{$menu->category_name}}</a></li>
 											@endif
-											
+
 										@endforeach
-										
+
 									</ul>
 								</nav>
 							</div>
@@ -240,7 +240,7 @@
 				<div class="row mt-sm-10">
 					<div class="col-lg-12">
 						<a href="#my-menu" class="mmenu-icon pull-left"><i class="fa fa-bars"></i></a>
-						
+
 						<div class="mainmenu">
 							<nav id="my-menu">
 								<ul>
@@ -326,7 +326,7 @@
 								</ul>
 							</nav>
 						</div>
-						
+
 						<!--category-->
 						<div class="collapse-menu mt-0 pull-right">
 							<ul>
@@ -427,4 +427,3 @@
 		</div>
 	</header>
 	<!--header-area end-->
-	
