@@ -12,8 +12,8 @@
                         <div class="slider-single "  style="background-image: url({{$slider->image_url}})">
                             <div class="d-table">
                                 <div class="slider-caption text-center">
-                                    <h4>seson sale!</h4>
-                                    <h2 class="cssanimation leDoorCloseLeft sequence">Clothing 30% Off</h2>
+                                    <h4>{{$slider->name}}</h4>
+                                    <h2 class="cssanimation leDoorCloseLeft sequence">{{$slider->caption}}</h2>
                                     <a href="#" class="btn-common mt-43">shop now</a>
                                 </div>
                             </div>
