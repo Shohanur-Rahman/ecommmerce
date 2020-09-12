@@ -28,6 +28,6 @@ class AppServiceProvider extends ServiceProvider
     {
        View::composer(['admin.modules.settings.website.product_features.partial.*'],function ($view){
             $view->with('categories',ProductCategory::with('user','childrens.childrens')->get());
-        });
+       });
     }
 }
