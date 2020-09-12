@@ -18,6 +18,7 @@ class CreateProductCategoriesTable extends Migration
             $table->unsignedBigInteger('parent_id');
             $table->unsignedBigInteger('user_id');
             $table->string('category_name');
+            $table->string('slug')->unique();
             $table->boolean('is_top_menu');
             $table->timestamps();
         });

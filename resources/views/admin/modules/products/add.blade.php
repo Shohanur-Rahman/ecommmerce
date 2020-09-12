@@ -107,6 +107,7 @@
                                 </div>
                             </div>
                         </div>
+
                         <div class="row">
                             <div class="col-md-12">
                                 <div class="form-group">
@@ -127,7 +128,6 @@
                                 </div>
                             </div>
 
-                            
                         </div>
                     </div>
 
@@ -226,7 +226,7 @@
 
             </div>
             <div class="tab-pane" id="tabInventory">
-                
+
                 <div class="card mb-30">
                     <div class="card-body py-3">
                         <div class="d-flex align-items-center pb-3">
@@ -319,7 +319,7 @@
             </div>
 
             <div class="tab-pane" id="tabSEO">
-                
+
                 <div class="card mb-30">
                     <div class="card-body py-3">
                         <div class="d-flex align-items-center pb-3">
@@ -421,7 +421,7 @@
     var mltTags;
 
     $(document).ready(function () {
-        
+
         $('.input-images-1').imageUploader();
 
         mltCategories = $("#mltCategories").kendoMultiSelect().data("kendoMultiSelect");

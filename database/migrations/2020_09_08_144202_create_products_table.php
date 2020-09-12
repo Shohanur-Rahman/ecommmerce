@@ -17,14 +17,15 @@ class CreateProductsTable extends Migration
             $table->bigIncrements('id');
             $table->string('title')->default('This is a demo product');
             $table->string('short_description')->nullable();
+            $table->string('slug');
             $table->text('description')->nullable();
             $table->string('sku')->nullable();
             $table->decimal('old_price', 8, 2)->nullable();
             $table->decimal('new_price', 8, 2)->nullable();
-            $table->boolean('is_published')->default(1); 
-            $table->boolean('is_new')->default(0); 
-            $table->boolean('allow_review')->default(1); 
-            $table->boolean('show_on_home')->default(0); 
+            $table->boolean('is_published')->default(1);
+            $table->boolean('is_new')->default(0);
+            $table->boolean('allow_review')->default(1);
+            $table->boolean('show_on_home')->default(0);
             $table->bigInteger('user_id')->nullable();
             $table->integer('availability_id')->nullable();
             $table->bigInteger('brand_id')->nullable();
@@ -40,7 +41,7 @@ class CreateProductsTable extends Migration
             $table->boolean('show_availability')->default(0);
             $table->integer('minimum_cart_qty')->nullable();
             $table->string('featured_image')->nullable();
-            $table->boolean('allow_seo')->default(0); 
+            $table->boolean('allow_seo')->default(0);
             $table->text('meta_keywords')->nullable();
             $table->text('meta_description')->nullable();
             $table->timestamps();

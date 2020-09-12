@@ -5,6 +5,7 @@ namespace App\Http\Controllers\admin;
 use App\Http\Controllers\Controller;
 use App\Models\ProductCategory;
 use Illuminate\Http\Request;
+use Illuminate\Support\Str;
 
 class ProductCategoryController extends Controller
 {
@@ -25,10 +26,17 @@ class ProductCategoryController extends Controller
 
     public function store(Request $request)
     {
+        $this->validate($request,[
+            'category_name'=>'unique:product_categories'
+        ]);
+
+        $categoryName = $request['category_name'];
+
         $userId = Auth()->id();
 
         ProductCategory::create([
-            'category_name'=>$request['category_name'],
+            'category_name'=>$categoryName,
+            'slug'=>Str::slug($categoryName),
             'parent_id'=>$request['parent_id'] ?? 0,
             'user_id'=>$userId,
             'is_top_menu'=>$request['is_top_menu'] ?? '0'
@@ -46,10 +54,17 @@ class ProductCategoryController extends Controller
 
     public function update(Request $request, ProductCategory $productCategory)
     {
+        $this->validate($request,[
+            'category_name'=>'unique:product_categories,category_name,'.$productCategory->id,
+        ]);
+
         $userId = Auth()->id();
 
+        $categoryName = $request['category_name'];
+
         $productCategory->update([
-            'category_name'=>$request['category_name'],
+            'category_name'=>$categoryName,
+            'slug'=>Str::slug($categoryName),
             'parent_id'=>$request['parent_id'] ?? 0,
             'user_id'=>$userId,
             'is_top_menu'=>$request['is_top_menu'] ?? '0'

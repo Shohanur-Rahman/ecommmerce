@@ -12,11 +12,13 @@ use App\Models\ProductBrands;
 use App\Models\ProductCategory;
 use App\Models\ProductTags;
 use App\Models\ProductSize;
-use App\Models\ProductColor; 
+use App\Models\ProductColor;
 use App\Models\ProductCategoryMap;
 use App\Models\ProductTagMap;
 use App\Models\ProductGalleryMap;
 use Auth;
+use Illuminate\Support\Str;
+
 class ProductsController extends HelperController
 {
     public function index()
@@ -75,7 +77,7 @@ class ProductsController extends HelperController
         }
 
 
-        $imgGallery = ProductGalleryMap::where('product_id', $id)->get();        
+        $imgGallery = ProductGalleryMap::where('product_id', $id)->get();
         $galleryArray="";
         foreach ($imgGallery as $key) {
             if($galleryArray == "")
@@ -100,6 +102,7 @@ class ProductsController extends HelperController
 
         $product = new Products();
         $product->title = $request->title;
+        $product->slug = Str::slug( $request->title);
         $product->short_description = $request->short_description;
         $product->description = $request->description;
         $product->sku = $request->sku;
@@ -137,7 +140,7 @@ class ProductsController extends HelperController
             $product->meta_description = $request->meta_description;
         }
 
-        
+
         /*
         *
         * Upload featured image and return path url */
@@ -194,7 +197,7 @@ class ProductsController extends HelperController
         }
 
          return redirect(route('products'))->with('success','Your product has been successfully added.');
-        
+
     }
 
 
@@ -245,7 +248,7 @@ class ProductsController extends HelperController
             $product->meta_description = $request->meta_description;
         }
 
-        
+
         /*
         *
         * Upload featured image and return path url */
@@ -266,13 +269,13 @@ class ProductsController extends HelperController
         $product->save();
 
 
-           
-        
+
+
         /*
         *
         *Delete existing gallery images from server**/
-        $imgGallery = ProductGalleryMap::where('product_id', $id)->get(); 
-        $deleteGalery = ProductGalleryMap::where('product_id', $id)->delete();    
+        $imgGallery = ProductGalleryMap::where('product_id', $id)->get();
+        $deleteGalery = ProductGalleryMap::where('product_id', $id)->delete();
         foreach ($imgGallery as $key) {
             @unlink($key->image_url);
         }
@@ -334,6 +337,6 @@ class ProductsController extends HelperController
         }
 
          return redirect(route('products'))->with('success','Your product has been successfully updated.');
-        
+
     }
 }

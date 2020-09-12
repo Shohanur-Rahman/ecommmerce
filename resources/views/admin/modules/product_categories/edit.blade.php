@@ -21,6 +21,7 @@
                                     <label for="name">Category Name</label>
                                     <input type="text" class="form-control" value="{{$productCategory->category_name ?? old('product_name')}}" id="name" placeholder="Enter Category name" name="category_name" required="required" data-parsley-error-message="Enter Category name">
 
+                                    @error('category_name') <span class="text-danger">{{$message}}</span> @enderror
                                 </div>
 
                                 <div class="form-group">
