@@ -39,7 +39,7 @@ class ProductCategoryController extends Controller
 
     public function edit(ProductCategory $productCategory)
     {
-        $Categories = ProductCategory::where('parent_id',0)->with('user')->get();
+        $Categories = ProductCategory::where('parent_id',0)->with('childrens.user')->get();
 
         return view('admin.modules.product_categories.edit',compact('productCategory','Categories'));
     }
