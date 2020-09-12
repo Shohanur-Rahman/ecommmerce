@@ -48,7 +48,7 @@
                     <li class="treeview">
                         <a href="javascript:void(0)"><i class="zmdi zmdi-settings"></i> <span>Website Settings</span> <i class="fa fa-angle-right"></i></a>
                         <ul class="treeview-menu">
-                            <li><a href="{{route('newarrival')}}">- New Arrival</a></li>
+                            <li><a href="{{route('arrivals')}}">- New Arrival</a></li>
                         </ul>
                     </li>
                 </ul>

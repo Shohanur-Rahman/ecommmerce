@@ -30,5 +30,11 @@ Route::group(['prefix' => 'products'], function () {
 
 
 Route::group(['prefix' => 'website-settings'], function () {
-	Route::get('/new-arrival', 'NewArrivalController@index')->name('newarrival');
+	Route::group(['prefix' => 'arrivals'], function () {
+		Route::get('/', 'Settings\NewArrivalController@index')->name('arrivals');
+		Route::get('/add', 'Settings\NewArrivalController@add_arrival')->name('add_arrival');
+		Route::post('/add', 'Settings\NewArrivalController@save_arrival')->name('save_arrival');
+		Route::get('/edit/{id}', 'Settings\NewArrivalController@edit_arrival')->name('edit_arrival');
+		Route::post('/edit/{id}', 'Settings\NewArrivalController@update_arrival')->name('update_arrival');
+	});
 });
