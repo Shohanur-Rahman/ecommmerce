@@ -62,92 +62,43 @@
 					<div class="row align-items-center">
 						<div class="col-xl-2 col-lg-2">
 							<div class="logo">
-								<a href="index.html"><img src="{{asset('user/assets/images/logos/logo-green.png')}}" alt="logo" /></a>
+								<a href="/"><img src="{{asset('user/assets/images/logos/logo-green.png')}}" alt="logo" /></a>
 							</div>
 						</div>
 						<div class="col-xl-7 col-lg-6">
 							<div class="mainmenu text-center">  
 								<nav>
 									<ul>
-										<li><a href="index.html">Home <b class="caret"></b></a>
-											<ul class="submenu">
-												<li><a href="index.html">Home Version 1</a></li>
-												<li><a href="index-2.html">Home Version 2</a></li>
-												<li><a href="index-3.html">Home Version 3</a></li>
-												<li><a href="index-4.html">Home Version 4</a></li>
-												<li><a href="index-5.html">Home Version 5</a></li>
-												<li><a href="index-6.html">Home Version 6</a></li>
-											</ul>
-										</li>
-										<li>
-											<a href="#">
-												<span class="text-label label-featured">Featured</span>
-												Shop
-												<b class="caret"></b>
-											</a>
-											<ul class="mega-menu">
-												<li class="megamenu-single">
-													<span class="mega-menu-title">Shop Page</span>
-													<ul>
-														<li><a href="shop.html">Shop Grid</a></li>
-														<li><a href="shop-list.html">Shop List</a></li>
-														<li><a href="shop-list-col-3.html">Shop Column 3</a></li>
-														<li><a href="product-details.html">Product Details</a></li>
-														<li><a href="poduct-details-sidebar.html">Product Details Sidebar</a></li>
+										<?php $menuCats = App\Models\ProductCategory::where(['parent_id' => 0, 'is_top_menu' => true])->get();?>
+										@foreach($menuCats as $menu)
+											@if($menu->children->count() > 0)
+												<li>
+													<a href="#">
+														{{$menu->category_name}}
+														<b class="caret"></b>
+													</a>
+													<ul class="mega-menu">
+														@foreach($menu->children as $childMenu)
+														<li class="megamenu-single">
+															<span class="mega-menu-title">{{$childMenu->category_name}}</span>
+
+															@if($childMenu->children->count() > 0)
+															<ul>
+																@foreach($childMenu->children as $leaveMenu)
+																<li><a href="shop.html">{{$leaveMenu->category_name}}</a></li>
+																@endforeach
+															</ul>
+															@endif
+														</li>
+														@endforeach
 													</ul>
 												</li>
-												<li class="megamenu-single">
-													<span class="mega-menu-title">Featured</span>
-													<ul>
-														<li><a href="wishlist.html">Wishlist</a></li>
-														<li><a href="shopping-cart.html">Shopping Cart</a></li>
-														<li><a href="shop-compare.html">Shop Compare</a></li>
-														<li><a href="checkout.html">Checkout</a></li>
-													</ul>
-												</li>
-												<li class="megamenu-single">
-													<span class="mega-menu-title">Pages</span>
-													<ul>
-														<li><a href="about.html">About </a></li>
-														<li><a href="faq.html">FAQ</a></li>
-														<li><a href="coming-soon.html">Coming Soon</a></li>
-														<li><a href="404.html">404 Error</a></li>
-													</ul>
-												</li>
-												<li class="megamenu-single">
-													<span class="mega-menu-title">Blog</span>
-													<ul>
-														<li><a href="blog.html">Blog List</a></li>
-														<li><a href="blog-grid.html">Blog Grid</a></li>
-														<li><a href="blog-fullwidth.html">Blog Fullwidth</a></li>
-														<li><a href="blog-details.html">Blog Details</a></li>
-													</ul>
-												</li>
-											</ul>
-										</li>
-										<li>
-											<a href="#">
-												<span class="text-label label-hot">Hot</span>
-												Pages
-												<b class="caret"></b>
-											</a>
-											<ul class="submenu">
-												<li><a href="about.html">About Us</a></li>
-												<li><a href="faq.html">FAQ</a></li>
-												<li><a href="coming-soon.html">Coming Soon</a></li>
-												<li><a href="404.html">404 Eror</a></li>
-											</ul>
-										</li>
-										<li><a href="#">Blog <b class="caret"></b></a>
-											<ul class="submenu">
-												<li><a href="blog.html">Blog</a></li>
-												<li><a href="blog-grid.html">Blog Grid</a></li>
-												<li><a href="blog-fullwidth.html">Blog Full Width</a></li>
-												<li><a href="blog-details.html">Blog Details</a></li>
-											</ul>
-										</li>
-										<li><a href="contact.html">Contact</a></li>
-										<li><a href="#">Purchase Theme</a></li>
+											@else
+											<li><a href="/">{{$menu->category_name}}</a></li>
+											@endif
+											
+										@endforeach
+										
 									</ul>
 								</nav>
 							</div>
