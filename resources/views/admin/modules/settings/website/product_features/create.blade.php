@@ -6,7 +6,7 @@
         <div class="col-md-12">
             <div class="card">
                 <div class="card-body">
-                    <h4 class="card-title mb-2">New Arrival Tab</h4>
+                    <h4 class="card-title mb-2">New Product Feature</h4>
                     <p class="text-muted font-14 mb-4">
                         The Buttons extension for DataTables provides a common set of options, API methods and styling to display buttons on a page
                         that will interact with a DataTable. The core library provides the based framework upon which plug-ins can built.
@@ -28,7 +28,7 @@
                                     <div class="inline-widged">
                                       <label for="is_published" class="single-label">Published</label>
                                         <label class="switch">
-                                            <input type="checkbox" id="is_published" name="is_published" checked="checked" value="1"/>
+                                            <input type="checkbox" id="is_published" name="is_published" checked="checked" />
                                             <span class="slider round"></span>
                                         </label>
                                     </div>

@@ -26,7 +26,7 @@ class ProductFeatureController extends Controller
         ProductFeature::create([
             'no_of_product'=>$request['no_of_product'],
             'category_id'=>$request['category_id'],
-            'is_published'=>$request['is_published'],
+            'is_published'=>$request->has('is_published'),
         ]);
 
         return redirect(route('product-features.index'))->with('success','New Product Feature Created Successfully');
@@ -40,10 +40,11 @@ class ProductFeatureController extends Controller
 
     public function update(Request $request, ProductFeature $productFeature)
     {
+
         $productFeature->update([
             'no_of_product'=>$request['no_of_product'],
             'category_id'=>$request['category_id'],
-            'is_published'=>$request['is_published'] ?? 0,
+            'is_published'=>$request->has('is_published'),
         ]);
 
         return redirect(route('product-features.index'))->with('success','Product Feature Updated Successfully');

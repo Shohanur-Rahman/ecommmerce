@@ -10,14 +10,14 @@
         <div class="col-md-12">
             <div class="card">
                 <div class="card-body">
-                    <h4 class="card-title mb-2">Arrivals Tab</h4>
+                    <h4 class="card-title mb-2">Product Features</h4>
                     <p class="text-muted font-14 mb-4">
                         The Buttons extension for DataTables provides a common set of options, API methods and styling to display buttons on a page
                         that will interact with a DataTable. The core library provides the based framework upon which plug-ins can built.
                     </p>
 
                     <p>
-                        <a class="btn btn-primary" href="{{route('product-features.create')}}">New Tab</a>
+                        <a class="btn btn-primary" href="{{route('product-features.create')}}">New Product Feature</a>
                     </p>
 
 
@@ -49,8 +49,6 @@
                                         <button class="btn btn-outline-danger table-btn btn-sm"  title="Delete"><i class="zmdi zmdi-delete"></i></button>
                                     </form>
                                 </td>
-
-
 
                             </tr>
 
