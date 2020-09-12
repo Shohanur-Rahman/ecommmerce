@@ -12,7 +12,7 @@ use App\Models\ProductBrands;
 use App\Models\ProductCategory;
 use App\Models\ProductTags;
 use App\Models\ProductSize;
-use App\Models\ProductColor;
+use App\Models\ProductColor; 
 use App\Models\ProductCategoryMap;
 use App\Models\ProductTagMap;
 use App\Models\ProductGalleryMap;

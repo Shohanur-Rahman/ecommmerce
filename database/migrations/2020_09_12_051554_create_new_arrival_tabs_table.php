@@ -17,6 +17,7 @@ class CreateNewArrivalTabsTable extends Migration
             $table->id();
             $table->bigInteger('cat_id')->nullable();
             $table->integer('no_of_product')->nullable();
+            $table->boolean('is_published')->default(0); 
             $table->timestamps();
         });
     }
