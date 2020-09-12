@@ -30,3 +30,27 @@
 	<link rel="stylesheet" href="{{asset('user/assets/css/responsive.css')}}">
 	<!-- green css -->
 	<link rel="stylesheet" href="{{asset('user/assets/colors/green.css')}}">
+
+	<script src="{{asset('user/assets/js/vendor/modernizr-3.6.0.min.js')}}"></script>
+	<!-- jquery-3.3.1 version -->
+	<script src="{{asset('user/assets/js/vendor/jquery-3.2.1.min.js')}}"></script>
+	<!-- bootstra.min js -->
+	<script src="{{asset('user/assets/js/bootstrap.min.js')}}"></script>
+
+	<script src="{{asset('parsley/parsley.min.js')}}"></script>
+	<!-- mmenu js -->
+	<script src="{{asset('user/assets/js/jquery.mmenu.js')}}"></script>
+	<!-- easing js -->
+	<script src="{{asset('user/assets/js/jquery.easing.min.js')}}"></script>
+	<!---slick-js-->
+	<script src="{{asset('user/assets/js/slick.min.js')}}"></script>
+	<!---letteranimation-js-->
+	<script src="{{asset('user/assets/js/letteranimation.min.js')}}"></script>
+	<!-- jquery-ui js -->
+	<script src="{{asset('user/assets/js/jquery-ui.min.js')}}"></script>
+	<!-- jquery.countdown js -->
+	<script src="{{asset('user/assets/js/jquery.countdown.min.js')}}"></script>
+	<!-- venobox js -->
+	<script src="{{asset('user/assets/js/venobox.min.js')}}"></script>
+	<!-- plugins js -->
+	<script src="{{asset('user/assets/js/plugins.js')}}"></script>

@@ -2,7 +2,7 @@
 <html class="no-js" lang="zxx">
 
 <head>
-	@include('user.partials.layout.resources')
+	@include('user.partials.layout.second.resources')
 	
 </head>
 
@@ -12,7 +12,7 @@
 	<![endif]-->
 
 	<!--header-area start-->
-	@include('user.partials.layout.header_second')
+	@include('user.partials.layout.second.header')
 	<!--header-area end-->
 	
 	<section class="app_content_area">
@@ -20,7 +20,7 @@
 	</section>
 	
 	<!--footer-area start-->
-	@include('user.partials.layout.footer_second')
+	@include('user.partials.layout.second.footer')
   
 </body>
 

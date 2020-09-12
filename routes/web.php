@@ -3,7 +3,7 @@
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
-    return view('user.welcome_second');
+    return view('user.pages.second.welcome');
 });
 
 Auth::routes();
