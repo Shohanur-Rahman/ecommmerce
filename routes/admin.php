@@ -50,10 +50,23 @@ Route::group(['middleware' => 'auth'], function() {
 //            Route::delete('/{mainSlider}','MainSliderController@destroy')->name('main-sliders.destroy');
      });
 
-    Route::resources([
-        'product-sizes' => 'ProductSizeController',
-        'product-colors' => 'ProductColorController',
-    ]);
+    Route::group(['prefix'=>'product-sizes'], function(){
+        Route::get('','ProductSizeController@index')->name('product-sizes.index');
+        Route::get('/create','ProductSizeController@create')->name('product-sizes.create');
+        Route::post('','ProductSizeController@store')->name('product-sizes.store');
+        Route::get('/{ProductSize}/edit','ProductSizeController@edit')->name('product-sizes.edit');
+        Route::patch('/{ProductSize}','ProductSizeController@update')->name('product-sizes.update');
+        Route::delete('/{ProductSize}','ProductSizeController@destroy')->name('product-sizes.destroy');
+    });
+
+    Route::group(['prefix'=>'product-colors'], function(){
+        Route::get('','ProductColorController@index')->name('product-colors.index');
+        Route::get('/create','ProductColorController@create')->name('product-colors.create');
+        Route::post('','ProductColorController@store')->name('product-colors.store');
+        Route::get('/{ProductColor}/edit','ProductColorController@edit')->name('product-colors.edit');
+        Route::patch('/{ProductColor}','ProductColorController@update')->name('product-colors.update');
+        Route::delete('/{ProductColor}','ProductColorController@destroy')->name('product-colors.destroy');
+    });
 });
 
 

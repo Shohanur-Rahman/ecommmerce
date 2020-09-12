@@ -31,20 +31,24 @@ Route::group(['middleware' => 'recovery_code'], function() {
 
 Route::get('/user-ui', 'TestController@user_ui')->name('user_ui');
 
-Route::group(['prefix'=>'profiles'],function(){
-    Route::get('','User\UserProfileController@index')->name('profiles.index');
-    Route::get('/edit','User\UserProfileController@edit')->name('profiles.edit');
-    Route::patch('/','User\UserProfileController@update')->name('profiles.update');
+Route::group(['middleware'=>'auth'],function(){
 
-    Route::get('/change-password','User\UserProfileController@changePasswordEdit')->name('change-password.edit');
-    Route::patch('/change-password','User\UserProfileController@changePasswordUpdate')->name('change-password.update');
+    Route::group(['prefix'=>'profiles'],function(){
+        Route::get('','User\UserProfileController@index')->name('profiles.index');
+        Route::get('/edit','User\UserProfileController@edit')->name('profiles.edit');
+        Route::patch('/','User\UserProfileController@update')->name('profiles.update');
 
-    Route::patch('/avatar','User\UserProfileController@avatarUpdate')->name('avatar.update');
-});
+        Route::get('/change-password','User\UserProfileController@changePasswordEdit')->name('change-password.edit');
+        Route::patch('/change-password','User\UserProfileController@changePasswordUpdate')->name('change-password.update');
 
-Route::group(['prefix'=>'profiles/shipping-address'],function(){
-    Route::get('/','User\ShippingAddressController@create')->name('shipping-address.create');
-    Route::post('/','User\ShippingAddressController@store')->name('shipping-address.store');
-    Route::get('/{shippingAddress}/edit','User\ShippingAddressController@edit')->name('shipping-address.edit');
-    Route::patch('/{shippingAddress}','User\ShippingAddressController@update')->name('shipping-address.update');
+        Route::patch('/avatar','User\UserProfileController@avatarUpdate')->name('avatar.update');
+    });
+
+    Route::group(['prefix'=>'profiles/shipping-address'],function(){
+        Route::get('/','User\ShippingAddressController@create')->name('shipping-address.create');
+        Route::post('/','User\ShippingAddressController@store')->name('shipping-address.store');
+        Route::get('/{shippingAddress}/edit','User\ShippingAddressController@edit')->name('shipping-address.edit');
+        Route::patch('/{shippingAddress}','User\ShippingAddressController@update')->name('shipping-address.update');
+    });
+
 });
