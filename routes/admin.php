@@ -54,18 +54,27 @@ Route::group(['middleware' => 'auth'], function() {
         Route::get('','ProductSizeController@index')->name('product-sizes.index');
         Route::get('/create','ProductSizeController@create')->name('product-sizes.create');
         Route::post('','ProductSizeController@store')->name('product-sizes.store');
-        Route::get('/{ProductSize}/edit','ProductSizeController@edit')->name('product-sizes.edit');
-        Route::patch('/{ProductSize}','ProductSizeController@update')->name('product-sizes.update');
-        Route::delete('/{ProductSize}','ProductSizeController@destroy')->name('product-sizes.destroy');
+        Route::get('/{productSize}/edit','ProductSizeController@edit')->name('product-sizes.edit');
+        Route::patch('/{productSize}','ProductSizeController@update')->name('product-sizes.update');
+        Route::delete('/{productSize}','ProductSizeController@destroy')->name('product-sizes.destroy');
     });
 
     Route::group(['prefix'=>'product-colors'], function(){
         Route::get('','ProductColorController@index')->name('product-colors.index');
         Route::get('/create','ProductColorController@create')->name('product-colors.create');
         Route::post('','ProductColorController@store')->name('product-colors.store');
-        Route::get('/{ProductColor}/edit','ProductColorController@edit')->name('product-colors.edit');
-        Route::patch('/{ProductColor}','ProductColorController@update')->name('product-colors.update');
-        Route::delete('/{ProductColor}','ProductColorController@destroy')->name('product-colors.destroy');
+        Route::get('/{productColor}/edit','ProductColorController@edit')->name('product-colors.edit');
+        Route::patch('/{productColor}','ProductColorController@update')->name('product-colors.update');
+        Route::delete('/{productColor}','ProductColorController@destroy')->name('product-colors.destroy');
+    });
+
+    Route::group(['prefix'=>'website-settings/product-features'], function(){
+        Route::get('','settings\ProductFeatureController@index')->name('product-features.index');
+        Route::get('/create','settings\ProductFeatureController@create')->name('product-features.create');
+        Route::post('','settings\ProductFeatureController@store')->name('product-features.store');
+        Route::get('/{productFeature}/edit','settings\ProductFeatureController@edit')->name('product-features.edit');
+        Route::patch('/{productFeature}','settings\ProductFeatureController@update')->name('product-features.update');
+        Route::delete('/{productFeature}','settings\ProductFeatureController@destroy')->name('product-features.destroy');
     });
 });
 
