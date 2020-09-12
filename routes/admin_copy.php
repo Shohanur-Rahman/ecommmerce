@@ -27,3 +27,8 @@ Route::group(['prefix' => 'products'], function () {
 	Route::get('/edit/{id}', 'ProductsController@edit_product')->name('edit_product');
 	Route::post('/edit/{id}', 'ProductsController@update_product')->name('update_product');
 });
+
+
+Route::group(['prefix' => 'website-settings'], function () {
+	Route::get('/new-arrival', 'NewArrivalController@index')->name('newarrival');
+});

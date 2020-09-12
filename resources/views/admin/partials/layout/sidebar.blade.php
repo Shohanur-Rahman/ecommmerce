@@ -13,7 +13,7 @@
                 <ul class="sidebar-menu" data-widget="tree">
                     <li><a href="{{route('dashboard')}}"><i class="zmdi zmdi-view-web"></i> <span>Dashboard</span></a></li>
                     <li class="treeview">
-                        <a href="javascript:void(0)"><i class="zmdi zmdi-code-smartphone"></i> <span>Catalog</span> <i class="fa fa-angle-right"></i></a>
+                        <a href="javascript:void(0)"><i class="zmdi zmdi-shopping-basket"></i> <span>Catalog</span> <i class="fa fa-angle-right"></i></a>
                         <ul class="treeview-menu">
                             <li><a href="{{route('products')}}">- Products</a></li>
                             <li><a href="{{route('product-categories.index')}}">- Categories</a></li>
@@ -27,14 +27,14 @@
                     </li>
 
                     <li class="treeview">
-                        <a href="javascript:void(0)"><i class="zmdi zmdi-code-smartphone"></i> <span>Sliders</span> <i class="fa fa-angle-right"></i></a>
+                        <a href="javascript:void(0)"><i class="zmdi zmdi-collection-folder-image"></i> <span>Sliders</span> <i class="fa fa-angle-right"></i></a>
                         <ul class="treeview-menu">
                             <li><a href="{{route('main-sliders.index')}}">- Main Slider</a></li>
                         </ul>
                     </li>
 
                     <li class="treeview">
-                        <a href="javascript:void(0)"><i class="zmdi zmdi-code-smartphone"></i> <span>Users</span> <i class="fa fa-angle-right"></i></a>
+                        <a href="javascript:void(0)"><i class="zmdi zmdi-accounts-alt"></i> <span>Users</span> <i class="fa fa-angle-right"></i></a>
                         <ul class="treeview-menu">
                             <li><a href="{{route('users.index',['type'=>'super-admin'])}}">- Super Admin</a></li>
                             <li><a href="{{route('users.index',['type'=>'admin'])}}">- Admin</a></li>
@@ -42,6 +42,13 @@
                             <li><a href="{{route('users.index',['type'=>'editor'])}}">- Editor</a></li>
                             <li><a href="{{route('users.index',['type'=>'developer'])}}">- Developer</a></li>
                             <li><a href="{{route('users.index',['type'=>'customer'])}}">- Customer</a></li>
+                        </ul>
+                    </li>
+
+                    <li class="treeview">
+                        <a href="javascript:void(0)"><i class="zmdi zmdi-settings"></i> <span>Website Settings</span> <i class="fa fa-angle-right"></i></a>
+                        <ul class="treeview-menu">
+                            <li><a href="{{route('newarrival')}}">- New Arrival</a></li>
                         </ul>
                     </li>
                 </ul>
