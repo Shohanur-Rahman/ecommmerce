@@ -78,11 +78,11 @@
 														<b class="caret"></b>
 													</a>
 													<ul class="mega-menu">
-														@foreach($menu->children as $childMenu)
+														@foreach($menu->childrens as $childMenu)
 														<li class="megamenu-single">
 															<span class="mega-menu-title">{{$childMenu->category_name}}</span>
 
-															@if($childMenu->children->count() > 0)
+															@if($childMenu->childrens->count() > 0)
 															<ul>
 																@foreach($childMenu->children as $leaveMenu)
 																<li><a href="shop.html">{{$leaveMenu->category_name}}</a></li>
