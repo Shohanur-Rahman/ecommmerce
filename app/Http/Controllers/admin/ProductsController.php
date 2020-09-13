@@ -32,7 +32,7 @@ class ProductsController extends HelperController
     }
 
 
-    public function add_product()
+    public function create ()
     {
         $warehouses = Warehouse::all();
         $avalabilitites = ProductAvailability::all();
@@ -42,10 +42,10 @@ class ProductsController extends HelperController
         $productSizes = ProductSize::all();
         $productColors = ProductColor::all();
 
-    	return view('admin.modules.products.add', compact("warehouses", "avalabilitites", "categories", "brands","tags", "productSizes", "productColors"));
+    	return view('admin.modules.products.create', compact("warehouses", "avalabilitites", "categories", "brands","tags", "productSizes", "productColors"));
     }
 
-    public function edit_product($id)
+    public function edit($id)
     {
         $warehouses = Warehouse::all();
         $avalabilitites = ProductAvailability::all();
@@ -91,7 +91,7 @@ class ProductsController extends HelperController
         return view('admin.modules.products.edit', compact("warehouses", "avalabilitites", "categories", "brands","tags", "productSizes", "productColors", "aProduct", "existingCatMap", "existingTagMap", "galleryArray"));
     }
 
-    public function save_product(Request $request)
+    public function store(Request $request)
     {
         //dd($request->all());
         $helper = new HelperController();
@@ -196,12 +196,12 @@ class ProductsController extends HelperController
             }
         }
 
-         return redirect(route('products'))->with('success','Your product has been successfully added.');
+         return redirect(route('products.index'))->with('success','Your product has been successfully added.');
 
     }
 
 
-    public function update_product(Request $request, $id)
+    public function update(Request $request, $id)
     {
         //dd($request->all());
         $helper = new HelperController();
@@ -336,7 +336,7 @@ class ProductsController extends HelperController
             }
         }
 
-         return redirect(route('products'))->with('success','Your product has been successfully updated.');
+         return redirect(route('products.index'))->with('success','Your product has been successfully updated.');
 
     }
 }

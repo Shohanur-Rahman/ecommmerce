@@ -3,7 +3,7 @@
 
 <div class="row">
     <div class="col-md-9">
-        <form method="post" action="{{route('save_product')}}" enctype="multipart/form-data" data-parsley-validate>
+        <form method="post" action="{{route('products.store')}}" enctype="multipart/form-data" data-parsley-validate>
             @csrf
 
             <input type="hidden" name="categories" id="categories" />
@@ -367,7 +367,7 @@
 
                     <div class="card-footer">
                         <div class="col-md-12">
-                            <a href="{{route('products')}}" class="btn btn-danger">Back to Products</a>
+                            <a href="{{route('products.index')}}" class="btn btn-danger">Back to Products</a>
                             <button type="submit" class="btn btn-primary mr-2">Save Product</button>
                         </div>
                     </div>

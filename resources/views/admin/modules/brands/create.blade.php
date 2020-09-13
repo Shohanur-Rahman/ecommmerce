@@ -16,7 +16,7 @@
 
                 <div class="row">
                     <div class="col-sm-12 col-xs-12">
-                        <form method="post" action="{{route('save_brand')}}" enctype="multipart/form-data" data-parsley-validate>
+                        <form method="post" action="{{route('brands.store')}}" enctype="multipart/form-data" data-parsley-validate>
                             @csrf
                             <input type="hidden" name="categories" id="categories">
                             <div class="form-group">
@@ -43,7 +43,7 @@
 
 
                             <button type="submit" class="btn btn-primary mr-2">Submit</button>
-                            <a href="{{route('brands')}}" class="btn btn-danger">Back to Brands</a>
+                            <a href="{{route('brands.index')}}" class="btn btn-danger">Back to Brands</a>
                         </form>
                     </div>
                 </div>

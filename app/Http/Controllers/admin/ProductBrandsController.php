@@ -20,75 +20,27 @@ class ProductBrandsController extends Controller
         $brands = null;
         $userType = Auth::user()->user_type;
 
-        if($userType == "vendor")
+        if($userType == "Vendor")
     	   $brands = ProductBrands::where('user_id', Auth::id())->get();
 
-        elseif ($userType == "admin")
+        elseif ($userType == "Admin")
             $brands = ProductBrands::all();
 
 
     	return view('admin.modules.brands.index', compact("brands"));
     }
 
-    public function add_brand()
+    public function create()
     {
         $categories = ProductCategory::all();
-    	return view('admin.modules.brands.add', compact("categories"));
+    	return view('admin.modules.brands.create', compact("categories"));
     }
 
-
-    public function edit_brand($id)
-    {
-    	$brand = null;
-        $userType = Auth::user()->user_type;
-
-        if($userType == "vendor"){
-
-            $cmtQry = ['user_id' => Auth::id(), 'id' => $id];
-            $brand = ProductBrands::where($cmtQry)->get();
-        }
-        elseif ($userType == "admin")
-            $brand = ProductBrands::find($id);
-
-    	if($brand == null)
-    		return view('not_found');
-
-        $categoriMap = ProductBrandCategoryMap::where('brand_id', $id)->get();
-        $existingCatMap="";
-        foreach ($categoriMap as $key) {
-            if($existingCatMap == "")
-                $existingCatMap=$key->cat_id;
-            else
-                $existingCatMap =$existingCatMap.",".$key->cat_id;
-        }
-
-        $categories = ProductCategory::all();
-
-    	return view('admin.modules.brands.edit', compact("brand", "categories", "existingCatMap"));
-    }
-
-    public function delet_brand($id)
-    {
-    	$brand = ProductBrands::find($id);
-
-    	if($brand == null)
-    		return view('not_found');
-
-    	$brand->delete();
-
-        $categoriMap = ProductBrandCategoryMap::where('brand_id', $id)->delete();
-
-    	return redirect()->route('brands')->with('message', 'Your brand has been successfully delete.');
-
-    }
-
-    public function save_brand(Request $req)
+    public function store(Request $req)
     {
     	$brand = new ProductBrands();
     	$brand->name = $req->name;
         $brand->user_id = Auth::id();
-
-
 
     	$fileURL = "";
 
@@ -113,9 +65,7 @@ class ProductBrandsController extends Controller
             $brand->image = $fileURL;
         }
 
-
         $brand->save();
-
 
         $catArray = explode(',', $req->categories);
 
@@ -126,11 +76,43 @@ class ProductBrandsController extends Controller
             $categoryMap->save();
         }
 
-
-        return redirect()->route('brands')->with('message', 'Your brand has been successfully added.');
+        return redirect()->route('brands.index')->with('message', 'Your brand has been successfully added.');
     }
 
-    public function update_brand(Request $req, $id)
+
+    public function edit($id)
+    {
+        $brand = null;
+        $userType = Auth::user()->user_type;
+
+        if($userType == "Vendor"){
+
+            $cmtQry = ['user_id' => Auth::id(), 'id' => $id];
+            $brand = ProductBrands::where($cmtQry)->first();
+        }
+        elseif ($userType == "Admin")
+            $brand = ProductBrands::find($id);
+
+        if($brand == null)
+            return view('not_found');
+
+        $categoriMap = ProductBrandCategoryMap::where('brand_id', $id)->get();
+        $existingCatMap="";
+        foreach ($categoriMap as $key) {
+            if($existingCatMap == "")
+                $existingCatMap=$key->cat_id;
+            else
+                $existingCatMap =$existingCatMap.",".$key->cat_id;
+        }
+
+        $categories = ProductCategory::all();
+
+        return view('admin.modules.brands.edit', compact("brand", "categories", "existingCatMap"));
+    }
+
+
+
+    public function update(Request $req, $id)
     {
 
     	$brand = ProductBrands::find($id);
@@ -175,6 +157,21 @@ class ProductBrandsController extends Controller
         }
 
 
-        return redirect()->route('brands')->with('message', 'Your brand has been successfully updated.');
+        return redirect()->route('brands.index')->with('message', 'Your brand has been successfully updated.');
+    }
+
+    public function destroy($id)
+    {
+        $brand = ProductBrands::find($id);
+
+        if($brand == null)
+            return view('not_found');
+
+        $brand->delete();
+
+        $categoriMap = ProductBrandCategoryMap::where('brand_id', $id)->delete();
+
+        return redirect()->route('brands.index')->with('message', 'Your brand has been successfully delete.');
+
     }
 }

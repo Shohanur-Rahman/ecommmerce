@@ -17,7 +17,7 @@
                     </p>
 
                     <p>
-                        <a class="btn btn-primary" href="{{route('add_arrival')}}">New Tab</a>
+                        <a class="btn btn-primary" href="{{route('arrivals.create')}}">New Tab</a>
                     </p>
 
 
@@ -36,11 +36,11 @@
                         @foreach($tabList as $tab)
                             <tr>
                                 <td>{{$tab->id}}</td>
-                                <td>{{$tab->category->category_name}}</td>
+                                <td>{{$tab->category->category_name ?? ''}}</td>
                                 <td><i class="{{ $tab->is_published == true ? 'zmdi zmdi-check grid-icon approve' : 'zmdi zmdi-close grid-icon not-approve' }}"></i></td>
                                 <td>{{$tab->created_at->format('d F Y')}}</td>
                                 <td>
-                                <a class="btn btn-outline-primary table-btn btn-sm" href="{{route('edit_arrival', $tab->id)}}" title="Edit"><i class="zmdi zmdi-edit"></i></a>
+                                <a class="btn btn-outline-primary table-btn btn-sm" href="{{route('arrivals.edit', $tab->id)}}" title="Edit"><i class="zmdi zmdi-edit"></i></a>
                             </td>
 
                             </tr>

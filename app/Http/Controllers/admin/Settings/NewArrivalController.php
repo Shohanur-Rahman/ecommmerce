@@ -12,18 +12,19 @@ class NewArrivalController extends Controller
     public function index()
     {
 
-    	$tabList = NewArrivalTab::all();
+    	$tabList = NewArrivalTab::with('category')->get();
+
     	return view('admin.modules.settings.website.arrivals.index', compact("tabList"));
     }
 
-    public function add_arrival()
+    public function create()
     {
 
     	$Categories = ProductCategory::where('parent_id',0)->with('childrens.user')->get();
-    	return view('admin.modules.settings.website.arrivals.add', compact("Categories"));
+    	return view('admin.modules.settings.website.arrivals.create', compact("Categories"));
     }
 
-    public function edit_arrival($id)
+    public function edit($id)
     {
 
     	$Categories = ProductCategory::where('parent_id',0)->with('childrens.user')->get();
@@ -31,7 +32,7 @@ class NewArrivalController extends Controller
     	return view('admin.modules.settings.website.arrivals.edit', compact("Categories", "arrival"));
     }
 
-    public function save_arrival(Request $request)
+    public function store(Request $request)
     {
 
     	$tab = new NewArrivalTab();
@@ -40,10 +41,10 @@ class NewArrivalController extends Controller
     	$tab->is_published= $request->has('is_published');
     	$tab->save();
 
-    	return redirect(route('arrivals'))->with('success','Your arrivals tab has been successfully added.');
+    	return redirect(route('arrivals.index'))->with('success','Your arrivals tab has been successfully added.');
     }
 
-    public function update_arrival(Request $request, $id)
+    public function update(Request $request, $id)
     {
 
     	$tab = NewArrivalTab::find($id);
@@ -52,6 +53,6 @@ class NewArrivalController extends Controller
     	$tab->is_published= $request->has('is_published');
     	$tab->save();
 
-    	return redirect(route('arrivals'))->with('success','Your arrivals tab has been successfully updated.');
+    	return redirect(route('arrivals.index'))->with('success','Your arrivals tab has been successfully updated.');
     }
 }

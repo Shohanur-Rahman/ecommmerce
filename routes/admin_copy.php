@@ -2,39 +2,38 @@
 
 
 Route::group(['prefix' => 'brands'], function () {
-	Route::get('/', 'ProductBrandsController@index')->name('brands');
-	Route::get('/add', 'ProductBrandsController@add_brand')->name('add_brand');
-	Route::post('/add', 'ProductBrandsController@save_brand')->name('save_brand');
-	Route::get('/edit/{id}', 'ProductBrandsController@edit_brand')->name('edit_brand');
-	Route::post('/edit/{id}', 'ProductBrandsController@update_brand')->name('update_brand');
-	Route::get('/delete/{id}', 'ProductBrandsController@delet_brand')->name('delet_brand');
+	Route::get('/', 'ProductBrandsController@index')->name('brands.index');
+	Route::get('/create', 'ProductBrandsController@create')->name('brands.create');
+	Route::post('/', 'ProductBrandsController@store')->name('brands.store');
+	Route::get('/{id}/edit', 'ProductBrandsController@edit')->name('brands.edit');
+	Route::patch('/{id}', 'ProductBrandsController@update')->name('brands.update');
+	Route::delete('/{id}', 'ProductBrandsController@destroy')->name('brands.destroy');
 });
-
 
 Route::group(['prefix' => 'tags'], function () {
-	Route::get('/', 'ProductTagController@index')->name('tags');
-	Route::get('/add', 'ProductTagController@add_tag')->name('add_tag');
-	Route::post('/add', 'ProductTagController@save_tag')->name('save_tag');
-	Route::get('/edit/{id}', 'ProductTagController@edit_tag')->name('edit_tag');
-	Route::post('/edit/{id}', 'ProductTagController@update_tag')->name('update_tag');
-	Route::get('/delete/{id}', 'ProductTagController@delete_tag')->name('delete_tag');
-}); 
-
-Route::group(['prefix' => 'products'], function () {
-	Route::get('/', 'ProductsController@index')->name('products');
-	Route::get('/add', 'ProductsController@add_product')->name('add_product');
-	Route::post('/add', 'ProductsController@save_product')->name('save_product');
-	Route::get('/edit/{id}', 'ProductsController@edit_product')->name('edit_product');
-	Route::post('/edit/{id}', 'ProductsController@update_product')->name('update_product');
+    Route::get('/', 'ProductTagController@index')->name('tags.index');
+    Route::get('/create', 'ProductTagController@create')->name('tags.create');
+    Route::post('/', 'ProductTagController@store')->name('tags.store');
+    Route::get('/{id}/edit', 'ProductTagController@edit')->name('tags.edit');
+    Route::patch('/{id}', 'ProductTagController@update')->name('tags.update');
+    Route::delete('/{id}', 'ProductTagController@destroy')->name('tags.destroy');
 });
 
+Route::group(['prefix' => 'products'], function () {
+    Route::get('/', 'ProductsController@index')->name('products.index');
+    Route::get('/create', 'ProductsController@create')->name('products.create');
+    Route::post('/', 'ProductsController@store')->name('products.store');
+    Route::get('/{id}/edit', 'ProductsController@edit')->name('products.edit');
+    Route::patch('/{id}', 'ProductsController@update')->name('products.update');
+});
 
 Route::group(['prefix' => 'website-settings'], function () {
 	Route::group(['prefix' => 'arrivals'], function () {
-		Route::get('/', 'Settings\NewArrivalController@index')->name('arrivals');
-		Route::get('/add', 'Settings\NewArrivalController@add_arrival')->name('add_arrival');
-		Route::post('/add', 'Settings\NewArrivalController@save_arrival')->name('save_arrival');
-		Route::get('/edit/{id}', 'Settings\NewArrivalController@edit_arrival')->name('edit_arrival');
-		Route::post('/edit/{id}', 'Settings\NewArrivalController@update_arrival')->name('update_arrival');
+        Route::get('/', 'Settings\NewArrivalController@index')->name('arrivals.index');
+        Route::get('/create', 'Settings\NewArrivalController@create')->name('arrivals.create');
+        Route::post('/', 'Settings\NewArrivalController@store')->name('arrivals.store');
+        Route::get('/{id}/edit', 'Settings\NewArrivalController@edit')->name('arrivals.edit');
+        Route::patch('/{id}', 'Settings\NewArrivalController@update')->name('arrivals.update');
+
 	});
 });

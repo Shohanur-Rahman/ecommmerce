@@ -23,7 +23,7 @@
 	            </p>
 
 	            <p>
-	            	<a class="btn btn-primary" href="{{route('add_product')}}">New Product</a>
+	            	<a class="btn btn-primary" href="{{route('products.create')}}">New Product</a>
 	            </p>
 
 
@@ -55,8 +55,13 @@
                             <td>{{$aProduct->user->name}}</td>
                             <td>{{$aProduct->created_at->format('d F Y')}}</td>
                             <td>
-                                <a class="btn btn-outline-primary table-btn btn-sm" href="{{route('edit_product', $aProduct->id)}}" title="Edit"><i class="zmdi zmdi-edit"></i></a>
-                                <a class="btn btn-outline-danger table-btn btn-sm" href="{{route('delete_tag', $aProduct->id)}}" title="Delete"><i class="zmdi zmdi-delete"></i></a>
+                                <a class="btn btn-outline-primary table-btn btn-sm" href="{{route('products.edit', $aProduct->id)}}" title="Edit"><i class="zmdi zmdi-edit"></i></a>
+                                <form class="d-inline"  action="{{route('tags.destroy',$aProduct->id)}}" method="post">
+                                    @method('DELETE')
+                                    @csrf
+
+                                    <button class="btn btn-outline-danger table-btn btn-sm"  title="Delete"><i class="zmdi zmdi-delete"></i></button>
+                                </form>
                             </td>
                         </tr>
                         @endforeach
@@ -74,7 +79,7 @@
 
 <script type="text/javascript">
     $(document).ready(function () {
-       
+
     //Exportable table
     $('.js-exportable').DataTable({
         dom: 'Bfrtip',

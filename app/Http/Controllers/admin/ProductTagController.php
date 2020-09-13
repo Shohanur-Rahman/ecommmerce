@@ -13,32 +13,43 @@ class ProductTagController extends Controller
         $tags = null;
         $userType = Auth::user()->user_type;
 
-        if($userType == "vendor")
+        if($userType == "Vendor")
     	   $tags = ProductTags::where('user_id', Auth::id())->get();
 
-        elseif ($userType == "admin")
+        elseif ($userType == "Admin")
             $tags = ProductTags::all();
 
     	return view('admin.modules.tags.index', compact("tags"));
     }
 
-    public function add_tag()
+    public function create()
     {
-        return view('admin.modules.tags.add');
+        return view('admin.modules.tags.create');
     }
 
 
-    public function edit_tag($id)
+    public function store(Request $req)
+    {
+        $tag = new ProductTags();
+        $tag->name = $req->name;
+        $tag->user_id = Auth::id();
+
+        $tag->save();
+
+        return redirect()->route('tags.index')->with('message', 'Your tag has been successfully added.');
+    }
+
+    public function edit($id)
     {
         $tag = null;
         $userType = Auth::user()->user_type;
 
-        if($userType == "vendor"){
+        if($userType == "Vendor"){
 
             $cmtQry = ['user_id' => Auth::id(), 'id' => $id];
-            $tag = ProductTags::where($cmtQry)->get();
+            $tag = ProductTags::where($cmtQry)->first();
         }
-        elseif ($userType == "admin")
+        elseif ($userType == "Admin")
             $tag = ProductTags::find($id);
 
         if($tag == null)
@@ -47,29 +58,17 @@ class ProductTagController extends Controller
         return view('admin.modules.tags.edit', compact("tag"));
     }
 
-
-    public function save_tag(Request $req)
-    {
-        $tag = new ProductTags();
-        $tag->name = $req->name;
-        $tag->user_id = Auth::id();
-
-        $tag->save();
-
-        return redirect()->route('tags')->with('message', 'Your tag has been successfully added.');
-    }
-
-    public function update_tag(Request $req, $id)
+    public function update(Request $req, $id)
     {
         $tag = ProductTags::find($id);
         $tag->name = $req->name;
         $tag->save();
 
-        return redirect()->route('tags')->with('message', 'Your tag has been successfully updated.');
+        return redirect()->route('tags.index')->with('message', 'Your tag has been successfully updated.');
     }
 
 
-    public function delete_tag($id)
+    public function destroy($id)
     {
         $tag = ProductTags::find($id);
         if($tag == null)
@@ -77,7 +76,7 @@ class ProductTagController extends Controller
 
         $tag->delete();
 
-        return redirect()->route('tags')->with('message', 'Your tag has been successfully delete.');
+        return redirect()->route('tags.index')->with('message', 'Your tag has been successfully delete.');
 
     }
 }

@@ -14,7 +14,7 @@
 
                     <div class="row">
                         <div class="col-sm-12 col-xs-12">
-                            <form method="post" action="{{route('save_arrival')}}" class="d-inline" enctype="multipart/form-data" data-parsley-validate>
+                            <form method="post" action="{{route('arrivals.store')}}" class="d-inline" enctype="multipart/form-data" data-parsley-validate>
                                 @csrf
                                 <div class="form-group">
                                     <label for="no_of_product">Number of Products</label>
@@ -57,7 +57,7 @@
 
                             </form>
 
-                            <a href="{{route('product-categories.index')}}" class="btn btn-danger">Back to Categories</a>
+                            <a href="{{route('arrivals.index')}}" class="btn btn-danger">Back to Categories</a>
                         </div>
                     </div>
 

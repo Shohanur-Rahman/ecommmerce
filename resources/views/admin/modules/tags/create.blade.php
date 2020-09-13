@@ -14,15 +14,15 @@
 
                 <div class="row">
                     <div class="col-sm-12 col-xs-12">
-                        <form method="post" action="{{route('save_tag')}}" enctype="multipart/form-data" data-parsley-validate>
+                        <form method="post" action="{{route('tags.store')}}" enctype="multipart/form-data" data-parsley-validate>
                             @csrf
                             <div class="form-group">
                                 <label for="name">Name</label>
                                 <input type="text" class="form-control" id="name" placeholder="Enter tag name" name="name" required="required" data-parsley-error-message="Enter tag name">
                             </div>
-                            
+
                             <button type="submit" class="btn btn-primary mr-2">Save</button>
-                            <a href="{{route('tags')}}" class="btn btn-danger">Cancel</a>
+                            <a href="{{route('tags.index')}}" class="btn btn-danger">Cancel</a>
                         </form>
                     </div>
                 </div>

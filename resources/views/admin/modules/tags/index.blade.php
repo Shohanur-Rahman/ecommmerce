@@ -23,7 +23,7 @@
 	            </p>
 
 	            <p>
-	            	<a class="btn btn-primary" href="{{route('add_tag')}}">New Tag</a>
+	            	<a class="btn btn-primary" href="{{route('tags.create')}}">New Tag</a>
 	            </p>
 
 
@@ -49,8 +49,13 @@
                             <td>{{$aTag->user->name}}</td>
                             <td>{{$aTag->created_at->format('d F Y')}}</td>
                             <td>
-                                <a class="btn btn-outline-primary table-btn btn-sm" href="{{route('edit_tag', $aTag->id)}}" title="Edit"><i class="zmdi zmdi-edit"></i></a>
-                                <a class="btn btn-outline-danger table-btn btn-sm" href="{{route('delete_tag', $aTag->id)}}" title="Delete"><i class="zmdi zmdi-delete"></i></a>
+                                <a class="btn btn-outline-primary table-btn btn-sm" href="{{route('tags.edit', $aTag->id)}}" title="Edit"><i class="zmdi zmdi-edit"></i></a>
+                                <form class="d-inline"  action="{{route('tags.destroy',$aTag->id)}}" method="post">
+                                    @method('DELETE')
+                                    @csrf
+
+                                    <button class="btn btn-outline-danger table-btn btn-sm"  title="Delete"><i class="zmdi zmdi-delete"></i></button>
+                                </form>
                             </td>
                         </tr>
                         @endforeach

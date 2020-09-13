@@ -15,10 +15,10 @@
                     <li class="treeview">
                         <a href="javascript:void(0)"><i class="zmdi zmdi-shopping-basket"></i> <span>Catalog</span> <i class="fa fa-angle-right"></i></a>
                         <ul class="treeview-menu">
-                            <li><a href="{{route('products')}}">- Products</a></li>
+                            <li><a href="{{route('products.index')}}">- Products</a></li>
                             <li><a href="{{route('product-categories.index')}}">- Categories</a></li>
-                            <li><a href="{{route('brands')}}">- Brands</a></li>
-                            <li><a href="{{route('tags')}}">- Tags</a></li>
+                            <li><a href="{{route('brands.index')}}">- Brands</a></li>
+                            <li><a href="{{route('tags.index')}}">- Tags</a></li>
                             <li><a href="{{route('warehouses.index')}}">- Warehouses</a></li>
                             <li><a href="{{route('product-availabilities.index')}}">- Availability</a></li>
                             <li><a href="{{route('product-sizes.index')}}">- Product Sizes</a></li>
@@ -48,7 +48,7 @@
                     <li class="treeview">
                         <a href="javascript:void(0)"><i class="zmdi zmdi-settings"></i> <span>Website Settings</span> <i class="fa fa-angle-right"></i></a>
                         <ul class="treeview-menu">
-                            <li><a href="{{route('arrivals')}}">- New Arrival</a></li>
+                            <li><a href="{{route('arrivals.index')}}">- New Arrival</a></li>
                             <li><a href="{{route('product-features.index')}}">- New Product Feature</a></li>
                         </ul>
                     </li>

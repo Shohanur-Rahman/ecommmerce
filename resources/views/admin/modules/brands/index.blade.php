@@ -23,7 +23,7 @@
 	            </p>
 
 	            <p>
-	            	<a class="btn btn-primary" href="{{route('add_brand')}}">New Brand</a>
+	            	<a class="btn btn-primary" href="{{route('brands.create')}}">New Brand</a>
 	            </p>
 
 
@@ -49,8 +49,13 @@
                             <td><img src="{{asset($aBrand->image)}}" class="table-image"></td>
                             <td>{{$aBrand->created_at->format('d F Y')}}</td>
                             <td>
-                                <a class="btn btn-outline-primary table-btn btn-sm" href="{{route('edit_brand', $aBrand->id)}}" title="Edit"><i class="zmdi zmdi-edit"></i></a>
-                                <a class="btn btn-outline-danger table-btn btn-sm" href="{{route('delet_brand', $aBrand->id)}}" title="Delete"><i class="zmdi zmdi-delete"></i></a>
+                                <a class="btn btn-outline-primary table-btn btn-sm" href="{{route('brands.edit', $aBrand->id)}}" title="Edit"><i class="zmdi zmdi-edit"></i></a>
+                                <form class="d-inline"  action="{{route('brands.destroy',$aBrand->id)}}" method="post">
+                                    @method('DELETE')
+                                    @csrf
+
+                                    <button class="btn btn-outline-danger table-btn btn-sm"  title="Delete"><i class="zmdi zmdi-delete"></i></button>
+                                </form>
                             </td>
                         </tr>
                         @endforeach

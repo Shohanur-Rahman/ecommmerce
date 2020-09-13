@@ -20,7 +20,7 @@ use Illuminate\Support\Str;
 $factory->define(User::class, function (Faker $faker) {
 
     return [
-        'name' => $faker->name,
+        'name' => $faker->sentence,
         'email' => $faker->unique()->safeEmail,
         'user_type' => \Illuminate\Support\Arr::random(['super-admin','admin','vendor','editor','developer','customer']),
         'is_active' => rand(0,1),
