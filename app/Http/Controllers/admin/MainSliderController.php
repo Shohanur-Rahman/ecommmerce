@@ -53,10 +53,14 @@ class MainSliderController extends Controller
     public function update(Request $request,  MainSlider $mainSlider)
     {
 
-        $helper = new HelperController();
+        $imageUpload = $helper->uploadImage($request->File('image_url'), 'uploads/e-com/supports/');
 
-        if($mainSlider->image_url){
-            @unlink($mainSlider->image_url);
+        if($imageUpload ){
+            if($mainSlider->image_url){
+                @unlink($mainSlider->image_url);
+            }
+        }else{
+            $imageUpload = $mainSlider->image_url;
         }
 
         $mainSlider->update([
@@ -64,7 +68,7 @@ class MainSliderController extends Controller
             'category_id'=>$request['category_id'],
             'name'=>$request['name'],
             'caption'=>$request['caption'],
-            'image_url'=>$helper->uploadImage($request->File('image_url'), 'uploads/sliders/mainSlider/'),
+            'image_url'=>$imageUpload,
         ]);
 
         return redirect(route('main-sliders.index'))->with('success','Main Slider is Updated Successfully');

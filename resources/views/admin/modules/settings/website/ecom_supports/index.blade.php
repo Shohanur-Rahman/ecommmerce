@@ -39,7 +39,7 @@
                             <tr>
                                 <td>{{$ecomSupport->id}}</td>
                                 <td>{{$ecomSupport->name}}</td>
-                                <td>{{$ecomSupport->image_url}}</td>
+                                <td><img src="{{asset($ecomSupport->image_url)}}" class="table-image" id="uploadPreview" alt=""></td>
                                 <td>{{$ecomSupport->description}}</td>
                                 <td><i class="{{ $ecomSupport->is_published == true ? 'zmdi zmdi-check grid-icon approve' : 'zmdi zmdi-close grid-icon not-approve' }}"></i></td>
                                 <td>{{$ecomSupport->created_at->format('d F Y')}}</td>

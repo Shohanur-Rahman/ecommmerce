@@ -36,7 +36,7 @@
                                             <img src="{{asset('images/noimage.PNG')}}" id="uploadPreview" />
                                         @endif
                                     </label>
-                                    <input type="file" name="image_url" class="hdn-uploder" id="imgInp" required="required" accept="image/*" data-parsley-error-message="Upload Main Slider image"/>
+                                    <input type="file" name="image_url" class="hdn-uploder" id="imgInp" required="required" accept="image/*" data-parsley-error-message="Upload Main Slider image" {{ $ecomSupport->image_url? '' : 'required="required"'}}/>
                                 </div>
 
                                 <div class="form-group">

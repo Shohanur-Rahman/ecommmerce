@@ -52,7 +52,7 @@
                                     <label for="imgInp" class="upload-preview">
                                         <img src="{{$ecomSupport->image_url ? asset($ecomSupport->image_url) : asset('images/noimage.PNG') }}" id="uploadPreview" />
                                     </label>
-                                    <input type="file" name="imgInp" class="hdn-uploder" id="imgInp" {{ $ecomSupport->image_url? '' : 'required="required"'}} accept="image/*" data-parsley-error-message="Upload E-commerce Support image"/>
+                                    <input type="file" name="image_url" class="hdn-uploder" id="imgInp" {{ $ecomSupport->image_url? '' : 'required="required"'}} accept="image/*" data-parsley-error-message="Upload E-commerce Support image"/>
                                 </div>
 
                                 <button type="submit" class="btn btn-primary mr-2">Submit</button>
