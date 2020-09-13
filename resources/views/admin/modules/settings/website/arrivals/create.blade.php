@@ -23,7 +23,7 @@
 
                                 <div class="form-group">
                                     <label for="cat_id">Select New Arrivals Category</label>
-                                    <select name="cat_id" id="cat_id" class="form-control">
+                                    <select name="cat_id" id="cat_id" class="form-control"  required="required" data-parsley-error-message="Enter Category Name is Required">
                                         <option value="">Selected Category</option>
                                         @foreach($Categories as $category)
                                             <option value="{{$category->id}}">{{$category->category_name}} <b class="text-black-50">({{$category->user->user_type}})</b></option>
