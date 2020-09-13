@@ -52,7 +52,7 @@ class MainSliderController extends Controller
 
     public function update(Request $request,  MainSlider $mainSlider)
     {
-
+        $helper = new HelperController();
         $imageUpload = $helper->uploadImage($request->File('image_url'), 'uploads/e-com/supports/');
 
         if($imageUpload ){

@@ -36,7 +36,7 @@
                         @foreach($productFeatures as $productFeature)
                             <tr>
                                 <td>{{$productFeature->id}}</td>
-                                <td>{{$productFeature->category->category_name}}</td>
+                                <td>{{$productFeature->category->category_name ?? ''}}</td>
                                 <td><i class="{{ $productFeature->is_published == true ? 'zmdi zmdi-check grid-icon approve' : 'zmdi zmdi-close grid-icon not-approve' }}"></i></td>
                                 <td>{{$productFeature->created_at->format('d F Y')}}</td>
                                 <td>
