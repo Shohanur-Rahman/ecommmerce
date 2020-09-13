@@ -20,13 +20,7 @@ class ProductBrandsController extends Controller
         $brands = null;
         $userType = Auth::user()->user_type;
 
-        if($userType == "Vendor")
-    	   $brands = ProductBrands::where('user_id', Auth::id())->get();
-
-        elseif ($userType == "Admin")
-            $brands = ProductBrands::all();
-
-
+        $brands = ProductBrands::all();
     	return view('admin.modules.brands.index', compact("brands"));
     }
 
@@ -85,13 +79,7 @@ class ProductBrandsController extends Controller
         $brand = null;
         $userType = Auth::user()->user_type;
 
-        if($userType == "Vendor"){
-
-            $cmtQry = ['user_id' => Auth::id(), 'id' => $id];
-            $brand = ProductBrands::where($cmtQry)->first();
-        }
-        elseif ($userType == "Admin")
-            $brand = ProductBrands::find($id);
+        $brand = ProductBrands::find($id);
 
         if($brand == null)
             return view('not_found');

@@ -13,11 +13,7 @@ class ProductTagController extends Controller
         $tags = null;
         $userType = Auth::user()->user_type;
 
-        if($userType == "Vendor")
-    	   $tags = ProductTags::where('user_id', Auth::id())->get();
-
-        elseif ($userType == "Admin")
-            $tags = ProductTags::all();
+        $tags = ProductTags::all();
 
     	return view('admin.modules.tags.index', compact("tags"));
     }
@@ -44,13 +40,7 @@ class ProductTagController extends Controller
         $tag = null;
         $userType = Auth::user()->user_type;
 
-        if($userType == "Vendor"){
-
-            $cmtQry = ['user_id' => Auth::id(), 'id' => $id];
-            $tag = ProductTags::where($cmtQry)->first();
-        }
-        elseif ($userType == "Admin")
-            $tag = ProductTags::find($id);
+        $tag = ProductTags::find($id);
 
         if($tag == null)
             return view('not_found');

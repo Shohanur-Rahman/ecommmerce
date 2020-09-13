@@ -472,6 +472,23 @@
         });
 
 
+        if (("#allow_seo").is(':checked')) {
+            $(".dummy_seo_control").prop("disabled", false);
+            $(".dummy_seo_control").attr("required","required")
+        }else{
+            $(".dummy_seo_control").prop("disabled", true);
+            $(".dummy_seo_control").removeAttr("required")
+        }
+
+        if (("#is_inventory").is(':checked')) {
+            $(".dummy_inventory_control").prop("disabled", false);
+            $(".dummy_inventory_control").attr("required","required")
+        }else{
+            $(".dummy_inventory_control").prop("disabled", true);
+            $(".dummy_inventory_control").removeAttr("required")
+        }
+
+
         var catList = $.trim("{{$existingCatMap}}");
         var catArray = catList.split(',');
         var resCat = $.merge([], catArray);
