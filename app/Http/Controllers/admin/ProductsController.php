@@ -37,7 +37,7 @@ class ProductsController extends HelperController
         $warehouses = Warehouse::all();
         $avalabilitites = ProductAvailability::all();
         $brands = ProductBrands::all();
-        $categories = ProductCategory::all();
+        $categories = ProductCategory::where('parent_id',0)->with('childrens.user')->get();
         $tags = ProductTags::all();
         $productSizes = ProductSize::all();
         $productColors = ProductColor::all();
@@ -50,7 +50,7 @@ class ProductsController extends HelperController
         $warehouses = Warehouse::all();
         $avalabilitites = ProductAvailability::all();
         $brands = ProductBrands::all();
-        $categories = ProductCategory::all();
+        $categories = ProductCategory::where('parent_id',0)->with('childrens.user')->get();
         $tags = ProductTags::all();
         $productSizes = ProductSize::all();
         $productColors = ProductColor::all();

@@ -167,7 +167,7 @@
                             <div class="col-sm-3">
                                 <div class="form-group">
                                     <label for="brand_id">Brand</label>
-                                    <select id="brand_id" class="form-control" name="brand_id" required="required" data-parsley-error-message="Choose your brand id">
+                                    <select id="brand_id" class="form-control" name="brand_id" data-parsley-error-message="Choose your brand id">
                                         <option value="">-- Select One --</option>
                                         @foreach($brands as $cat)
                                         <option value="{{$cat->id}}" {{ $aProduct->brand_id == $cat->id ? 'selected="selected"' : '' }}>{{$cat->name}}</option>
@@ -211,8 +211,16 @@
                         <div class="form-group">
                             <label for="mltCategories" class="col-form-label">Categories</label>
                             <select id="mltCategories" class="form-control" data-placeholder="Select at least one category" required="required" data-parsley-error-message="Choose at least one category">
-                                @foreach($categories as $cat)
-                                <option value="{{$cat->id}}">{{$cat->category_name}}</option>
+                                @foreach($categories as $category)
+                                    <option value="{{$category->id}}">{{$category->category_name}} <b class="text-black-50">({{$category->user->user_type}})</b></option>
+                                    @foreach($category->childrens as $children)
+                                        <option value="{{$children->id}}"> {{$category->category_name}} ->{{$children->category_name}} <b class="text-black-50">({{$category->user->user_type}})</b></option>
+
+                                        @foreach($children->childrens as $leaveItem)
+                                            <option value="{{$leaveItem->id}}"> {{$category->category_name}} ->{{$children->category_name ." -> " . $leaveItem->category_name}} <b class="text-black-50">({{$category->user->user_type}})</b></option>
+                                        @endforeach
+
+                                    @endforeach
                                 @endforeach
                             </select>
                         </div>
@@ -346,7 +354,7 @@
                                         <div class="inline-widged">
                                             <label for="allow_seo" class="single-label">Allow SEO</label>
                                             <label class="switch">
-                                                <input type="checkbox" id="allow_seo" name="allow_seo" checked="checked" {{ $aProduct->allow_seo ? 'checked="checked"' : '' }}/>
+                                                <input type="checkbox" id="allow_seo" name="allow_seo" {{ $aProduct->allow_seo ? 'checked="checked"' : '' }}/>
                                                 <span class="slider round"></span>
                                             </label>
                                         </div>
@@ -463,8 +471,9 @@
                 $(".dummy_inventory_control").prop("disabled", false);
                 $(".dummy_inventory_control").attr("required","required")
             } else {
+                $(".dummy_inventory_control").val("");
                 $(".dummy_inventory_control").prop("disabled", true);
-                $(".dummy_inventory_control").removeAttr("required")
+                $(".dummy_inventory_control").removeAttr("required");
             }
         });
 
@@ -473,27 +482,33 @@
                 $(".dummy_seo_control").prop("disabled", false);
                 $(".dummy_seo_control").attr("required","required")
             } else {
+                $(".dummy_seo_control").val("");
                 $(".dummy_seo_control").prop("disabled", true);
                 $(".dummy_seo_control").removeAttr("required")
             }
         });
 
+        setTimeout(function(){
+            if ($("#allow_seo").is(':checked')) {
+                $(".dummy_seo_control").prop("disabled", false);
+                $(".dummy_seo_control").attr("required","required")
+            }else{
+                $(".dummy_seo_control").prop("disabled", true);
+                $(".dummy_seo_control").prop("disabled", true);
+                $(".dummy_seo_control").removeAttr("required")
+            }
 
-        if (("#allow_seo").is(':checked')) {
-            $(".dummy_seo_control").prop("disabled", false);
-            $(".dummy_seo_control").attr("required","required")
-        }else{
-            $(".dummy_seo_control").prop("disabled", true);
-            $(".dummy_seo_control").removeAttr("required")
-        }
+            if ($("#is_inventory").is(':checked')) {
+                $(".dummy_inventory_control").prop("disabled", false);
+                $(".dummy_inventory_control").attr("required","required")
+            }else{
+                $(".dummy_inventory_control").val("");
+                $(".dummy_inventory_control").prop("disabled", true);
+                $(".dummy_inventory_control").removeAttr("required")
+            }
 
-        if (("#is_inventory").is(':checked')) {
-            $(".dummy_inventory_control").prop("disabled", false);
-            $(".dummy_inventory_control").attr("required","required")
-        }else{
-            $(".dummy_inventory_control").prop("disabled", true);
-            $(".dummy_inventory_control").removeAttr("required")
-        }
+        }, 300);
+
 
 
         var catList = $.trim("{{$existingCatMap}}");
