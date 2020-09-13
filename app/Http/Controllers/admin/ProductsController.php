@@ -110,6 +110,7 @@ class ProductsController extends HelperController
         $product->new_price = $request->new_price;
         $product->is_published = $request->has('is_published');
         $product->is_new = $request->has('is_new');
+        $product->is_feature = $request->has('is_feature');
         $product->allow_review = $request->has('allow_review');
         $product->show_on_home = $request->has('show_on_home');
         $product->user_id = Auth::id();
@@ -218,6 +219,7 @@ class ProductsController extends HelperController
         $product->new_price = $request->new_price;
         $product->is_published = $request->has('is_published');
         $product->is_new = $request->has('is_new');
+        $product->is_feature = $request->has('is_feature');
         $product->allow_review = $request->has('allow_review');
         $product->show_on_home = $request->has('show_on_home');
         $product->user_id = Auth::id();

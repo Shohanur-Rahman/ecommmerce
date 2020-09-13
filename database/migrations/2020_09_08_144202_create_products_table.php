@@ -24,6 +24,7 @@ class CreateProductsTable extends Migration
             $table->decimal('new_price', 8, 2)->nullable();
             $table->boolean('is_published')->default(1);
             $table->boolean('is_new')->default(0);
+            $table->boolean('is_feature')->default(0);
             $table->boolean('allow_review')->default(1);
             $table->boolean('show_on_home')->default(0);
             $table->bigInteger('user_id')->nullable();
@@ -37,7 +38,7 @@ class CreateProductsTable extends Migration
             $table->bigInteger('inventory_qty')->nullable();
             $table->integer('minimum_inventory_qty')->nullable();
             $table->boolean('notify_low_inventory')->nullable();
-            $table->bigInteger('Warehouse_id')->nullable();
+            $table->bigInteger('warehouse_id')->nullable();
             $table->boolean('show_availability')->default(0);
             $table->integer('minimum_cart_qty')->nullable();
             $table->string('featured_image')->nullable();

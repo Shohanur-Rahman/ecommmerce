@@ -42,6 +42,13 @@
                                             </label>
                                         </div>
                                         <div class="inline-widged">
+                                            <label for="is_feature" class="single-label">Is Feature?</label>
+                                            <label class="switch">
+                                                <input type="checkbox" id="is_feature" name="is_feature" />
+                                                <span class="slider round"></span>
+                                            </label>
+                                        </div>
+                                        <div class="inline-widged">
                                             <label for="show_on_home" class="single-label">Show on Home</label>
                                             <label class="switch">
                                                 <input type="checkbox" id="show_on_home" name="show_on_home" />
