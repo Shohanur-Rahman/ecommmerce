@@ -35,6 +35,6 @@ $factory->define(App\Models\ProductTags::class, function (Faker $faker) {
 
     return [
         'name' => $faker->word,
-        'user_id' =>rand(0,20),
+        'user_id' =>rand(0,7),
     ];
 });
