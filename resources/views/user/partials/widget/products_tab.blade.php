@@ -28,7 +28,7 @@
 				<div class="product-thumb">
 					<a href="#"><img src="{{asset($item->featured_image)}}" alt="" /></a>
 					<div class="product-quick-view">
-						<a href="javascript:void(0);" data-toggle="modal" data-target="#quick-view">quick view</a>
+						<a href="{{route('product.details', ["category" => $aTab->category->slug ,"slug" => $item->slug])}}">View Product</a>
 					</div>
 				</div>
 				<div class="product-price-rating">
