@@ -16,7 +16,7 @@ class DemoController extends Controller
     public function create()
     {
 
-        return view('admin.modules.settings.website.product_features.create', compact("productFeatures"));
+        return view('admin.modules.settings.website.product_features.create');
     }
 
     public function store(Request $request)

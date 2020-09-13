@@ -69,12 +69,21 @@ Route::group(['middleware' => 'auth'], function() {
     });
 
     Route::group(['prefix'=>'website-settings/product-features'], function(){
-        Route::get('','settings\ProductFeatureController@index')->name('product-features.index');
-        Route::get('/create','settings\ProductFeatureController@create')->name('product-features.create');
-        Route::post('','settings\ProductFeatureController@store')->name('product-features.store');
-        Route::get('/{productFeature}/edit','settings\ProductFeatureController@edit')->name('product-features.edit');
-        Route::patch('/{productFeature}','settings\ProductFeatureController@update')->name('product-features.update');
-        Route::delete('/{productFeature}','settings\ProductFeatureController@destroy')->name('product-features.destroy');
+        Route::get('','Settings\ProductFeatureController@index')->name('product-features.index');
+        Route::get('/create','Settings\ProductFeatureController@create')->name('product-features.create');
+        Route::post('','Settings\ProductFeatureController@store')->name('product-features.store');
+        Route::get('/{productFeature}/edit','Settings\ProductFeatureController@edit')->name('product-features.edit');
+        Route::patch('/{productFeature}','Settings\ProductFeatureController@update')->name('product-features.update');
+        Route::delete('/{productFeature}','Settings\ProductFeatureController@destroy')->name('product-features.destroy');
+    });
+
+    Route::group(['prefix'=>'website-settings/ecom-supports'], function(){
+        Route::get('','Settings\EcomSupportController@index')->name('ecom-supports.index');
+        Route::get('/create','Settings\EcomSupportController@create')->name('ecom-supports.create');
+        Route::post('','Settings\EcomSupportController@store')->name('ecom-supports.store');
+        Route::get('/{ecomSupport}/edit','Settings\EcomSupportController@edit')->name('ecom-supports.edit');
+        Route::patch('/{ecomSupport}','Settings\EcomSupportController@update')->name('ecom-supports.update');
+        Route::delete('/{ecomSupport}','Settings\EcomSupportController@destroy')->name('ecom-supports.destroy');
     });
 });
 

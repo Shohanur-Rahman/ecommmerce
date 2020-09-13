@@ -57,6 +57,7 @@ return array(
     'App\\Models\\ProductTagMap' => $baseDir . '/app/Models/ProductTagMap.php',
     'App\\Models\\ProductTags' => $baseDir . '/app/Models/ProductTags.php',
     'App\\Models\\Products' => $baseDir . '/app/Models/Products.php',
+    'App\\Models\\Settings\\EcomSupport' => $baseDir . '/app/Models/Settings/EcomSupport.php',
     'App\\Models\\Settings\\NewArrivalTab' => $baseDir . '/app/Models/Settings/NewArrivalTab.php',
     'App\\Models\\Settings\\ProductFeature' => $baseDir . '/app/Models/Settings/ProductFeature.php',
     'App\\Models\\User\\ShippingAddress' => $baseDir . '/app/Models/User/ShippingAddress.php',

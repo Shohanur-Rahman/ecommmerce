@@ -50,6 +50,7 @@
                         <ul class="treeview-menu">
                             <li><a href="{{route('arrivals.index')}}">- New Arrival</a></li>
                             <li><a href="{{route('product-features.index')}}">- New Product Feature</a></li>
+                            <li><a href="{{route('ecom-supports.index')}}">- E-commerce Supports</a></li>
                         </ul>
                     </li>
                 </ul>

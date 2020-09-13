@@ -577,6 +577,7 @@ class ComposerStaticInit4ff1e1c5660f37789a257002b964f8de
         'App\\Models\\ProductTagMap' => __DIR__ . '/../..' . '/app/Models/ProductTagMap.php',
         'App\\Models\\ProductTags' => __DIR__ . '/../..' . '/app/Models/ProductTags.php',
         'App\\Models\\Products' => __DIR__ . '/../..' . '/app/Models/Products.php',
+        'App\\Models\\Settings\\EcomSupport' => __DIR__ . '/../..' . '/app/Models/Settings/EcomSupport.php',
         'App\\Models\\Settings\\NewArrivalTab' => __DIR__ . '/../..' . '/app/Models/Settings/NewArrivalTab.php',
         'App\\Models\\Settings\\ProductFeature' => __DIR__ . '/../..' . '/app/Models/Settings/ProductFeature.php',
         'App\\Models\\User\\ShippingAddress' => __DIR__ . '/../..' . '/app/Models/User/ShippingAddress.php',
