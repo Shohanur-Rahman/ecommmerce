@@ -22,19 +22,6 @@
                                     <input type="text" class="form-control" id="name" placeholder="Enter E-commerce Support Name" name="name" required="required" data-parsley-error-message="Enter E-commerce Support name" value="{{$ecomSupport->name ?? old('name')}}">
                                 </div>
 
-
-                                <div class="form-group">
-                                    <div class="new-checkbox">
-                                        <div class="inline-widged">
-                                            <label for="is_published" class="single-label">Published</label>
-                                            <label class="switch">
-                                                <input type="checkbox" id="is_published" name="is_published" {{ $ecomSupport->is_published ? 'checked="checked"' : '' }}/>
-                                                <span class="slider round"></span>
-                                            </label>
-                                        </div>
-                                    </div>
-                                </div>
-
                                 <div class="form-group">
                                     <label for="description">Description</label>
                                     <textarea
@@ -55,11 +42,23 @@
                                     <input type="file" name="image_url" class="hdn-uploder" id="imgInp" {{ $ecomSupport->image_url? '' : 'required="required"'}} accept="image/*" data-parsley-error-message="Upload E-commerce Support image"/>
                                 </div>
 
+                                <div class="form-group">
+                                    <div class="new-checkbox">
+                                        <div class="inline-widged">
+                                            <label for="is_published" class="single-label">Published</label>
+                                            <label class="switch">
+                                                <input type="checkbox" id="is_published" name="is_published" {{ $ecomSupport->is_published ? 'checked="checked"' : '' }}/>
+                                                <span class="slider round"></span>
+                                            </label>
+                                        </div>
+                                    </div>
+                                </div>
+
                                 <button type="submit" class="btn btn-primary mr-2">Submit</button>
 
                             </form>
 
-                            <a href="{{route('ecom-supports.index')}}" class="btn btn-danger">Back to Product Feature</a>
+                            <a href="{{route('ecom-supports.index')}}" class="btn btn-danger">Back to E-commerce Support</a>
                         </div>
                     </div>
 

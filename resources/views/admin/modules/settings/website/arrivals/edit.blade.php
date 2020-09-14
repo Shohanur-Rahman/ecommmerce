@@ -19,7 +19,7 @@
                                 @csrf
                                 <div class="form-group">
                                     <label for="no_of_product">Number of Products</label>
-                                    <input type="number" class="form-control" id="name" placeholder="Enter Category name" name="no_of_product" required="required" data-parsley-error-message="Enter Category name" value="{{$arrival->no_of_product}}">
+                                    <input type="number" class="form-control" id="name" placeholder="Enter Category name" name="no_of_product" required="required" data-parsley-error-message="Enter Number Of Product" value="{{$arrival->no_of_product}}">
                                 </div>
 
                                 <div class="form-group">
@@ -56,7 +56,7 @@
 
                             </form>
 
-                            <a href="{{route('arrivals.index')}}" class="btn btn-danger">Back to Categories</a>
+                            <a href="{{route('arrivals.index')}}" class="btn btn-danger">Back to Arrivals</a>
                         </div>
                     </div>
 

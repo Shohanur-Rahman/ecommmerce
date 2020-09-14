@@ -26,14 +26,14 @@
 
                                 <div class="form-group">
                                     <div class="new-checkbox">
-                                    <div class="inline-widged">
-                                      <label for="is_published" class="single-label">Published</label>
-                                        <label class="switch">
-                                            <input type="checkbox" id="is_published" value="1" name="is_published" {{ $productFeature->is_published ? 'checked="checked"' : '' }}/>
-                                            <span class="slider round"></span>
-                                        </label>
+                                        <div class="inline-widged">
+                                            <label for="is_published" class="single-label">Published</label>
+                                            <label class="switch">
+                                                <input type="checkbox" id="is_published" value="1" name="is_published" {{ $productFeature->is_published ? 'checked="checked"' : '' }}/>
+                                                <span class="slider round"></span>
+                                            </label>
+                                        </div>
                                     </div>
-                                </div>
                                 </div>
 
                                 <button type="submit" class="btn btn-primary mr-2">Submit</button>

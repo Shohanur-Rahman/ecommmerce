@@ -18,7 +18,7 @@ class CreateEcomSupportsTable extends Migration
             $table->string('name');
             $table->string('image_url');
             $table->text('description');
-            $table->boolean('is_published');
+            $table->boolean('is_published')->default(0);
             $table->timestamps();
         });
     }

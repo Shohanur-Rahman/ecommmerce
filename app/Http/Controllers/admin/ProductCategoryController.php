@@ -39,7 +39,7 @@ class ProductCategoryController extends Controller
             'slug'=>Str::slug($categoryName),
             'parent_id'=>$request['parent_id'] ?? 0,
             'user_id'=>$userId,
-            'is_top_menu'=>$request['is_top_menu'] ?? '0'
+            'is_top_menu'=>$request->has('is_top_menu'),
         ]);
 
         return redirect(route('product-categories.index'))->with('success','New ProductCategory Added Successfully');
@@ -67,7 +67,7 @@ class ProductCategoryController extends Controller
             'slug'=>Str::slug($categoryName),
             'parent_id'=>$request['parent_id'] ?? 0,
             'user_id'=>$userId,
-            'is_top_menu'=>$request['is_top_menu'] ?? '0'
+            'is_top_menu'=>$request->has('is_top_menu'),
         ]);
 
         return redirect(route('product-categories.index'))->with('success','Category Updated Successfully');

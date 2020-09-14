@@ -37,6 +37,19 @@
                                     </div>
                                 </div>
 
+
+                                <div class="form-group">
+                                    <div class="new-checkbox">
+                                        <div class="inline-widged">
+                                            <label for="is_top_menu" class="single-label">Show On Top Menu</label>
+                                            <label class="switch">
+                                                <input type="checkbox" id="is_top_menu"  name="is_top_menu"/>
+                                                <span class="slider round"></span>
+                                            </label>
+                                        </div>
+                                    </div>
+                                </div>
+
                                 <div class="form-group">
                                     <div class="checkbox d-inline">
                                         <input type="checkbox" name="is_top_menu" id="checkbox-14" value="1">

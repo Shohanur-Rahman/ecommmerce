@@ -33,7 +33,7 @@
                                 <button type="submit" class="btn btn-primary mr-2">Submit</button>
                             </form>
 
-                            <a href="{{route('product-availabilities.index')}}" class="btn btn-danger">Back to Warehouses</a>
+                            <a href="{{route('product-availabilities.index')}}" class="btn btn-danger">Back to Availability</a>
                         </div>
                     </div>
 

@@ -46,6 +46,19 @@
                                     </div>
                                 </div>
 
+                                <div class="form-group">
+                                    <div class="new-checkbox">
+                                        <div class="inline-widged">
+                                            <label for="is_top_menu" class="single-label">Show On Top Menu</label>
+                                            <label class="switch">
+                                                <input type="checkbox" id="is_top_menu" value="1" name="is_top_menu" {{ $productCategory->is_top_menu ? 'checked="checked"' : '' }}/>
+                                                <span class="slider round"></span>
+                                            </label>
+                                        </div>
+                                    </div>
+                                </div>
+
+
                                 <button type="submit" class="btn btn-primary mr-2">Submit</button>
 
                             </form>

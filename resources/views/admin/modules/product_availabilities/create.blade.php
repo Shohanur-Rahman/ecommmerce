@@ -14,7 +14,7 @@
 
                     <div class="row">
                         <div class="col-sm-12 col-xs-12">
-                            <form method="post" action="{{route('product-availabilities.store')}}" class="d-inline">
+                            <form method="post" action="{{route('product-availabilities.store')}}" class="d-inline" data-parsley-validate>
                                 @csrf
                                 <div class="form-group">
                                     <label for="name">Availability Name</label>
@@ -24,7 +24,7 @@
                                 <div class="form-group mt-20">
                                     <label for="name">Availability Days</label>
                                     <div class="input-group bootstrap-touchspin bootstrap-touchspin-injected">
-                                        <input id="demo3" type="text" value="-1" name="demo3" class="form-control">
+                                        <input id="demo3" type="text" value="-1" name="demo3" class="form-control" required="required" data-parsley-error-message="Enter Availability Days">
                                     </div>
                                 </div>
 

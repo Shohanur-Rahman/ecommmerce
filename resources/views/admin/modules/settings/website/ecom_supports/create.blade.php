@@ -57,7 +57,7 @@
 
                             </form>
 
-                            <a href="{{route('ecom-supports.index')}}" class="btn btn-danger">Back to Product Feature</a>
+                            <a href="{{route('ecom-supports.index')}}" class="btn btn-danger">Back to E-commerce Support</a>
                         </div>
                     </div>
 

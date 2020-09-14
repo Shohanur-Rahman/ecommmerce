@@ -29,7 +29,7 @@
                                 <button type="submit" class="btn btn-primary mr-2">Submit</button>
                             </form>
 
-                            <a href="{{route('warehouses.index')}}" class="btn btn-danger">Back to Categories</a>
+                            <a href="{{route('warehouses.index')}}" class="btn btn-danger">Back to Warehouses</a>
                         </div>
                     </div>
 
