@@ -50,13 +50,6 @@
                                     </div>
                                 </div>
 
-                                <div class="form-group">
-                                    <div class="checkbox d-inline">
-                                        <input type="checkbox" name="is_top_menu" id="checkbox-14" value="1">
-                                        <label for="checkbox-14" class="cr">Show On Top Menu</label>
-                                    </div>
-                                </div>
-
                                 <button type="submit" class="btn btn-primary mr-2">Submit</button>
 
                             </form>

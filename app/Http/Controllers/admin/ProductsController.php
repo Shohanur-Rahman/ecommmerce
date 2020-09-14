@@ -42,7 +42,7 @@ class ProductsController extends HelperController
         $productSizes = ProductSize::all();
         $productColors = ProductColor::all();
 
-    	return view('admin.modules.products.create', compact("warehouses", "avalabilitites", "categories", "brands","tags", "productSizes", "productColors"));
+        return view('admin.modules.products.create', compact("warehouses", "avalabilitites", "categories", "brands","tags", "productSizes", "productColors"));
     }
 
     public function edit($id)
@@ -179,7 +179,7 @@ class ProductsController extends HelperController
                 $categoryMap = new ProductCategoryMap();
 
                 $categoryMap->cat_id = $catId;
-                $categoryMap->is_published = $request->is_published;
+                $categoryMap->is_published = $request->has('is_published');
                 $categoryMap->product_id = $product->id;
                 $categoryMap->save();
             }
@@ -318,7 +318,7 @@ class ProductsController extends HelperController
             foreach($catArray as $catId) {
                 $categoryMap = new ProductCategoryMap();
                 $categoryMap->cat_id = $catId;
-                $categoryMap->is_published = $request->is_published;
+                $categoryMap->is_published = $request->has('is_published');
                 $categoryMap->product_id = $product->id;
                 $categoryMap->save();
             }
