@@ -145,7 +145,7 @@ class ProductsController extends HelperController
         /*
         *
         * Upload featured image and return path url */
-        $fileURL = $helper->uploadImage($request->file('imgInp'),'uploads/products/u_'.Auth::id() . "/");
+        $fileURL = $helper->uploadImage($request->file('imgInp'),'uploads/products/u_'.Auth::id() . "/",300,300);
 
         $product->featured_image = $fileURL;
 
@@ -254,7 +254,8 @@ class ProductsController extends HelperController
         /*
         *
         * Upload featured image and return path url */
-        $fileURL = $helper->uploadImage($request->file('imgInp'),'uploads/products/u_'.Auth::id() . "/");
+        $fileURL = $fileURL = $helper->uploadImage($request->file('imgInp'),'uploads/products/u_'.Auth::id() . "/",300,300);
+
 
         /*
         *

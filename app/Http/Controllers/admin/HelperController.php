@@ -7,16 +7,17 @@ use Illuminate\Http\Request;
 use DB;
 use Carbon\Carbon;
 use File;
+use Intervention\Image\Facades\Image;
 use Mail;
 use Illuminate\Support\Str;
 use Auth;
 
 class HelperController extends Controller
 {
-    public function uploadImage($image, $rootDirectory)
+    public function uploadImage($image, $rootDirectory, $width= null, $height = null)
     {
         $saveURL="";
-        
+
         if($image){
             $file = $image;
             $originalName = $file->getClientOriginalName();
@@ -27,10 +28,14 @@ class HelperController extends Controller
             $fileName = time().'_'.$originalName;
             $saveURL = $destinationPath . $fileName;
 
-            $file->move($destinationPath,$fileName);
-
             if (!is_dir($destinationPath)) {
                 mkdir($destinationPath, 0755, true);
+            }
+
+            if($width || $height){
+                Image::make($image)->resize($width,$height)->save($saveURL);
+            }else{
+                $file->move($destinationPath,$fileName);
             }
         }
 
