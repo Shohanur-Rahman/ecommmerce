@@ -46,7 +46,7 @@
                         <tr>
                             <td>{{$aTag->id}}</td>
                             <td>{{$aTag->name}}</td>
-                            <td>{{$aTag->user->name}}</td>
+                            <td>{{$aTag->user->name ?? ''}}</td>
                             <td>{{$aTag->created_at->format('d F Y')}}</td>
                             <td>
                                 <a class="btn btn-outline-primary table-btn btn-sm" href="{{route('tags.edit', $aTag->id)}}" title="Edit"><i class="zmdi zmdi-edit"></i></a>

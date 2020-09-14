@@ -48,8 +48,8 @@
                     <li class="treeview">
                         <a href="javascript:void(0)"><i class="zmdi zmdi-settings"></i> <span>Website Settings</span> <i class="fa fa-angle-right"></i></a>
                         <ul class="treeview-menu">
-                            <li><a href="{{route('arrivals.index')}}">- New Arrival</a></li>
-                            <li><a href="{{route('product-features.index')}}">- New Product Feature</a></li>
+                            <li><a href="{{route('arrivals.index')}}">- New Arrival Tab</a></li>
+                            <li><a href="{{route('product-features.index')}}">- Feature Product Tab </a></li>
                             <li><a href="{{route('ecom-supports.index')}}">- E-commerce Supports</a></li>
                         </ul>
                     </li>
