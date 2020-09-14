@@ -10,4 +10,9 @@ class ProductCategoryMap extends Model
     {
         return $this->belongsTo(ProductCategory::class,'cat_id');
     }
+
+    public function product()
+    {
+        return $this->belongsTo(Products::class,'product_id');
+    }
 }

@@ -5,7 +5,9 @@
 
 <div id="{{$tabId.$aTab->id}}" class="tab-pane fade {{$tabCount < 1 ? 'in show active': ''}}">
 	<div class="row four-items cv-visible">
-		<?php $productItems = Illuminate\Support\Facades\DB::table('products')
+		<?php
+
+            $productItems = Illuminate\Support\Facades\DB::table('products')
             ->join('product_category_maps', 'products.id', '=', 'product_category_maps.product_id')
             ->select('products.*')
             ->where('is_published', 1)

@@ -47,7 +47,7 @@
                                         <li>Categories:
                                             <?php $categoryList = App\Models\ProductCategoryMap::where('product_id', $product->id)->get(); ?>
                                             @foreach($categoryList as $aCategory)
-                                                <a href="#">{{$aCategory->category->category_name}}</a>
+                                                <a href="{{route('product.index', $aCategory->category->slug)}}">{{$aCategory->category->category_name}}</a>
                                             @endforeach
                                             <span>|</span>
                                         </li>
@@ -101,17 +101,15 @@
                                 </div>
                                 <div class="add-to-get mt-50">
                                     <a href="#" class="add-to-cart">Add to Cart</a>
-                                    <a href="#" class="add-to-cart compare">+ ADD to Compare</a>
-                                </div>
-                                <div class="product-features mt-50">
-                                    <ul class="list-none">
-                                        <li>Satisfaction 100% Guaranteed</li>
-                                        <li>Free shipping on orders over $99</li>
-                                        <li>14 day easy Return</li>
-                                    </ul>
                                 </div>
                             </div>
                         </div>
+                    </div>
+                </div>
+
+                <div class="col-lg-12">
+                    <div class="product-description">
+                        {!!html_entity_decode($product->description)!!}
                     </div>
                 </div>
             </div>

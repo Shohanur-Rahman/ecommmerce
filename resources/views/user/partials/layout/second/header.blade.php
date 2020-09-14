@@ -85,7 +85,7 @@
 															@if($childMenu->childrens->count() > 0)
 															<ul>
 																@foreach($childMenu->childrens as $leaveMenu)
-																<li><a href="shop.html">{{$leaveMenu->category_name}}</a></li>
+																<li><a href="{{route('product.index', $leaveMenu->slug)}}">{{$leaveMenu->category_name}}</a></li>
 																@endforeach
 															</ul>
 															@endif
@@ -94,7 +94,7 @@
 													</ul>
 												</li>
 											@else
-											<li><a href="/">{{$menu->category_name}}</a></li>
+											<li><a href="{{route('product.index', $menu->slug)}}">{{$menu->category_name}}</a></li>
 											@endif
 
 										@endforeach
