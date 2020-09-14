@@ -177,7 +177,9 @@ class ProductsController extends HelperController
 
             foreach($catArray as $catId) {
                 $categoryMap = new ProductCategoryMap();
+
                 $categoryMap->cat_id = $catId;
+                $categoryMap->is_published = $request->is_published;
                 $categoryMap->product_id = $product->id;
                 $categoryMap->save();
             }
@@ -316,6 +318,7 @@ class ProductsController extends HelperController
             foreach($catArray as $catId) {
                 $categoryMap = new ProductCategoryMap();
                 $categoryMap->cat_id = $catId;
+                $categoryMap->is_published = $request->is_published;
                 $categoryMap->product_id = $product->id;
                 $categoryMap->save();
             }

@@ -23,7 +23,8 @@ class ProductController extends Controller
             ->distinct()
             ->paginate(5);*/
 
-        $products = ProductCategoryMap::where('cat_id', $categoryDetails->id)->paginate(2);
+
+        $products = ProductCategoryMap::with('product')->where(['cat_id' => $categoryDetails->id, 'is_published' => 1])->paginate(2);
 
         return view('user.pages.products.index', compact("products", "categoryDetails"));
     }

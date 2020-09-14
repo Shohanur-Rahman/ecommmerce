@@ -302,6 +302,7 @@
                         <div class="row">
 
                             @foreach($products as $product)
+                                @if($product->product)
                                 <div class="col-xl-3 col-md-4 col-sm-6">
                                     <div class="product-single">
                                         <div class="product-title">
@@ -311,7 +312,7 @@
                                         <div class="product-thumb">
                                             <a href="#"><img src="{{$product->product->featured_image}}" alt="" /></a>
                                             <div class="product-quick-view">
-                                                <a href="{{route('product.details', ["category" => $product->category->slug ,"slug" => $product->product->slug])}}">View Product</a>
+                                                <a href="{{route('product.details', ["category" => $categoryDetails->slug ,"slug" => $product->product->slug])}}">View Product</a>
                                             </div>
                                         </div>
                                         <div class="product-price-rating">
@@ -334,11 +335,13 @@
                                         </div>
                                     </div>
                                 </div>
+                                @endif
                             @endforeach
                         </div>
                     </div>
                     <div id="list-products" class="tab-pane">
                         @foreach($products as $product)
+                            @if($product->product)
                         <div class="product-single wide-style">
                             <div class="row align-items-center">
                                 <div class="col-xl-3 col-lg-6 col-md-6">
@@ -352,7 +355,7 @@
                                 <div class="col-xl-6 col-lg-8 col-md-8 product-desc mt-md-50 sm-mt-50">
                                     <a href="#" class="add-to-wishlist"><i class="icon_heart_alt"></i></a>
                                     <div class="product-title">
-                                        <small><a href="{{route('product.index', $product->category->slug)}}">{{$product->category->category_name}}</a></small>
+                                        <small><a href="{{route('product.index', $categoryDetails->slug)}}">{{$categoryDetails->category_name}}</a></small>
                                         <h4><a href="#">{{$product->product->title}}</a></h4>
                                     </div>
                                     <div class="product-rating">
@@ -386,6 +389,7 @@
                                 </div>
                             </div>
                         </div>
+                            @endif
                         @endforeach
                     </div>
                 </div>
