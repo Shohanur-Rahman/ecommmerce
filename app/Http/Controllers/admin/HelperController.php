@@ -32,11 +32,15 @@ class HelperController extends Controller
                 mkdir($destinationPath, 0755, true);
             }
 
-            if($width || $height){
+            if($width && $height){
+
                 Image::make($image)->resize($width,$height)->save($saveURL);
+
             }else{
+
                 $file->move($destinationPath,$fileName);
             }
+
         }
 
         return $saveURL;

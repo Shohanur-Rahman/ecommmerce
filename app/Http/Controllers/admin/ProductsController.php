@@ -254,7 +254,7 @@ class ProductsController extends HelperController
         /*
         *
         * Upload featured image and return path url */
-        $fileURL = $fileURL = $helper->uploadImage($request->file('imgInp'),'uploads/products/u_'.Auth::id() . "/",300,300);
+        $fileURL  = $helper->uploadImage($request->file('imgInp'),'uploads/products/u_'.Auth::id() . "/",300,300);
 
 
         /*
@@ -291,8 +291,10 @@ class ProductsController extends HelperController
         if($files=$request->file('images')){
             foreach($files as $file){
                 $glURL = $helper->uploadImage($file,'uploads/products/u_'.Auth::id() . "/gallery/");
+                $test = $helper->uploadImage($file,'uploads/products/u_'.Auth::id() . "/gallery/test/",600,600);
                 $gallery = new ProductGalleryMap();
                 $gallery->image_url = $glURL;
+                $gallery->thumb_url = $test;
                 $gallery->product_id = $product->id;
                 $gallery->save();
             }
@@ -338,7 +340,6 @@ class ProductsController extends HelperController
                 $tagMap->save();
             }
         }
-
          return redirect(route('products.index'))->with('success','Your product has been successfully updated.');
 
     }
