@@ -17,6 +17,7 @@ class CreateProductGalleryMapsTable extends Migration
             $table->bigIncrements('id');
             $table->text('image_url')->nullable();
             $table->bigInteger('product_id')->nullable();
+            $table->string('thumb_url')->nullable();
             $table->timestamps();
         });
     }

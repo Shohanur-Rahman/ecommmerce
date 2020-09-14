@@ -17,7 +17,6 @@ class CreateProductCategoryMapsTable extends Migration
             $table->bigIncrements('id');
             $table->bigInteger('cat_id')->nullable();
             $table->bigInteger('product_id')->nullable();
-            $table->string('thumb_url');
             $table->timestamps();
         });
     }
