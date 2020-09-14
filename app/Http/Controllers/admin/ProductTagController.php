@@ -40,7 +40,7 @@ class ProductTagController extends Controller
         $tag = null;
         $userType = Auth::user()->user_type;
 
-        $tag = ProductTags::find($id);
+        $tag = ProductTags::findOrFail($id);
 
         if($tag == null)
             return view('not_found');
@@ -50,7 +50,7 @@ class ProductTagController extends Controller
 
     public function update(Request $req, $id)
     {
-        $tag = ProductTags::find($id);
+        $tag = ProductTags::findOrFail($id);
         $tag->name = $req->name;
         $tag->save();
 
@@ -60,7 +60,7 @@ class ProductTagController extends Controller
 
     public function destroy($id)
     {
-        $tag = ProductTags::find($id);
+        $tag = ProductTags::findOrFail($id);
         if($tag == null)
             return view('not_found');
 

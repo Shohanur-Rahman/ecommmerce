@@ -55,7 +55,7 @@ class ProductsController extends HelperController
         $productSizes = ProductSize::all();
         $productColors = ProductColor::all();
 
-        $aProduct = Products::find($id);
+        $aProduct = Products::findOrFail($id);
 
         $categoriMap = ProductCategoryMap::where('product_id', $id)->get();
         $existingCatMap="";
@@ -212,7 +212,7 @@ class ProductsController extends HelperController
         *
         * Insert product table data **/
 
-        $product = Products::find($id);
+        $product = Products::findOrFail($id);
         $product->title = $request->title;
         $product->short_description = $request->short_description;
         $product->description = $request->description;

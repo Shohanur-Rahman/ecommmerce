@@ -28,7 +28,7 @@ class NewArrivalController extends Controller
     {
 
     	$Categories = ProductCategory::where('parent_id',0)->with('childrens.user')->get();
-    	$arrival = NewArrivalTab::find($id);
+    	$arrival = NewArrivalTab::findOrFail($id);
     	return view('admin.modules.settings.website.arrivals.edit', compact("Categories", "arrival"));
     }
 
@@ -47,7 +47,7 @@ class NewArrivalController extends Controller
     public function update(Request $request, $id)
     {
 
-    	$tab = NewArrivalTab::find($id);
+    	$tab = NewArrivalTab::findOrFail($id);
     	$tab->cat_id= $request->cat_id;
     	$tab->no_of_product= $request->no_of_product;
     	$tab->is_published= $request->has('is_published');

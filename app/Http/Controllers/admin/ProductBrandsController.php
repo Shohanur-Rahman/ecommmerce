@@ -79,7 +79,7 @@ class ProductBrandsController extends Controller
         $brand = null;
         $userType = Auth::user()->user_type;
 
-        $brand = ProductBrands::find($id);
+        $brand = ProductBrands::findOrFail($id);
 
         if($brand == null)
             return view('not_found');
@@ -103,7 +103,7 @@ class ProductBrandsController extends Controller
     public function update(Request $req, $id)
     {
 
-    	$brand = ProductBrands::find($id);
+    	$brand = ProductBrands::findOrFail($id);
     	$brand->name = $req->name;
 
     	$fileURL = "";
@@ -150,7 +150,7 @@ class ProductBrandsController extends Controller
 
     public function destroy($id)
     {
-        $brand = ProductBrands::find($id);
+        $brand = ProductBrands::findOrFail($id);
 
         if($brand == null)
             return view('not_found');
