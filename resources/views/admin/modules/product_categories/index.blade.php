@@ -37,7 +37,7 @@
                         @foreach($productCategories as $category)
                             <tr>
                                 <td>{{$category->id}}</td>
-                                <td>{{($category->parent_id != 0) ?  $category->parent->category_name ?? '' : $category->parent_id}}</td>
+                                <td>{{($category->parent_id != 0) ?  $category->parent->category_name : $category->parent_id}}</td>
                                 <td>{{$category->category_name}}</td>
 
                                 <td>

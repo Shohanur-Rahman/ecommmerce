@@ -14,7 +14,7 @@
 
                     <div class="row">
                         <div class="col-sm-12 col-xs-12">
-                            <form method="post" action="{{route('product-categories.store')}}" class="d-inline">
+                            <form method="post" action="{{route('product-categories.store')}}" class="d-inline" data-parsley-validate>
                                 @csrf
                                 <div class="form-group">
                                     <label for="name">Category Name</label>
@@ -25,12 +25,12 @@
 
                                 <div class="form-group">
                                     <div class="checkbox d-inline">
-                                        <select name="parent_id" id="" class="form-control">
+                                        <select name="parent_id" id="" class="form-control" required="required" data-parsley-error-message="Select Category">
                                             <option value="">Selected Category</option>
                                             @foreach($Categories as $category)
                                                 <option value="{{$category->id}}">{{$category->category_name}} <b class="text-black-50">({{$category->user->user_type}})</b></option>
                                                 @foreach($category->childrens as $children)
-                                                    <option value="{{$children->id}}"> ->{{$children->category_name}} <b class="text-black-50">({{$category->user->user_type}})</b></option>
+                                                    <option value="{{$children->id}}"> ->{{$children->category_name}} <b class="text-black-50">({{$children->user->user_type}})</b></option>
                                                 @endforeach
                                                 @endforeach
                                         </select>

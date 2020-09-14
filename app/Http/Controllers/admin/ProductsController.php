@@ -26,7 +26,7 @@ class ProductsController extends HelperController
         $products = null;
         $userType = Auth::user()->user_type;
 
-        $products = Products::all();
+        $products = Products::with('user')->get();
 
     	return view('admin.modules.products.index', compact("products"));
     }
@@ -37,7 +37,7 @@ class ProductsController extends HelperController
         $warehouses = Warehouse::all();
         $avalabilitites = ProductAvailability::all();
         $brands = ProductBrands::all();
-        $categories = ProductCategory::where('parent_id',0)->with('childrens.user')->get();
+        $categories = ProductCategory::where('parent_id',0)->with('user','childrens.childrens.user')->get();
         $tags = ProductTags::all();
         $productSizes = ProductSize::all();
         $productColors = ProductColor::all();
@@ -50,7 +50,7 @@ class ProductsController extends HelperController
         $warehouses = Warehouse::all();
         $avalabilitites = ProductAvailability::all();
         $brands = ProductBrands::all();
-        $categories = ProductCategory::where('parent_id',0)->with('childrens.user')->get();
+        $categories = ProductCategory::where('parent_id',0)->with('user','childrens.childrens.user')->get();
         $tags = ProductTags::all();
         $productSizes = ProductSize::all();
         $productColors = ProductColor::all();

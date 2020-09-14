@@ -32,7 +32,7 @@
                                                 <option value="{{$category->id}}" {{($category->id === $productCategory->parent_id) ? 'selected' : ''}}>{{$category->category_name}} <b class="text-black-50">({{$category->user->user_type}})</b></option>
 
                                                 @foreach($category->childrens as $children)
-                                                    <option value="{{$children->id}}" {{($children->id === $productCategory->parent_id) ? 'selected' : ''}}> ->{{$children->category_name}} <b class="text-black-50">({{$category->user->user_type}})</b></option>
+                                                    <option value="{{$children->id}}" {{($children->id === $productCategory->parent_id) ? 'selected' : ''}}> ->{{$children->category_name}} <b class="text-black-50">({{$children->user->user_type}})</b></option>
                                                 @endforeach
                                             @endforeach
                                         </select>
