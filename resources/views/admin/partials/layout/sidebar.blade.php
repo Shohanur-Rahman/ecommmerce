@@ -1,3 +1,9 @@
+@php
+    function activeLink($path){
+        return request()->routeIs($path.'*') ? 'text-success' : '';
+    }
+@endphp
+
 <div class="ecaps-sidemenu-area">
             <!-- Desktop Logo -->
     <div class="ecaps-logo">
@@ -11,46 +17,46 @@
             <!-- Sidebar Menu -->
             <nav>
                 <ul class="sidebar-menu" data-widget="tree">
-                    <li><a href="{{route('dashboard')}}"><i class="zmdi zmdi-view-web"></i> <span>Dashboard</span></a></li>
-                    <li class="treeview">
+                    <li><a  class="{{activeLink('dashboard')}}" href="{{route('dashboard')}}"><i class="zmdi zmdi-view-web"></i> <span>Dashboard</span></a></li>
+                    <li class="treeview {{ request()->routeIs('products.*','product-categories.*','brands.*','tags.*','warehouses.*','product-availabilities.*','product-sizes.*','product-colors.*') ? 'active' : '' }}" >
                         <a href="javascript:void(0)"><i class="zmdi zmdi-shopping-basket"></i> <span>Catalog</span> <i class="fa fa-angle-right"></i></a>
                         <ul class="treeview-menu">
-                            <li><a href="{{route('products.index')}}">- Products</a></li>
-                            <li><a href="{{route('product-categories.index')}}">- Categories</a></li>
-                            <li><a href="{{route('brands.index')}}">- Brands</a></li>
-                            <li><a href="{{route('tags.index')}}">- Tags</a></li>
-                            <li><a href="{{route('warehouses.index')}}">- Warehouses</a></li>
-                            <li><a href="{{route('product-availabilities.index')}}">- Availability</a></li>
-                            <li><a href="{{route('product-sizes.index')}}">- Product Sizes</a></li>
-                            <li><a href="{{route('product-colors.index')}}">- Product Colors</a></li>
+                            <li ><a class="{{activeLink('products')}}" href="{{route('products.index')}}">- Products</a></li>
+                            <li class="{{activeLink('product-categories')}}"><a href="{{route('product-categories.index')}}">- Categories</a></li>
+                            <li><a class="{{activeLink('brands')}}" href="{{route('brands.index')}}">- Brands</a></li>
+                            <li><a class="{{activeLink('tags')}}" href="{{route('tags.index')}}">- Tags</a></li>
+                            <li><a class="{{activeLink('warehouses')}}" href="{{route('warehouses.index')}}">- Warehouses</a></li>
+                            <li><a class="{{activeLink('product-availabilities')}}" href="{{route('product-availabilities.index')}}">- Availability</a></li>
+                            <li><a class="{{activeLink('product-sizes')}}" href="{{route('product-sizes.index')}}">- Product Sizes</a></li>
+                            <li><a class="{{activeLink('product-colors')}}" href="{{route('product-colors.index')}}">- Product Colors</a></li>
                         </ul>
                     </li>
 
-                    <li class="treeview">
+                    <li class="treeview {{ request()->routeIs('main-sliders.*') ? 'active' : '' }}" >
                         <a href="javascript:void(0)"><i class="zmdi zmdi-collection-folder-image"></i> <span>Sliders</span> <i class="fa fa-angle-right"></i></a>
                         <ul class="treeview-menu">
-                            <li><a href="{{route('main-sliders.index')}}">- Main Slider</a></li>
+                            <li><a class="{{activeLink('main-sliders')}}" href="{{route('main-sliders.index')}}">- Main Slider</a></li>
                         </ul>
                     </li>
 
-                    <li class="treeview">
+                    <li class="treeview {{ request()->routeIs('users.*') ? 'active' : '' }}">
                         <a href="javascript:void(0)"><i class="zmdi zmdi-accounts-alt"></i> <span>Users</span> <i class="fa fa-angle-right"></i></a>
-                        <ul class="treeview-menu">
-                            <li><a href="{{route('users.index',['type'=>'super-admin'])}}">- Super Admin</a></li>
-                            <li><a href="{{route('users.index',['type'=>'admin'])}}">- Admin</a></li>
-                            <li><a href="{{route('users.index',['type'=>'customer'])}}">- Vendor</a></li>
-                            <li><a href="{{route('users.index',['type'=>'editor'])}}">- Editor</a></li>
-                            <li><a href="{{route('users.index',['type'=>'developer'])}}">- Developer</a></li>
-                            <li><a href="{{route('users.index',['type'=>'customer'])}}">- Customer</a></li>
+                        <ul class="treeview-menu {{ request()->routeIs('users.*') ? 'active' : '' }}">
+                            <li><a class="{{activeLink('users')}}" href="{{route('users.index',['type'=>'super-admin'])}}">- Super Admin</a></li>
+                            <li><a class="{{activeLink('users')}}" href="{{route('users.index',['type'=>'admin'])}}">- Admin</a></li>
+                            <li><a class="{{activeLink('users')}}" href="{{route('users.index',['type'=>'customer'])}}">- Vendor</a></li>
+                            <li><a class="{{activeLink('users')}}" href="{{route('users.index',['type'=>'editor'])}}">- Editor</a></li>
+                            <li><a class="{{activeLink('users')}}" href="{{route('users.index',['type'=>'developer'])}}">- Developer</a></li>
+                            <li><a class="{{activeLink('users')}}" href="{{route('users.index',['type'=>'customer'])}}">- Customer</a></li>
                         </ul>
                     </li>
 
-                    <li class="treeview">
+                    <li class="treeview {{ request()->routeIs('arrivals.*','product-features.*','ecom-supports.*') ? 'active' : '' }}">
                         <a href="javascript:void(0)"><i class="zmdi zmdi-settings"></i> <span>Website Settings</span> <i class="fa fa-angle-right"></i></a>
-                        <ul class="treeview-menu">
-                            <li><a href="{{route('arrivals.index')}}">- New Arrival Tab</a></li>
-                            <li><a href="{{route('product-features.index')}}">- Feature Product Tab </a></li>
-                            <li><a href="{{route('ecom-supports.index')}}">- E-commerce Supports</a></li>
+                        <ul class="treeview-menu ">
+                            <li><a class=" {{activeLink('arrivals')}}" href="{{route('arrivals.index')}}">- New Arrival Tab</a></li>
+                            <li><a class="{{activeLink('product-features')}}" href="{{route('product-features.index')}}">- Feature Product Tab </a></li>
+                            <li><a class="{{activeLink('ecom-supports')}}" href="{{route('ecom-supports.index')}}">- E-commerce Supports</a></li>
                         </ul>
                     </li>
                 </ul>
