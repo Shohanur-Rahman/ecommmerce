@@ -27,7 +27,7 @@
                         <a href="javascript:void(0)"><i class="zmdi zmdi-shopping-basket"></i> <span>Catalog</span> <i class="fa fa-angle-right"></i></a>
                         <ul class="treeview-menu">
                             <li ><a class="{{activeLink('products')}}" href="{{route('products.index')}}">- Products</a></li>
-                            <li class="{{activeLink('product-categories')}}"><a href="{{route('product-categories.index')}}">- Categories</a></li>
+                            <li ><a class="{{activeLink('product-categories')}}" href="{{route('product-categories.index')}}">- Categories</a></li>
                             <li><a class="{{activeLink('brands')}}" href="{{route('brands.index')}}">- Brands</a></li>
                             <li><a class="{{activeLink('tags')}}" href="{{route('tags.index')}}">- Tags</a></li>
                             <li><a class="{{activeLink('warehouses')}}" href="{{route('warehouses.index')}}">- Warehouses</a></li>
@@ -48,7 +48,7 @@
                         <a href="javascript:void(0)"><i class="zmdi zmdi-accounts-alt"></i> <span>Users</span> <i class="fa fa-angle-right"></i></a>
                         <ul class="treeview-menu {{ request()->routeIs('users.*') ? 'active' : '' }}">
                             <li><a class="{{userActiveLink('super-admin')}}" href="{{route('users.index',['type'=>'super-admin'])}}">- Super Admin</a></li>
-                            <li><a class="{{request()->is('http://127.0.0.1:8000/admin/users/*') ? 'text-success' : ''}}" href="{{route('users.index',['type'=>'admin'])}}">- Admin</a></li>
+                            <li><a class="{{request()->is('admin/users/admin*') ? 'text-success' : ''}}" href="{{route('users.index',['type'=>'admin'])}}">- Admin</a></li>
                             <li><a class="{{userActiveLink('vendor')}}" href="{{route('users.index',['type'=>'vendor'])}}">- Vendor</a></li>
                             <li><a class="{{userActiveLink('editor')}}" href="{{route('users.index',['type'=>'editor'])}}">- Editor</a></li>
                             <li><a class="{{userActiveLink('developer')}}" href="{{route('users.index',['type'=>'developer'])}}">- Developer</a></li>

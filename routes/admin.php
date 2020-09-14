@@ -5,7 +5,7 @@ Route::group(['middleware' => 'auth'], function() {
     @include 'admin_copy.php';
     Route::get('/dashboard','DashboardController@index')->name('dashboard');
 
-    Route::group(['prefix'=>'categories'], function(){
+    Route::group(['prefix'=>'product-categories'], function(){
         Route::get('','ProductCategoryController@index')->name('product-categories.index');
         Route::get('/create','ProductCategoryController@create')->name('product-categories.create');
         Route::post('','ProductCategoryController@store')->name('product-categories.store');
