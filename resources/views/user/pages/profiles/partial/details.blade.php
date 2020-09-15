@@ -1,8 +1,10 @@
 <div class="d-flex justify-content-between">
     <div class="d-flex flex-column justify-content-center">
         <div class="d-flex">
-            @If(Auth()->user()->userProfile->avatar != null)
-                <img class="rounded-circle" src="{{asset(Auth()->user()->userProfile->avatar)}}" id="uploadPreview"   style="width: 120px;height: 120px" alt="">
+            @If(Auth()->user()->userProfile != null)
+                @if(Auth()->user()->userProfile->avatar != null)
+                    <img class="rounded-circle" src="{{asset(Auth()->user()->userProfile->avatar)}}" id="uploadPreview"   style="width: 120px;height: 120px" alt="">
+                @endif
             @else
                 <img class="rounded-circle" src="{{asset('user/assets/images/avatar.png')}}" id="uploadPreview"   style="width: 120px;height: 120px" alt="">
             @endif
