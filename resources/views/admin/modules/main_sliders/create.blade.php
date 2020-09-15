@@ -1,5 +1,5 @@
 @extends('admin.layouts.admin')
-@section('title', "Home")
+@section('title', "New MainSlider")
 @section('content')
 
     <div class="row">
