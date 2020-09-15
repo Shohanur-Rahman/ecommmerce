@@ -42,6 +42,8 @@ class UserController extends Controller
             'password' => Hash::make($data['password']),
         ]);
 
+         $user->userProfile()->create();
+
          $email = $data['email'];
 
          Mail::send('emails.welcome-mail', $user->toArray(), function($message) use($email){
