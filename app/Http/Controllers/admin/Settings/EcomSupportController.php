@@ -33,7 +33,7 @@ class EcomSupportController extends Controller
            'is_published' =>$request->has('image_url')
         ]);
 
-        return redirect(route('ecom-supports.index'))->with('success','New E-commerce Support Created Successfully');
+        return redirect(route('ecom-supports.index'))->with('success','E-commerce support has been created successfully');
     }
 
     public function edit(EcomSupport $ecomSupport)
@@ -64,13 +64,13 @@ class EcomSupportController extends Controller
 
 
 
-        return redirect(route('ecom-supports.index'))->with('success','E-commerce Support Successfully');
+        return redirect(route('ecom-supports.index'))->with('success','E-commerce support has been Updated successfully');
     }
 
     public function destroy(EcomSupport $ecomSupport)
     {
         $ecomSupport->delete();
 
-        return redirect(route('ecom-supports.index'))->with('success','E-commerce Support Successfully');
+        return redirect(route('ecom-supports.index'))->with('success','E-commerce support has been deleted successfully');
     }
 }

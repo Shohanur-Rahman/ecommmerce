@@ -18,7 +18,7 @@
                                 @csrf
                                 <div class="form-group">
                                     <label for="no_of_product">Name</label>
-                                    <input type="text" class="form-control" id="name" placeholder="Enter E-commerce Support Name" name="name" required="required" data-parsley-error-message="Enter E-commerce Support name" value="{{old('name')}}">
+                                    <input type="text" class="form-control" id="name" placeholder="Enter E-commerce Support Name" name="name" required="required"  value="{{old('name')}}" data-parsley-required-message="Enter E-commerce Support name"  data-parsley-maxlength="100" data-parsley-trigger="change" />
                                 </div>
 
                                 <div class="form-group">
@@ -53,7 +53,7 @@
                                         </div>
                                     </div>
                                 </div>
-                                <button type="submit" class="btn btn-primary mr-2">Submit</button>
+                                <button type="submit" class="btn btn-primary mr-2">Setting Save</button>
 
                             </form>
 

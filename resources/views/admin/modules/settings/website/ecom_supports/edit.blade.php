@@ -19,7 +19,7 @@
                                 @csrf
                                 <div class="form-group">
                                     <label for="no_of_product">Name</label>
-                                    <input type="text" class="form-control" id="name" placeholder="Enter E-commerce Support Name" name="name" required="required" data-parsley-error-message="Enter E-commerce Support name" value="{{$ecomSupport->name ?? old('name')}}">
+                                    <input type="text" class="form-control" id="name" placeholder="Enter E-commerce Support Name" name="name" data-parsley-maxlength="100" data-parsley-trigger="change" required="required" data-parsley-required-message="Enter E-commerce Support name" value="{{$ecomSupport->name ?? old('name')}}">
                                 </div>
 
                                 <div class="form-group">
