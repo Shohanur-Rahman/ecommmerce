@@ -18,7 +18,7 @@
                                 @csrf
                                 <div class="form-group">
                                     <label for="no_of_product">Number of Products</label>
-                                    <input type="number" class="form-control" id="no_of_product" placeholder="10" name="no_of_product" required="required" data-parsley-max="10" data-parsley-required-message="Enter Number of Products">
+                                    <input type="number" class="form-control" id="no_of_product" placeholder="10" name="no_of_product" required="required" data-parsley-max="20" data-parsley-required-message="Enter Number of Products">
                                 </div>
 
                                @include('admin.modules.settings.website.product_features.partial.create-category')
@@ -35,7 +35,7 @@
                                 </div>
                                 </div>
 
-                                <button type="submit" class="btn btn-primary mr-2">Submit</button>
+                                <button type="submit" class="btn btn-primary mr-2">Save Setting</button>
 
                             </form>
 

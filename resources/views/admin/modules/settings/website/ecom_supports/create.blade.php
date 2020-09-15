@@ -53,7 +53,7 @@
                                         </div>
                                     </div>
                                 </div>
-                                <button type="submit" class="btn btn-primary mr-2">Setting Save</button>
+                                <button type="submit" class="btn btn-primary mr-2">Save Setting</button>
 
                             </form>
 
