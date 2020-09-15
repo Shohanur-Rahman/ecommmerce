@@ -26,7 +26,7 @@ class ProductBrandsController extends Controller
 
     public function create()
     {
-        $categories = ProductCategory::all();
+        $categories = ProductCategory::where('parent_id',0)->with('user','childrens.childrens.user')->get();
     	return view('admin.modules.brands.create', compact("categories"));
     }
 
@@ -148,18 +148,13 @@ class ProductBrandsController extends Controller
         return redirect()->route('brands.index')->with('message', 'Your brand has been successfully updated.');
     }
 
-    public function destroy($id)
+    public function destroy(ProductBrands $brand)
     {
-        $brand = ProductBrands::findOrFail($id);
-
-        if($brand == null)
-            return view('not_found');
-
+        $child = $brand->categories()->delete();
+        if($brand->image)
+            @unlink($brand->image);
         $brand->delete();
-
-        $categoriMap = ProductBrandCategoryMap::where('brand_id', $id)->delete();
-
-        return redirect()->route('brands.index')->with('message', 'Your brand has been successfully delete.');
+        return redirect()->route('brands.index')->with('message', 'Your brand has been successfully deleted.');
 
     }
 }

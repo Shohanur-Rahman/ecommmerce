@@ -1,10 +1,10 @@
 @php
     function activeLink($path){
-        return request()->routeIs($path.'*') ? 'text-success' : '';
+        return request()->routeIs($path.'*') ? 'active' : '';
     }
 
     function userActiveLink($path){
-     return request()->is('*'.$path.'*') ? 'text-success' : '';
+     return request()->is('*'.$path.'*') ? 'active' : '';
     }
 
 @endphp

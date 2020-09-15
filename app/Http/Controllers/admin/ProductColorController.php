@@ -28,7 +28,7 @@ class ProductColorController extends Controller
             'color'=>$request['color'],
         ]);
 
-        return redirect(route('product-colors.index'))->with('success','Product Color has been created Successfully');
+        return redirect(route('product-colors.index'))->with('success','Your product color has been successfully added.');
     }
 
     public function edit(ProductColor $productColor)
@@ -44,13 +44,13 @@ class ProductColorController extends Controller
             'color'=>$request['color'],
         ]);
 
-        return redirect(route('product-colors.index'))->with('success','Product Color has been updated successfully');
+        return redirect(route('product-colors.index'))->with('success','Your product color has been successfully updated.');
     }
 
     public function destroy(ProductColor $productColor)
     {
         $productColor->delete();
 
-        return redirect(route('product-colors.index'))->with('success','Product Color has been deleted successfully');
+        return redirect(route('product-colors.index'))->with('success','Your product color has been successfully deleted.');
     }
 }

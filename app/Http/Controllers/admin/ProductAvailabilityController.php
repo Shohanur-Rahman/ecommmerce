@@ -28,7 +28,7 @@ class ProductAvailabilityController extends Controller
             'days'=>$request['demo3']
         ]);
 
-        return redirect(route('product-availabilities.index'))->with('success','Product Availability has been created successfully');
+        return redirect(route('product-availabilities.index'))->with('success','Your product availability has been successfully created.');
     }
 
     public function edit(ProductAvailability $productAvailability)
@@ -45,13 +45,13 @@ class ProductAvailabilityController extends Controller
             'days'=>$request['demo3']
         ]);
 
-        return redirect(route('product-availabilities.index'))->with('success','Product Availability has been update successfully');
+        return redirect(route('product-availabilities.index'))->with('success','Your product availability has been successfully updated.');
     }
 
     public function destroy(ProductAvailability $productAvailability)
     {
         $productAvailability->delete();
 
-        return redirect(route('product-availabilities.index'))->with('success','Product Availability has been deleted successfully ');
+        return redirect(route('product-availabilities.index'))->with('success','Your product availability has been successfully deleted.');
     }
 }

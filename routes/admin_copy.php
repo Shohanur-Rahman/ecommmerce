@@ -7,7 +7,7 @@ Route::group(['prefix' => 'brands'], function () {
 	Route::post('/', 'ProductBrandsController@store')->name('brands.store');
 	Route::get('/{id}/edit', 'ProductBrandsController@edit')->name('brands.edit');
 	Route::patch('/{id}', 'ProductBrandsController@update')->name('brands.update');
-	Route::delete('/{id}', 'ProductBrandsController@destroy')->name('brands.destroy');
+	Route::delete('/{brand}', 'ProductBrandsController@destroy')->name('brands.destroy');
 });
 
 Route::group(['prefix' => 'tags'], function () {

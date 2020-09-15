@@ -86,7 +86,7 @@ img.table-image {
 
 .bootstrap-touchspin .btn {
     padding: 5px 15px;
-    font-size: 16px; 
+    font-size: 16px;
 }
 
 .sidebar-menu li a{
@@ -101,6 +101,7 @@ img.table-image {
 
 .sidebar-menu > li.active > a, .sidebar-menu > li.menu-open > a,
 .sidebar-menu li .treeview-menu li a:hover,
+.sidebar-menu li .treeview-menu li a.active,
 .sidebar-menu > li.active > a i, .sidebar-menu li a:hover i,
 .sidebar-menu > li > a:hover, .sidebar-menu > li.active > a, .sidebar-menu > li.menu-open > a,
 .sidebar-menu > li.active > a, .sidebar-menu > li.menu-open > a > i {
@@ -144,9 +145,6 @@ overflow-y: hidden;
     font-size: 28px;
 }
 
-.grid-icon.approve {
-    color: green;
-}
-.grid-icon.not-approve {
-    color: red;
+.k-widget.k-combobox{
+    width: 100%;
 }

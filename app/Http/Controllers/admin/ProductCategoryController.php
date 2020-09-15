@@ -42,7 +42,7 @@ class ProductCategoryController extends Controller
             'is_top_menu'=>$request->has('is_top_menu'),
         ]);
 
-        return redirect(route('product-categories.index'))->with('success','New ProductCategory Added Successfully');
+        return redirect(route('product-categories.index'))->with('success','Your product category has been successfully added.');
     }
 
     public function edit(ProductCategory $productCategory)
@@ -70,7 +70,7 @@ class ProductCategoryController extends Controller
             'is_top_menu'=>$request->has('is_top_menu'),
         ]);
 
-        return redirect(route('product-categories.index'))->with('success','Category Updated Successfully');
+        return redirect(route('product-categories.index'))->with('success','Your product category has been successfully updated.');
     }
 
     public function destroy(ProductCategory $productCategory)
@@ -83,7 +83,7 @@ class ProductCategoryController extends Controller
 
         $productCategory->delete();
 
-        return redirect(route('product-categories.index'))->with('success','Category Deleted Successfully');
+        return redirect(route('product-categories.index'))->with('success','Your product category has been successfully deleted.');
     }
 
 }

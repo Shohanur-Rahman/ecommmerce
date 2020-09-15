@@ -32,7 +32,7 @@ class ProductTagController extends Controller
 
         $tag->save();
 
-        return redirect()->route('tags.index')->with('message', 'Your tag has been successfully added.');
+        return redirect()->route('tags.index')->with('message', 'Your product tab has been successfully added.');
     }
 
     public function edit($id)
@@ -54,7 +54,7 @@ class ProductTagController extends Controller
         $tag->name = $req->name;
         $tag->save();
 
-        return redirect()->route('tags.index')->with('message', 'Your tag has been successfully updated.');
+        return redirect()->route('tags.index')->with('message', 'Your product tab has been successfully updated.');
     }
 
 
@@ -66,7 +66,7 @@ class ProductTagController extends Controller
 
         $tag->delete();
 
-        return redirect()->route('tags.index')->with('message', 'Your tag has been successfully delete.');
+        return redirect()->route('tags.index')->with('message', 'Your product tag has been successfully deleted.');
 
     }
 }
