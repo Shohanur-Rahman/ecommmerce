@@ -40,6 +40,16 @@ class User extends Authenticatable
         'email_verified_at' => 'datetime',
     ];
 
+//    protected static function boot()
+//    {
+//        parent::boot();
+//
+//        static::created(function ($user) {
+//            $user->userProfile()->create([]);
+//        });
+//    }
+
+
     public function getUserTypeAttribute($userType)
     {
         return ucfirst($userType);
