@@ -1,5 +1,5 @@
 @extends('admin.layouts.admin')
-@section('title', "Home")
+@section('title', "Arrival Tab")
 @section('content')
 
     <div class="row">
@@ -17,7 +17,7 @@
                     </p>
 
                     <p>
-                        <a class="btn btn-primary" href="{{route('arrivals.create')}}">New Tab</a>
+                        <a class="btn btn-primary" href="{{route('arrivals.create')}}">New Arrival</a>
                     </p>
 
 
