@@ -26,6 +26,7 @@
                         <tr>
                             <th>Id</th>
                             <th>Category Name</th>
+                            <th>Number Of Product</th>
                             <th>Show Top Menu</th>
                             <th>Created date</th>
                             <th>Action</th>
@@ -37,6 +38,7 @@
                             <tr>
                                 <td>{{$productFeature->id}}</td>
                                 <td>{{$productFeature->category->category_name ?? ''}}</td>
+                                <td>{{$productFeature->no_of_product}}</td>
                                 <td><i class="{{ $productFeature->is_published == true ? 'zmdi zmdi-check grid-icon approve' : 'zmdi zmdi-close grid-icon not-approve' }}"></i></td>
                                 <td>{{$productFeature->created_at->format('d F Y')}}</td>
                                 <td>
