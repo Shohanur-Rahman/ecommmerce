@@ -1,5 +1,5 @@
 @extends('admin.layouts.admin')
-@section('title', "Home")
+@section('title', "New Product Size")
 @section('content')
 
     <div class="row">
@@ -18,13 +18,13 @@
                                 @csrf
                                 <div class="form-group">
                                     <label for="size">Product Size</label>
-                                    <input type="text" class="form-control" id="size" placeholder="Enter Product Size" name="size" required="required" data-parsley-error-message="Enter Product Size">
+                                    <input type="text" class="form-control" id="size" placeholder="Enter Product Size" name="size" required="required" data-parsley-maxlength="15" data-parsley-required-message="Enter Product Size">
                                 </div>
 
-                                <button type="submit" class="btn btn-primary mr-2">Submit</button>
+                                <button type="submit" class="btn btn-success mr-2 float-right">Save Product Size</button>
                             </form>
 
-                            <a href="{{route('product-sizes.index')}}" class="btn btn-danger">Back to Product Sizes</a>
+                            <a href="{{route('product-sizes.index')}}" class="btn btn-danger float-left">Back to Product Sizes</a>
                         </div>
                     </div>
 

@@ -28,7 +28,7 @@ class ProductSizeController extends Controller
             'size'=>$request['size'],
         ]);
 
-        return redirect(route('product-sizes.index'))->with('success','New Product Size Created Successfully');
+        return redirect(route('product-sizes.index'))->with('success','Product Size has been created successfully');
     }
 
     public function edit(ProductSize $productSize)
@@ -44,13 +44,13 @@ class ProductSizeController extends Controller
             'size'=>$request['size'],
         ]);
 
-        return redirect(route('product-sizes.index'))->with('success','Product Size Updated Successfully');
+        return redirect(route('product-sizes.index'))->with('success','Product Size has been updated successfully');
     }
 
     public function destroy(ProductSize $productSize)
     {
         $productSize->delete();
 
-        return redirect(route('product-sizes.index'))->with('success','Product Size Deleted Successfully');
+        return redirect(route('product-sizes.index'))->with('success','Product Size has been deleted successfully');
     }
 }
