@@ -1,23 +1,22 @@
 <div class="d-flex justify-content-between">
     <div class="d-flex flex-column justify-content-center">
         <div class="d-flex">
-            @If(Auth()->user()->userProfile != null)
-                @if(Auth()->user()->userProfile->avatar != null)
+
+             @if(Auth()->user()->userProfile->avatar != null)
                     <img class="rounded-circle" src="{{asset(Auth()->user()->userProfile->avatar)}}" id="uploadPreview"   style="width: 120px;height: 120px" alt="">
-                @endif
-            @else
+             @else
                 <img class="rounded-circle" src="{{asset('user/assets/images/avatar.png')}}" id="uploadPreview"   style="width: 120px;height: 120px" alt="">
-            @endif
+             @endif
 
             <div class="form-group col-3" style="margin-top: -10px">
                 <form action="{{route('avatar.update')}}" method="post" enctype="multipart/form-data">
                     @method('PATCH')
                     @csrf
                     <label for="imgInp" class="upload-preview">
-                        <img src="{{asset('images/noimage.PNG')}}" />
+                        <img src="{{asset('images/noimage.PNG')}}"/>
                     </label>
 
-                    <input type="file"  name="avatar" class="hdn-uploder d-none" id="imgInp" required="required" accept="image/*" data-parsley-error-message="Upload Main Slider image"/>
+                    <input type="file"  name="avatar" class="hdn-uploder d-none" id="imgInp" required="required" accept="image/*" data-parsley-error-message="Upload Profile image"/>
                     <button class="btn btn-primary btn-sm ml-4"><small>Upload</small></button>
                 </form>
             </div>

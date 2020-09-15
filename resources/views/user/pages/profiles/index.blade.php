@@ -11,7 +11,12 @@
                 <div class="card border-0">
                     <div class="bg-white">
                         <h3 class="text-uppercase">My Dashboard</h3>
-                        <a class="text-white" href="{{route('dashboard')}}"><button class="btn btn-primary w-100 my-2">Go Seller Page</button></a>
+                        @if($fillUp)
+                            <a class="text-white" href="{{route('dashboard')}}"><button class="btn btn-primary w-100 my-2">Apply For Seller</button></a>
+                        @else
+                            <a class="text-white" href="{{route('profiles.edit')}}"><button class="btn btn-primary w-100 my-2">Fill Up Your Profile </button></a>
+                        @endif
+
                     </div>
                     <div class="dashboard">
                         <div class="welcome-msg"><strong class=" text-black font-weight-bold">Hello, {{$user->name}}!</strong>

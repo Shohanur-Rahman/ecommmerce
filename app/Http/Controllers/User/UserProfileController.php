@@ -8,17 +8,32 @@ use App\Models\User\ShippingAddress;
 use App\Models\User\UserProfile;
 use App\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Arr;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
+use phpDocumentor\Reflection\Types\False_;
 
 class UserProfileController extends Controller
 {
     public function index()
     {
-        $shippingAddresses = ShippingAddress::all();
         $user = Auth::user();
 
-        return view('user.pages.profiles.index',compact('shippingAddresses','user'));
+        $userId = $user->id;
+
+        $shippingAddresses = ShippingAddress::where('user_id',$userId)->get();
+
+        $arrayProfiles = UserProfile:: Where('user_id',$userId)->first()->toArray();
+
+        $fillUp = true;
+        foreach ($arrayProfiles as $profile){
+            if($profile == null){
+                $fillUp = false;
+            };
+
+        }
+
+        return view('user.pages.profiles.index',compact('shippingAddresses','user','fillUp'));
     }
 
     public function edit()
@@ -33,16 +48,9 @@ class UserProfileController extends Controller
     {
         $user = Auth::user();
 
-        if($user->userProfile != null){
-            $this->validate($request,[
-                'secondary_email' => 'required|string|email|max:255|unique:user_profiles,secondary_email,'.$user->userProfile->id
-            ]);
-        }
-
-        if($user->userProfile === null){
-            $user->userProfile()->create($this->requestField($request));
-        }
-
+        $this->validate($request,[
+            'secondary_email' => 'required|string|email|max:255|unique:user_profiles,secondary_email,'.$user->userProfile->id
+        ]);
 
         $user->userProfile()->update($this->requestField($request));
 
@@ -76,7 +84,7 @@ class UserProfileController extends Controller
     {
         $userProfile =  Auth::user()->UserProfile;
 
-        if($userProfile->image_url){
+        if($request->file('image_url')){
             @unlink($userProfile->image_url);
         }
 
@@ -91,8 +99,23 @@ class UserProfileController extends Controller
 
     public function requestField($request)
     {
+        $helper = new HelperController();
+        $imageUpload = $helper->uploadImage($request->file('nid_image'), 'user/profiles/nid/');
+        $oldImage = auth()->user()->userProfile->nid_image;
+
+        if($imageUpload ){
+            if($oldImage){
+                @unlink($oldImage);
+            }
+        }else{
+            $imageUpload = $oldImage;
+        }
+
         return [
             'secondary_email'=>$request['secondary_email'],
+            'dob'=>$request['dob'],
+            'nid'=>$request['nid'],
+            'nid_image'=>$imageUpload,
             'phone'=>$request['phone'],
             'house'=>$request['house'],
             'road'=>$request['road'],
