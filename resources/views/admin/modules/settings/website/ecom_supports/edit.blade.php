@@ -1,5 +1,5 @@
 @extends('admin.layouts.admin')
-@section('title', "Edit Arrival Tab")
+@section('title', "Edit Ecom Support")
 @section('content')
 
     <div class="row">
@@ -54,11 +54,11 @@
                                     </div>
                                 </div>
 
-                                <button type="submit" class="btn btn-primary mr-2">Setting Update</button>
+                                <button type="submit" class="btn btn-success mr-2 float-right">Setting Update</button>
 
                             </form>
 
-                            <a href="{{route('ecom-supports.index')}}" class="btn btn-danger">Back to E-commerce Support</a>
+                            <a href="{{route('ecom-supports.index')}}" class="btn btn-danger float-left">Back to E-commerce Support</a>
                         </div>
                     </div>
 

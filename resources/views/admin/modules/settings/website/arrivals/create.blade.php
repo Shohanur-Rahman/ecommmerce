@@ -18,7 +18,7 @@
                                 @csrf
                                 <div class="form-group">
                                     <label for="no_of_product">Number of Products</label>
-                                    <input type="number" class="form-control" id="name" placeholder="10" name="no_of_product" required="required" data-parsley-error-message="Enter Number of Product">
+                                    <input type="number" class="form-control" id="name" placeholder="10" name="no_of_product" required="required" data-parsley-min="5" data-parsley-max="20"  data-parsley-required-message="Enter Number of Product">
                                 </div>
 
                                 <div class="form-group">
@@ -53,11 +53,11 @@
                                 </div>
                                 </div>
 
-                                <button type="submit" class="btn btn-primary mr-2">Submit</button>
+                                <button type="submit" class="btn btn-success mr-2 float-right">Update Setting</button>
 
                             </form>
 
-                            <a href="{{route('arrivals.index')}}" class="btn btn-danger">Back to Arrivals Tab</a>
+                            <a href="{{route('arrivals.index')}}" class="btn btn-danger float-left">Back to Arrivals Tab</a>
                         </div>
                     </div>
 

@@ -41,7 +41,7 @@ class NewArrivalController extends Controller
     	$tab->is_published= $request->has('is_published');
     	$tab->save();
 
-    	return redirect(route('arrivals.index'))->with('success','Your arrivals tab has been successfully added.');
+    	return redirect(route('arrivals.index'))->with('success','Arrivals tab has been created successfully.');
     }
 
     public function update(Request $request, $id)
@@ -53,6 +53,6 @@ class NewArrivalController extends Controller
     	$tab->is_published= $request->has('is_published');
     	$tab->save();
 
-    	return redirect(route('arrivals.index'))->with('success','Your arrivals tab has been successfully updated.');
+    	return redirect(route('arrivals.index'))->with('success','Arrivals tab has been updated successfully .');
     }
 }

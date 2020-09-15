@@ -36,11 +36,11 @@
                                     </div>
                                 </div>
 
-                                <button type="submit" class="btn btn-primary mr-2">Setting Update</button>
+                                <button type="submit" class="btn btn-primary mr-2 float-right">Setting Update</button>
 
                             </form>
 
-                            <a href="{{route('product-features.index')}}" class="btn btn-danger">Back to Product Feature</a>
+                            <a href="{{route('product-features.index')}}" class="btn btn-danger float-left">Back to Product Feature</a>
                         </div>
                     </div>
 

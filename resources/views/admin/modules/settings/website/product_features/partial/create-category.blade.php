@@ -1,5 +1,5 @@
 <div class="form-group">
-    <label for="category_id">Select New Arrivals Category</label>
+    <label for="category_id">Select New Product Feature Category</label>
     <select name="category_id" id="category_id" class="form-control" required="required" data-parsley-error-message="Enter Category Name is Required">
         <option value="">Selected Category</option>
         @foreach($categories as $category)

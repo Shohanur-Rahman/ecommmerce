@@ -1,5 +1,5 @@
 @extends('admin.layouts.admin')
-@section('title', "Home")
+@section('title', "Ecom Support")
 @section('content')
 
     <div class="row">
