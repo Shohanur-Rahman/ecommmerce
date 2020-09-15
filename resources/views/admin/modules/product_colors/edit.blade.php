@@ -19,13 +19,13 @@
                                 @csrf
                                 <div class="form-group">
                                     <label for="color">Product Color</label>
-                                    <input type="text" class="form-control" value="{{$productColor->color ?? old('color')}}" id="color" placeholder="Enter Product Color" name="color" required="required" data-parsley-error-message="Enter Product Color">
+                                    <input type="text" class="form-control" value="{{$productColor->color ?? old('color')}}" id="color" placeholder="Enter Product Color" name="color" required="required" data-parsley-maxlength="15" data-parsley-required-message="Enter Product Color">
                                 </div>
 
-                                <button type="submit" class="btn btn-primary mr-2">Submit</button>
+                                <button type="submit" class="btn btn-success mr-2 float-right">Update Product Color</button>
                             </form>
 
-                            <a href="{{route('product-colors.index')}}" class="btn btn-danger">Back to Product Color</a>
+                            <a href="{{route('product-colors.index')}}" class="btn btn-danger float-left">Back to Product Color</a>
                         </div>
                     </div>
 

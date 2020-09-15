@@ -47,8 +47,6 @@
                                         <button class="btn btn-outline-danger table-btn btn-sm"  title="Delete"><i class="zmdi zmdi-delete"></i></button>
                                     </form>
                                 </td>
-
-
                             </tr>
 
                         @endforeach
