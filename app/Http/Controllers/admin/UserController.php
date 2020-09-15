@@ -33,6 +33,6 @@ class UserController extends Controller
             'admin_comment'=>$request['admin_comment'],
         ]);
 
-        return redirect(route('users.index',$type))->with('success','User Information Updated Successfully');
+        return redirect(route('users.index',$type))->with('success','User information has been updated successfully');
     }
 }

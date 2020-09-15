@@ -1,5 +1,5 @@
 @extends('admin.layouts.admin')
-@section('title', "Home")
+@section('title', "User Edit")
 @section('content')
 
     <div class="row">
@@ -14,17 +14,17 @@
 
                     <div class="row">
                         <div class="col-sm-12 col-xs-12">
-                            <form method="post" action="{{route('users.update',[$user->user_type,$user->id])}}" class="d-inline">
+                            <form method="post" action="{{route('users.update',[$user->user_type,$user->id])}}" class="d-inline" data-parsley-validate>
                                 @method('PATCH')
                                 @csrf
                                 <div class="form-group">
                                     <label for="name">Name</label>
-                                    <input type="text" class="form-control" id="name" value="{{$user->name ?? old('name')}}" placeholder="Enter User name" name="name" required="required" data-parsley-error-message="Enter User name">
+                                    <input type="text" class="form-control" id="name" value="{{$user->name ?? old('name')}}" placeholder="Enter User name" name="name" required="required" data-parsley-maxlength="40" data-parsley-required-message="Enter User name">
                                 </div>
 
                                 <div class="form-group">
                                     <label for="email">Email</label>
-                                    <input type="email" class="form-control" id="email" value="{{$user->email }}" placeholder="Enter User email" name="email" required="required" data-parsley-error-message="Enter User email">
+                                    <input type="email" class="form-control" id="email" value="{{$user->email }}" placeholder="Enter User email" name="email" required="required" data-parsley-maxlength="50"  data-parsley-requireed-message="Enter User email">
                                 </div>
 
                                 <div class="form-group">
@@ -50,10 +50,10 @@
                                     <input type="text" class="form-control" id="admin_comment" value="{{$user->admin_comments ?? old('admin_comment')}}" placeholder="Enter Admin Comments" name="admin_comment"  data-parsley-error-message="Enter Admin Comments">
                                 </div>
 
-                                <button type="submit" class="btn btn-primary mr-2">Submit</button>
+                                <button type="submit" class="btn btn-success mr-2 float-right">Submit</button>
                             </form>
 
-                            <a href="{{route('users.index',strtolower($user->user_type))}}" class="btn btn-danger">Back to Warehouses</a>
+                            <a href="{{route('users.index',strtolower($user->user_type))}}" class="btn btn-danger float-left">Back to Warehouses</a>
                         </div>
                     </div>
 
