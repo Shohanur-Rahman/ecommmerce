@@ -19,7 +19,7 @@
                                 @csrf
                                 <div class="form-group">
                                     <label for="no_of_product">Number of Products</label>
-                                    <input type="number" class="form-control" id="name" placeholder="Enter Category name" name="no_of_product" required="required" data-parsley-error-message="Enter Category name" value="{{$productFeature->no_of_product}}">
+                                    <input type="number" class="form-control" id="name" placeholder="Enter Category name" name="no_of_product" required="required" data-parsley-error-message="Enter Number of Products" value="{{$productFeature->no_of_product}}">
                                 </div>
 
                                 @include('admin.modules.settings.website.product_features.partial.edit-category')
@@ -36,7 +36,7 @@
                                     </div>
                                 </div>
 
-                                <button type="submit" class="btn btn-primary mr-2">Submit</button>
+                                <button type="submit" class="btn btn-primary mr-2">Setting Update</button>
 
                             </form>
 

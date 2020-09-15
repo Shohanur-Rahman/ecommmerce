@@ -29,7 +29,7 @@ class ProductFeatureController extends Controller
             'is_published'=>$request->has('is_published'),
         ]);
 
-        return redirect(route('product-features.index'))->with('success','New Product Feature Created Successfully');
+        return redirect(route('product-features.index'))->with('success','product Feature has been created successfully');
     }
 
     public function edit(ProductFeature $productFeature)
@@ -47,13 +47,13 @@ class ProductFeatureController extends Controller
             'is_published'=>$request->has('is_published'),
         ]);
 
-        return redirect(route('product-features.index'))->with('success','Product Feature Updated Successfully');
+        return redirect(route('product-features.index'))->with('success','product Feature has been updated successfully');
     }
 
     public function destroy(ProductFeature $productFeature)
     {
         $productFeature->delete();
 
-        return redirect(route('product-features.index'))->with('success','Product Feature Deleted Successfully');
+        return redirect(route('product-features.index'))->with('success','product Feature has been deleted successfully');
     }
 }

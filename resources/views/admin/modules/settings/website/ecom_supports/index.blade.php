@@ -44,7 +44,8 @@
                                 <td><i class="{{ $ecomSupport->is_published == true ? 'zmdi zmdi-check grid-icon approve' : 'zmdi zmdi-close grid-icon not-approve' }}"></i></td>
                                 <td>{{$ecomSupport->created_at->format('d F Y')}}</td>
                                 <td>
-                                    <a class="btn btn-outline-primary table-btn btn-sm" href="{{route('ecom-supports.edit', $ecomSupport->id)}}" title="Edit"><i class="zmdi zmdi-edit"></i></a>
+                                    <a class="btn btn-outline-primary table-btn btn-sm" href="{{route('ecom-supports.edit', $ecomSupport->id)}}" title="Edit">
+                                        <i class="zmdi zmdi-edit"></i></a>
 
                                     <form class="d-inline"  action="{{route('ecom-supports.destroy',$ecomSupport->id)}}" method="post">
                                         @method('DELETE')
