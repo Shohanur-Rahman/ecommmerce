@@ -39,7 +39,7 @@ class MainSliderController extends Controller
             'image_url'=>$helper->uploadImage($request->File('image_url'), 'uploads/sliders/mainSlider/'),
         ]);
 
-        return redirect(route('main-sliders.index'))->with('success','Main Slider is Created Successfully');
+        return redirect(route('main-sliders.index'))->with('success','Main Slider has been created successfully');
     }
 
     public function edit(MainSlider $mainSlider)
@@ -71,13 +71,13 @@ class MainSliderController extends Controller
             'image_url'=>$imageUpload,
         ]);
 
-        return redirect(route('main-sliders.index'))->with('success','Main Slider is Updated Successfully');
+        return redirect(route('main-sliders.index'))->with('success','Main Slider has been updated successfully');
     }
 
     public function destroy( MainSlider $mainSlider)
     {
         $mainSlider->delete();
 
-        return redirect(route('main-sliders.index'))->with('success','Main Slider is Deleted Successfully');
+        return redirect(route('main-sliders.index'))->with('success','Main Slider has been deleted successfully');
     }
 }

@@ -1,5 +1,5 @@
 @extends('admin.layouts.admin')
-@section('title', "Home")
+@section('title', "MainSlider Edit")
 @section('content')
 
     <div class="row">
@@ -40,8 +40,8 @@
                                 </div>
 
                                 <div class="form-group">
-                                    <label for="categoryId">Category Name</label>
-                                    <select {{($mainSlider->category_id) ? '' : 'disabled'}} name="category_id" class="form-control" id="categoryId" data-parsley-error-message="Enter Slider category_id">
+                                    <label for="categoryId">Select Category Name</label>
+                                    <select {{($mainSlider->category_id) ? '' : 'disabled'}} name="category_id" class="form-control" id="categoryId" required data-parsley-trigger="change" data-parsley-error-message="Enter Slider category_id">
                                         <option value="">Select Category Name</option>
                                         @foreach($categories as $category)
                                             <option value="{{$category->id}}" {{($category->id===$mainSlider->category_id) ? 'selected' : ''}}>{{$category->category_name}}</option>
@@ -50,8 +50,8 @@
                                 </div>
 
                                 <div class="form-group">
-                                    <label for="productId">Product Id</label>
-                                    <select {{($mainSlider->product_id) ? '' : 'disabled'}}  name="product_id" class="form-control" id="productId" data-parsley-error-message="Enter Slider product_id">
+                                    <label for="productId">Select Product Id</label>
+                                    <select {{($mainSlider->product_id) ? '' : 'disabled'}}  name="product_id" class="form-control" id="productId" required data-parsley-trigger="change" data-parsley-error-message="Enter Slider product_id">
                                         <option value="">Select Product Id</option>
                                         @foreach($products as $product)
                                             <option value="{{$product->id}}" {{($product->id===$mainSlider->product_id) ? 'selected' : ''}}>{{$product->title}}</option>
@@ -59,10 +59,10 @@
                                     </select>
                                 </div>
 
-                                <button type="submit" class="btn btn-primary mr-2">Submit</button>
+                                <button type="submit" class="btn btn-success mr-2 float-right">Update Main Slider</button>
                             </form>
 
-                            <a href="{{route('main-sliders.index')}}" class="btn btn-danger">Back to Main Sliders</a>
+                            <a href="{{route('main-sliders.index')}}" class="btn btn-danger float-left">Back to Main Sliders</a>
                         </div>
                     </div>
 
@@ -77,6 +77,7 @@
 
                             if(categoryVal.length>=1){
                                 $('#productId').prop('disabled', 'disabled');
+                                $('#productId').removeAttr('required');
                             }else{
                                 $('#productId').removeAttr('disabled');
                             }
@@ -87,6 +88,7 @@
 
                             if(productVal.length>=1){
                                 $('#categoryId').prop('disabled', 'disabled');
+                                $('#categoryId').removeAttr('required');
                             }else{
                                 $('#categoryId').removeAttr('disabled');
                             }

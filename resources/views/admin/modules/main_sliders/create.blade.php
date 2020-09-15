@@ -18,12 +18,12 @@
                                 @csrf
                                 <div class="form-group">
                                     <label for="name">Slider Name</label>
-                                    <input type="text" class="form-control" id="name" placeholder="Enter Slider name" name="name" required="required" data-parsley-error-message="Enter Slider name">
+                                    <input type="text" class="form-control" id="name" placeholder="Enter Slider name" name="name" required="required" data-parsley-maxlength="80" data-parsley-required-message="Enter Slider name">
                                 </div>
 
                                 <div class="form-group">
                                     <label for="caption">Caption</label>
-                                    <input type="text" class="form-control" id="caption" placeholder="Enter Slider Caption" name="caption" required="required" data-parsley-error-message="Enter Slider Caption">
+                                    <input type="text" class="form-control" id="caption" placeholder="Enter Slider Caption" name="caption" required="required" data-parsley-maxlength="80" data-parsley-required-message="Enter Slider Caption">
                                 </div>
 
                                 <div class="form-group">
@@ -37,7 +37,7 @@
 
                                 <div class="form-group">
                                     <label for="categoryId">Category Name</label>
-                                    <select  name="category_id" class="form-control" id="categoryId" data-parsley-error-message="Enter Slider category_id">
+                                    <select  name="category_id" required class="form-control" id="categoryId" data-parsley-error-message="Enter Slider category_id" data-parsley-trigger="change">
                                         <option value="">Select Category Name</option>
                                         @foreach($categories as $category)
                                             <option value="{{$category->id}}">{{$category->category_name}}</option>
@@ -47,7 +47,7 @@
 
                                 <div class="form-group">
                                     <label for="productId">Product Id</label>
-                                    <select  name="product_id" class="form-control" id="productId" data-parsley-error-message="Enter Slider product_id">
+                                    <select  name="product_id" required class="form-control" id="productId" data-parsley-error-message="Enter Slider product_id" data-parsley-trigger="change">
                                         <option value="">Select Product Id</option>
                                         @foreach($products as $product)
                                             <option value="{{$product->id}}">{{$product->title}}</option>
@@ -55,10 +55,10 @@
                                     </select>
                                 </div>
 
-                                <button type="submit" class="btn btn-primary mr-2">Submit</button>
+                                <button type="submit" class="btn btn-success mr-2 float-right">Save Main Slider</button>
                             </form>
 
-                            <a href="{{route('main-sliders.index')}}" class="btn btn-danger">Back to Main Sliders</a>
+                            <a href="{{route('main-sliders.index')}}" class="btn btn-danger float-left">Back to Main Sliders</a>
                         </div>
                     </div>
 
@@ -80,6 +80,7 @@
 
                 if(categoryVal.length>=1){
                     $('#productId').prop('disabled', 'disabled');
+                    $('#productId').removeAttr('required');
                 }else{
                     $('#productId').removeAttr('disabled');
                 }
@@ -90,6 +91,7 @@
 
                 if(productVal.length>=1){
                     $('#categoryId').prop('disabled', 'disabled');
+                    $('#categoryId').removeAttr('required');
                 }else{
                     $('#categoryId').removeAttr('disabled');
                 }

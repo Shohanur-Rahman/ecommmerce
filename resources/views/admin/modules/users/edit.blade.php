@@ -50,10 +50,10 @@
                                     <input type="text" class="form-control" id="admin_comment" value="{{$user->admin_comments ?? old('admin_comment')}}" placeholder="Enter Admin Comments" name="admin_comment"  data-parsley-error-message="Enter Admin Comments">
                                 </div>
 
-                                <button type="submit" class="btn btn-success mr-2 float-right">Submit</button>
+                                <button type="submit" class="btn btn-success mr-2 float-right">Update User</button>
                             </form>
 
-                            <a href="{{route('users.index',strtolower($user->user_type))}}" class="btn btn-danger float-left">Back to Warehouses</a>
+                            <a href="{{route('users.index',strtolower($user->user_type))}}" class="btn btn-danger float-left">Back to Users</a>
                         </div>
                     </div>
 
