@@ -1,5 +1,5 @@
 @extends('admin.layouts.admin')
-@section('title', "Home")
+@section('title', "Edit Tag")
 @section('content')
 
 <div class="row">
@@ -22,8 +22,8 @@
                                 <input type="text" class="form-control" id="name" placeholder="Enter tag name" name="name" required="required" value="{{$tag->name}}" data-parsley-error-message="Enter tag name">
                             </div>
 
-                            <button type="submit" class="btn btn-primary mr-2">Update</button>
-                            <a href="{{route('tags.index')}}" class="btn btn-danger">Cancel</a>
+                            <button type="submit" class="btn btn-success float-right mr-2">Update Tag</button>
+                            <a href="{{route('tags.index')}}" class="btn btn-danger float-left">Back to Tag</a>
                         </form>
                     </div>
                 </div>

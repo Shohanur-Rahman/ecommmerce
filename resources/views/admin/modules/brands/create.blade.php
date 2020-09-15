@@ -1,5 +1,5 @@
 @extends('admin.layouts.admin')
-@section('title', "Home")
+@section('title', "New Brand")
 @section('content')
 
 @include('admin.partials.partial_assets.kendo')
@@ -21,29 +21,37 @@
                             <input type="hidden" name="categories" id="categories">
                             <div class="form-group">
                                 <label for="name">Name</label>
-                                <input type="text" class="form-control" id="name" placeholder="Enter brand name" name="name" required="required" data-parsley-error-message="Enter brand name">
+                                <input type="text" class="form-control" id="name" placeholder="Enter brand name" name="name" required="required" maxlength="20" data-parsley-error-message="Enter brand name">
                             </div>
                             <div class="form-group">
                                 <label class="form-label">Featured Image</label>
                                 <label for="imgInp" class="upload-preview">
                                     <img src="{{asset('images/noimage.PNG')}}" id="uploadPreview" />
                                 </label>
-                                <input type="file" name="imgInp" class="hdn-uploder" id="imgInp" required="required" accept="image/*" data-parsley-error-message="Upload featured image"/>
+                                <input type="file" name="imgInp" class="hdn-uploder" id="imgInp" required="required" accept="image/*" data-parsley-error-message="Upload brand image"/>
 
                             </div>
 
                             <div class="form-group">
                                 <label for="mltCategories" class="col-form-label">Categories</label>
                                 <select id="mltCategories" class="form-control" data-placeholder="Select at least one category" required="required" data-parsley-error-message="Choose at least one category">
-                                    @foreach($categories as $cat)
-                                    <option value="{{$cat->id}}">{{$cat->category_name}}</option>
+                                    @foreach($categories as $category)
+                                        <option value="{{$category->id}}">{{$category->category_name}} <b class="text-black-50">({{$category->user->user_type}})</b></option>
+                                        @foreach($category->childrens as $children)
+                                            <option value="{{$children->id}}"> {{$category->category_name}} ->{{$children->category_name}} <b class="text-black-50">({{$category->user->user_type}})</b></option>
+
+                                            @foreach($children->childrens as $leaveItem)
+                                                <option value="{{$leaveItem->id}}"> {{$category->category_name}} ->{{$children->category_name ." -> " . $leaveItem->category_name}} <b class="text-black-50">({{$category->user->user_type}})</b></option>
+                                            @endforeach
+
+                                        @endforeach
                                     @endforeach
                                 </select>
                             </div>
 
 
-                            <button type="submit" class="btn btn-primary mr-2">Submit</button>
-                            <a href="{{route('brands.index')}}" class="btn btn-danger">Back to Brands</a>
+                            <button type="submit" class="btn btn-success float-right mr-2">Save Brand</button>
+                            <a href="{{route('brands.index')}}" class="btn btn-danger float-left">Back to Brands</a>
                         </form>
                     </div>
                 </div>

@@ -18,10 +18,10 @@
                                 @csrf
                                 <div class="form-group">
                                     <label for="size">Product Size</label>
-                                    <input type="text" class="form-control" id="size" placeholder="Enter Product Size" name="size" required="required" data-parsley-maxlength="15" data-parsley-required-message="Enter Product Size">
+                                    <input type="text" class="form-control" id="size" placeholder="Enter Product Size" name="size" required="required" maxlength="5" data-parsley-error-message="Enter Product Size">
                                 </div>
 
-                                <button type="submit" class="btn btn-success mr-2 float-right">Save Product Size</button>
+                                <button type="submit" class="btn btn-success float-right mr-2">Save Product Size</button>
                             </form>
 
                             <a href="{{route('product-sizes.index')}}" class="btn btn-danger float-left">Back to Product Sizes</a>

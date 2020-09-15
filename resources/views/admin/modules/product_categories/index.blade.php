@@ -1,5 +1,5 @@
 @extends('admin.layouts.admin')
-@section('title', "Home")
+@section('title', "Product Categories")
 @section('content')
 
     <div class="row">
@@ -10,7 +10,7 @@
         <div class="col-md-12">
             <div class="card">
                 <div class="card-body">
-                    <h4 class="card-title mb-2">Our Categories</h4>
+                    <h4 class="card-title mb-2">Product Categories</h4>
                     <p class="text-muted font-14 mb-4">
                         The Buttons extension for DataTables provides a common set of options, API methods and styling to display buttons on a page
                         that will interact with a DataTable. The core library provides the based framework upon which plug-ins can built.
@@ -37,14 +37,14 @@
                         @foreach($productCategories as $category)
                             <tr>
                                 <td>{{$category->id}}</td>
-                                <td>{{($category->parent_id != 0) ?  $category->parent->category_name : $category->parent_id}}</td>
+                                <td>{{($category->parent_id != 0) ?  $category->parent->category_name : 'NA'}}</td>
                                 <td>{{$category->category_name}}</td>
 
                                 <td>
                                     @if($category->is_top_menu=== 0)
-                                        <i class="zmdi zmdi-close text-danger"></i>
+                                        <i class="zmdi zmdi-close text-danger grid-icon"></i>
                                     @else
-                                        <i class="zmdi zmdi-check text-success"></i>
+                                        <i class="zmdi zmdi-check text-success grid-icon"></i>
                                     @endif
                                 </td>
 

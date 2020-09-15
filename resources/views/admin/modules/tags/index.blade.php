@@ -1,5 +1,5 @@
 @extends('admin.layouts.admin')
-@section('title', "Home")
+@section('title', "Tags")
 @section('content')
 
 <div class="row">
@@ -37,7 +37,6 @@
                             <th>Action</th>
                         </tr>
                     </thead>
-
 
                     <tbody>
 

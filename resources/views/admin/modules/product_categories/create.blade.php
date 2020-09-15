@@ -1,5 +1,6 @@
 @extends('admin.layouts.admin')
-@section('title', "Home")
+@section('title', "New Category")
+
 @section('content')
 
     <div class="row">
@@ -18,23 +19,22 @@
                                 @csrf
                                 <div class="form-group">
                                     <label for="name">Category Name</label>
-                                    <input type="text" class="form-control" id="name" placeholder="Enter Category name" name="category_name" required="required" data-parsley-error-message="Enter Category name">
+                                    <input type="text" class="form-control" id="name" placeholder="Enter Category name" name="category_name" required="required" maxlength="20" data-parsley-error-message="Enter Category name">
 
                                     @error('category_name') <span class="text-danger">{{$message}}</span> @enderror
                                 </div>
 
                                 <div class="form-group">
-                                    <div class="checkbox d-inline">
-                                        <select name="parent_id" id="" class="form-control" required="required" data-parsley-error-message="Select Category">
-                                            <option value="">Selected Category</option>
-                                            @foreach($Categories as $category)
-                                                <option value="{{$category->id}}">{{$category->category_name}} <b class="text-black-50">({{$category->user->user_type}})</b></option>
-                                                @foreach($category->childrens as $children)
-                                                    <option value="{{$children->id}}"> ->{{$children->category_name}} <b class="text-black-50">({{$children->user->user_type}})</b></option>
-                                                @endforeach
-                                                @endforeach
-                                        </select>
-                                    </div>
+                                    <label for="parent_category_dropdown" class="w-100">Parent Category</label>
+                                    <select name="parent_id" id="parent_category_dropdown" class="form-control" data-placeholder="Select Category">
+                                        <option value="">Selected Category</option>
+                                        @foreach($Categories as $category)
+                                            <option value="{{$category->id}}">{{$category->category_name}} <b class="text-black-50">({{$category->user->user_type}})</b></option>
+                                            @foreach($category->childrens as $children)
+                                                <option value="{{$children->id}}"> {{$category->category_name . ' -> ' . $children->category_name}} <b class="text-black-50">({{$children->user->user_type}})</b></option>
+                                            @endforeach
+                                            @endforeach
+                                    </select>
                                 </div>
 
 
@@ -50,11 +50,11 @@
                                     </div>
                                 </div>
 
-                                <button type="submit" class="btn btn-primary mr-2">Submit</button>
+                                <button type="submit" class="btn btn-success mr-2 float-right">Save Category</button>
 
                             </form>
 
-                            <a href="{{route('product-categories.index')}}" class="btn btn-danger">Back to Categories</a>
+                            <a href="{{route('product-categories.index')}}" class="btn btn-danger float-left">Back to Categories</a>
                         </div>
                     </div>
 
@@ -63,4 +63,17 @@
         </div>
     </div>
 
+    @include('admin.partials.partial_assets.kendo')
+    <script type="text/javascript">
+        var parentCategoryCombo;
+        $(document).ready(function(){
+            parentCategoryCombo = $("#parent_category_dropdown").kendoComboBox().data('kendoComboBox');
+
+            parentCategoryCombo.bind("change", function () {
+                if (parentCategoryCombo.selectedIndex === -1 && parentCategoryCombo.value()) {
+                    parentCategoryCombo.value('');
+                }
+            });
+        });
+    </script>
 @endsection

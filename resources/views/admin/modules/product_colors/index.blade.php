@@ -1,5 +1,5 @@
 @extends('admin.layouts.admin')
-@section('title', "Product Color")
+@section('title', "Product Colors")
 @section('content')
 
     <div class="row">
@@ -47,6 +47,8 @@
                                         <button class="btn btn-outline-danger table-btn btn-sm"  title="Delete"><i class="zmdi zmdi-delete"></i></button>
                                     </form>
                                 </td>
+
+
                             </tr>
 
                         @endforeach

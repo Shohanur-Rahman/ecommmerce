@@ -1,5 +1,5 @@
 @extends('admin.layouts.admin')
-@section('title', "Home")
+@section('title', "Edit Brand")
 @section('content')
 
     @include('admin.partials.partial_assets.kendo')
@@ -22,7 +22,7 @@
                                 <input type="hidden" name="categories" id="categories" value="{{$existingCatMap}}">
                                 <div class="form-group">
                                     <label for="name">Name</label>
-                                    <input type="text" class="form-control" id="name" placeholder="Enter brand name" name="name" required="required" data-parsley-error-message="Enter brand name" value="{{$brand->name}}">
+                                    <input type="text" class="form-control" id="name" placeholder="Enter brand name" name="name" required="required" maxlength="20" data-parsley-error-message="Enter brand name" value="{{$brand->name}}">
                                 </div>
                                 <div class="form-group">
                                     @if($brand->image)
@@ -49,8 +49,8 @@
                                     </select>
                                 </div>
 
-                                <button type="submit" class="btn btn-primary mr-2">Submit</button>
-                                <a href="{{route('brands.index')}}" class="btn btn-danger">Back to Brands</a>
+                                <button type="submit" class="btn btn-success float-right mr-2">Update Brand</button>
+                                <a href="{{route('brands.index')}}" class="btn btn-danger float-left">Back to Brands</a>
                             </form>
                         </div>
                     </div>

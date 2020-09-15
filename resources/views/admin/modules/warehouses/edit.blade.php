@@ -1,12 +1,12 @@
 @extends('admin.layouts.admin')
-@section('title', "Home")
+@section('title', "Edit Warehouse")
 @section('content')
 
     <div class="row">
-        <div class="col-md-9">
+        <div class="col-md-12">
             <div class="card tab-pane active" id="tabProductOverview">
                 <div class="card-body">
-                    <h4 class="card-title mb-2">New Warehouse</h4>
+                    <h4 class="card-title mb-2">Edit Warehouse</h4>
                     <p class="text-muted font-14 mb-4">
                         The Buttons extension for DataTables provides a common set of options, API methods and styling to display buttons on a page
                         that will interact with a DataTable. The core library provides the based framework upon which plug-ins can built.
@@ -27,10 +27,10 @@
                                     <input type="text" class="form-control" id="name"  value="{{$warehouse->location ?? old('location')}}" placeholder="Enter Warehouses Location" name="location" required="required" data-parsley-error-message="Enter Warehouses Location">
                                 </div>
 
-                                <button type="submit" class="btn btn-primary mr-2">Submit</button>
+                                <button type="submit" class="btn btn-success float-right mr-2">Update Warehouse</button>
                             </form>
 
-                            <a href="{{route('warehouses.index')}}" class="btn btn-danger">Back to Warehouses</a>
+                            <a href="{{route('warehouses.index')}}" class="btn btn-danger float-left">Back to Warehouses</a>
                         </div>
                     </div>
 
@@ -38,28 +38,7 @@
             </div>
         </div>
 
-        <div class="col-md-3">
-            <div class="position-fixed form-tab">
-                <div class="card mb-30" align="center">
-                    <div class="card-body py-3">
-                        <div class="d-flex align-items-center pb-4">
-                            <div class="icon font-30 text-primary">
-                                <i class="fa fa-ravelry" aria-hidden="true"></i>
-                            </div>
-                            <div class="icon-text pl-4">
-                                <h5 class="mb-0">Fill up all field</h5>
-                            </div>
-                        </div>
 
-                        <div class="list-group pb-4">
-                            <a href="#tabProductOverview" data-toggle="tab" aria-expanded="false" class="list-group-item list-group-item-action nav-link active">
-                                Warehouse Information
-                            </a>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
     </div>
 
 @endsection

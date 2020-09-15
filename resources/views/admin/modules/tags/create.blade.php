@@ -1,5 +1,5 @@
 @extends('admin.layouts.admin')
-@section('title', "Home")
+@section('title', "New Tag")
 @section('content')
 
 <div class="row">
@@ -18,11 +18,11 @@
                             @csrf
                             <div class="form-group">
                                 <label for="name">Name</label>
-                                <input type="text" class="form-control" id="name" placeholder="Enter tag name" name="name" required="required" data-parsley-error-message="Enter tag name">
+                                <input type="text" class="form-control" id="name" placeholder="Enter tag name" name="name" required="required" maxlength="20" data-parsley-error-message="Enter tag name">
                             </div>
 
-                            <button type="submit" class="btn btn-primary mr-2">Save</button>
-                            <a href="{{route('tags.index')}}" class="btn btn-danger">Cancel</a>
+                            <button type="submit" class="btn btn-success float-right mr-2">Save Tag</button>
+                            <a href="{{route('tags.index')}}" class="btn btn-danger float-left">Back to Tag</a>
                         </form>
                     </div>
                 </div>
