@@ -1,5 +1,5 @@
 @extends('admin.layouts.admin')
-@section('title', "Home")
+@section('title', "New Availability")
 @section('content')
 
     <div class="row">
@@ -18,7 +18,7 @@
                                 @csrf
                                 <div class="form-group">
                                     <label for="name">Availability Name</label>
-                                    <input type="text" class="form-control" id="name" placeholder="Enter Availability name" name="name" required="required" data-parsley-error-message="Enter Availability name">
+                                    <input type="text" class="form-control" id="name" placeholder="Enter Availability name" name="name" required="required"  data-parsley-maxlength="100" data-parsley-required-message="Enter Availability name">
                                 </div>
 
                                 <div class="form-group mt-20">
@@ -28,11 +28,11 @@
                                     </div>
                                 </div>
 
-                                <button type="submit" class="btn btn-primary mr-2">Submit</button>
+                                <button type="submit" class="btn btn-success mr-2 float-right">Save Availability</button>
 
                             </form>
 
-                            <a href="{{route('product-availabilities.index')}}" class="btn btn-danger">Back to Availabilities</a>
+                            <a href="{{route('product-availabilities.index')}}" class="btn btn-danger float-left">Back to Availabilities</a>
                         </div>
                     </div>
 
