@@ -38,17 +38,22 @@
                                 </div>
 
                                 <div class="form-group">
-                                    <div class="checkbox d-inline">
-                                        <input type="checkbox" name="is_active" id="checkbox-14" value="1" {{($user->is_active===1) ? 'checked' : ''}}>
-                                        <label for="checkbox-14" class="cr">Is Active</label>
-                                    </div>
-                                </div>
-
-
-                                <div class="form-group">
                                     <label for="admin_comment">Admin Comments</label>
                                     <input type="text" class="form-control" id="admin_comment" value="{{$user->admin_comments ?? old('admin_comment')}}" placeholder="Enter Admin Comments" name="admin_comment"  data-parsley-error-message="Enter Admin Comments">
                                 </div>
+
+                                <div class="form-group">
+                                    <div class="new-checkbox">
+                                        <div class="inline-widged">
+                                            <label for="is_active" class="single-label">Is Active</label>
+                                            <label class="switch">
+                                                <input type="checkbox" id="is_active"  name="is_active" {{$user->is_active ? 'checked' : ''}}/>
+                                                <span class="slider round"></span>
+                                            </label>
+                                        </div>
+                                    </div>
+                                </div>
+
 
                                 <button type="submit" class="btn btn-success mr-2 float-right">Update User</button>
                             </form>

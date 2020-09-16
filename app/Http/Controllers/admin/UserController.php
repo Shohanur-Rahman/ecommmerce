@@ -29,7 +29,7 @@ class UserController extends Controller
             'name'=>$request['name'],
             'email'=>$request['email'],
             'user_type'=>$request['user_type'],
-            'is_active'=>$request['is_active'] ?? 0,
+            'is_active'=>$request->has('is_active'),
             'admin_comment'=>$request['admin_comment'],
         ]);
 

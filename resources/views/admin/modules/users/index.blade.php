@@ -38,7 +38,7 @@
                                 <td>{{$user->email}}</td>
                                 <td>{{$user->user_type}}</td>
                                 <td>
-                                    @if($user->is_active=== 0)
+                                    @if($user->is_active == 0)
                                         <i class="zmdi zmdi-close text-danger"></i>
                                     @else
                                         <i class="zmdi zmdi-check text-success"></i>
