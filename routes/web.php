@@ -51,4 +51,8 @@ Route::group(['middleware'=>'auth'],function(){
         Route::patch('/{shippingAddress}','User\ShippingAddressController@update')->name('shipping-address.update');
     });
 
+    Route::group(['prefix'=>'profiles/apply-vendors'],function(){
+        Route::get('/','User\ApplyVendorController@create')->name('apply-vendors.create');
+        Route::post('/','User\ApplyVendorController@store')->name('apply-vendors.store');
+    });
 });
