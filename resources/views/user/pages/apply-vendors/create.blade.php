@@ -9,6 +9,7 @@
                     <div class="card">
                         <div class="card-body p-4">
                             <form action="{{route('apply-vendors.store')}}" method="post" data-parsley-validate>
+                                <x-inform-users></x-inform-users>
                                 @csrf
                                 <div class="form-group">
                                     <label class="float-left" for="code">Verify Your Email Account</label>

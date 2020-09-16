@@ -52,6 +52,7 @@ Route::group(['middleware'=>'auth'],function(){
     });
 
     Route::group(['prefix'=>'profiles/apply-vendors'],function(){
+        Route::post('/verify-email','User\ApplyVendorController@verifyEmail')->name('verify-email.store');
         Route::get('/','User\ApplyVendorController@create')->name('apply-vendors.create');
         Route::post('/','User\ApplyVendorController@store')->name('apply-vendors.store');
     });

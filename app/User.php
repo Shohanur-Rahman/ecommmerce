@@ -3,6 +3,7 @@
 namespace App;
 
 use App\Models\ProductCategory;
+use App\Models\User\ApplyVendor;
 use App\Models\User\ShippingAddress;
 use App\Models\User\UserProfile;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
@@ -62,6 +63,10 @@ class User extends Authenticatable
     public function userProfile()
     {
         return $this->hasOne(UserProfile::class);
+    }
+
+    public function applyVendor(){
+        return $this->hasOne(ApplyVendor::class);
     }
 
     public function shippingAddresses()
