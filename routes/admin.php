@@ -85,6 +85,12 @@ Route::group(['middleware' => 'auth'], function() {
         Route::patch('/{ecomSupport}','Settings\EcomSupportController@update')->name('ecom-supports.update');
         Route::delete('/{ecomSupport}','Settings\EcomSupportController@destroy')->name('ecom-supports.destroy');
     });
+
+    Route::group(['prefix'=>'vendor-applications'], function(){
+        Route::get('/','VendorApplicationController@index')->name('vendor-applications.index');
+        Route::get('{applyVendor}/show','VendorApplicationController@show')->name('vendor-applications.show');
+        Route::patch('{applyVendor}','VendorApplicationController@update')->name('vendor-applications.update');
+    });
 });
 
 

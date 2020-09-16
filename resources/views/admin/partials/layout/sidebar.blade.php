@@ -47,12 +47,13 @@
                     <li class="treeview {{ request()->routeIs('users.*') ? 'active' : '' }}">
                         <a href="javascript:void(0)"><i class="zmdi zmdi-accounts-alt"></i> <span>Users</span> <i class="fa fa-angle-right"></i></a>
                         <ul class="treeview-menu {{ request()->routeIs('users.*') ? 'active' : '' }}">
-                            <li><a class="{{userActiveLink('super-admin')}}" href="{{route('users.index',['type'=>'super-admin'])}}">- Super Admin</a></li>
-                            <li><a class="{{request()->is('admin/users/admin*') ? 'text-success' : ''}}" href="{{route('users.index',['type'=>'admin'])}}">- Admin</a></li>
-                            <li><a class="{{userActiveLink('vendor')}}" href="{{route('users.index',['type'=>'vendor'])}}">- Vendor</a></li>
-                            <li><a class="{{userActiveLink('editor')}}" href="{{route('users.index',['type'=>'editor'])}}">- Editor</a></li>
-                            <li><a class="{{userActiveLink('developer')}}" href="{{route('users.index',['type'=>'developer'])}}">- Developer</a></li>
-                            <li><a class="{{userActiveLink('customer')}}" href="{{route('users.index',['type'=>'customer'])}}">- Customer</a></li>
+                            <li><a class="{{userActiveLink('super-admin')}}" href="{{route('users.index',['type'=>'super-admin'])}}">- Super Admins</a></li>
+                            <li><a class="{{request()->is('admin/users/admin*') ? 'text-success' : ''}}" href="{{route('users.index',['type'=>'admin'])}}">- Admins</a></li>
+                            <li><a class="{{userActiveLink('vendor')}}" href="{{route('users.index',['type'=>'vendor'])}}">- Vendors</a></li>
+                            <li><a class="{{userActiveLink('editor')}}" href="{{route('users.index',['type'=>'editor'])}}">- Editors</a></li>
+                            <li><a class="{{userActiveLink('developer')}}" href="{{route('users.index',['type'=>'developer'])}}">- Developers</a></li>
+                            <li><a class="{{userActiveLink('customer')}}" href="{{route('users.index',['type'=>'customer'])}}">- Customers</a></li>
+                            <li><a class="{{activeLink('vendor-applications')}}" href="{{route('vendor-applications.index')}}">- Vendor Applications</a></li>
                         </ul>
                     </li>
 
