@@ -12,7 +12,8 @@
                     <div class="bg-white">
                         <h3 class="text-uppercase">My Dashboard</h3>
                         @if($fillUp)
-                            <a class="text-white" href="{{route('dashboard')}}"><button class="btn btn-primary w-100 my-2">Apply For Seller</button></a>
+{{--                            <a class="text-white" href="{{route('dashboard')}}"><button class="btn btn-primary w-100 my-2">Apply For Seller</button></a>--}}
+                            <a class="text-white" href="{{route('apply-vendors.create')}}"><button class="btn btn-primary w-100 my-2">Apply For Seller</button></a>
                         @else
                             <a class="text-white" href="{{route('profiles.edit')}}"><button class="btn btn-primary w-100 my-2">Fill Up Your Profile </button></a>
                         @endif
