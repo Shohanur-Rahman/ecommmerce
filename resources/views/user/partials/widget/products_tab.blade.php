@@ -10,13 +10,13 @@
             $productItems = Illuminate\Support\Facades\DB::table('products')
             ->join('product_category_maps', 'products.id', '=', 'product_category_maps.product_id')
             ->select('products.*')
-            ->where('is_published', 1)
-            ->where('show_on_home', 1)
-            ->where($filter_key, 1)
+            ->where('product_category_maps.is_published', 1)
+            ->where('products.show_on_home', 1)
+            ->where('products.'.$filter_key, 1)
             ->where('product_category_maps.cat_id', $aTab->cat_id)
             ->take($aTab->no_of_product)
             ->get();
-        $tabCount+=2;
+        	$tabCount+=2;
 		?>
 
         @foreach($productItems as $item)
