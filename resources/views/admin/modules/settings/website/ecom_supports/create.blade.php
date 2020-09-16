@@ -53,7 +53,7 @@
                                         </div>
                                     </div>
                                 </div>
-                                <button type="submit" class="btn btn-success mr-2">Save Setting</button>
+                                <button type="submit" class="btn btn-success mr-2 float-right">Save Setting</button>
 
                             </form>
 

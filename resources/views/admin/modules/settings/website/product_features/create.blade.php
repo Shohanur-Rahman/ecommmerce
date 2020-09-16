@@ -39,7 +39,7 @@
 
                             </form>
 
-                            <a href="{{route('product-features.index')}}" class="btn btn-dange float-leftr">Back to Product Feature</a>
+                            <a href="{{route('product-features.index')}}" class="btn btn-danger float-left">Back to Product Feature</a>
                         </div>
                     </div>
 

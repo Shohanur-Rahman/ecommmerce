@@ -82,50 +82,24 @@
 	<div class="store-supports-area bg-lightblue pd-20 mt-30 mt-sm-50">
 		<div class="container">
 			<div class="row">
-				<div class="col-lg-3 col-sm-6">
-					<div class="store-support style-3">
-						<div class="support-icon">
-							<img src="{{asset('user/assets/images/icons/bank-loan.png')}}" alt="" />
-						</div>
-						<div class="support-text">
-							<strong>Free Delivery</strong>
-							<p>For all order over 99$</p>
-						</div>
-					</div>
-				</div>
-				<div class="col-lg-3 col-sm-6">
-					<div class="store-support style-3">
-						<div class="support-icon">
-							<img src="{{asset('user/assets/images/icons/bank-liquidity.png')}}" alt="" />
-						</div>
-						<div class="support-text">
-							<strong>30 Days Return</strong>
-							<p>If goods have Problems</p>
+				@php
+					$ecomSupports = \App\Models\Settings\EcomSupport::where('is_published',1)->get();
+				@endphp
+
+				@foreach($ecomSupports as $ecomSupport)
+					<div class="col-lg-3 col-sm-6">
+						<div class="store-support style-3">
+							<div class="support-icon">
+								<img src="{{asset($ecomSupport->image_url)}}" alt="" />
+							</div>
+							<div class="support-text">
+								<strong>{{$ecomSupport->name}}</strong>
+								<p>{{$ecomSupport->description}}</p>
+							</div>
 						</div>
 					</div>
-				</div>
-				<div class="col-lg-3 col-sm-6">
-					<div class="store-support style-3">
-						<div class="support-icon">
-							<img src="{{asset('user/assets/images/icons/bank-credit-card.png')}}" alt="" />
-						</div>
-						<div class="support-text">
-							<strong>Secure Payment</strong>
-							<p>100% secure payment</p>
-						</div>
-					</div>
-				</div>
-				<div class="col-lg-3 col-sm-6">
-					<div class="store-support style-3">
-						<div class="support-icon">
-							<img src="{{asset('user/assets/images/icons/bank-support.png')}}" alt="" />
-						</div>
-						<div class="support-text">
-							<strong>24/7 Support</strong>
-							<p>Dedicated support</p>
-						</div>
-					</div>
-				</div>
+				@endforeach
+
 			</div>
 		</div>
 	</div>
