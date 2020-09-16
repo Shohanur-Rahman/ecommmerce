@@ -11,8 +11,11 @@ use Illuminate\Support\Facades\DB;
 
 class ProductController extends Controller
 {
-    public function index($category)
+    public function index($category, Request $request)
     {
+
+        $page_size = $request->query('page_size') ? $request->query('page_size') : 15;
+        $requestString = $request->all();
 
         $categoryDetails = ProductCategory::where('slug', $category)->first();
         /*$products = DB::table('products')
@@ -24,9 +27,9 @@ class ProductController extends Controller
             ->paginate(5);*/
 
 
-        $products = ProductCategoryMap::with('product')->where(['cat_id' => $categoryDetails->id, 'is_published' => 1])->paginate(2);
+        $products = ProductCategoryMap::with('product')->where(['cat_id' => $categoryDetails->id, 'is_published' => 1])->paginate($page_size);
 
-        return view('user.pages.products.index', compact("products", "categoryDetails"));
+        return view('user.pages.products.index', compact("products", "categoryDetails", "requestString"));
     }
 
     public function details($category, $slug)

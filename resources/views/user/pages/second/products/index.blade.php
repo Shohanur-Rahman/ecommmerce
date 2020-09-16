@@ -1,4 +1,18 @@
+<?php 
 
+function generateQueryString($queryName, $vlue)
+{
+    $queryString ="";
+    if($queryName == "order")
+        $queryString = $queryName."=".$vlue;
+    elseif ($queryName == "page_size") {
+        $queryString = $queryName."=".$vlue;
+    }
+
+    return $queryString;
+}
+
+?>
 <!--products-area start-->
 <div class="shop-area">
     <div class="container-fluid">
@@ -261,23 +275,20 @@
                     </div>
                     <div class="col-lg-5 col-md-6">
                         <div class="products-sort">
-                            <form>
-                                <select>
-                                    <option>Default Sorting</option>
-                                    <option>Sort by A - Z</option>
-                                    <option>Sort Price Low - High</option>
-                                </select>
-                            </form>
+                            <ul>
+                                    <li><a href="{{route('product.index', $categoryDetails->slug).'?'.generateQueryString('order',0)}}">Default Sorting</a></li>
+                                    <li><a href="{{route('product.index', $categoryDetails->slug).'?'.generateQueryString('order',1)}}">Sort by A - Z</a></li>
+                                    <li><a href="{{route('product.index', $categoryDetails->slug).'?'.generateQueryString('order',2)}}">Sort Price Low - High</a></li>
+                                </ul>
                         </div>
                         <div class="products-sort">
-                            <form>
                                 <label>Show :</label>
-                                <select>
-                                    <option>12</option>
-                                    <option>8</option>
-                                    <option>4</option>
-                                </select>
-                            </form>
+                                <ul>
+                                    <li><a href="{{route('product.index', $categoryDetails->slug).'?'.generateQueryString('page_size',15)}}">15</a></li>
+                                    <li><a href="{{route('product.index', $categoryDetails->slug).'?'.generateQueryString('page_size',25)}}">25</a></li>
+                                    <li><a href="{{route('product.index', $categoryDetails->slug).'?'.generateQueryString('page_size',40)}}">40</a></li>
+                                    <li><a href="{{route('product.index', $categoryDetails->slug).'?'.generateQueryString('page_size',60)}}">60</a></li>
+                                </ul>
                         </div>
                     </div>
                     <div class="col-lg-5 col-md-12">
