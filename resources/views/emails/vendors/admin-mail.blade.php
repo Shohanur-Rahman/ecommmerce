@@ -149,7 +149,7 @@
                                                         <tbody>
                                                         <tr>
                                                             <td class="esd-block-text es-p35t es-p5b es-p30r es-p30l" align="center">
-                                                                <h1>Welcome {{$user['name']}}!</h1>
+                                                                <h1>{{$user['name']}} Applied for the vendor</h1>
                                                             </td>
                                                         </tr>
                                                         <tr>
@@ -197,7 +197,7 @@
                                                             </td>
                                                         </tr>
                                                         <tr>
-                                                            <td class="esd-block-button es-p35t es-p35b es-p10r es-p10l" align="center"><span class="es-button-border"><h1>Varify Code</h1> your seller account verfication code is {{Session::get('verify_code')}}. Thanks </span></td>
+                                                            <td class="esd-block-button es-p35t es-p35b es-p10r es-p10l" align="center"><span class="es-button-border"><h1>User Waiting for approve application Thanks </span></td>
                                                         </tr>
                                                         <tr>
                                                             <td class="esd-block-text es-p20t es-p30r es-p30l es-m-txt-l" align="left">

@@ -12,11 +12,18 @@
                     <div class="bg-white">
                         <h3 class="text-uppercase">My Dashboard</h3>
                         @if($fillUp)
-{{--                            <a class="text-white" href="{{route('dashboard')}}"><button class="btn btn-primary w-100 my-2">Apply For Seller</button></a>--}}
-                            <form action="{{route('verify-email.store')}}" method="post">
-                                @csrf
-                                <button class="btn btn-primary w-100 my-2">Apply For Seller</button>
-                            </form>
+                            @if($user->applyVendor)
+                                @if($user->applyVendor->is_approve == 1)
+                                     <a class="text-white" href="{{route('dashboard')}}"><button class="btn btn-primary w-100 my-2">Go to Seller Dashboard</button></a>
+                                @else
+                                    <a class="text-white" href="javascript:"><button class="btn btn-secondary disabled w-100 my-2">Your Request is Pending</button></a>
+                                @endif
+                            @else
+                                <form action="{{route('verify-email.store')}}" method="post">
+                                    @csrf
+                                    <button class="btn btn-primary w-100 my-2">Apply For Seller</button>
+                                </form>
+                            @endif
                         @else
                             <a class="text-white" href="{{route('profiles.edit')}}"><button class="btn btn-primary w-100 my-2">Fill Up Your Profile </button></a>
                         @endif
