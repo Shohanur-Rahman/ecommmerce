@@ -14,7 +14,7 @@
 
                     <div class="row">
                         <div class="col-sm-12 col-xs-12">
-                            <form method="post" action="{{route('users.update',[$user->user_type,$user->id])}}" class="d-inline" data-parsley-validate>
+                            <form method="post" action="{{route('users.update',[strtolower($user->user_type),$user->id])}}" class="d-inline" data-parsley-validate>
                                 @method('PATCH')
                                 @csrf
                                 <div class="form-group">
