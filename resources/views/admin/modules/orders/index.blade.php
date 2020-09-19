@@ -23,10 +23,10 @@
                             <th>Id</th>
                             <th>Name</th>
                             <th>Email</th>
-                            <th>Ordered Products/th>
+                            <th>Ordered Products</th>
                             <th>Amount</th>
                             <th>Order Status</th>
-                            <th>Created date</th>
+                            <th>Ordered Date</th>
                             <th>Action</th>
                         </tr>
                         </thead>
@@ -37,8 +37,16 @@
                                 <td>{{$order->id}}</td>
                                 <td>{{$order->user->name}}</td>
                                 <td>{{$order->user->email}}</td>
-                                <td>{{$order->user->email}}</td>
-                                <td>{{$order->user->email}}</td>
+                                <td>
+                                    @foreach($order->orderProducts as $orderProduct)
+                                       <span class="d-block"> {{$orderProduct->product->sku}}</span>
+                                    @endforeach
+                                </td>
+                                <td>
+                                    @foreach($order->orderProducts as $orderProduct)
+                                        <span class="d-block"> {{$orderProduct->product->new_price}}</span>
+                                    @endforeach
+                                </td>
                                 <td>{{$order->status}}</td>
                                 <td>{{$order->created_at->format('d F Y')}}</td>
                                 <td>
