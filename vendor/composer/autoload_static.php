@@ -592,6 +592,7 @@ class ComposerStaticInit4ff1e1c5660f37789a257002b964f8de
         'App\\Models\\Settings\\ProductFeature' => __DIR__ . '/../..' . '/app/Models/Settings/ProductFeature.php',
         'App\\Models\\User\\ApplyVendor' => __DIR__ . '/../..' . '/app/Models/User/ApplyVendor.php',
         'App\\Models\\User\\Order' => __DIR__ . '/../..' . '/app/Models/User/Order.php',
+        'App\\Models\\User\\OrderProduct' => __DIR__ . '/../..' . '/app/Models/User/OrderProduct.php',
         'App\\Models\\User\\ShippingAddress' => __DIR__ . '/../..' . '/app/Models/User/ShippingAddress.php',
         'App\\Models\\User\\Transaction' => __DIR__ . '/../..' . '/app/Models/User/Transaction.php',
         'App\\Models\\User\\UserProfile' => __DIR__ . '/../..' . '/app/Models/User/UserProfile.php',

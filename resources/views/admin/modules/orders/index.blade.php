@@ -23,9 +23,9 @@
                             <th>Id</th>
                             <th>Name</th>
                             <th>Email</th>
-                            <th>Avatar</th>
-                            <th>User Type</th>
-                            <th>Is Active</th>
+                            <th>Ordered Products/th>
+                            <th>Amount</th>
+                            <th>Order Status</th>
                             <th>Created date</th>
                             <th>Action</th>
                         </tr>
@@ -37,15 +37,9 @@
                                 <td>{{$order->id}}</td>
                                 <td>{{$order->user->name}}</td>
                                 <td>{{$order->user->email}}</td>
-                                <td><img src="{{asset($order->user->userProfile->avatar)}}" class="table-image"></td>
-                                <td>{{$order->user->user_type}}</td>
-                                <td>
-                                    @if($order->is_active=== 0)
-                                        <i class="zmdi zmdi-close text-danger"></i>
-                                    @else
-                                        <i class="zmdi zmdi-check text-success"></i>
-                                    @endif
-                                </td>
+                                <td>{{$order->user->email}}</td>
+                                <td>{{$order->user->email}}</td>
+                                <td>{{$order->status}}</td>
                                 <td>{{$order->created_at->format('d F Y')}}</td>
                                 <td>
                                     <a class="btn btn-outline-primary table-btn btn-sm" href="{{route('orders.show',$order )}}" title="Edit"><i class="fa fa-eye"></i></a>

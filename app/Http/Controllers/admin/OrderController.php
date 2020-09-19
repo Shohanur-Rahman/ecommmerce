@@ -10,8 +10,8 @@ class OrderController extends Controller
 {
     public function index()
     {
-        $orders = Order::all();
-
-        return view('admin.modules.orders.index');
+        $orders = Order::with('user')->get();
+        dd($orders);
+        return view('admin.modules.orders.index',compact('orders'));
     }
 }
