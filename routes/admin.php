@@ -91,6 +91,11 @@ Route::group(['middleware' => 'auth'], function() {
         Route::get('{applyVendor}/show','VendorApplicationController@show')->name('vendor-applications.show');
         Route::patch('{applyVendor}','VendorApplicationController@update')->name('vendor-applications.update');
     });
+
+    Route::group(['prefix'=>'orders'], function(){
+        Route::get('/','OrderController@index')->name('orders.index');
+        Route::get('{Order}/show','OrderController@show')->name('orders.show');
+    });
 });
 
 
