@@ -14,6 +14,7 @@ use Illuminate\Support\Facades\DB;
 
 class ProductController extends Controller
 {
+    
     public function index($category, Request $request)
     {
 
@@ -80,10 +81,34 @@ class ProductController extends Controller
 
         return view('user.pages.products.index', compact("products", "categoryDetails", "requestString", "brands", "colors"));
     }
-
-    public function search()
+    public function search(Request $request)
     {
-        return view('user.pages.products.search', compact("products", "categoryDetails", "requestString", "brands", "colors"));   
+
+        $page_size = $request->query('page_size') ? $request->query('page_size') : 15;
+        $minPrice = $request->query('min') ? $request->query('min') : 10;
+        $mixPrice = $request->query('max') ? $request->query('max') : 30000;
+        $brandId = $request->query('brand') ? $request->query('brand') : 0;
+        $colorId = $request->query('color') ? $request->query('color') : 0;
+        $searchText = $request->query('s') ? $request->query('s') : '';
+        $requestString = $request->all();
+        
+        $products = DB::table('products')
+        ->join('product_category_maps', 'products.id', '=', 'product_category_maps.product_id')
+        ->select('products.*')
+        ->where('products.is_published', 1)
+        ->where('products.title','like', '%'.$searchText.'%')
+        ->where('products.new_price', '>=', $minPrice)
+        ->where('products.new_price', '<=', $mixPrice)
+        ->distinct()
+        ->paginate($page_size);
+
+        $categories = ProductCategory::with('childrens')->where('parent_id', 0)->get();
+        $brands = ProductBrands::all();
+        $colors = ProductColor::all();
+
+        //dd($categories);
+
+        return view('user.pages.products.search', compact('products', 'categories','brands','colors'));   
     }
 
     public function details($category, $slug)
