@@ -2,6 +2,6 @@
 @section('title', $categoryDetails->category_name)
 @section('content')
 
-    @include('user.pages.second.products.index', $products);
+    @include('user.pages.second.products.index');
 
 @endsection

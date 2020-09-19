@@ -152,8 +152,10 @@
 								</div>
 								<div class="col-lg-8">
 									<div class="search-box style-3 style-4">
-										<input type="text" placeholder="Search by Model" />
+										<form method="get" action="{{route('product.search')}}">
+										<input type="text" placeholder="Search by name" name="s" />
 										<button><i class="ti-search"></i></button>
+									</form>
 									</div>
 								</div>
 							</div>
