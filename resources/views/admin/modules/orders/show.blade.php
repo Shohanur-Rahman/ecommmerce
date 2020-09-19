@@ -4,6 +4,10 @@
 
     <div class="row">
         <div class="col-md-12">
+            <x-inform-users></x-inform-users>
+        </div>
+
+        <div class="col-md-12">
             <div class="card">
                 <div class="card-body ml-3">
                     <h4 class="card-title mb-2">Order ID #{{$order->id}}</h4>
@@ -42,7 +46,15 @@
                                        <tr>
                                            <td>Ordered Amount</td>
                                            <td class=" text-right">
-                                               <div class="badge badge-primary badge-pill">{{$order->status}}</div>
+                                               <div class="badge badge-primary badge-pill">
+                                                   @php
+                                                        $total = 0;
+                                                       foreach($order->orderProducts as $orderProduct){
+                                                           $total += $orderProduct->product->new_price*$orderProduct->quantity;
+                                                       }
+                                                   @endphp
+                                                   {{$total}}
+                                               </div>
                                            </td>
                                        </tr>
                                        <tr>
@@ -134,35 +146,37 @@
                                <div class="template-demo">
 
                                    <h4 class="card-title mb-3">Ordered Status</h4>
-                                   <form action="">
+                                   <form action="{{route('orders-status.update',$order->id)}}" method="post">
+                                       @method('PATCH')
+                                       @csrf
                                        <div class="form-group">
                                            <div class="new-checkbox">
                                                <!-- Rectangular switch -->
                                                <div class="inline-widged">
                                                    <label for="new" class="single-label">New</label>
                                                    <label class="switch">
-                                                       <input class="status-list" type="checkbox" id="new" name="status" checked="checked" />
+                                                       <input onclick="submit()" class="status-list" type="checkbox" id="new" name="status" {{$order->status=='New' ? 'checked' : '' }} value="New" />
                                                        <span class="slider round"></span>
                                                    </label>
                                                </div>
                                                <div class="inline-widged">
                                                    <label for="pending" class="single-label">Pending</label>
                                                    <label class="switch">
-                                                       <input class="status-list" type="checkbox" id="pending" name="status" />
+                                                       <input onclick="submit()" class="status-list" type="checkbox" id="pending" name="status" {{$order->status=='Pending' ? 'checked' : '' }} value="Pending" />
                                                        <span class="slider round"></span>
                                                    </label>
                                                </div>
                                                <div class="inline-widged">
                                                    <label for="delivered" class="single-label">Delivered</label>
                                                    <label class="switch">
-                                                       <input class="status-list" type="checkbox" id="delivered" name="status" />
+                                                       <input onclick="submit()" class="status-list" type="checkbox" id="delivered" name="status" {{$order->status=='Delivered' ? 'checked' : '' }} value="Delivered" />
                                                        <span class="slider round"></span>
                                                    </label>
                                                </div>
                                                <div class="inline-widged">
                                                    <label for="cancel" class="single-label">Cancel</label>
                                                    <label class="switch">
-                                                       <input class="status-list" type="checkbox" id="cancel" name="status" />
+                                                       <input onclick="submit()" class="status-list" type="checkbox" id="cancel" name="status" {{$order->status=='Cancel' ? 'checked' : '' }} value="Cancel" />
                                                        <span class="slider round"></span>
                                                    </label>
                                                </div>
@@ -211,8 +225,9 @@
                                 <th>Product SKU </th>
                                 <th>Product Size</th>
                                 <th>Product Color</th>
-                                <th>Product Quantity</th>
                                 <th>Product price</th>
+                                <th>Product Quantity</th>
+                                <th>Total Price</th>
                             </tr>
                             </thead>
                             <tbody>
@@ -222,8 +237,9 @@
                                     <td>{{$orderProduct->product->sku}}</td>
                                     <td>{{($orderProduct->product->size) ? $orderProduct->product->size->size : ''}}</td>
                                     <td>{{($orderProduct->product->color) ? $orderProduct->product->size->color : ''}}</td>
-                                    <td>{{$orderProduct->quantity}}</td>
                                     <td>{{$orderProduct->product->new_price}}</td>
+                                    <td>{{$orderProduct->quantity}}</td>
+                                    <td>{{$orderProduct->product->new_price*$orderProduct->quantity}}</td>
 
                                 </tr>
                             @endforeach

@@ -22,4 +22,11 @@ class OrderController extends Controller
 
         return view('admin.modules.orders.show',compact('order'));
     }
+
+    public function updateStatus(Request $request, Order $order)
+    {
+        $order->update(['status'=>$request['status'] ?? 'New']);
+
+        return redirect(route('orders.show',$order->id))->with('success','Ordered status updated successfully');
+    }
 }

@@ -43,9 +43,13 @@
                                     @endforeach
                                 </td>
                                 <td>
-                                    @foreach($order->orderProducts as $orderProduct)
-                                        <span class="d-block"> {{$orderProduct->product->new_price}}</span>
-                                    @endforeach
+                                    @php
+                                        $total = 0;
+                                       foreach($order->orderProducts as $orderProduct){
+                                           $total += $orderProduct->product->new_price*$orderProduct->quantity;
+                                       }
+                                    @endphp
+                                    {{$total}}
                                 </td>
                                 <td>{{$order->status}}</td>
                                 <td>{{$order->created_at->format('d F Y')}}</td>
