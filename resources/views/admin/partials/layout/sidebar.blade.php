@@ -67,9 +67,9 @@
                     </li>
 
                     <li class="treeview {{ request()->routeIs('orders.*') ? 'active' : '' }}">
-                        <a href="javascript:void(0)"><i class="zmdi zmdi-settings"></i> <span>Website Settings</span> <i class="fa fa-angle-right"></i></a>
+                        <a href="javascript:void(0)"><i class="zmdi zmdi-settings"></i> <span>Shop</span> <i class="fa fa-angle-right"></i></a>
                         <ul class="treeview-menu ">
-                            <li><a class=" {{activeLink('orders')}}" href="{{route('orders.index')}}">- Shop</a></li>
+                            <li><a class=" {{activeLink('orders')}}" href="{{route('orders.index')}}">- Ordered</a></li>
                         </ul>
                     </li>
                 </ul>

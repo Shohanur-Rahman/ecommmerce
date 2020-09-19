@@ -94,7 +94,7 @@ Route::group(['middleware' => 'auth'], function() {
 
     Route::group(['prefix'=>'orders'], function(){
         Route::get('/','OrderController@index')->name('orders.index');
-        Route::get('{Order}/show','OrderController@show')->name('orders.show');
+        Route::get('{order}/show','OrderController@show')->name('orders.show');
     });
 });
 
