@@ -80,7 +80,7 @@
                                         <i class="fa fa-star-o"></i>
                                     </div>
                                 </div>
-                                <div class="product-colors mt-20">
+                                <!-- <div class="product-colors mt-20">
                                     <label>Select Color:</label>
                                     <ul class="list-none">
                                         <li>Red</li>
@@ -88,14 +88,20 @@
                                         <li>Blue</li>
                                     </ul>
 
-                                </div>
-                                <div class="product-quantity mt-15">
+                                </div> -->
+                                <form action="{{route('product.add_to_cart')}}" method="post">
+                                    @csrf
+                                    <input type="hidden" name="product_id" value="{{$product->id}}">
+                                    <input type="hidden" name="product_price" value="{{$product->new_price}}">
+                                    <div class="product-quantity mt-15">
                                     <label>Quatity:</label>
-                                    <input type="number" value="1" />
-                                </div>
-                                <div class="add-to-get mt-50">
-                                    <a href="#" class="add-to-cart">Add to Cart</a>
-                                </div>
+                                    <input type="number" value="1" name="quantity" />
+                                    </div>
+                                    <div class="add-to-get mt-50">
+                                        <button type="submit" class="btn add-to-cart">Add to Cart</button>
+                                    </div>
+                                </form>
+                                
                             </div>
                         </div>
                     </div>

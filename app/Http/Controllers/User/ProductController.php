@@ -9,9 +9,11 @@ use App\Models\ProductCategory;
 use App\Models\ProductCategoryMap;
 use App\Models\ProductGalleryMap;
 use App\Models\ProductColor;
+use App\Models\User\CartItem;
 use Illuminate\Http\Request;
 use App\Models\Products;
 use Illuminate\Support\Facades\DB;
+use Auth;
 
 class ProductController extends Controller
 {
@@ -116,8 +118,11 @@ class ProductController extends Controller
 
     public function details($category, $slug)
     {
-        $product = Products::where('slug', $slug)->first();
-        return view('user.pages.products.details', compact('product'));
+        $product = Products::where('slug', $slug)->firstOrFail();
+        $categoryList = ProductCategoryMap::where('product_id', $product->id)->get();
+        $galleries = ProductGalleryMap::where('product_id', $product->id)->get();
+
+        return view('user.pages.products.details', compact('product','categoryList','galleries'));
     }
 
     public function show($slug)
@@ -127,5 +132,24 @@ class ProductController extends Controller
         $galleries = ProductGalleryMap::where('product_id', $product->id)->get();
 
         return view('user.pages.products.details', compact('product','categoryList','galleries'));
+    }
+
+    public function add_to_cart(Request $request)
+    {
+        $cartItem = CartItem::where(['product_id' => $request->product_id, 'user_id' => Auth::id()])->first();
+        
+        if($cartItem == null)
+            $cartItem = new CartItem();
+        
+        if($cartItem)
+            $cartItem->quantity=($cartItem->quantity+$request->quantity);
+        else
+            $cartItem->quantity = $request->quantity;
+
+        $cartItem->user_id = Auth::id();
+        $cartItem->product_id = $request->product_id;
+        $cartItem->save();
+
+        return redirect()->back();
     }
 }

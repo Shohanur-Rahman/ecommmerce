@@ -104,42 +104,36 @@
 							</div>
 						</div>
 						<div class="col-xl-3 col-lg-4">
+							<?php $myCartList = App\Models\User\CartItem::with('product')->where('user_id', Auth::id())->get();?>
 							<div class="row align-items-center">
 								<div class="col-lg-4 p-0">
 									<div class="mini-cart">
 										<ul>
 											<li><a href="#"><i class="icon_heart_alt"></i><span>1</span></a></li>
-											<li><a href="javascript:void(0);" class="minicart-icon"><i class="icon_bag_alt"></i><span>2</span></a>
+											<li><a href="javascript:void(0);" class="minicart-icon"><i class="icon_bag_alt"></i><span>{{count($myCartList)}}</span></a>
 												<div class="cart-dropdown">
 													<ul>
+														<?php $taotalPrice = 0;?>
+														@foreach($myCartList as $cart)
 														<li>
 															<div class="mini-cart-thumb">
-																<a href="#"><img src="{{asset('user/assets/images/products/cart/thumb-1.jpg')}}" alt="" /></a>
+																<a href="#"><img src="{{asset($cart->product->featured_image)}}" alt="" /></a>
 															</div>
 															<div class="mini-cart-heading">
-																<span>$460.00 x 1</span>
-																<h5><a href="#">Kabino Bedside Table</a></h5>
+																<span>${{$cart->product->new_price}}x {{$cart->quantity}}</span>
+																<h5><a href="{{route('product.search.show', $cart->product->slug)}}">{{$cart->product->title}}</a></h5>
 															</div>
 															<div class="mini-cart-remove">
 																<button><i class="ti-close"></i></button>
 															</div>
 														</li>
-														<li>
-															<div class="mini-cart-thumb">
-																<a href="#"><img src="{{asset('assets/images/products/cart/thumb-2.jpg')}}" alt="" /></a>
-															</div>
-															<div class="mini-cart-heading">
-																<span>$460.00 x 1</span>
-																<h5><a href="#">Kabino Bedside Table</a></h5>
-															</div>
-															<div class="mini-cart-remove">
-																<button><i class="ti-close"></i></button>
-															</div>
-														</li>
+														<?php $taotalPrice = ($taotalPrice+($cart->product->new_price*$cart->quantity));?>
+														@endforeach
+														
 													</ul>
 													<div class="minicart-total fix">
 														<span class="pull-left">total:</span>
-														<span class="pull-right">$460.00</span>
+														<span class="pull-right">${{ number_format($taotalPrice,2)}}</span>
 													</div>
 													<div class="mini-cart-checkout">
 														<a href="shopping-cart.html" class="btn-common view-cart">VIEW CARD</a>
