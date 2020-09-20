@@ -39,9 +39,9 @@
                                     <ul class="list-none">
                                         <li>SKU: 00012 <span>|</span></li>
                                         <li>Categories:
-                                            
+
                                             @foreach($categoryList as $aCategory)
-                                                <a href="{{route('product.index', $aCategory->category->slug)}}">{{$aCategory->category->category_name}}</a> &nbsp; 
+                                                <a href="{{route('product.index', $aCategory->category->slug)}}">{{$aCategory->category->category_name}}</a> &nbsp;
                                             @endforeach
                                             <span>|</span>
                                         </li>
@@ -101,7 +101,7 @@
                                         <button type="submit" class="btn add-to-cart">Add to Cart</button>
                                     </div>
                                 </form>
-                                
+
                             </div>
                         </div>
                     </div>
@@ -424,3 +424,4 @@
     </div>
 </div>
 <!--brands-area end-->
+@include('user.partials.widget.product_reviews');
