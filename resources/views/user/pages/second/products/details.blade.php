@@ -6,31 +6,25 @@
             <div class="row">
                 <div class="col-lg-1 col-md-2">
                     <ul class="nav nav-tabs products-nav-tabs">
-                        <li><a class="active" data-toggle="tab" href="#product-1"><img src="assets/images/products/product-details/thumb-1.jpg" alt="" /></a></li>
-                        <li><a data-toggle="tab" href="#product-2"><img src="assets/images/products/product-details/thumb-2.jpg" alt="" /></a></li>
-                        <li><a data-toggle="tab" href="#product-3"><img src="assets/images/products/product-details/thumb-3.jpg" alt="" /></a></li>
+                        <?php $tabCount = 0;?>
+                        @foreach($galleries as $gallery)
+                        <li><a class="{{$tabCount < 1 ? 'active': ''}}" data-toggle="tab" href="#product-{{$gallery->id}}"><img src="{{asset($gallery->thumb_url)}}" alt="{{$product->title}}" /></a></li>
+                        <?php $tabCount+=2; ?>
+                        @endforeach
                     </ul>
                 </div>
                 <div class="col-lg-4 col-md-6">
                     <div class="tab-content">
-                        <div id="product-1" class="tab-pane fade in show active">
+                        <?php $tabCount = 0;?>
+                        @foreach($galleries as $gallery)
+                        <div id="product-{{$gallery->id}}" class="tab-pane fade {{$tabCount < 1 ? 'in show active': ''}}">
                             <div class="product-details-thumb">
-                                <a class="venobox" data-gall="myGallery" href="assets/images/products/product-details/1.jpg"><i class="fa fa-search-plus"></i></a>
-                                <img src="assets/images/products/product-details/1.jpg" alt="" />
+                                <a class="venobox" data-gall="myGallery" href="{{asset($gallery->image_url)}}"><i class="fa fa-search-plus"></i></a>
+                                <img src="{{asset($gallery->image_url)}}" alt="" />
                             </div>
                         </div>
-                        <div id="product-2" class="tab-pane fade">
-                            <div class="product-details-thumb">
-                                <a class="venobox" data-gall="myGallery" href="assets/images/products/product-details/2.jpg"><i class="fa fa-search-plus"></i></a>
-                                <img src="assets/images/products/product-details/2.jpg" alt="" />
-                            </div>
-                        </div>
-                        <div id="product-3" class="tab-pane fade">
-                            <div class="product-details-thumb">
-                                <a class="venobox" data-gall="myGallery" href="assets/images/products/product-details/3.jpg"><i class="fa fa-search-plus"></i></a>
-                                <img src="assets/images/products/product-details/3.jpg" alt="" />
-                            </div>
-                        </div>
+                        <?php $tabCount+=2; ?>
+                        @endforeach
                     </div>
                 </div>
                 <div class="col-lg-7 mt-sm-50">
@@ -45,9 +39,9 @@
                                     <ul class="list-none">
                                         <li>SKU: 00012 <span>|</span></li>
                                         <li>Categories:
-                                            <?php $categoryList = App\Models\ProductCategoryMap::where('product_id', $product->id)->get(); ?>
+                                            
                                             @foreach($categoryList as $aCategory)
-                                                <a href="{{route('product.index', $aCategory->category->slug)}}">{{$aCategory->category->category_name}}</a>
+                                                <a href="{{route('product.index', $aCategory->category->slug)}}">{{$aCategory->category->category_name}}</a> &nbsp; 
                                             @endforeach
                                             <span>|</span>
                                         </li>
@@ -86,7 +80,7 @@
                                         <i class="fa fa-star-o"></i>
                                     </div>
                                 </div>
-                                <div class="product-colors mt-20">
+                                <!-- <div class="product-colors mt-20">
                                     <label>Select Color:</label>
                                     <ul class="list-none">
                                         <li>Red</li>
@@ -94,14 +88,20 @@
                                         <li>Blue</li>
                                     </ul>
 
-                                </div>
-                                <div class="product-quantity mt-15">
+                                </div> -->
+                                <form action="{{route('product.add_to_cart')}}" method="post">
+                                    @csrf
+                                    <input type="hidden" name="product_id" value="{{$product->id}}">
+                                    <input type="hidden" name="product_price" value="{{$product->new_price}}">
+                                    <div class="product-quantity mt-15">
                                     <label>Quatity:</label>
-                                    <input type="number" value="1" />
-                                </div>
-                                <div class="add-to-get mt-50">
-                                    <a href="#" class="add-to-cart">Add to Cart</a>
-                                </div>
+                                    <input type="number" value="1" name="quantity" />
+                                    </div>
+                                    <div class="add-to-get mt-50">
+                                        <button type="submit" class="btn add-to-cart">Add to Cart</button>
+                                    </div>
+                                </form>
+                                
                             </div>
                         </div>
                     </div>

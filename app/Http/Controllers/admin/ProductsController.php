@@ -292,8 +292,11 @@ class ProductsController extends HelperController
         *Upload and generate gallery image urls*/
         if($files=$request->file('images')){
             foreach($files as $file){
+                
+                $test = $helper->uploadImage($file,'uploads/products/u_'.Auth::id() . "/gallery/thumb/",100,100);
+
                 $glURL = $helper->uploadImage($file,'uploads/products/u_'.Auth::id() . "/gallery/");
-                $test = $helper->uploadImage($file,'uploads/products/u_'.Auth::id() . "/gallery/test/",600,600);
+                
                 $gallery = new ProductGalleryMap();
                 $gallery->image_url = $glURL;
                 $gallery->thumb_url = $test;

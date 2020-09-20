@@ -52,3 +52,23 @@ textarea.parsley-error {
 *End parsley style
 *
 */
+.short-dropdown {
+    cursor: pointer;
+    display: block;
+    float: left;
+    transition: .3s;
+}
+.products-sort li{
+    list-style: none;
+    display: block;
+    line-height: 25px;
+}
+.short-dropdown ul{
+    display: none;
+    margin: 0;
+    padding: 0;
+}
+.short-dropdown:hover ul{
+    display: block;
+    transition: .3s;
+}

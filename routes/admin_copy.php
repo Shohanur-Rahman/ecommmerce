@@ -24,7 +24,7 @@ Route::group(['prefix' => 'products'], function () {
     Route::get('/create', 'ProductsController@create')->name('products.create');
     Route::post('/', 'ProductsController@store')->name('products.store');
     Route::get('/{id}/edit', 'ProductsController@edit')->name('products.edit');
-    Route::patch('/{id}', 'ProductsController@update')->name('products.update');
+    Route::patch('/{id}/edit', 'ProductsController@update')->name('products.update');
 });
 
 Route::group(['prefix' => 'website-settings'], function () {
