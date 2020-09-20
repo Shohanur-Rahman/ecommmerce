@@ -7,6 +7,7 @@ use App\Models\ProductBrandCategoryMap;
 use App\Models\ProductBrands;
 use App\Models\ProductCategory;
 use App\Models\ProductCategoryMap;
+use App\Models\ProductGalleryMap;
 use App\Models\ProductColor;
 use Illuminate\Http\Request;
 use App\Models\Products;
@@ -17,6 +18,8 @@ class ProductController extends Controller
     
     public function index($category, Request $request)
     {
+
+
 
         $page_size = $request->query('page_size') ? $request->query('page_size') : 15;
         $minPrice = $request->query('min') ? $request->query('min') : 10;
@@ -115,5 +118,14 @@ class ProductController extends Controller
     {
         $product = Products::where('slug', $slug)->first();
         return view('user.pages.products.details', compact('product'));
+    }
+
+    public function show($slug)
+    {
+        $product = Products::where('slug', $slug)->firstOrFail();
+        $categoryList = ProductCategoryMap::where('product_id', $product->id)->get();
+        $galleries = ProductGalleryMap::where('product_id', $product->id)->get();
+
+        return view('user.pages.products.details', compact('product','categoryList','galleries'));
     }
 }

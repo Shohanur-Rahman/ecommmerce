@@ -37,8 +37,12 @@ function makeURL($queryString, $key, $value)
                         </div>
                         <div class="price_slider_amount">
                             <form method="get" action="{{route('product.search')}}">
-                                <input type="hidden" name="min" id="hdnMinPrice">
+                                 <input type="hidden" name="min" id="hdnMinPrice">
                                 <input type="hidden" name="max" id="hdnMaxPrice">
+                                <input type="hidden" name="color" value="{{request()->query('brand') ?? request()->query('brand')}}">
+                                <input type="hidden" name="page_size" value="{{request()->query('page_size') ?? request()->query('page_size')}}">
+                                <input type="hidden" name="brand" value="{{request()->query('brand') ?? request()->query('brand')}}">
+                                <input type="hidden" name="order" value="{{request()->query('order') ?? request()->query('order')}}">
                             <div class="row align-items-center">
                                 <div class="col-lg-6">
                                     <input type="text" id="amount" placeholder="Add Your Price"/>
@@ -54,8 +58,23 @@ function makeURL($queryString, $key, $value)
                     </div>
                     @if($categories)
                     <div class="vertical-menu">
+                        
                         <ul>
-
+                           @foreach($categories as $category)
+                            @foreach($category->childrens as $submenu)
+                            @if($submenu->childrens->count() > 0)
+                            <li><a href="{{route('product.index', $submenu->slug)}}">{{$submenu->category_name}}</a>
+                                <ul>
+                                    @foreach($submenu->childrens as $lastItem)
+                                    <li><a href="{{route('product.index', $lastItem->slug)}}">{{$lastItem->category_name}}</a></li>
+                                    @endforeach
+                                </ul>
+                            </li>
+                            @else
+                            <li><a href="{{route('product.index', $submenu->slug)}}"">{{$submenu->category_name}}</a></li>
+                            @endif
+                            @endforeach
+                           @endforeach
                         </ul>
                     </div>
                     @endif
@@ -236,7 +255,8 @@ function makeURL($queryString, $key, $value)
                         </div>
                     </div>
                     <div class="col-lg-5 col-md-6">
-                        <div class="products-sort">
+                        <div class="products-sort short-dropdown">
+                            <label>Short by : Default</label>
                             <ul>
                                 <li>
                                     <a href="{{route('product.search').generateQueryString('order',0)}}">Default
@@ -249,8 +269,8 @@ function makeURL($queryString, $key, $value)
                                         Price Low - High</a></li>
                             </ul>
                         </div>
-                        <div class="products-sort">
-                            <label>Show :</label>
+                        <div class="products-sort short-dropdown">
+                            <label>Show : {{request()->query('page_size') ? request()->query('page_size') : 15}} Items</label>
                             <ul>
                                 <li>
                                     <a href="{{route('product.search').generateQueryString('page_size',15)}}">15</a>
@@ -395,16 +415,6 @@ function makeURL($queryString, $key, $value)
                     <div class="col-lg-6">
                         <div class="product-results pull-right">
                             <span>Showing {{$products->firstItem()}}–{{$products->lastItem()}} of {{$products->total()}} results</span>
-                            <div class="products-sort ml-35 mr-0">
-                                <form>
-                                    <label>Show :</label>
-                                    <select>
-                                        <option>12</option>
-                                        <option>8</option>
-                                        <option>4</option>
-                                    </select>
-                                </form>
-                            </div>
                         </div>
                     </div>
                 </div>

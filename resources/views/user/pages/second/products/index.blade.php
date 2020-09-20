@@ -23,7 +23,6 @@ function makeURL($queryString, $key, $value)
 }
 
 ?>
-
 <!--products-area start-->
 <div class="shop-area">
     <div class="container-fluid">
@@ -39,6 +38,11 @@ function makeURL($queryString, $key, $value)
                             <form method="get" action="{{route('product.index', $categoryDetails->slug)}}">
                                 <input type="hidden" name="min" id="hdnMinPrice">
                                 <input type="hidden" name="max" id="hdnMaxPrice">
+                                <input type="hidden" name="color" value="{{request()->query('brand') ?? request()->query('brand')}}">
+                                <input type="hidden" name="page_size" value="{{request()->query('page_size') ?? request()->query('page_size')}}">
+                                <input type="hidden" name="brand" value="{{request()->query('brand') ?? request()->query('brand')}}">
+                                <input type="hidden" name="order" value="{{request()->query('order') ?? request()->query('order')}}">
+
                             <div class="row align-items-center">
                                 <div class="col-lg-6">
                                     <input type="text" id="amount" placeholder="Add Your Price"/>
@@ -91,7 +95,7 @@ function makeURL($queryString, $key, $value)
                         <ul class="list-none mt-25">
                             @foreach($colors as $color)
                                 <li>
-                                    <a href="{{route('product.index', $categoryDetails->slug).generateQueryString('color', $brand->id)}}">{{$brand->brand->name}}</a>
+                                    <a href="{{route('product.index', $categoryDetails->slug).generateQueryString('color', $color->id)}}">{{$color->name}}</a>
                                 </li>
                             @endforeach
                         </ul>
