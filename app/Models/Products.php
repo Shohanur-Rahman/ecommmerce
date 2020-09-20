@@ -3,6 +3,7 @@
 namespace App\Models;
 
 use App\Models\User\OrderProduct;
+use App\Models\User\ProductReview;
 use Illuminate\Database\Eloquent\Model;
 
 class Products extends Model

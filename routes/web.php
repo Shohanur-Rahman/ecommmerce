@@ -56,4 +56,10 @@ Route::group(['middleware'=>'auth'],function(){
         Route::get('/','User\ApplyVendorController@create')->name('apply-vendors.create');
         Route::post('/','User\ApplyVendorController@store')->name('apply-vendors.store');
     });
+
+    Route::group(['prefix'=>'profiles/apply-vendors'],function(){
+        Route::post('/product-reviews/{id}','User\ProductReviewController@productReviews')->name('product-reviews.store');
+     });
+
+
 });

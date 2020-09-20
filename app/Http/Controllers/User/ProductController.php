@@ -10,6 +10,7 @@ use App\Models\ProductCategoryMap;
 use App\Models\ProductGalleryMap;
 use App\Models\ProductColor;
 use App\Models\User\CartItem;
+use App\Models\User\ProductReview;
 use Illuminate\Http\Request;
 use App\Models\Products;
 use Illuminate\Support\Facades\DB;
@@ -17,7 +18,7 @@ use Auth;
 
 class ProductController extends Controller
 {
-    
+
     public function index($category, Request $request)
     {
 
@@ -96,7 +97,7 @@ class ProductController extends Controller
         $colorId = $request->query('color') ? $request->query('color') : 0;
         $searchText = $request->query('s') ? $request->query('s') : '';
         $requestString = $request->all();
-        
+
         $products = DB::table('products')
         ->join('product_category_maps', 'products.id', '=', 'product_category_maps.product_id')
         ->select('products.*')
@@ -113,7 +114,7 @@ class ProductController extends Controller
 
         //dd($categories);
 
-        return view('user.pages.products.search', compact('products', 'categories','brands','colors'));   
+        return view('user.pages.products.search', compact('products', 'categories','brands','colors'));
     }
 
     public function details($category, $slug)
@@ -122,7 +123,9 @@ class ProductController extends Controller
         $categoryList = ProductCategoryMap::where('product_id', $product->id)->get();
         $galleries = ProductGalleryMap::where('product_id', $product->id)->get();
 
-        return view('user.pages.products.details', compact('product','categoryList','galleries'));
+        $productReviews = ProductReview::where('product_id',$product->id)->get();
+
+        return view('user.pages.products.details', compact('product','categoryList','galleries','productReviews'));
     }
 
     public function show($slug)
@@ -131,16 +134,18 @@ class ProductController extends Controller
         $categoryList = ProductCategoryMap::where('product_id', $product->id)->get();
         $galleries = ProductGalleryMap::where('product_id', $product->id)->get();
 
-        return view('user.pages.products.details', compact('product','categoryList','galleries'));
+        $productReviews = ProductReview::where('product_id',$product->id)->get();
+
+        return view('user.pages.products.details', compact('product','categoryList','galleries','productReviews'));
     }
 
     public function add_to_cart(Request $request)
     {
         $cartItem = CartItem::where(['product_id' => $request->product_id, 'user_id' => Auth::id()])->first();
-        
+
         if($cartItem == null)
             $cartItem = new CartItem();
-        
+
         if($cartItem)
             $cartItem->quantity=($cartItem->quantity+$request->quantity);
         else

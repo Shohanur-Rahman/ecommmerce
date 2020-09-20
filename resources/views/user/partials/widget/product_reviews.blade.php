@@ -1,68 +1,82 @@
-
-    <div id="reviews" class="row fade active show ">
-        <div class="blog-comments product-comments mt-0">
+<div class="row show m-2">
+    <div class="col-7  product-comments mt-0">
+        <div>
             <ul class="list-none">
-                <li>
+                @foreach($productReviews as $productReview)
+                    <li>
+                        <div class="comment-avatar text-center">
+                            <img src="assets/images/blog/comment/4.jpg" alt="">
 
-                    <div class="comment-avatar text-center">
-                        <img src="assets/images/blog/comment/4.jpg" alt="">
-                        <div class="product-rating mt-10">
-                            <i class="fa fa-star"></i>
-                            <i class="fa fa-star"></i>
-                            <i class="fa fa-star"></i>
-                            <i class="fa fa-star"></i>
-                            <i class="fa fa-star-o"></i>
+                            <div id="dataReadonlyReview"
+                                 data-rating-stars="5"
+                                 data-rating-readonly="true"
+                                 data-rating-value="{{$productReview->rating}}"
+                                 data-rating-input="#dataReadonlyInput">
+                            </div>
+
                         </div>
-                    </div>
-                    <div class="comment-desc">
-                        <span>27 Aug 2019</span>
-                        <h4>Jenney Kelley</h4>
-                        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. </p>
-                    </div>
-                </li>
-                <li>
-                    <div class="comment-avatar text-center">
-                        <img src="assets/images/blog/comment/5.jpg" alt="">
-                        <div class="product-rating mt-10">
-                            <i class="fa fa-star"></i>
-                            <i class="fa fa-star"></i>
-                            <i class="fa fa-star"></i>
-                            <i class="fa fa-star"></i>
-                            <i class="fa fa-star-o"></i>
+                        <div class="comment-desc">
+                            <span>27 Aug 2019</span>
+                            <h4>{{$productReview->name}}</h4>
+                            <p>{{$productReview->comment}} </p>
                         </div>
-                    </div>
-                    <div class="comment-desc">
-                        <span>27 Aug 2019</span>
-                        <h4>Brandon William</h4>
-                        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. </p>
-                    </div>
-                </li>
+                    </li>
+
+                @endforeach
             </ul>
         </div>
-        <div class="blog-comment-form product-comment-form mt-05">
-            <h4><span>Add Review</span></h4>
-            <div class="row mt-30">
-                <div class="col-sm-6 single-form">
-                    <input type="text" placeholder="Name">
-                </div>
-                <div class="col-sm-6">
-                    <input type="text" placeholder="Email">
-                </div>
-                <div class="col-sm-12">
-                    <div class="product-rating style-2">
-                        <span>Your Rating:</span>
-                        <i class="fa fa-star"></i>
-                        <i class="fa fa-star"></i>
-                        <i class="fa fa-star"></i>
-                        <i class="fa fa-star"></i>
-                        <i class="fa fa-star"></i>
+    </div>
+    <div class="col-5 blog-comment-form product-comment-form ">
+        <div class="">
+            <h4>Add Review</h4>
+            <form action="{{route('product-reviews.store',$product->id)}}" method="post">
+                <div class="row mt-10">
+                    @csrf
+                    <div class="col-sm-12 mb-3">
+                        <div class="product-rating style-2 mb-0" id="halfstarsReview">
+                            <input type="hidden" name="rating" value="" id="ratingValue">
+                            <span>Your Rating:</span>
+                        </div>
+                        @error('rating')
+                        <span class="text-danger text-sm-center">{{$message}}</span>
+                        @enderror
                     </div>
+
+                    <div class="col-sm-12">
+                        <textarea placeholder="Messages" name="comment"></textarea>
+
+                        @error('comment')
+                        <span class="text-danger text-sm-center">{{$message}}</span>
+                        @enderror
+                    </div>
+                    @auth()
+                        <div class="col-sm-12">
+                            <button class="btn-common mt-25">Submit</button>
+                        </div>
+                    @else
+                        <div class="col-sm-12">
+                            <p class="text-success mt-25">Please sign in and review this product</p>
+                        </div>
+                    @endauth
                 </div>
-                <div class="col-sm-12">
-                    <textarea placeholder="Messages"></textarea>
-                </div>
-                <div class="col-sm-12">
-                    <button class="btn-common mt-25">Submit</button>
-                </div>
-            </div>
+            </form>
         </div>
+    </div>
+</div>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.11.2/css/all.min.css">
+<script src="{{asset('user/assets/js/rating.js')}}"></script>
+
+<script>
+    $("#halfstarsReview").rating({
+        "half": true,
+        "click": function (e) {
+            // var rating = $("#halfstarsInput").val(e.stars);
+
+            $('#ratingValue').val(e.stars)
+        },
+
+
+    });
+    
+
+</script>
