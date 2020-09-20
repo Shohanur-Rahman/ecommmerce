@@ -16,7 +16,7 @@
 
                         </div>
                         <div class="comment-desc">
-                            <span>27 Aug 2019</span>
+                            <span>{{$productReview->created_at->format('d M Y')}}</span>
                             <h4>{{$productReview->name}}</h4>
                             <p>{{$productReview->comment}} </p>
                         </div>
@@ -77,6 +77,6 @@
 
 
     });
-    
+
 
 </script>
