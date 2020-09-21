@@ -136,7 +136,7 @@
 														<span class="pull-right">${{ number_format($taotalPrice,2)}}</span>
 													</div>
 													<div class="mini-cart-checkout">
-														<a href="shopping-cart.html" class="btn-common view-cart">VIEW CARD</a>
+														<a href="{{route('cart.index')}}" class="btn-common view-cart">VIEW CART</a>
 														<a href="checkout.html" class="btn-common checkout mt-10">CHECK OUT</a>
 													</div>
 												</div>
