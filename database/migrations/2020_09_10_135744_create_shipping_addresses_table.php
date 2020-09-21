@@ -16,16 +16,17 @@ class CreateShippingAddressesTable extends Migration
         Schema::create('shipping_addresses', function (Blueprint $table) {
             $table->id();
             $table->unsignedMediumInteger('user_id');
+            $table->string('title')->nullable();
             $table->string('name');
             $table->string('email')->unique();
             $table->string('phone');
             $table->string('house')->nullable();
-            $table->string('road');
+            $table->string('road')->nullable();
             $table->integer('postcode');
             $table->string('state');
             $table->string('city');
             $table->string('country');
-            $table->text('describe_address');
+            $table->text('describe_address')->nullable();
             $table->timestamps();
         });
     }

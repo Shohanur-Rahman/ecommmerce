@@ -31,9 +31,9 @@
 			</div>
 		</div>
 	</div>
-	
+
 	<!--shopping-cart area-->
-	<div class="shopping-cart-area">
+	<div class="shopping-cart-area mb-5">
 		<div class="container">
 			<div class="row">
 				<div class="col-sm-12">
@@ -90,7 +90,7 @@
 									<td colspan="4">
 										<strong>Total</strong>
 									</td>
-									
+
 									<td>
 										$<span class="dummy_cartTotal">{{$taotalPrice}}</span>
 									</td>
@@ -104,7 +104,7 @@
 			<div class="row mt-30">
 				<div class="col-lg-6">
 					<div class="cart-update">
-						<a href="#" class="btn-common">CONTINUE SHOPPING</a>
+						<a href="/" class="btn-common">CONTINUE SHOPPING</a>
 					</div>
 				</div>
 				<div class="col-lg-6">
@@ -113,10 +113,58 @@
 					</div>
 				</div>
 			</div>
+
+
+			<div class="row mt-40 d-flex justify-content-between ">
+				<div class="col-lg-4">
+					<div class="cart-box cart-coupon fix">
+						<h5>Discount Codes</h5>
+						<div class="cart-box-inner">
+							<p>Enter your coupin if you have one</p>
+							<input type="text">
+							<a href="#" class="btn-common">Apply</a>
+						</div>
+					</div>
+				</div>
+				<div class="col-lg-4">
+					<div class="cart-box cart-total">
+						<h5>Cart Total</h5>
+						<div class="cart-box-inner">
+							<table class="table">
+								<tbody>
+								<tr>
+									<td>SUB TOTAL:</td>
+									<td><span>${{$taotalPrice}}</span></td>
+								</tr>
+
+								<tr>
+									<td>Coupon Discount:</td>
+									<td><span>$0.00</span></td>
+								</tr>
+
+								<tr>
+									<td>GRAND TOTAL:</td>
+									<td><span>${{$taotalPrice}}</span></td>
+								</tr>
+								</tbody></table>
+							<div class="proceed-checkout">
+								<div class="col-lg-12">
+									<a href="#">Checkout with multiple address</a>
+								</div>
+								<div class="col-lg-12">
+									<a href="{{route('checkouts.create')}}" class="btn-common">PROCEED TO CHECK OUT</a>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
 		</div>
 	</div>
+
+
 	<!--shopping-cart end-->
-	
+
 
 	<script type="text/javascript">
 		function CalculateTotal(element){
@@ -129,10 +177,10 @@
 			}
 			if(value == 0 || value == "" || isNaN(value)){
 				$(element).val('1');
-				$("#"+selector+"_total_price").text(price.toFixed(2));	
+				$("#"+selector+"_total_price").text(price.toFixed(2));
 			}
 		}
 	</script>
-	    
+
 
 @endsection
