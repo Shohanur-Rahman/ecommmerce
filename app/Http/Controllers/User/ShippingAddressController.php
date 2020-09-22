@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\User;
 
 use App\Http\Controllers\Controller;
+use App\Models\User\Country;
 use App\Models\User\ShippingAddress;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -11,6 +12,7 @@ class ShippingAddressController extends Controller
 {
     public function create()
     {
+
         return view('user.pages.shippings.create');
     }
 
@@ -46,6 +48,7 @@ class ShippingAddressController extends Controller
     public function requestField($request)
     {
         return [
+            'title'=>$request['title'],
             'name'=>$request['name'],
             'email'=>$request['email'],
             'phone'=>$request['phone'],

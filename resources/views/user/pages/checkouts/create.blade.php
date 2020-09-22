@@ -78,13 +78,7 @@
                                     </div>
 
                                     <div class="row">
-                                        <div class="col-lg-3 align-items-center">
-                                            <label>COUNTRY *</label>
-                                        </div>
-                                        <div class="col-lg-9">
-                                            <input type="text" name="country" value="{{$user->userProfile->country ?? old('country')}}"
-                                                   placeholder="Enter your country name" maxlength="50" required data-parsley-required-message="Country filed is required" >
-                                        </div>
+                                        @include('user.pages.common.countries.edit',['presentCountry'=>$user->userProfile,'col3'=>'col-lg-3 text-uppercase','col9'=>'col-lg-9'])
                                     </div>
 
                                     <div class="row">

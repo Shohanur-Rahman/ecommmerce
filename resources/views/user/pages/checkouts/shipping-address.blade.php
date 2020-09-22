@@ -13,7 +13,8 @@
                                 <label>Title *</label>
                             </div>
                             <div class="col-lg-9">
-                                <input type="text" placeholder="Enter your shipping title" name="title" value="{{old('title')}}" maxlength="100" required data-parsley-required-message="Shipping title filed is required"  />
+                                <input type="text" placeholder="Enter your shipping title" name="title" value="{{old('title')}}" maxlength="100" required
+                                       data-parsley-required-message="Shipping title filed is required" />
                             </div>
                         </div>
 
@@ -22,7 +23,8 @@
                                 <label>USERNAME *</label>
                             </div>
                             <div class="col-lg-9">
-                                <input type="text" placeholder="Enter your name" name="name" value="{{old('name')}}" maxlength="100" required data-parsley-required-message="Username filed is required"  />
+                                <input type="text" placeholder="Enter your name" name="name" value="{{old('name')}}" maxlength="100" required
+                                       data-parsley-required-message="Username filed is required" />
                             </div>
                         </div>
 
@@ -31,9 +33,10 @@
                                 <label>EMAIL ADDRESS *</label>
                             </div>
                             <div class="col-lg-9">
-                                <input type="email" name="email" value="{{old('email')}}" maxlength="150" required data-parsley-required-message="Email filed is required" placeholder="Enter your email address"/>
+                                <input type="email" name="email" value="{{old('email')}}" maxlength="150" required
+                                       data-parsley-required-message="Email filed is required" placeholder="Enter your email address" />
                                 @error('email')
-                                    <span class="text-danger">{{$message}}</span>
+                                <span class="text-danger">{{$message}}</span>
                                 @enderror
                             </div>
                         </div>
@@ -44,7 +47,7 @@
                             </div>
                             <div class="col-lg-9">
                                 <input type="text" name="phone" value="{{ old('phone')}}"
-                                       placeholder="Enter your phone number" maxlength="100" required data-parsley-required-message="Phone filed is required" >
+                                       placeholder="Enter your phone number" maxlength="100" required data-parsley-required-message="Phone filed is required">
                             </div>
                         </div>
 
@@ -53,8 +56,8 @@
                                 <label>COUNTRY *</label>
                             </div>
                             <div class="col-lg-9">
-                                <input type="text" name="country" value="{{old('country')}}"
-                                       placeholder="Enter your country name" maxlength="50" required data-parsley-required-message="Country filed is required">
+                                @include('user.pages.common.countries.edit',['col3'=>'col-lg-3 text-uppercase','col9'=>'col-lg-9'])
+
                             </div>
                         </div>
 
@@ -63,7 +66,8 @@
                                 <label>ADDRESS *</label>
                             </div>
                             <div class="col-lg-9">
-                                <input type="text" name="state" value="{{old('state')}}" placeholder="Street Address" maxlength="50" required data-parsley-required-message="Address filed is required">
+                                <input type="text" name="state" value="{{old('state')}}" placeholder="Street Address" maxlength="50" required
+                                       data-parsley-required-message="Address filed is required">
                                 <input type="text" name="house" value="{{old('house')}}" placeholder="Apartment (optinal)"
                                        class="mt-sm-30">
                                 <input type="text" name="road" value="{{old('road')}}" placeholder="Road (optinal)"
@@ -76,7 +80,8 @@
                                 <label>TOWN / CITY *</label>
                             </div>
                             <div class="col-lg-9">
-                                <input type="text" name="city" value="{{old('city')}}" class="mt-sm-30 " required data-parsley-required-message="Town/City filed is required">
+                                <input type="text" name="city" value="{{old('city')}}" class="mt-sm-30 " required
+                                       data-parsley-required-message="Town/City filed is required">
 
                             </div>
                         </div>
@@ -86,7 +91,8 @@
                                 <label>POSTCODE / ZIP *</label>
                             </div>
                             <div class="col-lg-9">
-                                <input type="text" name="postcode" value="{{old('postcode')}}" class="mt-sm-30" required data-parsley-required-message="Postcode filed is required">
+                                <input type="text" name="postcode" value="{{old('postcode')}}" class="mt-sm-30" required
+                                       data-parsley-required-message="Postcode filed is required">
                             </div>
                         </div>
 

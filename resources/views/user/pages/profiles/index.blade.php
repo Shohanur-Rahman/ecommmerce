@@ -100,6 +100,7 @@
                                         <div class="">
                                             <h5>Primary Billing Address</h5>
                                             <address>
+                                                {{$shippingAddress->title}}<br>
                                                 {{$shippingAddress->name}}<br>
                                                 {{$shippingAddress->email}}<br>
                                                 {{$shippingAddress->city}}<br>

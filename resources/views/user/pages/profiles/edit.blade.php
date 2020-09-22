@@ -99,11 +99,14 @@
                                    placeholder="Enter your City" required="required" data-parsley-error-message="Enter your City">
                         </div>
 
+
+
                         <div class="form-group col-12">
-                            <label class="float-left" for="country">Country</label>
-                            <input class="form-control" type="text" name="country" id="country" value="{{$userProfile->country ?? old('country')}}"
-                                   placeholder="Enter your Country" required="required" data-parsley-error-message="Enter your Country">
+                           @include('user.pages.common.countries.edit',['presentCountry'=>$userProfile])
                         </div>
+
+
+
 
                         <div class="form-group col-12">
                             <label class="float-left" for="full_address">Full Address</label>

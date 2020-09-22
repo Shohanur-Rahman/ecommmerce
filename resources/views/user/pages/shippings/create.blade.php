@@ -15,6 +15,14 @@
                     </div>
                     <form class="py-3 row" action="{{route('shipping-address.store')}}" method="post" data-parsley-validate>
                         @csrf
+
+                        <div class="form-group col-12">
+                            <label class="float-left" for="title">Title</label>
+                            <input class="form-control" type="text" name="title" id="title" value="{{old('title')}}"
+                                   placeholder="Enter your title" required="required" data-parsley-error-message="Enter your title">
+
+                        </div>
+
                         <div class="form-group col-12">
                             <label class="float-left" for="name">Username</label>
                             <input class="form-control" type="text" name="name" id="name" value="{{old('name')}}"
@@ -70,9 +78,8 @@
                         </div>
 
                         <div class="form-group col-12">
-                            <label class="float-left" for="country">Country</label>
-                            <input class="form-control" type="text" name="country" id="country" value="{{old('country')}}"
-                                   placeholder="Enter Country Name" required="required" data-parsley-error-message="Enter Country Name">
+                            @include('user.pages.common.countries.create')
+
                         </div>
 
                         <div class="form-group col-12">

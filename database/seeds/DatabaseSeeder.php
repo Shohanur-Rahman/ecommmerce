@@ -11,6 +11,7 @@ class DatabaseSeeder extends Seeder
      */
     public function run()
     {
+        $this->call(CountriesTableSeeder::class);
         $this->call(UserSeeder::class);
         factory(App\Models\ProductTags::class,10)->create();
         factory(App\Models\User\UserProfile::class,7)->create();
