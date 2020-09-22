@@ -52,13 +52,8 @@
                         </div>
 
                         <div class="row">
-                            <div class="col-lg-3 align-items-center">
-                                <label>COUNTRY *</label>
-                            </div>
-                            <div class="col-lg-9">
-                                @include('user.pages.common.countries.edit',['col3'=>'col-lg-3 text-uppercase','col9'=>'col-lg-9'])
+                           @include('user.pages.common.countries.create',['col3'=>'col-lg-3 text-uppercase','col9'=>'col-lg-9'])
 
-                            </div>
                         </div>
 
                         <div class="row">
