@@ -45,3 +45,4 @@ $factory->define(App\Models\User\UserProfile::class, function (Faker $faker) {
         'user_id' =>$faker->unique()->numberBetween(1,7),
     ];
 });
+

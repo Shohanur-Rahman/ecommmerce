@@ -11,6 +11,8 @@ class DatabaseSeeder extends Seeder
      */
     public function run()
     {
+        factory(App\Models\EcomSetting::class,1)->create();
+        $this->call(CurrenciesTableSeeder::class);
         $this->call(CountriesTableSeeder::class);
         $this->call(UserSeeder::class);
         factory(App\Models\ProductTags::class,10)->create();

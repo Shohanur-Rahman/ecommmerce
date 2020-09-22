@@ -70,6 +70,7 @@
                         <a href="javascript:void(0)"><i class="zmdi zmdi-settings"></i> <span>Shop</span> <i class="fa fa-angle-right"></i></a>
                         <ul class="treeview-menu ">
                             <li><a class=" {{activeLink('orders')}}" href="{{route('orders.index')}}">- Ordered</a></li>
+                            <li><a class=" {{activeLink('ecom-settings')}}" href="{{route('ecom-settings.index')}}">- E-com Settings</a></li>
                         </ul>
                     </li>
                 </ul>
