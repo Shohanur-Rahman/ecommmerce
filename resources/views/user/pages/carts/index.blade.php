@@ -34,132 +34,139 @@
 
 	<!--shopping-cart area-->
 	<div class="shopping-cart-area mb-5">
-		<div class="container">
-			<div class="row">
-				<div class="col-sm-12">
-					<div class="table-responsive">
-						<table class="cart-table">
-							<thead>
-								<tr>
-									<th>Image</th>
-									<th>Product Name</th>
-									<th>Price</th>
-									<th>Quantity</th>
-									<th>Total</th>
-									<th class="text-center"><i class="fa fa-times" aria-hidden="true"></i></th>
-								</tr>
-							</thead>
-							<tbody>
-								<?php $taotalPrice = 0;?>
-								@foreach($myCartList as $cartItem)
-								<tr>
-									<td>
-										<div class="cart-product-thumb">
-											<a title="{{$cartItem->product->title}}" href="{{route('product.search.show', $cartItem->product->slug)}}"><img src="{{$cartItem->product->featured_image}}" alt="{{$cartItem->product->title}}" /></a>
-										</div>
-									</td>
-									<td>
-										<div class="cart-product-name">
-											<h5><a href="{{route('product.search.show', $cartItem->product->slug)}}">{{$cartItem->product->title}}</a></h5>
-										</div>
-									</td>
-									<td>
-										<span class="cart-product-price">${{$cartItem->product->new_price}}</span>
-										<span style="display: none;" id="price_{{$cartItem->id}}">{{$cartItem->product->new_price}}</span>
-									</td>
-									<td>
-										<div class="cart-quantity-changer">
-											<input type="number" value="1" onchange="CalculateTotal(this)" id="qty_{{$cartItem->id}}" selector="{{$cartItem->id}}" pattern="[0-9]" onkeydown="CalculateTotal(this)" onkeyup="CalculateTotal(this)" onkeyup="CalculateTotal(this)" />
-										</div>
-									</td>
-									<td>
-										<span class="cart-product-price">$<span id="{{$cartItem->id}}_total_price">{{number_format($cartItem->product->new_price*$cartItem->quantity, 2)}}</span></span>
-									</td>
-									<td>
-										<div class="product-remove">
-											<a title="Remove Item" href="{{route('cart.delete',$cartItem->id)}}">
-												<i class="fa fa-times" aria-hidden="true"></i>
-											</a>
-										</div>
-									</td>
-								</tr>
-								<?php $taotalPrice = ($taotalPrice+($cartItem->product->new_price*$cartItem->quantity));?>
-								@endforeach
+        <form action="{{route('cart.update')}}" method="post">
+            @method('PATCH')
+            @csrf
+            <div class="container">
+                <div class="row">
+                    <div class="col-sm-12">
+                        <div class="table-responsive">
+                            <table class="cart-table">
+                                <thead>
+                                <tr>
+                                    <th>Image</th>
+                                    <th>Product Name</th>
+                                    <th>Price</th>
+                                    <th>Quantity</th>
+                                    <th>Total</th>
+                                    <th class="text-center"><i class="fa fa-times" aria-hidden="true"></i></th>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                <?php $taotalPrice = 0;?>
+                                @foreach($myCartList as $cartItem)
 
-								<tr>
-									<td colspan="4">
-										<strong>Total</strong>
-									</td>
+                                    <tr>
+                                        <td>
+                                            <div class="cart-product-thumb">
+                                                <a title="{{$cartItem->product->title}}" href="{{route('product.search.show', $cartItem->product->slug)}}"><img src="{{$cartItem->product->featured_image}}" alt="{{$cartItem->product->title}}" /></a>
+                                            </div>
+                                        </td>
+                                        <td>
+                                            <div class="cart-product-name">
+                                                <h5><a href="{{route('product.search.show', $cartItem->product->slug)}}">{{$cartItem->product->title}}</a></h5>
+                                            </div>
+                                        </td>
+                                        <td>
+                                            <span class="cart-product-price">${{$cartItem->product->new_price}}</span>
+                                            <span style="display: none;" id="price_{{$cartItem->id}}">{{$cartItem->product->new_price}}</span>
+                                        </td>
+                                        <td>
+                                            <div class="cart-quantity-changer">
+                                                <input type="hidden" name="product_id[]" value={{$cartItem->product_id}}>
 
-									<td>
-										$<span class="dummy_cartTotal">{{$taotalPrice}}</span>
-									</td>
-								</tr>
+                                                <input type="number" name="quantity[]" value="{{$cartItem->quantity}}" onchange="CalculateTotal(this)" id="qty_{{$cartItem->id}}" selector="{{$cartItem->id}}" pattern="[0-9]" onkeydown="CalculateTotal(this)" onkeyup="CalculateTotal(this)" onkeyup="CalculateTotal(this)" />
+                                            </div>
+                                        </td>
+                                        <td>
+                                            <span class="cart-product-price">$<span id="{{$cartItem->id}}_total_price">{{number_format($cartItem->product->new_price*$cartItem->quantity, 2)}}</span></span>
+                                        </td>
+                                        <td>
+                                            <div class="product-remove">
+                                                <a title="Remove Item" href="{{route('cart.delete',$cartItem->id)}}">
+                                                    <i class="fa fa-times" aria-hidden="true"></i>
+                                                </a>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                    <?php $taotalPrice = ($taotalPrice+($cartItem->product->new_price*$cartItem->quantity));?>
+                                @endforeach
 
-							</tbody>
-						</table>
-					</div>
-				</div>
-			</div>
-			<div class="row mt-30">
-				<div class="col-lg-6">
-					<div class="cart-update">
-						<a href="/" class="btn-common">CONTINUE SHOPPING</a>
-					</div>
-				</div>
-				<div class="col-lg-6">
-					<div class="cart-update pull-right">
-						<a href="#" class="btn-common">UPDATE CART</a>
-					</div>
-				</div>
-			</div>
+                                <tr>
+                                    <td colspan="4">
+                                        <strong>Total</strong>
+                                    </td>
+
+                                    <td>
+                                        $<span class="dummy_cartTotal">{{$taotalPrice}}</span>
+                                    </td>
+                                </tr>
+
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+                <div class="row mt-30">
+                    <div class="col-lg-6">
+                        <div class="cart-update">
+                            <a href="/" class="btn-common">CONTINUE SHOPPING</a>
+                        </div>
+                    </div>
+                    <div class="col-lg-6">
+                        <div class="cart-update pull-right">
+                            <button type="submit" class="btn-common">UPDATE CART</button>
+                        </div>
+                    </div>
+                </div>
 
 
-			<div class="row mt-40 d-flex justify-content-between ">
-				<div class="col-lg-4">
-					<div class="cart-box cart-coupon fix">
-						<h5>Discount Codes</h5>
-						<div class="cart-box-inner">
-							<p>Enter your coupin if you have one</p>
-							<input type="text">
-							<a href="#" class="btn-common">Apply</a>
-						</div>
-					</div>
-				</div>
-				<div class="col-lg-4">
-					<div class="cart-box cart-total">
-						<h5>Cart Total</h5>
-						<div class="cart-box-inner">
-							<table class="table">
-								<tbody>
-								<tr>
-									<td>SUB TOTAL:</td>
-									<td><span>${{$taotalPrice}}</span></td>
-								</tr>
+                <div class="row mt-40 d-flex justify-content-between ">
+                    <div class="col-lg-4">
+                        <div class="cart-box cart-coupon fix">
+                            <h5>Discount Codes</h5>
+                            <div class="cart-box-inner">
+                                <p>Enter your coupin if you have one</p>
+                                <input type="text">
+                                <a href="#" class="btn-common">Apply</a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-4">
+                        <div class="cart-box cart-total">
+                            <h5>Cart Total</h5>
+                            <div class="cart-box-inner">
+                                <table class="table">
+                                    <tbody>
+                                    <tr>
+                                        <td>SUB TOTAL:</td>
+                                        <td><span>${{$taotalPrice}}</span></td>
+                                    </tr>
 
-								<tr>
-									<td>Coupon Discount:</td>
-									<td><span>$0.00</span></td>
-								</tr>
+                                    <tr>
+                                        <td>Coupon Discount:</td>
+                                        <td><span>$0.00</span></td>
+                                    </tr>
 
-								<tr>
-									<td>GRAND TOTAL:</td>
-									<td><span>${{$taotalPrice}}</span></td>
-								</tr>
-								</tbody></table>
-							<div class="proceed-checkout">
-								<div class="col-lg-12">
-									<a href="#">Checkout with multiple address</a>
-								</div>
-								<div class="col-lg-12">
-									<a href="{{route('checkouts.create')}}" class="btn-common">PROCEED TO CHECK OUT</a>
-								</div>
-							</div>
-						</div>
-					</div>
-				</div>
-			</div>
-		</div>
+                                    <tr>
+                                        <td>GRAND TOTAL:</td>
+                                        <td><span>${{$taotalPrice}}</span></td>
+                                    </tr>
+                                    </tbody></table>
+                                <div class="proceed-checkout">
+                                    <div class="col-lg-12">
+                                        <a href="#">Checkout with multiple address</a>
+                                    </div>
+                                    <div class="col-lg-12">
+                                        <a href="{{route('checkouts.create')}}" class="btn-common">PROCEED TO CHECK OUT</a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </form>
 	</div>
 
 

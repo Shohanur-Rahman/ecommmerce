@@ -8,6 +8,7 @@ Route::group(['middleware'=>'auth'],function(){
 	Route::post('/add-to-cart', 'ProductController@add_to_cart')->name('product.add_to_cart');
 	Route::get('/view-cart', 'ProductCartController@index')->name('cart.index');
 	Route::get('/delete/{cart}', 'ProductCartController@delete')->name('cart.delete');
+	Route::patch('/cart', 'ProductCartController@update')->name('cart.update');
 
 });
 
