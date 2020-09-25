@@ -34,7 +34,7 @@
 
 	<!--shopping-cart area-->
 	<div class="shopping-cart-area mb-5">
-        <form action="{{route('cart.update')}}" method="post">
+        <form action="{{route('cart.update')}}" method="post" data-parsley-validate>
             @method('PATCH')
             @csrf
             <div class="container">
@@ -75,7 +75,7 @@
                                             <div class="cart-quantity-changer">
                                                 <input type="hidden" name="product_id[]" value={{$cartItem->product_id}}>
 
-                                                <input type="number" name="quantity[]" value="{{$cartItem->quantity}}" onchange="CalculateTotal(this)" id="qty_{{$cartItem->id}}" selector="{{$cartItem->id}}" pattern="[0-9]" onkeydown="CalculateTotal(this)" onkeyup="CalculateTotal(this)" onkeyup="CalculateTotal(this)" />
+                                                <input type="number" name="quantity[]" min="1" value="{{$cartItem->quantity}}" onchange="CalculateTotal(this)" id="qty_{{$cartItem->id}}" selector="{{$cartItem->id}}" pattern="[0-9]" onkeydown="CalculateTotal(this)" onkeyup="CalculateTotal(this)" onkeyup="CalculateTotal(this)" />
                                             </div>
                                         </td>
                                         <td>
