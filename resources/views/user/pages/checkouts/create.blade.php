@@ -161,7 +161,7 @@
                                         @foreach($cartItems as $cartItem)
                                             <tr>
                                                 <td>{{Str::limit($cartItem->product->title,20)}}</td>
-                                                <td>{{$cartItem->product->new_price}}</td>
+                                                <td>{{$cartItem->product->new_price}} x {{$cartItem->quantity}}</td>
                                             </tr>
                                             @php
                                                 $totalPrice = ($totalPrice + ($cartItem->product->new_price * $cartItem->quantity));
