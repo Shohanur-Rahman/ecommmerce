@@ -102,6 +102,8 @@ Route::group(['middleware' => 'auth'], function() {
         Route::get('/','EcomSettingController@index')->name('ecom-settings.index');
         Route::patch('{ecomSetting}/show','EcomSettingController@update')->name('ecom-settings.update');
     });
+
+
 });
 
 

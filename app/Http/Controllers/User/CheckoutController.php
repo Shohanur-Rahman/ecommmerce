@@ -12,12 +12,17 @@ use App\Models\User\ShippingAddress;
 use App\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Session;
 
 class CheckoutController extends Controller
 {
     public function index()
     {
-        return view('user.pages.checkouts.index');
+        if(Session::has('user_id')){
+            return view('user.pages.checkouts.index');
+        }
+
+        return redirect('/');
     }
 
     public function create()
@@ -76,7 +81,7 @@ class CheckoutController extends Controller
             ]);
         });
 
-        return redirect(Route('checkouts.index'));
+        return redirect(Route('checkouts.index'))->with('user_id',auth()->id());
     }
 
     public function shippingAddressCreate()
