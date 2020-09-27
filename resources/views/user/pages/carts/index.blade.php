@@ -2,8 +2,6 @@
 @section('title', 'My Cart')
 @section('content')
 
-
-
 <div class="shopping-cart-steps">
 	<div class="container">
 			<div class="row">
