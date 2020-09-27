@@ -9,6 +9,7 @@ use App\Models\User\Country;
 use App\Models\User\Order;
 use App\Models\User\OrderProduct;
 use App\Models\User\ShippingAddress;
+use App\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
@@ -21,7 +22,7 @@ class CheckoutController extends Controller
 
     public function create()
     {
-        $user = Auth::user()->with('shippingAddresses', 'userProfile')->first();
+        $user = User::where('id',auth()->id(0))->with('shippingAddresses', 'userProfile')->first();
 
         $cartItems = CartItem::where('user_id', Auth::id())->with('product')->get();
 
