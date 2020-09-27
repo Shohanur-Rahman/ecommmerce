@@ -382,9 +382,11 @@
 
 
                     <div class="card-footer">
-                        <div class="col-md-12">
-                            <a href="{{route('products.index')}}" class="btn btn-danger">Back to Products</a>
-                            <button type="submit" class="btn btn-primary mr-2">Save Product</button>
+                        <div class="row">
+                            <div class="col-md-12">
+                                <a href="{{route('products.index')}}" class="btn btn-danger">Back to Products</a>
+                                <button type="submit" class="btn btn-primary mr-2 float-right">Save Product</button>
+                            </div>
                         </div>
                     </div>
 
