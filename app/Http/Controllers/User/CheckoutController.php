@@ -14,6 +14,11 @@ use Illuminate\Support\Facades\Auth;
 
 class CheckoutController extends Controller
 {
+    public function index()
+    {
+        return view('user.pages.checkouts.index');
+    }
+
     public function create()
     {
         $user = Auth::user()->with('shippingAddresses', 'userProfile')->first();
@@ -25,6 +30,7 @@ class CheckoutController extends Controller
 
     public function store(Request $request)
     {
+
        $userProfileCheck = auth()->user()->userProfile;
        $userProfile = auth()->user()->userProfile();
 
@@ -69,7 +75,7 @@ class CheckoutController extends Controller
             ]);
         });
 
-        return redirect()->back();
+        return redirect(Route('checkouts.index'));
     }
 
     public function shippingAddressCreate()

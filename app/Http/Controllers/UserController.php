@@ -62,14 +62,10 @@ class UserController extends Controller
         ]);
 
         $remember_me = $request['remember'] ? true : false;
-        $attempts =['email' => $request['email'], 'password' => $request['password']];
-        $user = User::where('email',$request['email'])->first();
+        $attempts = ['email' => $request['email'], 'password' => $request['password']];
+
 
         if(Auth::attempt($attempts,$remember_me)) {
-
-            if($remember_me == true){
-                Auth::login($user, true);
-            }
 
             return redirect(route('profiles.index'));
         }

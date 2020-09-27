@@ -41,12 +41,11 @@
                 <div class="container">
                     <div class="row mt-10">
                         <div class="col-lg-12">
-                            <div class="billing-form">
+                            <div class="text-center">
                                 <h4>Order Completed</h4>
-                                <p>Your Order has been completed successfully.</p>
-                                <p>Thank your, for shopping us</p>
+                                <p>Your Order has been completed successfully.
+                                Thank your, for shopping us</p>
                             </div>
-
                         </div>
                     </div>
                 </div>
