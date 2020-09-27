@@ -103,7 +103,9 @@ Route::group(['middleware' => 'auth'], function() {
         Route::patch('{ecomSetting}/show','EcomSettingController@update')->name('ecom-settings.update');
     });
 
-
+    Route::group(['prefix'=>'profiles'], function(){
+        Route::get('/create','ProfileController@create')->name('profiles.create');
+    });
 });
 
 
