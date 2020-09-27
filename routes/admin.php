@@ -105,6 +105,7 @@ Route::group(['middleware' => 'auth'], function() {
 
     Route::group(['prefix'=>'profiles'], function(){
         Route::get('/create','ProfileController@create')->name('profiles.create');
+        Route::get('/change-password','ProfileController@passwordEdit')->name('change-password.edit');
     });
 });
 

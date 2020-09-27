@@ -11,4 +11,9 @@ class ProfileController extends Controller
     {
         return view('admin.modules.profiles.create');
     }
+
+    public function passwordEdit()
+    {
+        return view('admin.modules.profiles.password_edit');
+    }
 }
