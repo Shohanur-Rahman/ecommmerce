@@ -39,11 +39,6 @@
             </div>
             <div class="checkout-area mt-15">
                 <div class="container">
-                    <div class="row">
-                        <div class="col-lg-12">
-                            <p>Returning customer? <a href="#">Click here</a> to login</p>
-                        </div>
-                    </div>
                     <div class="row mt-10">
                         <div class="col-lg-8">
                             <div class="billing-form">
