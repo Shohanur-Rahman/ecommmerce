@@ -97,6 +97,10 @@
                                         <label class="float-left" for="nid">Enter Your NID Number && NID Photo</label>
                                         <input class="form-control" type="number" name="nid" id="nid" value="{{$userProfile->nid ?? old('nid')}}"
                                                placeholder="Enter Your NID Number" required="required" data-parsley-required-message="Enter Your NID Number">
+
+                                        @error('nid')
+                                            <span class="text-danger">{{$message}}</span>
+                                        @enderror
                                     </div>
 
                                     <div class="form-group col-md-6">

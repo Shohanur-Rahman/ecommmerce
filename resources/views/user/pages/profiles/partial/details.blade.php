@@ -32,10 +32,30 @@
                 {{Auth::user()->name}}<br>
 
                 @if(Auth::user()->userProfile != null)
-                    {{Auth::user()->userProfile->city}}<br>
-                    {{Auth::user()->userProfile->house}}, {{Auth::user()->userProfile->road}}, {{Auth::user()->userProfile->state}}<br>
-                    {{Auth::user()->userProfile->country}}<br>
-                    {{Auth::user()->userProfile->describe_address}}<br>
+                    @if(Auth::user()->userProfile->city)
+                        {{Auth::user()->userProfile->city }} <br>
+                    @endif
+
+                    @if(Auth::user()->userProfile->house)
+                        {{Auth::user()->userProfile->house }},
+                    @endif
+
+                    @if(Auth::user()->userProfile->road)
+                        {{Auth::user()->userProfile->road }},
+                    @endif
+
+                    @if(Auth::user()->userProfile->state)
+                        {{Auth::user()->userProfile->state }},
+                    @endif
+
+                    @if(Auth::user()->userProfile->country)
+                        {{Auth::user()->userProfile->country }} <br>
+                    @endif
+
+                    @if(Auth::user()->userProfile->describe_address)
+                        {{Auth::user()->userProfile->describe_address}} <br>
+                    @endif
+
                     Phone: {{Auth::user()->userProfile->phone}} <br>
                 @endif
             </address>

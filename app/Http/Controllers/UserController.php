@@ -62,8 +62,7 @@ class UserController extends Controller
         ]);
 
         $remember_me = $request['remember'] ? true : false;
-        $attempts = ['email' => $request['email'], 'password' => $request['password']];
-
+        $attempts = ['email' => $request['email'], 'password' => $request['password'],'is_active'=>1];
 
         if(Auth::attempt($attempts,$remember_me)) {
 

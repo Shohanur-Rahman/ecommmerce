@@ -42,7 +42,7 @@
 
                         <div class="form-group col-12">
                             <label class="float-left" for="phone">Phone</label>
-                            <input class="form-control" type="text" name="phone" id="phone" value="{{old('phone')}}"
+                            <input class="form-control" type="number" name="phone" id="phone" value="{{old('phone')}}"
                                    placeholder="Enter your Secondary Phone" required="required" data-parsley-error-message="Enter Phone Number">
                         </div>
 

@@ -67,7 +67,7 @@
                                             <label>PHONE *</label>
                                         </div>
                                         <div class="col-lg-9">
-                                            <input type="text" name="phone" value="{{$user->userProfile->phone ?? old('phone')}}"
+                                            <input type="number" name="phone" value="{{$user->userProfile->phone ?? old('phone')}}"
                                                    placeholder="Enter your phone number"  maxlength="15" required data-parsley-required-message="Phone filed is required" >
                                         </div>
                                     </div>
@@ -104,7 +104,7 @@
                                             <label>POSTCODE / ZIP *</label>
                                         </div>
                                         <div class="col-lg-9">
-                                            <input type="text" name="postcode" value="{{$user->userProfile->postcode ?? old('postcode')}}" class="mt-sm-30" maxlength="50" required data-parsley-required-message="Postcode filed is required">
+                                            <input type="number" name="postcode" value="{{$user->userProfile->postcode ?? old('postcode')}}" class="mt-sm-30" maxlength="50" required data-parsley-required-message="Postcode filed is required">
                                         </div>
                                     </div>
                                 </form>

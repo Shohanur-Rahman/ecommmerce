@@ -33,6 +33,11 @@ class ProductController extends Controller
 
 
         $categoryDetails = ProductCategory::where('slug', $category)->first();
+
+        if(is_null($categoryDetails)){
+           return view('user.error_pages.404');
+        }
+
         $products = new Products();
 
         if($brandId > 0 && $colorId > 0)

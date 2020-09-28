@@ -44,7 +44,7 @@
                         </ul>
                     </li>
 
-                    <li class="treeview {{ request()->routeIs('users.*') ? 'active' : '' }}">
+                    <li class="treeview {{ request()->routeIs('users.*','vendor-applications.*') ? 'active' : '' }}">
                         <a href="javascript:void(0)"><i class="zmdi zmdi-accounts-alt"></i> <span>Users</span> <i class="fa fa-angle-right"></i></a>
                         <ul class="treeview-menu {{ request()->routeIs('users.*') ? 'active' : '' }}">
                             <li><a class="{{userActiveLink('super-admin')}}" href="{{route('users.index',['type'=>'super-admin'])}}">- Super Admins</a></li>
@@ -66,7 +66,7 @@
                         </ul>
                     </li>
 
-                    <li class="treeview {{ request()->routeIs('orders.*') ? 'active' : '' }}">
+                    <li class="treeview {{ request()->routeIs('orders.*','ecom-settings.*') ? 'active' : '' }}">
                         <a href="javascript:void(0)"><i class="zmdi zmdi-settings"></i> <span>Shop</span> <i class="fa fa-angle-right"></i></a>
                         <ul class="treeview-menu ">
                             <li><a class=" {{activeLink('orders')}}" href="{{route('orders.index')}}">- Ordered</a></li>

@@ -11,14 +11,14 @@ class DatabaseSeeder extends Seeder
      */
     public function run()
     {
-        factory(App\Models\EcomSetting::class,1)->create();
-        $this->call(CurrenciesTableSeeder::class);
-        $this->call(CountriesTableSeeder::class);
-        $this->call(UserSeeder::class);
-        factory(App\Models\ProductTags::class,10)->create();
-        factory(App\Models\User\UserProfile::class,7)->create();
-        $this->call(ProductCategoryTableSeeder::class);
+//        factory(App\Models\EcomSetting::class,1)->create();
+//        $this->call(CurrenciesTableSeeder::class);
+//        $this->call(CountriesTableSeeder::class);
+//        $this->call(UserSeeder::class);
+//        factory(App\Models\ProductTags::class,10)->create();
+//        factory(App\Models\User\UserProfile::class,7)->create();
+//        $this->call(ProductCategoryTableSeeder::class);
         $this->call(ProductSeeder::class);
-        $this->call(BrandSeeder::class);
+//        $this->call(BrandSeeder::class);
     }
 }

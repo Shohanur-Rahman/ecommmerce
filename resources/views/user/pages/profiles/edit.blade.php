@@ -45,6 +45,10 @@
                             <label class="float-left" for="nid">Enter Your NID Number && NID Photo</label>
                             <input class="form-control" type="number" name="nid" id="nid" value="{{$userProfile->nid ?? old('nid')}}"
                                    placeholder="Enter Your NID Number" required="required" data-parsley-required-message="Enter Your NID Number">
+
+                            @error('nid')
+                            <span class="text-danger">{{$message}}</span>
+                            @enderror
                         </div>
 
                         <div class="form-group col-6">
@@ -65,7 +69,7 @@
 
                         <div class="form-group col-12">
                             <label class="float-left" for="phone">Phone</label>
-                            <input class="form-control" type="text" name="phone" id="phone" value="{{$userProfile->phone ?? old('phone')}}"
+                            <input class="form-control" type="number" name="phone" id="phone" value="{{$userProfile->phone ?? old('phone')}}"
                                    placeholder="Enter your Secondary Phone" required="required" data-parsley-error-message="Enter your Secondary Phone">
                         </div>
 
@@ -99,14 +103,9 @@
                                    placeholder="Enter your City" required="required" data-parsley-error-message="Enter your City">
                         </div>
 
-
-
                         <div class="form-group col-12">
                            @include('user.pages.common.countries.edit',['presentCountry'=>$userProfile])
                         </div>
-
-
-
 
                         <div class="form-group col-12">
                             <label class="float-left" for="full_address">Full Address</label>
