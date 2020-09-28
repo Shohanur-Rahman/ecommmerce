@@ -2,6 +2,10 @@
 @section('title', "Home")
 @section('content')
 <div class="row justify-content-center">
+    <div class="col-md-12">
+        <x-inform-users></x-inform-users>
+    </div>
+
     <div class="col-md-6 col-xl-4">
         <div class="card box-margin">
             <div class="card-body">

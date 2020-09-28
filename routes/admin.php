@@ -104,8 +104,11 @@ Route::group(['middleware' => 'auth'], function() {
     });
 
     Route::group(['prefix'=>'profiles'], function(){
-        Route::get('/create','ProfileController@create')->name('profiles.create');
-        Route::get('/change-password','ProfileController@passwordEdit')->name('change-password.edit');
+        Route::get('/create','ProfileController@create')->name('admin-profiles.create');
+        Route::patch('/','ProfileController@update')->name('admin-profiles.update');
+        Route::patch('/avatar','ProfileController@avatarUpdate')->name('admin-avatar.update');
+        Route::get('/change-password','ProfileController@passwordEdit')->name('admin-change-password.edit');
+        Route::patch('/change-password','ProfileController@passwordUpdate')->name('admin-change-password.update');
     });
 });
 

@@ -77,7 +77,7 @@ class UserProfileController extends Controller
             return redirect(route('profiles.index'))->with('success','Password Updated Successfully');
         }
 
-        return redirect(route('profiles.index'))->with('success','Password Updated Successfully');
+        return redirect()->back()->with('error-message','The current password is given wrong');
     }
 
 

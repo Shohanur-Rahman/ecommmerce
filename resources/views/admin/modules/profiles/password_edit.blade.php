@@ -18,22 +18,35 @@
                         plug-ins can built.
                     </p>
 
-                    <section id="steps-uid-1-p-0" role="tabpanel" aria-labelledby="steps-uid-1-h-0" class="body current" aria-hidden="false">
-                        <h3>Account</h3>
-                        <div class="form-group">
-                            <label for="userName">User name *</label>
-                            <input id="userName" name="userName" type="text" class="required form-control">
+                    <div class="row">
+                        <div class="col-sm-12 col-xs-12">
+                            <form action="{{route('admin-change-password.update')}}" method="post" data-parsley-validate>
+                                @method('PATCH')
+                                @csrf
+                                <div class="form-group">
+                                    <label for="currentPassword">Current Password *</label>
+                                    <input id="currentPassword" name="current_password"  type="password" class="required form-control" value="{{old('current_password')}}"
+                                           placeholder="Enter your Current Password" required="required" data-parsley-error-message="Enter your Current Password">
+                                </div>
+                                <div class="form-group">
+                                    <label for="new_password">Password *</label>
+                                    <input name="new_password" type="password"  class="required form-control"  id="new_password" value="{{old('new_password')}}"
+                                           min="8" placeholder="Enter your New Password" required="required" data-parsley-error-message="Enter your New Password">
+                                </div>
+                                <div class="form-group">
+                                    <label for="confirm">Confirm Password *</label>
+                                    <input id="confirm" name="confirm" type="password" class="required form-control" value="{{old('confirm_password')}}"
+                                           min="8" placeholder="Enter your Confirm Password" required="required" data-parsley-error-message="Please confirm your password" data-parsley-equalto="#new_password">
+                                    <small>(*) Mandatory</small>
+                                </div>
+
+                                <button type="submit" class="btn btn-success mr-2 float-left">Update Password</button>
+                            </form>
+
+                            <a href="{{route('dashboard')}}" class="btn btn-danger float-right">Back to Dashboard</a>
                         </div>
-                        <div class="form-group">
-                            <label for="password">Password *</label>
-                            <input id="password" name="password" type="password" class="required form-control">
-                        </div>
-                        <div class="form-group">
-                            <label for="confirm">Confirm Password *</label>
-                            <input id="confirm" name="confirm" type="password" class="required form-control">
-                            <small>(*) Mandatory</small>
-                        </div>
-                    </section>
+                    </div>
+
                 </div>
             </div>
         </div>

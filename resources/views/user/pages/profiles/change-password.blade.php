@@ -20,21 +20,18 @@
                         @csrf
                         <div class="form-group">
                             <label class="float-left" for="current_password">Current Password</label>
-                            <input class="form-control" type="password" name="current_password" id="name" value="{{old('current_password')}}"
-                                   placeholder="Enter your Current Password" required="required" data-parsley-error-message="Enter your Current Password">
+                            <input class="form-control" type="password" name="current_password" id="name" value="{{old('current_password')}}" placeholder="Enter your Current Password" required="required" data-parsley-error-message="Enter your Current Password">
 
                         </div>
 
                         <div class="form-group">
                             <label class="float-left" for="new_password">New Password</label>
-                            <input class="form-control" type="password" name="new_password" id="new_password" value="{{old('new_password')}}"
-                                  min="8" placeholder="Enter your New Password" required="required" data-parsley-error-message="Enter your New Password">
+                            <input class="form-control" type="password" name="new_password" id="new_password" value="{{old('new_password')}}" min="8" placeholder="Enter your New Password" required="required" data-parsley-error-message="Enter your New Password">
                         </div>
 
                         <div class="form-group">
                             <label class="float-left" for="confirm_password">Confirm Password</label>
-                            <input class="form-control" type="password" name="confirm_password" id="road" value="{{old('confirm_password')}}"
-                                   min="8" placeholder="Enter your Confirm Password" required="required" data-parsley-error-message="Please confirm your password" data-parsley-equalto="#new_password">
+                            <input class="form-control" type="password" name="confirm_password" id="road" value="{{old('confirm_password')}}" min="8" placeholder="Enter your Confirm Password" required="required" data-parsley-error-message="Please confirm your password" data-parsley-equalto="#new_password">
                         </div>
 
                         <button class="btn btn-primary " type="submit"> Update</button>
