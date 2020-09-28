@@ -68,7 +68,7 @@
                                 @method('PATCH')
                                 @csrf
                                 <div class="form-row">
-                                    <div class="form-group col-md-6">
+                                    <div class="form-group col-12" >
                                         <label for="name">Username</label>
                                         <input class="form-control" type="text" name="name" id="name" value="{{Auth::user()->name ?? old('name')}}"
                                                placeholder="Enter your name" required="required" data-parsley-error-message="Enter your name">
