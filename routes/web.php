@@ -70,6 +70,6 @@ Route::group(['middleware'=>'auth'],function(){
     });
 
     Route::group(['prefix'=>'orders'], function(){
-        Route::get('/{order}','User\OrderController@show')->name('orders.show');
+        Route::get('/{order}','User\OrderController@show')->name('orders-details.show');
     });
 });

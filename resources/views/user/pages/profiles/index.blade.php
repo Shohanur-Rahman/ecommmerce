@@ -65,7 +65,7 @@
                                                 <td><em>{{$order->status}}</em></td>
                                                 <td class="a-center last">
                                                     <span class="nobr">
-                                                        <a class="text-success" href="{{route('orders.show',$order->id)}}">View Order</a>
+                                                        <a class="text-success" href="{{route('orders-details.show',$order->id)}}">View Order</a>
                                                         <span class="separator">|</span>
                                                         <a class="text-success" href="#">Reorder</a>
                                                     </span>
