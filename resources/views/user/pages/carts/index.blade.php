@@ -156,7 +156,11 @@
                                         <a href="#">Checkout with multiple address</a>
                                     </div>
                                     <div class="col-lg-12">
-                                        <a href="{{route('checkouts.create')}}" class="btn-common">PROCEED TO CHECK OUT</a>
+                                        @if($myCartList->isNotEmpty())
+                                            <a href="{{route('checkouts.create')}}" class="btn-common">PROCEED TO CHECK OUT</a>
+                                        @else
+                                            <a href="javascript:" class="btn-common">Please Buy first</a>
+                                        @endif
                                     </div>
                                 </div>
                             </div>

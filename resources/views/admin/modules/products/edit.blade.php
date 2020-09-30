@@ -89,6 +89,7 @@
                                         <div class="form-group">
                                             <label for="new_price">New Price</label>
                                             <input class="currancy_touchspin" type="text" name="new_price" id="new_price" value="{{$aProduct->new_price}}" />
+                                            <span class="parsley-errors-list filled" id="error"></span>
                                         </div>
                                     </div>
 
@@ -385,7 +386,7 @@
                         <div class="row">
                             <div class="col-md-12">
                                 <a href="{{route('products.index')}}" class="btn btn-danger">Back to Products</a>
-                                <button type="submit" class="btn btn-primary mr-2 float-right">Save Product</button>
+                                <button type="submit" id="submitProduct" class="btn btn-primary mr-2 float-right">Save Product</button>
                             </div>
                         </div>
                     </div>
@@ -564,4 +565,14 @@
     }
 </script>
 
+<script>
+    $('#submitProduct').click(function(){
+
+        if ($('#new_price').val().length <2) {
+            $('#error').html('New Price is required');
+            return false
+        }
+    })
+
+</script>
 @endsection

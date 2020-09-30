@@ -47,7 +47,7 @@
                                 <table class="table" id="my-orders-table">
                                     <thead>
                                     <tr class="first last">
-                                        <th>Order #</th>
+                                        <th>Order ID#</th>
                                         <th>Date</th>
                                         <th>Ship to</th>
                                         <th><span class="nobr">Order Total</span></th>
@@ -56,24 +56,17 @@
                                     </tr>
                                     </thead>
                                     <tbody>
-                                    <tr class="first odd">
-                                        <td>500000002</td>
-                                        <td>9/9/10</td>
-                                        <td>John Doe</td>
-                                        <td><span class="price">$5.00</span></td>
-                                        <td><em>Pending</em></td>
-                                        <td class="a-center last"><span class="nobr"> <a class="text-success" href="#">View Order</a> <span
-                                                    class="separator">|</span> <a class="text-success" href="#">Reorder</a> </span></td>
-                                    </tr>
-                                    <tr class="last even">
-                                        <td>500000001</td>
-                                        <td>9/9/10</td>
-                                        <td>John Doe</td>
-                                        <td><span class="price">$1,397.99</span></td>
-                                        <td><em>Pending</em></td>
-                                        <td class="a-center last"><span class="nobr"> <a class="text-success" href="#">View Order</a> <span
-                                                    class="separator">|</span> <a class="text-success" href="#">Reorder</a> </span></td>
-                                    </tr>
+                                        @foreach($orders as $order)
+                                            <tr class="first odd">
+                                                <td>{{$order->id}}</td>
+                                                <td>{{$order->created_at->formate('d m Y')}}</td>
+                                                <td>{{$order->shippingAddress->name}}</td>
+                                                <td><span class="price">${{$order->total_amount}}</span></td>
+                                                <td><em>{{$order->status}}</em></td>
+                                                <td class="a-center last"><span class="nobr"> <a class="text-success" href="#">View Order</a> <span
+                                                            class="separator">|</span> <a class="text-success" href="#">Reorder</a> </span></td>
+                                            </tr>
+                                        @endforeach
                                     </tbody>
                                 </table>
                             </div>

@@ -31,7 +31,12 @@ class CheckoutController extends Controller
 
         $cartItems = CartItem::where('user_id', Auth::id())->with('product')->get();
 
-        return view('user.pages.checkouts.create', compact('user', 'cartItems'));
+        if( $this->checkCart()->isNotEmpty()){
+
+            return view('user.pages.checkouts.create', compact('user', 'cartItems'));
+        }
+
+        return redirect('/');
     }
 
     public function store(Request $request)
@@ -87,7 +92,12 @@ class CheckoutController extends Controller
     public function shippingAddressCreate()
     {
 
-        return view('user.pages.checkouts.shipping-address');
+        if( $this->checkCart()->isNotEmpty()){
+
+            return view('user.pages.checkouts.create', compact('user', 'cartItems'));
+        }
+
+        return redirect('/');
     }
 
     public function shippingAddressStore(Request $request)
@@ -111,5 +121,11 @@ class CheckoutController extends Controller
         ]);
 
         return redirect(route('checkouts.create'))->with('shipping_id', $shipping->id);
+    }
+
+    private function checkCart(){
+
+        $cartItems = CartItem::where('user_id', Auth::id())->with('product')->get();
+        return $cartItems;
     }
 }

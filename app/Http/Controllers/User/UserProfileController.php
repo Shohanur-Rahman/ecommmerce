@@ -5,6 +5,7 @@ namespace App\Http\Controllers\User;
 use App\Http\Controllers\admin\HelperController;
 use App\Http\Controllers\Controller;
 use App\Models\User\Country;
+use App\Models\User\Order;
 use App\Models\User\ShippingAddress;
 use App\Models\User\UserProfile;
 use App\User;
@@ -18,9 +19,8 @@ class UserProfileController extends Controller
 {
     public function index()
     {
-        $user = Auth::user();
-
-        $userId = $user->id;
+        $userId = Auth::id();
+        $user = User::where('id',$userId)->first();
 
         $shippingAddresses = ShippingAddress::where('user_id',$userId)->get();
 
@@ -34,7 +34,9 @@ class UserProfileController extends Controller
 
         }
 
-        return view('user.pages.profiles.index',compact('shippingAddresses','user','fillUp'));
+        $orders = Order::where('customer_id',Auth::id())->with('shippingAddress')->get();
+
+        return view('user.pages.profiles.index',compact('shippingAddresses','user','fillUp','orders'));
     }
 
     public function edit()

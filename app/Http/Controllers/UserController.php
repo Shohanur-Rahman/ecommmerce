@@ -25,7 +25,7 @@ class UserController extends Controller
         return view('user.pages.accounts.register');
     }
 
-    public function store()
+    public function store(Request $request)
     {
         $data =request()->validate(
             [
@@ -46,10 +46,17 @@ class UserController extends Controller
          $user->userProfile()->create();
 
          $email = $data['email'];
+         $password = $data['password'];
 
-         Mail::send('emails.welcome-mail', $user->toArray(), function($message) use($email){
-             $message->to($email)->subject('Welcome to Our Site');
-         });
+
+
+        $attempts = ['email' => $email, 'password' => $password,'is_active'=>1];
+
+        if(Auth::attempt($attempts)) {
+
+            return redirect(route('profiles.index'));
+        }
+
 
         return redirect()->back()->with('success-message','registration successfully complete. Please Check Your Email!!');
     }

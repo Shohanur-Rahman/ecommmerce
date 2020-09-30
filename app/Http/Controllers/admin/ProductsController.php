@@ -128,10 +128,10 @@ class ProductsController extends HelperController
             $product->inventory_qty = $request->inventory_qty;
             $product->minimum_inventory_qty = $request->minimum_inventory_qty;
             $product->notify_low_inventory = $request->has('notify_low_inventory');
-            $product->show_availability = $request->has('show_availability');
             $product->Warehouse_id = $request->Warehouse_id;
             $product->minimum_inventory_qty = $request->minimum_inventory_qty;
         }
+        $product->show_availability = $request->has('show_availability');
 
          /*
         * Check SEO switch */
@@ -206,7 +206,7 @@ class ProductsController extends HelperController
 
     public function update(Request $request, $id)
     {
-        //dd($request->all());
+//        dd($request->all());
         $helper = new HelperController();
         /*
         *
@@ -239,11 +239,11 @@ class ProductsController extends HelperController
             $product->inventory_qty = $request->inventory_qty;
             $product->minimum_inventory_qty = $request->minimum_inventory_qty;
             $product->notify_low_inventory = $request->has('notify_low_inventory');
-            $product->show_availability = $request->has('show_availability');
+
             $product->Warehouse_id = $request->Warehouse_id;
             $product->minimum_inventory_qty = $request->minimum_inventory_qty;
         }
-
+        $product->show_availability = $request->has('show_availability');
         /*
         * Check SEO switch */
         $product->allow_seo = $request->has('allow_seo');
@@ -292,11 +292,11 @@ class ProductsController extends HelperController
         *Upload and generate gallery image urls*/
         if($files=$request->file('images')){
             foreach($files as $file){
-                
+
                 $test = $helper->uploadImage($file,'uploads/products/u_'.Auth::id() . "/gallery/thumb/",100,100);
 
                 $glURL = $helper->uploadImage($file,'uploads/products/u_'.Auth::id() . "/gallery/");
-                
+
                 $gallery = new ProductGalleryMap();
                 $gallery->image_url = $glURL;
                 $gallery->thumb_url = $test;
