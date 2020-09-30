@@ -74,7 +74,7 @@ class CheckoutController extends Controller
             'shipping_id' => $request['shipping_id'],
             'payment_method' => $request->has('payment_method'),
             'total_amount' => $totalPrice,
-            'status' => 0,
+            'status' => 'New',
         ]);
 
         $cartItems->each(function ($item) use ($order) {
@@ -84,6 +84,8 @@ class CheckoutController extends Controller
                 'product_id' => $item->product->id,
                 'quantity' => $item->quantity,
             ]);
+
+            $item->delete();
         });
 
         return redirect(Route('checkouts.index'))->with('user_id',auth()->id());
@@ -93,8 +95,7 @@ class CheckoutController extends Controller
     {
 
         if( $this->checkCart()->isNotEmpty()){
-
-            return view('user.pages.checkouts.create', compact('user', 'cartItems'));
+            return view('user.pages.checkouts.shipping-address');
         }
 
         return redirect('/');

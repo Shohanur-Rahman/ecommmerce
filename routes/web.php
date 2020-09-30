@@ -68,4 +68,8 @@ Route::group(['middleware'=>'auth'],function(){
         Route::get('/new-shipping-address','User\CheckoutController@shippingAddressCreate')->name('new-shipping-address.create');
         Route::post('/new-shipping-address','User\CheckoutController@shippingAddressStore')->name('new-shipping-address.store');
     });
+
+    Route::group(['prefix'=>'orders'], function(){
+        Route::get('/{order}','User\OrderController@show')->name('orders.show');
+    });
 });

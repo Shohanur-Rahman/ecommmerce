@@ -59,12 +59,17 @@
                                         @foreach($orders as $order)
                                             <tr class="first odd">
                                                 <td>{{$order->id}}</td>
-                                                <td>{{$order->created_at->formate('d m Y')}}</td>
+                                                <td>{{$order->created_at->format('d m Y')}}</td>
                                                 <td>{{$order->shippingAddress->name}}</td>
                                                 <td><span class="price">${{$order->total_amount}}</span></td>
                                                 <td><em>{{$order->status}}</em></td>
-                                                <td class="a-center last"><span class="nobr"> <a class="text-success" href="#">View Order</a> <span
-                                                            class="separator">|</span> <a class="text-success" href="#">Reorder</a> </span></td>
+                                                <td class="a-center last">
+                                                    <span class="nobr">
+                                                        <a class="text-success" href="{{route('orders.show',$order->id)}}">View Order</a>
+                                                        <span class="separator">|</span>
+                                                        <a class="text-success" href="#">Reorder</a>
+                                                    </span>
+                                                </td>
                                             </tr>
                                         @endforeach
                                     </tbody>
