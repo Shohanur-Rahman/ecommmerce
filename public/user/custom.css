@@ -81,3 +81,11 @@ textarea.parsley-error {
 .main_menubar ul.vm-dropdown{
     max-height: calc(560px - 50px) !important;
 }
+.mobile-menu-toggler{
+    width: 100%;
+}
+.mobile-menu-toggler .fa {
+    display: block;
+    float: left;
+    padding-top: 7px;
+}

@@ -38,7 +38,7 @@
 	<!-- responsive css -->
 	<link rel="stylesheet" href="{{asset('user/assets/css/responsive.css')}}">
 	<!-- green css -->
-	<link rel="stylesheet" href="{{asset('user/assets/colors/green.css')}}">
+    <link rel="stylesheet" href="{{asset('user/assets/colors/blue.css')}}">
 
 	<script src="{{asset('user/assets/js/vendor/modernizr-3.6.0.min.js')}}"></script>
 	<!-- jquery-3.3.1 version -->

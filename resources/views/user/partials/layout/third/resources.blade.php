@@ -36,10 +36,12 @@
 <link rel="stylesheet" href="{{asset('user/style.css')}}">
 <!-- responsive css -->
 <link rel="stylesheet" href="{{asset('user/assets/css/responsive.css')}}">
-<!-- style css -->
-<link rel="stylesheet" href="{{asset('user/custom.css')}}">
 <!-- blue css -->
 <link rel="stylesheet" href="{{asset('user/assets/colors/blue.css')}}">
+<!-- style css -->
+<link rel="stylesheet" href="{{asset('user/custom.css')}}">
+<link rel="stylesheet" href="{{asset('user/responsive.css')}}">
+
 
 <!-- modernizr js -->
 <script src="{{asset('user/assets/js/vendor/modernizr-3.6.0.min.js')}}"></script>
