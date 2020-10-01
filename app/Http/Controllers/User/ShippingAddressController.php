@@ -10,6 +10,11 @@ use Illuminate\Support\Facades\Auth;
 
 class ShippingAddressController extends Controller
 {
+    public function index()
+    {
+        return view('user.pages.shippings.index');
+    }
+
     public function create()
     {
 

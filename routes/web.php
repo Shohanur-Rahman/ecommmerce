@@ -45,7 +45,8 @@ Route::group(['middleware'=>'auth'],function(){
     });
 
     Route::group(['prefix'=>'profiles/shipping-address'],function(){
-        Route::get('/','User\ShippingAddressController@create')->name('shipping-address.create');
+        Route::get('/','User\ShippingAddressController@index')->name('shipping-address.index');
+        Route::get('/create','User\ShippingAddressController@create')->name('shipping-address.create');
         Route::post('/','User\ShippingAddressController@store')->name('shipping-address.store');
         Route::get('/{shippingAddress}/edit','User\ShippingAddressController@edit')->name('shipping-address.edit');
         Route::patch('/{shippingAddress}','User\ShippingAddressController@update')->name('shipping-address.update');
@@ -70,6 +71,7 @@ Route::group(['middleware'=>'auth'],function(){
     });
 
     Route::group(['prefix'=>'orders'], function(){
+        Route::get('/','User\OrderController@index')->name('orders-details.index');
         Route::get('/{order}','User\OrderController@show')->name('orders-details.show');
     });
 });
