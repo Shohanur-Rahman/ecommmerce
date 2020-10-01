@@ -16,10 +16,10 @@
 
 <div class="container-fluid">
     <div class="row ">
-        <div class="col-lg-10 col-xs-10">
+        <div class="col-lg-10 col-xs-10 ">
             @yield('content')
         </div>
-        <div class="col-xl-2 col-lg-3">
+        <div class="col-xl-2 col-lg-3 ">
             @include('user.partials.layout.third.menu')
         </div>
 

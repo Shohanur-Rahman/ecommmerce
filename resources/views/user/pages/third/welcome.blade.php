@@ -1,5 +1,5 @@
 @extends('user.layouts.layout-third')
-@section('title', "Home")
+@section('title', "HOBO")
 @section('content')
 
     <div class="row">
