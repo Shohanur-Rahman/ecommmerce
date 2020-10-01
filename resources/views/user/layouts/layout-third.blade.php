@@ -3,7 +3,6 @@
 
 <head>
     @include('user.partials.layout.third.resources')
-
 </head>
 
 <body>
@@ -12,9 +11,20 @@
 @include('user.partials.layout.third.header')
 <!--header-area end-->
 
-<section class="">
-    @yield('content')
-</section>
+
+
+
+<div class="container-fluid">
+    <div class="row ">
+        <div class="col-lg-9 col-xs-10">
+            @yield('content')
+        </div>
+        <div class="col-xl-2 col-lg-3">
+            @include('user.partials.layout.third.menu')
+        </div>
+
+    </div>
+</div>
 
 <!--footer-area start-->
 @include('user.partials.layout.third.footer')
