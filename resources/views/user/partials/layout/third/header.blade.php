@@ -124,6 +124,25 @@
                     </div>
                 </div>
                 <div class="col-sm-8 col-5">
+                    <div class="register-login pull-right pt-1">
+                        @guest
+                            <a href="{{route('register')}}">Register</a>
+                            <span>/</span>
+                            <a href="{{route('login')}}">Sign in</a>
+                        @else
+                            <a href="{{route('profiles.index')}}">Dashboard</a>
+                            <span>/</span>
+                            <a href="{{ route('logout') }}"
+                               onclick="event.preventDefault();
+                                                     document.getElementById('logout-form').submit();">
+                                {{ __('Logout') }}
+                            </a>
+
+                            <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
+                                @csrf
+                            </form>
+                        @endif
+                    </div>
                     <div class="mini-cart text-right">
                         <ul>
                             <li><a href="#"><i class="icon_heart_alt"></i><span>1</span></a></li>
