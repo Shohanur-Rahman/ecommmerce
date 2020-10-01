@@ -72,6 +72,6 @@ Route::group(['middleware'=>'auth'],function(){
 
     Route::group(['prefix'=>'orders'], function(){
         Route::get('/','User\OrderController@index')->name('orders-details.index');
-        Route::get('/{order}','User\OrderController@show')->name('orders-details.show');
+        Route::get('/{id}','User\OrderController@show')->name('orders-details.show');
     });
 });

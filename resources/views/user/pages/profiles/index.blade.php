@@ -41,7 +41,7 @@
                         <div class="recent-orders">
                             <div class="d-flex justify-content-between">
                                 <div class="text-black h6"><strong>Recent Orders</strong></div>
-                                <a class="text-success" href="#">View All </a>
+                                <a class="text-success" href="{{route('orders-details.index')}}">View All </a>
                             </div>
                             <div class="table-responsive">
                                 <table class="table" id="my-orders-table">
@@ -56,7 +56,7 @@
                                     </tr>
                                     </thead>
                                     <tbody>
-                                        @foreach($orders as $order)
+                                        @foreach($orders->take(3) as $order)
                                             <tr class="first odd">
                                                 <td>{{$order->id}}</td>
                                                 <td>{{$order->created_at->format('d m Y')}}</td>
@@ -66,8 +66,6 @@
                                                 <td class="a-center last">
                                                     <span class="nobr">
                                                         <a class="text-success" href="{{route('orders-details.show',$order->id)}}">View Order</a>
-                                                        <span class="separator">|</span>
-                                                        <a class="text-success" href="#">Reorder</a>
                                                     </span>
                                                 </td>
                                             </tr>

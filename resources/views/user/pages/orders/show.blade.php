@@ -18,25 +18,53 @@
                                 <table class="table" id="my-orders-table">
                                     <thead>
                                     <tr class="first last">
-                                        <th>Order ID#</th>
-                                        <th>Date</th>
-                                        <th>Ship to</th>
-                                        <th><span class="nobr">Order Total</span></th>
-                                        <th>Status</th>
-                                        <th>&nbsp;</th>
+                                        <th>Product Name</th>
+                                        <th>Sku</th>
+                                        <th>Price</th>
+                                        <th>&nbsp;Quantity</th>
+                                        <th><span class="nobr">Total Price</span></th>
                                     </tr>
                                     </thead>
                                     <tbody>
 
-                                    <tr class="first odd">
-                                        <td>{{$order->id}}</td>
-                                        <td>{{$order->created_at->format('d m Y')}}</td>
-                                        <td>{{$order->shippingAddress->name}}</td>
-                                        <td><span class="price">${{$order->total_amount}}</span></td>
-                                        <td><em>{{$order->status}}</em></td>
-                                        <td class="a-center last"><span class="nobr"> <a class="text-success" href="#">View Order</a> <span
-                                                    class="separator">|</span> <a class="text-success" href="#">Reorder</a> </span></td>
-                                    </tr>
+                                        @foreach($order->orderProducts as $orderProduct)
+                                            <tr class="first odd">
+                                                <td>{{$orderProduct->product->title}} </td>
+                                                <td>{{$orderProduct->product->sku}} </td>
+                                                <td>{{$orderProduct->product->new_price}} </td>
+                                                <td>{{$orderProduct->quantity}} </td>
+                                                <td>{{$orderProduct->quantity * $orderProduct->product->new_price}} </td>
+                                            </tr>
+                                        @endforeach
+
+                                        <tr class="first odd">
+                                            <td colspan="4" align="right">
+                                                <table >
+                                                    <tr >
+                                                        <td class="border-0" colspan="4" align="right">Sub Total</td>
+                                                    </tr>
+                                                    <tr class="first odd">
+                                                        <td class="border-0" colspan="4" align="right">Shipping Charge</td>
+                                                    </tr>
+                                                    <tr class="first odd">
+                                                        <td class="border-0" colspan="4" align="right">Grand Total</td>
+                                                    </tr>
+                                                </table>
+                                            </td>
+                                            <td>
+                                                <table >
+                                                    <tr>
+                                                        <td class="border-0">{{$order->total_amount}}</td>
+                                                    </tr>
+                                                    <tr class="first odd">
+                                                        <td class="border-0">0</td>
+                                                    </tr>
+                                                    <tr class="first odd" style="border-bottom: 1px solid grey;border-bottom: double">
+                                                        <td class="border-0">{{$order->total_amount}}</td>
+                                                    </tr>
+                                                </table>
+                                            </td>
+                                        </tr>
 
                                     </tbody>
                                 </table>
