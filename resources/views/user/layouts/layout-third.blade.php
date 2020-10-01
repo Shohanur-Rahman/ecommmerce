@@ -2,7 +2,9 @@
 <html class="no-js" lang="zxx">
 
 <head>
+    <title>@yield('title')</title>
     @include('user.partials.layout.third.resources')
+
 </head>
 
 <body>
