@@ -105,6 +105,34 @@ class ProductCategoryTableSeeder extends Seeder
                 "is_top_menu" => 1,
                 "parent_id" => 0,
                 "created_at" => Carbon::now()->toDateTimeLocalString(),
+            ],[
+                "category_name" => "Male",
+                "slug" => Str::slug("Male"),
+                "user_id" => 1,
+                "is_top_menu" => 1,
+                "parent_id" => 0,
+                "created_at" => Carbon::now()->toDateTimeLocalString(),
+            ],[
+                "category_name" => "Female",
+                "slug" => Str::slug("Female"),
+                "user_id" => 1,
+                "is_top_menu" => 1,
+                "parent_id" => 0,
+                "created_at" => Carbon::now()->toDateTimeLocalString(),
+            ],[
+                "category_name" => "Kids",
+                "slug" => Str::slug("Kids"),
+                "user_id" => 1,
+                "is_top_menu" => 1,
+                "parent_id" => 0,
+                "created_at" => Carbon::now()->toDateTimeLocalString(),
+            ],[
+                "category_name" => "Others",
+                "slug" => Str::slug("Others"),
+                "user_id" => 1,
+                "is_top_menu" => 1,
+                "parent_id" => 0,
+                "created_at" => Carbon::now()->toDateTimeLocalString(),
             ]
         ]);
     }

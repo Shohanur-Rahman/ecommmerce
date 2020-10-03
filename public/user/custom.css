@@ -76,6 +76,7 @@ textarea.parsley-error {
 .fixed_main_navbar{
     position: fixed;
     width: calc(100% - 85.5%) !important;
+    z-index: 99;
 }
 
 .main_menubar ul.vm-dropdown{
