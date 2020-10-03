@@ -46,7 +46,5 @@
             </div>
         </div>
     </div>
-
-    @include('admin.partials.partial_assets.touchspin')
 @endsection
 
