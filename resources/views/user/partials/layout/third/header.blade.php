@@ -24,13 +24,13 @@
         <div class="sticker header-bottom">
             <div class="container-fluid">
                 <div class="row align-items-center">
-                    <div class="col-lg-2 col-xl-2">
-                        <div class="logo">
-                            <a href="{{route('app.home')}}"><img src="{{$siteSetting->logo_url}}"
+                    <div class="col-lg-2 col-xl-2 col-md-3">
+                        <div class="logo header-logo">
+                            <a href="{{route('app.home')}}"><img src="{{$siteSetting != null ? asset($siteSetting->logo_url) : asset('user/assets/images/logos/logo-blue.png')}}"
                                                       alt="logo"/></a>
                         </div>
                     </div>
-                    <div class="col-lg-6 col-xl-7 col-md-6">
+                    <div class="col-lg-6 col-xl-7 col-md-4">
                         <div class="mainmenu">
                             <div class="search-box style-3 style-4">
                                 <form method="get" action="{{route('product.search')}}">
@@ -115,7 +115,7 @@
             <div class="row align-items-center">
                 <div class="col-sm-4 col-5">
                     <div class="logo">
-                        <a href="{{route('app.home')}}"><img src="{{asset('user/assets/images/logos/logo-blue.png')}}" alt="logo"/></a>
+                        <a href="{{route('app.home')}}"><img src="{{$siteSetting != null ? asset($siteSetting->logo_url) : asset('user/assets/images/logos/logo-blue.png')}}" alt="logo"/></a>
                     </div>
                 </div>
                 <div class="col-sm-8 col-6">

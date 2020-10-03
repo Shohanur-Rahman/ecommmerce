@@ -10,10 +10,10 @@
                             <div id="dataReadonlyReview"
                                  data-rating-stars="5"
                                  data-rating-readonly="true"
+                                 data-rating-half="true"
                                  data-rating-value="{{$productReview->rating}}"
                                  data-rating-input="#dataReadonlyInput">
                             </div>
-
                         </div>
                         <div class="comment-desc">
                             <span>{{$productReview->created_at->format('d M Y')}}</span>
@@ -70,8 +70,6 @@
     $("#halfstarsReview").rating({
         "half": true,
         "click": function (e) {
-            // var rating = $("#halfstarsInput").val(e.stars);
-
             $('#ratingValue').val(e.stars)
         },
 
