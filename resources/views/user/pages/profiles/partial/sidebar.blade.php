@@ -1,4 +1,4 @@
-<aside class="col-md-3 pb-4">
+<aside class="col-md-3 col-lg-3 pb-4">
     <div class="card ">
         <div class="card-header bg-white font-weight-bold h5">My Account</div>
         <div class="card-body">

@@ -1,7 +1,7 @@
-@extends('user.layouts.user')
+@extends('user.layouts.layout-third')
 
 @section('content')
-    <div class="container ">
+    <div class="container-fluid">
 
         <div class="row mt-3 ">
 

@@ -22,7 +22,7 @@
 
 <div class="container-fluid">
     <div class="row ">
-        <div class="col-lg-9 col-sm-12 col-xs-12 col-md-9 col-xl-1o">
+        <div class="col-lg-9 col-sm-12 col-xs-12 col-md-12 col-xl-10">
             @yield('content')
         </div>
         <div class="col-xl-2 col-lg-3 col-md-3 hidden-xs">

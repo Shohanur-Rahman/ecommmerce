@@ -1,11 +1,11 @@
-@extends('user.layouts.user')
+@extends('user.layouts.layout-third')
 
 @section('content')
-    <div class="container ">
+    <div class="container-fluid">
         <div class="row mt-3 ">
-
             @include('user.pages.profiles.partial.sidebar')
-            <div class="col-md-9 col-sm-8 col-xs-12 col-sm-push-4 col-md-push-3 pb-4">
+
+            <div class="col-md-9 col-sm-8 col-xs-12 pb-4">
                 <x-inform-users></x-inform-users>
 
                 <div class="card border-0">
@@ -49,4 +49,5 @@
                 </div>
             </div>
         </div>
+    </div>
 @endsection
