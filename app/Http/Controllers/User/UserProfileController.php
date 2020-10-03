@@ -23,7 +23,7 @@ class UserProfileController extends Controller
         $user = User::where('id',$userId)->first();
 
         $shippingAddresses = ShippingAddress::where('user_id',$userId)->get();
-
+/*
         $arrayProfiles = UserProfile:: Where('user_id',$userId)->first()->toArray();
 
         $fillUp = true;
@@ -32,11 +32,11 @@ class UserProfileController extends Controller
                 $fillUp = false;
             };
 
-        }
+        }*/
 
         $orders = Order::where('customer_id',Auth::id())->with('shippingAddress')->get();
 
-        return view('user.pages.profiles.index',compact('shippingAddresses','user','fillUp','orders'));
+        return view('user.pages.profiles.index',compact('shippingAddresses','user','orders'));
     }
 
     public function edit()

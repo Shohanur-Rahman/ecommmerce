@@ -1,7 +1,7 @@
-@extends('user.layouts.user')
+@extends('user.layouts.layout-third')
 
 @section('content')
-    <div class="container ">
+    <div class="container-fluid">
         <div class="row mt-3 ">
 
             @include('user.pages.profiles.partial.sidebar')
@@ -14,7 +14,7 @@
                         @if($user->user_type == 'Super-admin' or $user->user_type == 'Admin')
                             <a class="text-white" href="{{route('dashboard')}}"><button class="btn btn-primary w-100 my-2">Go to Seller Dashboard</button></a>
                         @else
-                            @if($fillUp)
+                            {{--@if($fillUp)
                                 @if($user->applyVendor)
                                     @if($user->applyVendor->is_approve == 1)
                                         <a class="text-white" href="{{route('dashboard')}}"><button class="btn btn-primary w-100 my-2">Go to Seller Dashboard</button></a>
@@ -29,7 +29,7 @@
                                 @endif
                             @else
                                 <a class="text-white" href="{{route('profiles.edit')}}"><button class="btn btn-primary w-100 my-2">Fill Up Your Profile </button></a>
-                            @endif
+                            @endif--}}
                         @endif
 
                     </div>
@@ -56,20 +56,20 @@
                                     </tr>
                                     </thead>
                                     <tbody>
-                                        @foreach($orders->take(3) as $order)
-                                            <tr class="first odd">
-                                                <td>{{$order->id}}</td>
-                                                <td>{{$order->created_at->format('d m Y')}}</td>
-                                                <td>{{$order->shippingAddress->name}}</td>
-                                                <td><span class="price">${{$order->total_amount}}</span></td>
-                                                <td><em>{{$order->status}}</em></td>
-                                                <td class="a-center last">
+                                    @foreach($orders->take(3) as $order)
+                                        <tr class="first odd">
+                                            <td>{{$order->id}}</td>
+                                            <td>{{$order->created_at->format('d m Y')}}</td>
+                                            <td>{{$order->shippingAddress->name}}</td>
+                                            <td><span class="price">${{$order->total_amount}}</span></td>
+                                            <td><em>{{$order->status}}</em></td>
+                                            <td class="a-center last">
                                                     <span class="nobr">
                                                         <a class="text-success" href="{{route('orders-details.show',$order->id)}}">View Order</a>
                                                     </span>
-                                                </td>
-                                            </tr>
-                                        @endforeach
+                                            </td>
+                                        </tr>
+                                    @endforeach
                                     </tbody>
                                 </table>
                             </div>
