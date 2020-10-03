@@ -32,23 +32,18 @@
                     </div>
                     <div class="col-lg-6 col-xl-7 col-md-6">
                         <div class="mainmenu">
-                            <div class="search-box">
-                                <select>
-                                    <option>All Categories</option>
-                                    <option>Computer</option>
-                                    <option>TV & Smart box</option>
-                                    <option>Camera & Photography</option>
-                                    <option>Headphones</option>
-                                </select>
-                                <input type="text" placeholder="What do you need?"/>
-                                <button>Search</button>
+                            <div class="search-box style-3 style-4">
+                                <form method="get" action="{{route('product.search')}}">
+                                    <input type="text" placeholder="Search by name" name="s" required/>
+                                    <button><i class="ti-search"></i></button>
+                                </form>
                             </div>
                         </div>
                     </div>
 
                     <div class="col-lg-4 col-xl-3 col-md-4">
 
-                        <div class="register-login pull-right pt-1">
+                        <div class="register-login pull-right pt-1 pl-3">
                             @guest
                                 <a href="{{route('register')}}">Register</a>
                                 <span>/</span>
@@ -69,7 +64,7 @@
                         </div>
 
                         <?php $myCartList = App\Models\User\CartItem::with('product')->where('user_id', Auth::id())->get();?>
-                        <div class="mini-cart pull-right pr-5">
+                        <div class="mini-cart pull-right">
                             <ul>
                                 <li><a href="#"><i class="icon_heart_alt"></i><span>1</span></a></li>
                                 <li><a href="javascript:void(0);" class="minicart-icon"><i class="icon_bag_alt"></i>$180.00<span>2</span></a>
@@ -118,12 +113,12 @@
         <div class="container-fluid">
             <!--logo and cart-->
             <div class="row align-items-center">
-                <div class="col-sm-4 col-6">
+                <div class="col-sm-4 col-5">
                     <div class="logo">
-                        <a href="index.html"><img src="{{asset('user/assets/images/logos/logo-blue.png')}}" alt="logo"/></a>
+                        <a href="{{route('app.home')}}"><img src="{{asset('user/assets/images/logos/logo-blue.png')}}" alt="logo"/></a>
                     </div>
                 </div>
-                <div class="col-sm-8 col-5">
+                <div class="col-sm-8 col-6">
                     <div class="register-login pull-right pt-1">
                         @guest
                             <a href="{{route('register')}}">Register</a>
@@ -186,15 +181,10 @@
             <div class="row align-items-center">
                 <div class="col-sm-12">
                     <div class="search-box mt-sm-15">
-                        <select>
-                            <option>All Categories</option>
-                            <option>Computer</option>
-                            <option>TV & Smart box</option>
-                            <option>Camera & Photography</option>
-                            <option>Headphones</option>
-                        </select>
-                        <input type="text" placeholder="What do you need?"/>
-                        <button>Search</button>
+                        <form method="get" action="{{route('product.search')}}">
+                            <input type="text" placeholder="Search by name" name="s" required/>
+                            <button><i class="ti-search"></i></button>
+                        </form>
                     </div>
                 </div>
             </div>

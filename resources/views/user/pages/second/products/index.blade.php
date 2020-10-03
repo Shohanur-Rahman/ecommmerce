@@ -24,10 +24,10 @@ function makeURL($queryString, $key, $value)
 
 ?>
 <!--products-area start-->
-<div class="shop-area">
+<div class="shop-area pt-0">
     <div class="container-fluid">
         <div class="row">
-            <div class="col-xl-2 col-lg-3">
+            <div class="col-xl-3 col-lg-3">
                 <div class="sidebar">
 
                     <div class="price_filter mt-40">
@@ -38,43 +38,52 @@ function makeURL($queryString, $key, $value)
                             <form method="get" action="{{route('product.index', $categoryDetails->slug)}}">
                                 <input type="hidden" name="min" id="hdnMinPrice">
                                 <input type="hidden" name="max" id="hdnMaxPrice">
-                                <input type="hidden" name="color" value="{{request()->query('brand') ?? request()->query('brand')}}">
-                                <input type="hidden" name="page_size" value="{{request()->query('page_size') ?? request()->query('page_size')}}">
-                                <input type="hidden" name="brand" value="{{request()->query('brand') ?? request()->query('brand')}}">
-                                <input type="hidden" name="order" value="{{request()->query('order') ?? request()->query('order')}}">
+                                <input type="hidden" name="color"
+                                       value="{{request()->query('brand') ?? request()->query('brand')}}">
+                                <input type="hidden" name="page_size"
+                                       value="{{request()->query('page_size') ?? request()->query('page_size')}}">
+                                <input type="hidden" name="brand"
+                                       value="{{request()->query('brand') ?? request()->query('brand')}}">
+                                <input type="hidden" name="order"
+                                       value="{{request()->query('order') ?? request()->query('order')}}">
 
-                            <div class="row align-items-center">
-                                <div class="col-lg-6">
-                                    <input type="text" id="amount" placeholder="Add Your Price"/>
+                                <div class="row align-items-center">
+                                    <div class="col-lg-6">
+                                        <input type="text" id="amount" placeholder="Add Your Price"/>
+                                    </div>
+                                    <div class="col-lg-6">
+                                        <button>Filter</button>
+                                    </div>
                                 </div>
-                                <div class="col-lg-6">
-                                    <button>Filter</button>
-                                </div>
-                            </div>
 
                             </form>
                         </div>
                         <div id="slider-range"></div>
                     </div>
                     @if($categoryDetails->childrens)
-                    <div class="vertical-menu">
-                        <ul>
+                        <div class="vertical-menu">
+                            <ul>
 
-                            @foreach($categoryDetails->childrens as $submenu)
-                            @if($submenu->childrens->count() > 0)
-                            <li><a href="{{route('product.index', $submenu->slug)}}">{{$submenu->category_name}}</a>
-                                <ul>
-                                    @foreach($submenu->childrens as $lastItem)
-                                    <li><a href="{{route('product.index', $lastItem->slug)}}">{{$lastItem->category_name}}</a></li>
-                                    @endforeach
-                                </ul>
-                            </li>
-                            @else
-                            <li><a href="{{route('product.index', $submenu->slug)}}"">{{$submenu->category_name}}</a></li>
-                            @endif
-                            @endforeach
-                        </ul>
-                    </div>
+                                @foreach($categoryDetails->childrens as $submenu)
+                                    @if($submenu->childrens->count() > 0)
+                                        <li>
+                                            <a href="{{route('product.index', $submenu->slug)}}">{{$submenu->category_name}}</a>
+                                            <ul>
+                                                @foreach($submenu->childrens as $lastItem)
+                                                    <li>
+                                                        <a href="{{route('product.index', $lastItem->slug)}}">{{$lastItem->category_name}}</a>
+                                                    </li>
+                                                @endforeach
+                                            </ul>
+                                        </li>
+                                    @else
+                                        <li>
+                                            <a href="{{route('product.index', $submenu->slug)}}"">{{$submenu->category_name}}</a>
+                                        </li>
+                                    @endif
+                                @endforeach
+                            </ul>
+                        </div>
                     @endif
                     <div class="list-filter mt-43">
                         <div class="section-title">
@@ -82,9 +91,9 @@ function makeURL($queryString, $key, $value)
                         </div>
                         <ul class="list-none mt-25">
                             @foreach($brands as $brand)
-                            <li>
-                                <a href="{{route('product.index', $categoryDetails->slug).generateQueryString('brand', $brand->id)}}">{{$brand->brand->name}}</a>
-                            </li>
+                                <li>
+                                    <a href="{{route('product.index', $categoryDetails->slug).generateQueryString('brand', $brand->id)}}">{{$brand->brand->name}}</a>
+                                </li>
                             @endforeach
                         </ul>
                     </div>
@@ -101,206 +110,67 @@ function makeURL($queryString, $key, $value)
                         </ul>
                     </div>
                     <!--latest-products-->
-                    <div class="products-list mt-30">
-                        <div class="section-title mb-30">
-                            <h3>Latest Items</h3>
-                        </div>
-                        <div class="one-carousel dots-none">
-                            <div>
-                                <ul class="list-none">
-                                    <li>
-                                        <div class="product-single style-2">
-                                            <div class="row align-items-center m-0">
-                                                <div class="col-lg-4 p-0">
-                                                    <div class="product-thumb">
-                                                        <a href="#"><img src="/user/assets/images/products/latest/1.jpg"
-                                                                         alt=""/></a>
-                                                    </div>
-                                                </div>
-                                                <div class="col-lg-8 p-0">
-                                                    <div class="product-title">
-                                                        <h4><a href="#">Vantech VP-153C Camera</a></h4>
-                                                    </div>
-                                                    <div class="product-price-rating">
-                                                        <span>$195.00</span>
-                                                        <del>$229.99</del>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </li>
-                                    <li>
-                                        <div class="product-single style-2">
-                                            <div class="row align-items-center m-0">
-                                                <div class="col-lg-4 p-0">
-                                                    <div class="product-thumb">
-                                                        <a href="#"><img src="/user/assets/images/products/latest/2.jpg"
-                                                                         alt=""/></a>
-                                                    </div>
-                                                </div>
-                                                <div class="col-lg-8 p-0">
-                                                    <div class="product-title">
-                                                        <h4><a href="#">Vantech VP-153C Camera</a></h4>
-                                                    </div>
-                                                    <div class="product-price-rating">
-                                                        <span>$195.00</span>
-                                                        <del>$229.99</del>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </li>
-                                    <li>
-                                        <div class="product-single style-2">
-                                            <div class="row align-items-center m-0">
-                                                <div class="col-lg-4 p-0">
-                                                    <div class="product-thumb">
-                                                        <a href="#"><img src="/user/assets/images/products/latest/3.jpg"
-                                                                         alt=""/></a>
-                                                    </div>
-                                                </div>
-                                                <div class="col-lg-8 p-0">
-                                                    <div class="product-title">
-                                                        <h4><a href="#">Vantech VP-153C Camera</a></h4>
-                                                    </div>
-                                                    <div class="product-price-rating">
-                                                        <span>$195.00</span>
-                                                        <del>$229.99</del>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </li>
-                                </ul>
-                            </div>
-                            <div>
-                                <ul class="list-none">
-                                    <li>
-                                        <div class="product-single style-2">
-                                            <div class="row align-items-center m-0">
-                                                <div class="col-lg-4 p-0">
-                                                    <div class="product-thumb">
-                                                        <a href="#"><img src="/user/assets/images/products/latest/1.jpg"
-                                                                         alt=""/></a>
-                                                    </div>
-                                                </div>
-                                                <div class="col-lg-8 p-0">
-                                                    <div class="product-title">
-                                                        <h4><a href="#">Vantech VP-153C Camera</a></h4>
-                                                    </div>
-                                                    <div class="product-price-rating">
-                                                        <span>$195.00</span>
-                                                        <del>$229.99</del>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </li>
-                                    <li>
-                                        <div class="product-single style-2">
-                                            <div class="row align-items-center m-0">
-                                                <div class="col-lg-4 p-0">
-                                                    <div class="product-thumb">
-                                                        <a href="#"><img src="/user/assets/images/products/latest/2.jpg"
-                                                                         alt=""/></a>
-                                                    </div>
-                                                </div>
-                                                <div class="col-lg-8 p-0">
-                                                    <div class="product-title">
-                                                        <h4><a href="#">Vantech VP-153C Camera</a></h4>
-                                                    </div>
-                                                    <div class="product-price-rating">
-                                                        <span>$195.00</span>
-                                                        <del>$229.99</del>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </li>
-                                    <li>
-                                        <div class="product-single style-2">
-                                            <div class="row align-items-center m-0">
-                                                <div class="col-lg-4 p-0">
-                                                    <div class="product-thumb">
-                                                        <a href="#"><img src="/user/assets/images/products/latest/3.jpg"
-                                                                         alt=""/></a>
-                                                    </div>
-                                                </div>
-                                                <div class="col-lg-8 p-0">
-                                                    <div class="product-title">
-                                                        <h4><a href="#">Vantech VP-153C Camera</a></h4>
-                                                    </div>
-                                                    <div class="product-price-rating">
-                                                        <span>$195.00</span>
-                                                        <del>$229.99</del>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </li>
-                                </ul>
-                            </div>
-                        </div>
-                    </div>
+
                 </div>
             </div>
-            <div class="col-xl-10 col-lg-9">
+            <div class="col-xl-9 col-lg-9">
                 <div class="row align-items-center">
 
-                    <div class="col-lg-2 col-md-6">
-                        <div class="section-title">
-                            <h3>Shop Grid 05 Col</h3>
-                        </div>
-                    </div>
                     <div class="col-lg-5 col-md-6">
-                        <div class="products-sort">
-                            <ul>
-                                <li>
-                                    <a href="{{route('product.index', $categoryDetails->slug).generateQueryString('order',0)}}">Default
-                                        Sorting</a></li>
-                                <li>
-                                    <a href="{{route('product.index', $categoryDetails->slug).generateQueryString('order',1)}}">Sort
-                                        by A - Z</a></li>
-                                <li>
-                                    <a href="{{route('product.index', $categoryDetails->slug).generateQueryString('order',2)}}">Sort
-                                        Price Low - High</a></li>
-                            </ul>
+                        <div class="dropdown filter-box">
+                            <button class="btn-filter" type="button" id="shortByDropDown" data-toggle="dropdown"
+                                    aria-haspopup="true" aria-expanded="false">
+                                Short By : Default <i class="glyphicon glyphicon-chevron-down"></i>
+                            </button>
+                            <div class="dropdown-menu filter-dropdown" aria-labelledby="shortByDropDown">
+                                <a class="dropdown-item"
+                                   href="{{route('product.index', $categoryDetails->slug).generateQueryString('order',0)}}">Default
+                                    Sorting</a>
+                                <a class="dropdown-item"
+                                   href="{{route('product.index', $categoryDetails->slug).generateQueryString('order',1)}}">Sort
+                                    by A - Z</a>
+                                <a class="dropdown-item"
+                                   href="{{route('product.index', $categoryDetails->slug).generateQueryString('order',2)}}">Sort
+                                    Price Low - High</a>
+                            </div>
                         </div>
-                        <div class="products-sort">
-                            <label>Show :</label>
-                            <ul>
-                                <li>
-                                    <a href="{{route('product.index', $categoryDetails->slug).generateQueryString('page_size',15)}}">15</a>
-                                </li>
-                                <li>
-                                    <a href="{{route('product.index', $categoryDetails->slug).generateQueryString('page_size',25)}}">25</a>
-                                </li>
-                                <li>
-                                    <a href="{{route('product.index', $categoryDetails->slug).generateQueryString('page_size',40)}}">40</a>
-                                </li>
-                                <li>
-                                    <a href="{{route('product.index', $categoryDetails->slug).generateQueryString('page_size',60)}}">60</a>
-                                </li>
-                            </ul>
+                        <div class="dropdown filter-box">
+                            <button class="btn-filter" type="button" id="pagerDropdown" data-toggle="dropdown"
+                                    aria-haspopup="true" aria-expanded="false">
+                                Show : 15 <i class="glyphicon glyphicon-chevron-down"></i>
+                            </button>
+                            <div class="dropdown-menu filter-dropdown" aria-labelledby="pagerDropdown">
+
+                                <a class="dropdown-item"
+                                   href="{{route('product.index', $categoryDetails->slug).generateQueryString('page_size',15)}}">15</a>
+
+                                <a class="dropdown-item"
+                                   href="{{route('product.index', $categoryDetails->slug).generateQueryString('page_size',25)}}">25</a>
+
+                                <a class="dropdown-item"
+                                   href="{{route('product.index', $categoryDetails->slug).generateQueryString('page_size',40)}}">40</a>
+
+                                <a class="dropdown-item"
+                                   href="{{route('product.index', $categoryDetails->slug).generateQueryString('page_size',60)}}">60</a>
+
+                            </div>
                         </div>
                     </div>
                     <div class="col-lg-5 col-md-12">
+
+
                         <div class="site-pagination pull-right">
-                            <ul>
-                                <li><a href="#" class="active">1</a></li>
-                                <li>of</li>
-                                <li><a href="#">3</a></li>
-                                <li><a href="#"><i class="fa fa-long-arrow-right"></i></a></li>
-                            </ul>
+                            <span class="pt-5">Showing {{$products->firstItem()}}–{{$products->lastItem()}} of {{$products->total()}} results</span>
                         </div>
                         <div class="product-view-system pull-right" role="tablist">
                             <ul class="nav nav-tabs">
                                 <li><a class="active" data-toggle="tab" href="#grid-products"><img
-                                            src="/user/assets/images/icons/icon-grid.png" alt=""/></a></li>
+                                            src="{{asset('user/assets/images/icons/icon-grid.png')}}" alt=""/></a></li>
                                 <li><a data-toggle="tab" href="#list-products"><img
-                                            src="/user/assets/images/icons/icon-list.png" alt=""/></a></li>
+                                            src="{{asset('user/assets/images/icons/icon-list.png')}}" alt=""/></a></li>
                             </ul>
                         </div>
+
                     </div>
                 </div>
                 <div class="tab-content">
@@ -309,14 +179,13 @@ function makeURL($queryString, $key, $value)
 
                             @foreach($products as $product)
 
-                                <div class="col-xl-3 col-md-4 col-sm-6">
+                                <div class="col-xl-4 col-md-4 col-sm-6">
                                     <div class="product-single">
                                         <div class="product-title">
-                                            <small><a href="#">Aquaracer</a></small>
-                                            <h4><a href="#">{{$product->title}}</a></h4>
+                                            <h4><a href="{{route('product.details', ["category" => $categoryDetails->slug ,"slug" => $product->slug])}}">{{$product->title}}</a></h4>
                                         </div>
                                         <div class="product-thumb">
-                                            <a href="#"><img src="{{$product->featured_image}}" alt=""/></a>
+                                            <a href="{{route('product.details', ["category" => $categoryDetails->slug ,"slug" => $product->slug])}}"><img src="{{$product->featured_image}}" alt=""/></a>
                                             <div class="product-quick-view">
                                                 <a href="{{route('product.details', ["category" => $categoryDetails->slug ,"slug" => $product->slug])}}">View
                                                     Product</a>
@@ -338,7 +207,13 @@ function makeURL($queryString, $key, $value)
                                         <div class="product-action">
                                             <a href="javascript:void(0);" class="product-compare"><i
                                                     class="ti-control-shuffle"></i></a>
-                                            <a href="javascript:void(0);" class="add-to-cart">Add to Cart</a>
+                                            <form class="d-inline" action="{{route('product.add_to_cart')}}" method="post">
+                                                @csrf
+                                                <input type="hidden" name="product_id" value="{{$product->id}}">
+                                                <input type="hidden" name="product_price" value="{{$product->new_price}}">
+                                                <input type="hidden" value="1" name="quantity" />
+                                                <button type="submit" class="btn btn-success add-to-cart" >Add to Cart </button>
+                                            </form>
                                             <a href="javascript:void(0);" class="product-wishlist"><i
                                                     class="ti-heart"></i></a>
                                         </div>
@@ -350,56 +225,56 @@ function makeURL($queryString, $key, $value)
                     </div>
                     <div id="list-products" class="tab-pane">
                         @foreach($products as $product)
-                                <div class="product-single wide-style">
-                                    <div class="row align-items-center">
-                                        <div class="col-xl-3 col-lg-6 col-md-6">
-                                            <div class="product-thumb">
-                                                <a href="#"><img src="{{$product->featured_image}}"
-                                                                 alt="{{$product->title}}"/></a>
-                                                <div class="product-quick-view">
-                                                    <a href="{{route('product.details', ["category" => $product->slug ,"slug" => $product->slug])}}">View
-                                                        Product</a>
-                                                </div>
-                                            </div>
+                            <div class="product-single wide-style">
+                                <div class="row align-items-center">
+                                    <div class="col-xl-3 col-lg-6 col-md-6">
+                                        <div class="product-thumb">
+                                            <a href="{{route('product.details', ["category" => $product->slug ,"slug" => $product->slug])}}"><img src="{{$product->featured_image}}"
+                                                             alt="{{$product->title}}"/></a>
+
                                         </div>
-                                        <div class="col-xl-6 col-lg-8 col-md-8 product-desc mt-md-50 sm-mt-50">
-                                            <a href="#" class="add-to-wishlist"><i class="icon_heart_alt"></i></a>
-                                            <div class="product-title">
-                                                <small><a
-                                                        href="{{route('product.index', $categoryDetails->slug)}}">{{$categoryDetails->category_name}}</a></small>
-                                                <h4><a href="#">{{$product->title}}</a></h4>
-                                            </div>
-                                            <div class="product-rating">
-                                                <i class="fa fa-star"></i>
-                                                <i class="fa fa-star"></i>
-                                                <i class="fa fa-star"></i>
-                                                <i class="fa fa-star"></i>
-                                                <i class="fa fa-star-o"></i>
-                                                <span>(5)</span>
-                                            </div>
-                                            <div class="product-text">
-                                                {{$product->short_description}}
-                                            </div>
+                                    </div>
+                                    <div class="col-xl-6 col-lg-8 col-md-8 product-desc mt-md-50 sm-mt-50">
+                                        <a href="#" class="add-to-wishlist"><i class="icon_heart_alt"></i></a>
+                                        <div class="product-title">
+                                            <small><a
+                                                    href="{{route('product.index', $categoryDetails->slug)}}">{{$categoryDetails->category_name}}</a></small>
+                                            <h4><a href="{{route('product.details', ["category" => $product->slug ,"slug" => $product->slug])}}">{{$product->title}}</a></h4>
                                         </div>
-                                        <div class="col-xl-3 col-lg-4 col-md-4">
-                                            <div class="product-action stuck text-left">
-                                                <div class="free-delivery">
-                                                    <a href="#"><i class="ti-truck"></i> Free Delivery</a>
+                                        <div class="product-rating">
+                                            <i class="fa fa-star"></i>
+                                            <i class="fa fa-star"></i>
+                                            <i class="fa fa-star"></i>
+                                            <i class="fa fa-star"></i>
+                                            <i class="fa fa-star-o"></i>
+                                            <span>(5)</span>
+                                        </div>
+                                        <div class="product-text">
+                                            {{$product->short_description}}
+                                        </div>
+                                    </div>
+                                    <div class="col-xl-3 col-lg-4 col-md-4">
+                                        <div class="product-action stuck text-left">
+                                            <div class="product-price-rating">
+                                                <div>
+                                                    <del>{{$product->old_price}}</del>
                                                 </div>
-                                                <div class="product-price-rating">
-                                                    <div>
-                                                        <del>{{$product->old_price}}</del>
-                                                    </div>
-                                                    <span>{{$product->new_price}}</span>
-                                                </div>
-                                                <div class="product-stock">
-                                                    <p>Avability: <span>In stock</span></p>
-                                                </div>
-                                                <a href="#" class="add-to-cart">Add to Cart</a>
+                                                <span>{{$product->new_price}}</span>
                                             </div>
+                                            <div class="product-stock">
+                                                <p>Avability: <span>In stock</span></p>
+                                            </div>
+                                            <form class="d-inline" action="{{route('product.add_to_cart')}}" method="post">
+                                                @csrf
+                                                <input type="hidden" name="product_id" value="{{$product->id}}">
+                                                <input type="hidden" name="product_price" value="{{$product->new_price}}">
+                                                <input type="hidden" value="1" name="quantity" />
+                                                <button type="submit" class="btn btn-success add-to-cart" >Add to Cart </button>
+                                            </form>
                                         </div>
                                     </div>
                                 </div>
+                            </div>
                         @endforeach
                     </div>
                 </div>
@@ -412,449 +287,38 @@ function makeURL($queryString, $key, $value)
                     <div class="col-lg-6">
                         <div class="product-results pull-right">
                             <span>Showing {{$products->firstItem()}}–{{$products->lastItem()}} of {{$products->total()}} results</span>
-                            <div class="products-sort ml-35 mr-0">
-                                <form>
-                                    <label>Show :</label>
-                                    <select>
-                                        <option>12</option>
-                                        <option>8</option>
-                                        <option>4</option>
-                                    </select>
-                                </form>
-                            </div>
                         </div>
                     </div>
                 </div>
-                <!--recently-viewed-products-start-->
-                <div class="recent-viewed-products mt-50">
-                    <div class="row">
-                        <div class="col-lg-12">
-                            <div class="section-title">
-                                <h3>Recently Viewed Products</h3>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="row recent-products mlr-minus-12">
-                        <div class="col-lg-4">
-                            <!--single-product-->
-                            <div class="product-single style-2">
-                                <div class="row align-items-center">
-                                    <div class="col-lg-6 p-0">
-                                        <div class="product-thumb">
-                                            <a href="#"><img src="/user/assets/images/products/2.jpg" alt=""/></a>
-                                        </div>
-                                    </div>
-                                    <div class="col-lg-6 p-0">
-                                        <div class="product-title">
-                                            <small><a href="#">Electronics</a></small>
-                                            <h4><a href="#">Vantech VP-153C Camera</a></h4>
-                                        </div>
-                                        <div class="product-price-rating">
-                                            <i class="fa fa-star-o"></i>
-                                            <i class="fa fa-star-o"></i>
-                                            <i class="fa fa-star-o"></i>
-                                            <i class="fa fa-star-o"></i>
-                                            <i class="fa fa-star-o"></i>
-                                        </div>
-                                        <div class="product-price-rating">
-                                            <span>$195.00</span>
-                                            <del>$229.99</del>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <!--single-product-->
-                            <div class="product-single style-2">
-                                <div class="row align-items-center">
-                                    <div class="col-lg-6 p-0">
-                                        <div class="product-thumb">
-                                            <a href="#"><img src="/user/assets/images/products/4.jpg" alt=""/></a>
-                                        </div>
-                                    </div>
-                                    <div class="col-lg-6 p-0">
-                                        <div class="product-title">
-                                            <small><a href="#">Electronics</a></small>
-                                            <h4><a href="#">Vantech VP-153C Camera</a></h4>
-                                        </div>
-                                        <div class="product-price-rating">
-                                            <i class="fa fa-star-o"></i>
-                                            <i class="fa fa-star-o"></i>
-                                            <i class="fa fa-star-o"></i>
-                                            <i class="fa fa-star-o"></i>
-                                            <i class="fa fa-star-o"></i>
-                                        </div>
-                                        <div class="product-price-rating">
-                                            <span>$195.00</span>
-                                            <del>$229.99</del>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-lg-4">
-                            <!--single-product-->
-                            <div class="product-single style-2">
-                                <div class="row align-items-center">
-                                    <div class="col-lg-6 p-0">
-                                        <div class="product-thumb">
-                                            <a href="#"><img src="/user/assets/images/products/21.jpg" alt=""/></a>
-                                        </div>
-                                    </div>
-                                    <div class="col-lg-6 p-0">
-                                        <div class="product-title">
-                                            <small><a href="#">Electronics</a></small>
-                                            <h4><a href="#">Vantech VP-153C Camera</a></h4>
-                                        </div>
-                                        <div class="product-price-rating">
-                                            <i class="fa fa-star-o"></i>
-                                            <i class="fa fa-star-o"></i>
-                                            <i class="fa fa-star-o"></i>
-                                            <i class="fa fa-star-o"></i>
-                                            <i class="fa fa-star-o"></i>
-                                        </div>
-                                        <div class="product-price-rating">
-                                            <span>$195.00</span>
-                                            <del>$229.99</del>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <!--single-product-->
-                            <div class="product-single style-2">
-                                <div class="row align-items-center">
-                                    <div class="col-lg-6 p-0">
-                                        <div class="product-thumb">
-                                            <a href="#"><img src="/user/assets/images/products/23.jpg" alt=""/></a>
-                                        </div>
-                                    </div>
-                                    <div class="col-lg-6 p-0">
-                                        <div class="product-title">
-                                            <small><a href="#">Electronics</a></small>
-                                            <h4><a href="#">Vantech VP-153C Camera</a></h4>
-                                        </div>
-                                        <div class="product-price-rating">
-                                            <i class="fa fa-star-o"></i>
-                                            <i class="fa fa-star-o"></i>
-                                            <i class="fa fa-star-o"></i>
-                                            <i class="fa fa-star-o"></i>
-                                            <i class="fa fa-star-o"></i>
-                                        </div>
-                                        <div class="product-price-rating">
-                                            <span>$195.00</span>
-                                            <del>$229.99</del>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-lg-4">
-                            <!--single-product-->
-                            <div class="product-single style-2">
-                                <div class="row align-items-center">
-                                    <div class="col-lg-6 p-0">
-                                        <div class="product-thumb">
-                                            <a href="#"><img src="/user/assets/images/products/9.jpg" alt=""/></a>
-                                        </div>
-                                    </div>
-                                    <div class="col-lg-6 p-0">
-                                        <div class="product-title">
-                                            <small><a href="#">Electronics</a></small>
-                                            <h4><a href="#">Vantech VP-153C Camera</a></h4>
-                                        </div>
-                                        <div class="product-price-rating">
-                                            <i class="fa fa-star-o"></i>
-                                            <i class="fa fa-star-o"></i>
-                                            <i class="fa fa-star-o"></i>
-                                            <i class="fa fa-star-o"></i>
-                                            <i class="fa fa-star-o"></i>
-                                        </div>
-                                        <div class="product-price-rating">
-                                            <span>$195.00</span>
-                                            <del>$229.99</del>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <!--single-product-->
-                            <div class="product-single style-2">
-                                <div class="row align-items-center">
-                                    <div class="col-lg-6 p-0">
-                                        <div class="product-thumb">
-                                            <a href="#"><img src="/user/assets/images/products/12.jpg" alt=""/></a>
-                                        </div>
-                                    </div>
-                                    <div class="col-lg-6 p-0">
-                                        <div class="product-title">
-                                            <small><a href="#">Electronics</a></small>
-                                            <h4><a href="#">Vantech VP-153C Camera</a></h4>
-                                        </div>
-                                        <div class="product-price-rating">
-                                            <i class="fa fa-star-o"></i>
-                                            <i class="fa fa-star-o"></i>
-                                            <i class="fa fa-star-o"></i>
-                                            <i class="fa fa-star-o"></i>
-                                            <i class="fa fa-star-o"></i>
-                                        </div>
-                                        <div class="product-price-rating">
-                                            <span>$195.00</span>
-                                            <del>$229.99</del>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-lg-4">
-                            <!--single-product-->
-                            <div class="product-single style-2">
-                                <div class="row align-items-center">
-                                    <div class="col-lg-6 p-0">
-                                        <div class="product-thumb">
-                                            <a href="#"><img src="/user/assets/images/products/4.jpg" alt=""/></a>
-                                        </div>
-                                    </div>
-                                    <div class="col-lg-6 p-0">
-                                        <div class="product-title">
-                                            <small><a href="#">Electronics</a></small>
-                                            <h4><a href="#">Vantech VP-153C Camera</a></h4>
-                                        </div>
-                                        <div class="product-price-rating">
-                                            <i class="fa fa-star-o"></i>
-                                            <i class="fa fa-star-o"></i>
-                                            <i class="fa fa-star-o"></i>
-                                            <i class="fa fa-star-o"></i>
-                                            <i class="fa fa-star-o"></i>
-                                        </div>
-                                        <div class="product-price-rating">
-                                            <span>$195.00</span>
-                                            <del>$229.99</del>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <!--single-product-->
-                            <div class="product-single style-2">
-                                <div class="row align-items-center">
-                                    <div class="col-lg-6 p-0">
-                                        <div class="product-thumb">
-                                            <a href="#"><img src="/user/assets/images/products/4.jpg" alt=""/></a>
-                                        </div>
-                                    </div>
-                                    <div class="col-lg-6 p-0">
-                                        <div class="product-title">
-                                            <small><a href="#">Electronics</a></small>
-                                            <h4><a href="#">Vantech VP-153C Camera</a></h4>
-                                        </div>
-                                        <div class="product-price-rating">
-                                            <i class="fa fa-star-o"></i>
-                                            <i class="fa fa-star-o"></i>
-                                            <i class="fa fa-star-o"></i>
-                                            <i class="fa fa-star-o"></i>
-                                            <i class="fa fa-star-o"></i>
-                                        </div>
-                                        <div class="product-price-rating">
-                                            <span>$195.00</span>
-                                            <del>$229.99</del>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-lg-4">
-                            <!--single-product-->
-                            <div class="product-single style-2">
-                                <div class="row align-items-center">
-                                    <div class="col-lg-6 p-0">
-                                        <div class="product-thumb">
-                                            <a href="#"><img src="/user/assets/images/products/5.jpg" alt=""/></a>
-                                        </div>
-                                    </div>
-                                    <div class="col-lg-6 p-0">
-                                        <div class="product-title">
-                                            <small><a href="#">Electronics</a></small>
-                                            <h4><a href="#">Vantech VP-153C Camera</a></h4>
-                                        </div>
-                                        <div class="product-price-rating">
-                                            <i class="fa fa-star-o"></i>
-                                            <i class="fa fa-star-o"></i>
-                                            <i class="fa fa-star-o"></i>
-                                            <i class="fa fa-star-o"></i>
-                                            <i class="fa fa-star-o"></i>
-                                        </div>
-                                        <div class="product-price-rating">
-                                            <span>$195.00</span>
-                                            <del>$229.99</del>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <!--single-product-->
-                            <div class="product-single style-2">
-                                <div class="row align-items-center">
-                                    <div class="col-lg-6 p-0">
-                                        <div class="product-thumb">
-                                            <a href="#"><img src="/user/assets/images/products/5.jpg" alt=""/></a>
-                                        </div>
-                                    </div>
-                                    <div class="col-lg-6 p-0">
-                                        <div class="product-title">
-                                            <small><a href="#">Electronics</a></small>
-                                            <h4><a href="#">Vantech VP-153C Camera</a></h4>
-                                        </div>
-                                        <div class="product-price-rating">
-                                            <i class="fa fa-star-o"></i>
-                                            <i class="fa fa-star-o"></i>
-                                            <i class="fa fa-star-o"></i>
-                                            <i class="fa fa-star-o"></i>
-                                            <i class="fa fa-star-o"></i>
-                                        </div>
-                                        <div class="product-price-rating">
-                                            <span>$195.00</span>
-                                            <del>$229.99</del>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-lg-4">
-                            <!--single-product-->
-                            <div class="product-single style-2">
-                                <div class="row align-items-center">
-                                    <div class="col-lg-6 p-0">
-                                        <div class="product-thumb">
-                                            <a href="#"><img src="/user/assets/images/products/6.jpg" alt=""/></a>
-                                        </div>
-                                    </div>
-                                    <div class="col-lg-6 p-0">
-                                        <div class="product-title">
-                                            <small><a href="#">Electronics</a></small>
-                                            <h4><a href="#">Vantech VP-153C Camera</a></h4>
-                                        </div>
-                                        <div class="product-price-rating">
-                                            <i class="fa fa-star-o"></i>
-                                            <i class="fa fa-star-o"></i>
-                                            <i class="fa fa-star-o"></i>
-                                            <i class="fa fa-star-o"></i>
-                                            <i class="fa fa-star-o"></i>
-                                        </div>
-                                        <div class="product-price-rating">
-                                            <span>$195.00</span>
-                                            <del>$229.99</del>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <!--single-product-->
-                            <div class="product-single style-2">
-                                <div class="row align-items-center">
-                                    <div class="col-lg-6 p-0">
-                                        <div class="product-thumb">
-                                            <a href="#"><img src="/user/assets/images/products/6.jpg" alt=""/></a>
-                                        </div>
-                                    </div>
-                                    <div class="col-lg-6 p-0">
-                                        <div class="product-title">
-                                            <small><a href="#">Electronics</a></small>
-                                            <h4><a href="#">Vantech VP-153C Camera</a></h4>
-                                        </div>
-                                        <div class="product-price-rating">
-                                            <i class="fa fa-star-o"></i>
-                                            <i class="fa fa-star-o"></i>
-                                            <i class="fa fa-star-o"></i>
-                                            <i class="fa fa-star-o"></i>
-                                            <i class="fa fa-star-o"></i>
-                                        </div>
-                                        <div class="product-price-rating">
-                                            <span>$195.00</span>
-                                            <del>$229.99</del>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <!--recently-viewed-products-end-->
+
             </div>
         </div>
     </div>
 </div>
 <!--products-area end-->
 
-<!--brands-area start-->
-<div class="container-fluid mt-60">
-    <div class="brands-area">
-        <div class="row">
-            <div class="col-lg-12">
-                <div class="brand-items">
-                    <div class="brand-item">
-                        <a href="#">
-                            <img class="brand-static" src="/user/assets/images/brands/1.jpg" alt=""/>
-                        </a>
-                    </div>
-                    <div class="brand-item">
-                        <a href="#">
-                            <img class="brand-static" src="/user/assets/images/brands/2.jpg" alt=""/>
-                        </a>
-                    </div>
-                    <div class="brand-item">
-                        <a href="#">
-                            <img class="brand-static" src="/user/assets/images/brands/3.jpg" alt=""/>
-                        </a>
-                    </div>
-                    <div class="brand-item">
-                        <a href="#">
-                            <img class="brand-static" src="/user/assets/images/brands/4.jpg" alt=""/>
-                        </a>
-                    </div>
-                    <div class="brand-item">
-                        <a href="#">
-                            <img class="brand-static" src="/user/assets/images/brands/5.jpg" alt=""/>
-                        </a>
-                    </div>
-                    <div class="brand-item">
-                        <a href="#">
-                            <img class="brand-static" src="/user/assets/images/brands/6.jpg" alt=""/>
-                        </a>
-                    </div>
-                    <div class="brand-item">
-                        <a href="#">
-                            <img class="brand-static" src="/user/assets/images/brands/7.jpg" alt=""/>
-                        </a>
-                    </div>
-                    <div class="brand-item">
-                        <a href="#">
-                            <img class="brand-static" src="/user/assets/images/brands/8.jpg" alt=""/>
-                        </a>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-</div>
-<!--brands-area end-->
-
 
 <script type="text/javascript">
-    $(document).ready(function(){
+    $(document).ready(function () {
         var minPrice = "{{request()->query('min') ? request()->query('min') : 10}}";
         var maxPrice = "{{request()->query('max') ? request()->query('max') : 30000}}";
-        
-$( "#slider-range" ).slider({
-    range: true,
-    min: 10,
-    max: 30000,
-    values: [ minPrice, maxPrice ],
-    slide: function( event, ui ) {
-    $( "#amount" ).val( "$" + ui.values[ 0 ] + " - $" + ui.values[ 1 ] );
-    $( "#hdnMinPrice" ).val(ui.values[ 0 ] );
-    $( "#hdnMaxPrice" ).val(ui.values[ 1 ] );
-    }
-});
-$( "#amount" ).val( "$" + $( "#slider-range" ).slider( "values", 0 ) +
-" - $" + $( "#slider-range" ).slider( "values", 1 ) );
 
-$( "#hdnMinPrice" ).val($( "#slider-range" ).slider( "values", 0 ));
-$( "#hdnMaxPrice" ).val($( "#slider-range" ).slider( "values", 1 ));
+        $("#slider-range").slider({
+            range: true,
+            min: 10,
+            max: 30000,
+            values: [minPrice, maxPrice],
+            slide: function (event, ui) {
+                $("#amount").val("$" + ui.values[0] + " - $" + ui.values[1]);
+                $("#hdnMinPrice").val(ui.values[0]);
+                $("#hdnMaxPrice").val(ui.values[1]);
+            }
+        });
+        $("#amount").val("$" + $("#slider-range").slider("values", 0) +
+            " - $" + $("#slider-range").slider("values", 1));
+
+        $("#hdnMinPrice").val($("#slider-range").slider("values", 0));
+        $("#hdnMaxPrice").val($("#slider-range").slider("values", 1));
 
     })
 </script>

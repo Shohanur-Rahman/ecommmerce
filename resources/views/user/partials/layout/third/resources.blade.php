@@ -48,6 +48,7 @@
 <!-- jquery-3.3.1 version -->
 <script src="{{asset('user/assets/js/vendor/jquery-3.2.1.min.js')}}"></script>
 <!-- bootstra.min js -->
+<script src="{{asset('user/assets/js/popper.min.js')}}"></script>
 <script src="{{asset('user/assets/js/bootstrap.min.js')}}"></script>
 
 <script src="{{asset('parsley/parsley.min.js')}}"></script>

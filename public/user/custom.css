@@ -90,3 +90,30 @@ textarea.parsley-error {
     float: left;
     padding-top: 7px;
 }
+.company-info img {
+    max-width: 50%;
+}
+.btn-filter {
+    background: none;
+    border: none;
+    cursor: pointer;
+}
+
+.filter-dropdown{
+    padding-left: 15px;
+    padding-right: 15px;
+}
+.filter-dropdown a.dropdown-item {
+    padding: 5px 0;
+    line-height: 16px;
+}
+.dropdown.filter-box {
+    border: 1px solid #efeeeea8;
+    max-width: 148px;
+    display: inline-block;
+    margin-left: 5px;
+}
+.btn-filter:hover .filter-dropdown{
+    display: block;
+    transition: .3s;
+}
