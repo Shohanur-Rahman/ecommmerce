@@ -44,7 +44,9 @@
                         </ul>
                     </li>
 
-                    <li class="treeview {{ request()->routeIs('users.*','vendor-applications.*') ? 'active' : '' }}">
+                    <li><a  class="{{activeLink('users')}}" href="{{route('users.index')}}"><i class="zmdi zmdi-view-web"></i> <span>Users</span></a></li>
+
+                    {{--<li class="treeview {{ request()->routeIs('users.*','vendor-applications.*') ? 'active' : '' }}">
                         <a href="javascript:void(0)"><i class="zmdi zmdi-accounts-alt"></i> <span>Users</span> <i class="fa fa-angle-right"></i></a>
                         <ul class="treeview-menu {{ request()->routeIs('users.*') ? 'active' : '' }}">
                             <li><a class="{{userActiveLink('super-admin')}}" href="{{route('users.index',['type'=>'super-admin'])}}">- Super Admins</a></li>
@@ -55,7 +57,7 @@
                             <li><a class="{{userActiveLink('customer')}}" href="{{route('users.index',['type'=>'customer'])}}">- Customers</a></li>
                             <li><a class="{{activeLink('vendor-applications')}}" href="{{route('vendor-applications.index')}}">- Vendor Applications</a></li>
                         </ul>
-                    </li>
+                    </li>--}}
 
                     <li class="treeview {{ request()->routeIs('arrivals.*','product-features.*','ecom-supports.*') ? 'active' : '' }}">
                         <a href="javascript:void(0)"><i class="zmdi zmdi-settings"></i> <span>Website Settings</span> <i class="fa fa-angle-right"></i></a>

@@ -74,8 +74,17 @@
                     <div class="subscribe-form">
                         <h3>Sign Up to <strong>Newsletter</strong></h3>
                         <p>Subscribe our newsletter gor get notification about information discount.</p>
-                        <input type="text" placeholder="Your email address" />
-                        <button>Subscribe</button>
+                        <form class="custom-validate" action="javascript:" method="post" >
+                            @csrf
+                            <input type="email" name="email" id="email" placeholder="Your email address" />
+                            @auth()
+                                <button type="submit" onclick="subscribe()">Subscribe</button>
+                                <span class="error text-danger"></span>
+                                <span class="success text-success"></span>
+                            @else
+                                <button :disabled  class="disabled">login first</button>
+                            @endauth
+                        </form>
                     </div>
                     <div class="social-icons style-2">
                         <strong>GET IN TOUCH !</strong>
@@ -92,8 +101,44 @@
 <!--footer-area end-->
 
 
+<script>
+
+    $('#email').keydown(function () {
+        $('.error').text('');
+        $('.success').text('');
+
+    });
+
+
+    function subscribe(){
+        var email = $('#email').val();
+
+        if(email == ''){
+            return false;
+        }
+
+        $.ajax({
+            type:'post',
+            data:{email:email},
+            url:'newsletter',
+
+            success:function (resp) {
+                if(resp == 'success'){
+                    $('.success').html('Subscribed Successfully');
+                    $('.error').text('');
+
+                }
+            },
+
+            error: function(xhr, status, error) {
+               /* alert(xhr.responseText);*/
+                $('.error').html(xhr.responseJSON.errors.email[0])
+            }
+        })
+    }
+
+</script>
 
 <!-- main js -->
 <script src="{{asset('user/assets/js/main.js')}}"></script>
 <script src="{{asset('user/assets/js/custom.js')}}"></script>
-

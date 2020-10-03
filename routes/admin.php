@@ -42,12 +42,12 @@ Route::group(['middleware' => 'auth'], function() {
     });
 
      Route::group(['prefix'=>'users'], function(){
-            Route::get('{type}','UserController@index')->name('users.index');
-//            Route::get('/create','MainSliderController@create')->name('main-sliders.create');
-//            Route::post('','MainSliderController@store')->name('main-sliders.store');
+            Route::get('','UserController@index')->name('users.index');
+            Route::get('/{user}/edit','UserController@edit')->name('users.edit');
+            Route::patch('/{user}','UserController@update')->name('users.update');
+/*            Route::get('{type}','UserController@index')->name('users.index');
             Route::get('{type}/{user}/edit','UserController@edit')->name('users.edit');
-            Route::patch('/{type}/{user}','UserController@update')->name('users.update');
-//            Route::delete('/{mainSlider}','MainSliderController@destroy')->name('main-sliders.destroy');
+            Route::patch('/{type}/{user}','UserController@update')->name('users.update');*/
      });
 
     Route::group(['prefix'=>'product-sizes'], function(){

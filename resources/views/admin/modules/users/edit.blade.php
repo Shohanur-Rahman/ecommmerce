@@ -14,7 +14,7 @@
 
                     <div class="row">
                         <div class="col-sm-12 col-xs-12">
-                            <form method="post" action="{{route('users.update',[strtolower($user->user_type),$user->id])}}" class="d-inline" data-parsley-validate>
+                            <form method="post" action="{{route('users.update',[/*strtolower($user->user_type),*/$user->id])}}" class="d-inline" data-parsley-validate>
                                 @method('PATCH')
                                 @csrf
                                 <div class="form-group">
@@ -27,7 +27,7 @@
                                     <input type="email" class="form-control" id="email" value="{{$user->email }}" placeholder="Enter User email" name="email" required="required" data-parsley-maxlength="50"  data-parsley-requireed-message="Enter User email">
                                 </div>
 
-                                <div class="form-group">
+                              {{--  <div class="form-group">
                                     <label for="user_type">User Type</label>
                                     <select class="form-control" name="user_type" id="">
                                         <option value="">Select User Type</option>
@@ -35,7 +35,7 @@
                                             <option {{($user->user_type === $type->user_type) ? 'selected' : ''}} value="{{$type->user_type}}">{{$type->user_type}}</option>
                                         @endforeach
                                     </select>
-                                </div>
+                                </div>--}}
 
                                 <div class="form-group">
                                     <label for="admin_comment">Admin Comments</label>
@@ -58,7 +58,7 @@
                                 <button type="submit" class="btn btn-success mr-2 float-right">Update User</button>
                             </form>
 
-                            <a href="{{route('users.index',strtolower($user->user_type))}}" class="btn btn-danger float-left">Back to Users</a>
+                            <a href="{{route('users.index'/*,strtolower($user->user_type)*/)}}" class="btn btn-danger float-left">Back to Users</a>
                         </div>
                     </div>
 
