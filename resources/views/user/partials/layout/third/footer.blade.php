@@ -4,10 +4,10 @@
         <div class="row">
             <div class="col-lg-3 col-sm-6">
                 <div class="company-info">
-                    <img src="{{asset('user/assets/images/logos/logo-blue.png')}}" alt="logo" />
-                    <p>101 E 129th St, East Chicago, <br/> IN 46312, US</p>
-                    <p>Phone: 001-1234-88888</p>
-                    <p>Email: info.deercreative@gmail.com</p>
+                    <img src="{{$siteSetting->logo_url}}" alt="logo" />
+                    <p>{{$siteSetting->address}}</p>
+                    <p>Phone: {{$siteSetting->phone}}</p>
+                    <p>Email: {{$siteSetting->email}}</p>
                 </div>
                 <div class="copyright">
                     <p>Copyright 2019 &copy; <a href="#">HakDuck</a>. All rights reserved.</p>

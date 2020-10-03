@@ -1,8 +1,14 @@
+@php
+    $siteSetting = \App\Models\SiteSetting::firstOrFail();
+@endphp
+
 <!doctype html>
 <html class="no-js" lang="zxx">
 
 <head>
     <title>@yield('title')</title>
+    <meta name="description" content="{{$siteSetting->description}}">
+
     @include('user.partials.layout.third.resources')
 
 </head>
@@ -12,8 +18,6 @@
 <!--header-area start-->
 @include('user.partials.layout.third.header')
 <!--header-area end-->
-
-
 
 
 <div class="container-fluid">

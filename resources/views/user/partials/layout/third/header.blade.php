@@ -26,7 +26,7 @@
                 <div class="row align-items-center">
                     <div class="col-lg-2 col-xl-2">
                         <div class="logo">
-                            <a href="{{route('app.home')}}"><img src="{{asset('user/assets/images/logos/logo-blue.png')}}"
+                            <a href="{{route('app.home')}}"><img src="{{$siteSetting->logo_url}}"
                                                       alt="logo"/></a>
                         </div>
                     </div>
