@@ -74,7 +74,7 @@
                                     <div class="col-sm-6">
                                         <div class="form-group">
                                             <label for="title">Title</label>
-                                            <input type="text" class="form-control"  id="title" placeholder="Product title" name="title" required="required" data-parsley-error-message="Product title is required" value="{{$aProduct->title}}" />
+                                            <input type="text" class="form-control"  id="title" max="23"  maxlength="23" placeholder="Product title" name="title" required="required" data-parsley-error-message="Product title is required" value="{{$aProduct->title}}" />
                                         </div>
                                     </div>
 
