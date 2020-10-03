@@ -62,7 +62,7 @@
                         <ul class="treeview-menu ">
                             <li><a class=" {{activeLink('arrivals')}}" href="{{route('arrivals.index')}}">- New Arrival Tab</a></li>
                             <li><a class="{{activeLink('product-features')}}" href="{{route('product-features.index')}}">- Feature Product Tab </a></li>
-                            <li><a class="{{activeLink('ecom-supports')}}" href="{{route('ecom-supports.index')}}">- E-commerce Supports</a></li>
+                            {{--<li><a class="{{activeLink('ecom-supports')}}" href="{{route('ecom-supports.index')}}">- E-commerce Supports</a></li>--}}
                             <li><a class="{{activeLink('site-settings')}}" href="{{route('site-settings.edit')}}">- Site Setting</a></li>
                         </ul>
                     </li>
