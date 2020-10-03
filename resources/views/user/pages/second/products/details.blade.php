@@ -64,9 +64,7 @@
                         </div>
                         <div class="col-lg-4 col-md-5">
                             <div class="product-action stuck text-left">
-                                <div class="free-delivery">
-                                    <a href="#"><i class="ti-truck"></i> Free Delivery</a>
-                                </div>
+
                                 <div class="product-price-rating">
                                     <div>
                                         <del>629.99</del>
@@ -80,15 +78,6 @@
                                         <i class="fa fa-star-o"></i>
                                     </div>
                                 </div>
-                                <!-- <div class="product-colors mt-20">
-                                    <label>Select Color:</label>
-                                    <ul class="list-none">
-                                        <li>Red</li>
-                                        <li>Black</li>
-                                        <li>Blue</li>
-                                    </ul>
-
-                                </div> -->
                                 <form action="{{route('product.add_to_cart')}}" method="post">
                                     @csrf
                                     <input type="hidden" name="product_id" value="{{$product->id}}">
@@ -98,7 +87,7 @@
                                     <input type="number" value="1" name="quantity" />
                                     </div>
                                     <div class="add-to-get mt-50">
-                                        <button type="submit" class="btn add-to-cart">Add to Cart</button>
+                                        <button type="submit" class="btn btn-success add-to-cart">Add to Cart</button>
                                     </div>
                                 </form>
 
