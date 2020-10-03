@@ -1,4 +1,4 @@
-@extends('user.layouts.user')
+@extends('user.layouts.layout-third')
 @section('title', 'My Cart')
 @section('content')
 
@@ -121,14 +121,14 @@
 
                 <div class="row mt-40 d-flex justify-content-between ">
                     <div class="col-lg-4">
-                        <div class="cart-box cart-coupon fix">
+                        {{--<div class="cart-box cart-coupon fix">
                             <h5>Discount Codes</h5>
                             <div class="cart-box-inner">
                                 <p>Enter your coupin if you have one</p>
                                 <input type="text">
                                 <a href="#" class="btn-common">Apply</a>
                             </div>
-                        </div>
+                        </div>--}}
                     </div>
                     <div class="col-lg-4">
                         <div class="cart-box cart-total">

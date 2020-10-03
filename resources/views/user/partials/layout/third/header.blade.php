@@ -66,8 +66,8 @@
                         <?php $myCartList = App\Models\User\CartItem::with('product')->where('user_id', Auth::id())->get();?>
                         <div class="mini-cart pull-right">
                             <ul>
-                                <li><a href="#"><i class="icon_heart_alt"></i><span>1</span></a></li>
-                                <li><a href="javascript:void(0);" class="minicart-icon"><i class="icon_bag_alt"></i>$180.00<span>2</span></a>
+                                <li><a href="#"><i class="icon_heart_alt"></i><span>4</span></a></li>
+                                <li>
                                     <div class="cart-dropdown">
                                         <ul>
                                             <?php $taotalPrice = 0;?>
@@ -84,7 +84,7 @@
                                                         </h5>
                                                     </div>
                                                     <div class="mini-cart-remove">
-                                                        <button><i class="ti-close"></i></button>
+                                                        <a class="cart-removal" title="Remove Item" href="{{route('cart.delete',$cart->id)}}"><i class="ti-close"></i></a>
                                                     </div>
                                                 </li>
                                                 <?php $taotalPrice = ($taotalPrice + ($cart->product->new_price * $cart->quantity));?>
@@ -96,8 +96,10 @@
                                         </div>
                                         <div class="mini-cart-checkout">
                                             <a href="{{route('cart.index')}}" class="btn-common view-cart">VIEW CART</a>
+                                            <a href="{{route('checkouts.create')}}" class="btn-common checkout mt-10">CHECK OUT</a>
                                         </div>
                                     </div>
+                                    <a href="javascript:void(0);" class="minicart-icon"><i class="icon_bag_alt"></i>${{ number_format($taotalPrice,2)}}<span>{{count($myCartList)}}</span></a>
                                 </li>
                             </ul>
                         </div>
@@ -141,7 +143,7 @@
                     <div class="mini-cart text-right">
                         <ul>
                             <li><a href="#"><i class="icon_heart_alt"></i><span>1</span></a></li>
-                            <li class="minicart-icon"><a href="#"><i class="icon_bag_alt"></i><span>2</span></a>
+                            <li class="minicart-icon"><a href="#"><i class="icon_bag_alt"></i><span>{{count($myCartList)}}</span></a>
                                 <div class="cart-dropdown">
                                     <ul>
                                         <?php $taotalPrice = 0;?>
@@ -158,7 +160,7 @@
                                                     </h5>
                                                 </div>
                                                 <div class="mini-cart-remove">
-                                                    <button><i class="ti-close"></i></button>
+                                                    <a class="cart-removal" title="Remove Item" href="{{route('cart.delete',$cart->id)}}"><i class="ti-close"></i></a>
                                                 </div>
                                             </li>
                                             <?php $taotalPrice = ($taotalPrice + ($cart->product->new_price * $cart->quantity));?>
@@ -170,6 +172,7 @@
                                     </div>
                                     <div class="mini-cart-checkout">
                                         <a href="{{route('cart.index')}}" class="btn-common view-cart">VIEW CART</a>
+                                        <a href="{{route('checkouts.create')}}" class="btn-common checkout mt-10">CHECK OUT</a>
                                     </div>
                                 </div>
                             </li>

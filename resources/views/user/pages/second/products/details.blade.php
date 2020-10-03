@@ -105,4 +105,4 @@
         </div>
     </div>
 </div>
-@include('user.partials.widget.product_reviews');
+@include('user.partials.widget.product_reviews')

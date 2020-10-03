@@ -67,7 +67,12 @@ Route::group(['middleware'=>'auth'],function(){
      });
 
     Route::group(['prefix'=>'checkouts'], function(){
+
         Route::get('/','User\CheckoutController@index')->name('checkouts.index');
+
+        /*Route::get('/','User\CheckoutController@index')->name('checkouts.index');*/
+        Route::get('/','User\CheckoutController@create')->name('checkouts.create');
+
         Route::post('/','User\CheckoutController@store')->name('checkouts.store');
         Route::get('/new-shipping-address','User\CheckoutController@shippingAddressCreate')->name('new-shipping-address.create');
         Route::post('/new-shipping-address','User\CheckoutController@shippingAddressStore')->name('new-shipping-address.store');

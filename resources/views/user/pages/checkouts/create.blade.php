@@ -1,4 +1,4 @@
-@extends('user.layouts.user')
+@extends('user.layouts.layout-third')
 @section('title', 'My Cart')
 @section('content')
 
