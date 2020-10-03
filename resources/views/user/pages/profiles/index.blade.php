@@ -12,7 +12,9 @@
                     <div class="bg-white">
                         <h3 class="text-uppercase">My Dashboard</h3>
                         @if($user->user_type == 'Super-admin' or $user->user_type == 'Admin')
-                            <a class="text-white" href="{{route('dashboard')}}"><button class="btn btn-primary w-100 my-2">Go to Seller Dashboard</button></a>
+                            <a class="text-white" href="{{route('dashboard')}}">
+                                <button class="btn btn-primary w-100 my-2">Go to Seller Dashboard</button>
+                            </a>
                         @else
                             {{--@if($fillUp)
                                 @if($user->applyVendor)
@@ -34,9 +36,12 @@
 
                     </div>
                     <div class="dashboard">
-                        <div class="welcome-msg"><strong class=" text-black font-weight-bold">Hello, {{$user->name}}!</strong>
-                            <p class="text-black-50">From your My Account Dashboard you have the ability to view a snapshot of your recent
-                                account activity and update your account information. Select a link below to view or edit information.</p>
+                        <div class="welcome-msg"><strong class=" text-black font-weight-bold">Hello, {{$user->name}}
+                                !</strong>
+                            <p class="text-black-50">From your My Account Dashboard you have the ability to view a
+                                snapshot of your recent
+                                account activity and update your account information. Select a link below to view or
+                                edit information.</p>
                         </div>
                         <div class="recent-orders">
                             <div class="d-flex justify-content-between">
@@ -65,7 +70,8 @@
                                             <td><em>{{$order->status}}</em></td>
                                             <td class="a-center last">
                                                     <span class="nobr">
-                                                        <a class="text-success" href="{{route('orders-details.show',$order->id)}}">View Order</a>
+                                                        <a class="text-success"
+                                                           href="{{route('orders-details.show',$order->id)}}">View Order</a>
                                                     </span>
                                             </td>
                                         </tr>
@@ -84,7 +90,8 @@
                                     <a class="text-success" href="{{route('profiles.edit')}}">Edit</a>
                                     <p> {{$user->name}}<br>
                                         {{$user->email}}!<br>
-                                        <a class="text-success" href="{{route('change-password.edit')}}">Change Password</a></p>
+                                        <a class="text-success" href="{{route('change-password.edit')}}">Change
+                                            Password</a></p>
                                 </div>
                                 <div class="">
                                     <h5>Newsletters</h5>
@@ -94,7 +101,9 @@
                             </div>
                             <div class="">
                                 <h4>Address Book</h4>
-                                <div class="manage_add"><a class="text-success" href="{{route('shipping-address.create')}}">New Shipping Addresses</a></div>
+                                <div class="manage_add"><a class="text-success"
+                                                           href="{{route('shipping-address.create')}}">New Shipping
+                                        Addresses</a></div>
                                 <div class="d-flex justify-content-between flex-wrap">
                                     @foreach($shippingAddresses as $shippingAddress)
                                         <div class="">
@@ -104,11 +113,14 @@
                                                 {{$shippingAddress->name}}<br>
                                                 {{$shippingAddress->email}}<br>
                                                 {{$shippingAddress->city}}<br>
-                                                {{$shippingAddress->house}},{{$shippingAddress->road}},{{$shippingAddress->state}}<br>
+                                                {{$shippingAddress->house}}
+                                                ,{{$shippingAddress->road}},{{$shippingAddress->state}}<br>
                                                 {{$shippingAddress->country}}<br>
                                                 Phone: {{$shippingAddress->phone}}<br>
                                                 Describe Address: {{$shippingAddress->describe_address}}<br>
-                                                <a class="text-success" href="{{route('shipping-address.edit',$shippingAddress->id)}}">Edit Address</a>
+                                                <a class="text-success"
+                                                   href="{{route('shipping-address.edit',$shippingAddress->id)}}">Edit
+                                                    Address</a>
                                             </address>
                                         </div>
                                     @endforeach
@@ -119,4 +131,5 @@
                 </div>
             </div>
         </div>
+    </div>
 @endsection

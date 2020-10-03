@@ -2,7 +2,7 @@
     <div class="left-side-content-area d-flex align-items-center">
         <!-- Mobile Logo -->
         <div class="mobile-logo mr-3 mr-sm-4">
-            <a href="index.html"><img src="img/core-img/small-logo.png" alt="Mobile Logo"></a>
+            <a href="index.html"><img src="{{asset('admin/img/core-img/small-logo.png')}}" alt="Mobile Logo"></a>
         </div>
 
         <!-- Triggers -->
@@ -44,7 +44,7 @@
                         </div>
                         <div class="message-box" id="messageBox">
                             <a href="#" class="dropdown-item">
-                                <img src="img/member-img/10.png" alt="">
+                                <img src="{{asset('admin/img/member-img/10.png')}}" alt="">
                                 <span class="message-text">
                                     <span>Jhon Lina</span>
                                     <span>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ut, voluptas!</span>
@@ -52,21 +52,21 @@
                             </a>
                             <span class="message-heading">New Messages</span>
                             <a href="#" class="dropdown-item">
-                                <img src="img/member-img/11.png" alt="">
+                                <img src="{{asset('admin/img/member-img/11.png')}}" alt="">
                                 <span class="message-text">
                                     <span>Google Ads: You'll get a refund soon</span>
                                     <span>27 min ago</span>
                                 </span>
                             </a>
                             <a href="#" class="dropdown-item">
-                                <img src="img/member-img/7.png" alt="">
+                                <img src="{{asset('admin/img/member-img/7.png')}}" alt="">
                                 <span class="message-text">
                                     <span>New Feature: HTTP Method Selection</span>
                                     <span>56 min ago</span>
                                 </span>
                             </a>
                             <a href="#" class="dropdown-item">
-                                <img src="img/member-img/8.png" alt="">
+                                <img src="{{asset('admin/img/member-img/8.png')}}" alt="">
                                 <span class="message-text">
                                     <span>The Complete JavaScript Handbook</span>
                                     <span>1 hour ago</span>
@@ -74,28 +74,28 @@
                             </a>
                             <span class="message-heading">Hot Messages</span>
                             <a href="#" class="dropdown-item">
-                                <img src="img/member-img/9.png" alt="">
+                                <img src="{{asset('admin/img/member-img/9.png')}}" alt="">
                                 <span class="message-text">
                                     <span>New comment: ecaps Template</span>
                                     <span>2 days ago</span>
                                 </span>
                             </a>
                             <a href="#" class="dropdown-item">
-                                <img src="img/member-img/10.png" alt="">
+                                <img src="{{asset('admin/img/member-img/10.png')}}" alt="">
                                 <span class="message-text">
                                     <span>6-hour video course on Angular</span>
                                     <span>3 min ago</span>
                                 </span>
                             </a>
                             <a href="#" class="dropdown-item">
-                                <img src="img/member-img/11.png" alt="">
+                                <img src="{{asset('admin/img/member-img/11.png')}}" alt="">
                                 <span class="message-text">
                                     <span>Google Ads: You'll get a refund soon</span>
                                     <span>27 min ago</span>
                                 </span>
                             </a>
                             <a href="#" class="dropdown-item">
-                                <img src="img/member-img/12.png" alt="">
+                                <img src="{{asset('admin/img/member-img/12.png')}}" alt="">
                                 <span class="message-text">
                                     <span>New Feature: HTTP Method Selection</span>
                                     <span>56 min ago</span>
@@ -120,49 +120,49 @@
 
                         <div class="notifications-box" id="notificationsBox">
                             <a href="#" class="dropdown-item">
-                                <img src="img/member-img/1.png" alt="">
+                                <img src="{{asset('admin/img/member-img/1.png')}}" alt="">
                                 <span class="message-text">
                                     <span>New Feature: HTTP Method Selection</span>
                                     <span>56 min ago</span>
                                 </span>
                             </a>
                             <a href="#" class="dropdown-item">
-                                <img src="img/member-img/2.png" alt="">
+                                <img src="{{asset('admin/img/member-img/2.png')}}" alt="">
                                 <span class="message-text">
                                     <span>Andrew Done Project</span>
                                     <span>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Magnam, quam.</span>
                                 </span>
                             </a>
                             <a href="#" class="dropdown-item">
-                                <img src="img/member-img/3.png" alt="">
+                                <img src="{{asset('admin/img/member-img/3.png')}}" alt="">
                                 <span class="message-text">
                                     <span>New Feature: HTTP Method Selection</span>
                                     <span>56 min ago</span>
                                 </span>
                             </a>
                             <a href="#" class="dropdown-item">
-                                <img src="img/member-img/4.png" alt="">
+                                <img src="{{asset('admin/img/member-img/4.png')}}" alt="">
                                 <span class="message-text">
                                     <span>New Feature: HTTP Method Selection</span>
                                     <span>56 min ago</span>
                                 </span>
                             </a>
                             <a href="#" class="dropdown-item">
-                                <img src="img/member-img/5.png" alt="">
+                                <img src="{{asset('admin/img/member-img/5.png')}}" alt="">
                                 <span class="message-text">
                                     <span>New Feature: HTTP Method Selection</span>
                                     <span>56 min ago</span>
                                 </span>
                             </a>
                             <a href="#" class="dropdown-item">
-                                <img src="img/member-img/6.png" alt="">
+                                <img src="{{asset('admin/img/member-img/6.png')}}" alt="">
                                 <span class="message-text">
                                     <span>New Feature: HTTP Method Selection</span>
                                     <span>56 min ago</span>
                                 </span>
                             </a>
                             <a href="#" class="dropdown-item">
-                                <img src="img/member-img/7.png" alt="">
+                                <img src="{{asset('admin/img/member-img/7.png')}}" alt="">
                                 <span class="message-text">
                                     <span>New Feature: HTTP Method Selection</span>
                                     <span>56 min ago</span>
