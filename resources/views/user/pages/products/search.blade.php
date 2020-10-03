@@ -1,4 +1,4 @@
-@extends('user.layouts.user')
+@extends('user.layouts.layout-third')
 @section('title', 'Search results for '.request()->query('s'))
 @section('content')
 
