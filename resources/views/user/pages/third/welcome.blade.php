@@ -103,7 +103,7 @@
             ->select('products.*')
             ->where('product_category_maps.is_published', 1)
             ->where('products.show_on_home', 1)
-            ->where('product_category_maps.cat_id', 16)
+            ->where('product_category_maps.cat_id', 17)
             ->take(50)
             ->get();
 

@@ -91,6 +91,52 @@ class ProductsController extends HelperController
         return view('admin.modules.products.edit', compact("warehouses", "avalabilitites", "categories", "brands","tags", "productSizes", "productColors", "aProduct", "existingCatMap", "existingTagMap", "galleryArray"));
     }
 
+    public function copy($id)
+    {
+        $warehouses = Warehouse::all();
+        $avalabilitites = ProductAvailability::all();
+        $brands = ProductBrands::all();
+        $categories = ProductCategory::where('parent_id',0)->with('user','childrens.childrens.user')->get();
+        $tags = ProductTags::all();
+        $productSizes = ProductSize::all();
+        $productColors = ProductColor::all();
+
+        $aProduct = Products::findOrFail($id);
+
+        $categoriMap = ProductCategoryMap::where('product_id', $id)->get();
+        $existingCatMap="";
+        foreach ($categoriMap as $key) {
+            if($existingCatMap == "")
+                $existingCatMap=$key->cat_id;
+            else
+                $existingCatMap =$existingCatMap.",".$key->cat_id;
+        }
+
+
+        $tagMap = ProductTagMap::where('product_id', $id)->get();
+        $existingTagMap="";
+        foreach ($tagMap as $key) {
+            if($existingTagMap == "")
+                $existingTagMap=$key->tag_id;
+            else
+                $existingTagMap =$existingTagMap.",".$key->tag_id;
+        }
+
+
+        $imgGallery = ProductGalleryMap::where('product_id', $id)->get();
+        $galleryArray="";
+        foreach ($imgGallery as $key) {
+            if($galleryArray == "")
+                $galleryArray= $key->id . ",".$key->image_url;
+            else
+                $galleryArray =$galleryArray."?".$key->id . ",".$key->image_url;
+        }
+
+
+
+        return view('admin.modules.products.copy', compact("warehouses", "avalabilitites", "categories", "brands","tags", "productSizes", "productColors", "aProduct", "existingCatMap", "existingTagMap", "galleryArray"));
+    }
+
     public function store(Request $request)
     {
         //dd($request->all());
@@ -100,9 +146,16 @@ class ProductsController extends HelperController
         *
         * Insert product table data **/
 
+        $title = $request->title;
+
+        $oldProduct = Products::where('slug',Str::slug($title))->get();
+        if($oldProduct)
+            $title = $title.' Copy ';
+
+
         $product = new Products();
-        $product->title = $request->title;
-        $product->slug = Str::slug( $request->title);
+        $product->title = $title;
+        $product->slug = Str::slug($title);
         $product->short_description = $request->short_description;
         $product->description = $request->description;
         $product->sku = $request->sku;
@@ -155,14 +208,20 @@ class ProductsController extends HelperController
         $product->save();
 
 
+        //dd($request->file('images'));
         /*
         *
         *Upload and generate gallery image urls*/
         if($files=$request->file('images')){
             foreach($files as $file){
+
+                $test = $helper->uploadImage($file,'uploads/products/u_'.Auth::id() . "/gallery/thumb/",100,100);
+
                 $glURL = $helper->uploadImage($file,'uploads/products/u_'.Auth::id() . "/gallery/");
+
                 $gallery = new ProductGalleryMap();
                 $gallery->image_url = $glURL;
+                $gallery->thumb_url = $test;
                 $gallery->product_id = $product->id;
                 $gallery->save();
             }

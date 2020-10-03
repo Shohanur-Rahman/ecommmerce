@@ -24,6 +24,7 @@ Route::group(['prefix' => 'products'], function () {
     Route::get('/create', 'ProductsController@create')->name('products.create');
     Route::post('/', 'ProductsController@store')->name('products.store');
     Route::get('/{id}/edit', 'ProductsController@edit')->name('products.edit');
+    Route::get('/{id}/copy', 'ProductsController@copy')->name('products.copy');
     Route::patch('/{id}/edit', 'ProductsController@update')->name('products.update');
 });
 

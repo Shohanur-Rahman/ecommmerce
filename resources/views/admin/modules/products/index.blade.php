@@ -56,6 +56,7 @@
                             <td>{{$aProduct->created_at->format('d F Y')}}</td>
                             <td>
                                 <a class="btn btn-outline-primary table-btn btn-sm" href="{{route('products.edit', $aProduct->id)}}" title="Edit"><i class="zmdi zmdi-edit"></i></a>
+                                <a class="btn btn-outline-primary table-btn btn-sm" href="{{route('products.copy', $aProduct->id)}}" title="Copy"><i class="zmdi zmdi-copy"></i></a>
                                 <form class="d-inline"  action="{{route('tags.destroy',$aProduct->id)}}" method="post">
                                     @method('DELETE')
                                     @csrf
