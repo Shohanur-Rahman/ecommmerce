@@ -45,6 +45,7 @@
                     </li>
 
                     <li><a  class="{{activeLink('users')}}" href="{{route('users.index')}}"><i class="zmdi zmdi-view-web"></i> <span>Users</span></a></li>
+                    <li><a  class="{{activeLink('subscribers')}}" href="{{route('subscribers.index')}}"><i class="zmdi zmdi-view-web"></i> <span>Subscribers</span></a></li>
 
                     {{--<li class="treeview {{ request()->routeIs('users.*','vendor-applications.*') ? 'active' : '' }}">
                         <a href="javascript:void(0)"><i class="zmdi zmdi-accounts-alt"></i> <span>Users</span> <i class="fa fa-angle-right"></i></a>

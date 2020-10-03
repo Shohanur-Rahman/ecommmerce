@@ -115,6 +115,13 @@ Route::group(['middleware' => 'auth'], function() {
         Route::get('/edit','SiteSettingController@edit')->name('site-settings.edit');
         Route::patch('{siteSetting}/show','SiteSettingController@update')->name('site-settings.update');
     });
+
+    Route::group(['prefix'=>'subscribers'], function(){
+        Route::get('','SubscriberController@index')->name('subscribers.index');
+        Route::get('/{newsLetter}/edit','SubscriberController@edit')->name('subscribers.edit');
+        Route::patch('/{newsLetter}','SubscriberController@update')->name('subscribers.update');
+        Route::delete('/{newsLetter}','SubscriberController@destroy')->name('subscribers.destroy');
+    });
 });
 
 
