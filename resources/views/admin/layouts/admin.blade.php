@@ -28,7 +28,7 @@
             <!-- Main Content Area -->
             <div class="main-content">
                 <div class="container-fluid repeat-area">
-                    
+
                     @yield('content')
 
                 </div>
@@ -43,10 +43,8 @@
     ********* Page Wrapper Area End ***********
     ======================================= -->
 
-    
 
-    
-
+    <script src="{{asset('admin/js/default-assets/admin.common.js')}}"></script>
 </body>
 
 </html>
