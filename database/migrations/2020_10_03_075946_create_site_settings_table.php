@@ -18,8 +18,8 @@ class CreateSiteSettingsTable extends Migration
             $table->string('name');
             $table->string('email');
             $table->string('phone');
-            $table->string('address');
-            $table->string('image_url');
+            $table->text('address');
+            $table->string('logo_url');
             $table->text('description');
             $table->timestamps();
         });

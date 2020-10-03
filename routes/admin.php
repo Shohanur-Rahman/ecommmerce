@@ -110,6 +110,11 @@ Route::group(['middleware' => 'auth'], function() {
         Route::get('/change-password','ProfileController@passwordEdit')->name('admin-change-password.edit');
         Route::patch('/change-password','ProfileController@passwordUpdate')->name('admin-change-password.update');
     });
+
+    Route::group(['prefix'=>'website-settings/site-settings'], function(){
+        Route::get('/edit','SiteSettingController@edit')->name('site-settings.edit');
+        Route::patch('{siteSetting}/show','SiteSettingController@update')->name('site-settings.update');
+    });
 });
 
 
