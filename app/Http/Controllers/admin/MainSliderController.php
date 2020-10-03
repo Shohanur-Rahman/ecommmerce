@@ -21,7 +21,8 @@ class MainSliderController extends Controller
 
     public function create()
     {
-        $categories = ProductCategory::all('id','category_name');
+        $categories = ProductCategory::whereIn('category_name',['Male','Female','Kids','Others'])->get();
+
         $products = Products::all('id','title');
 
         return view('admin.modules.main_sliders.create',compact('categories','products'));
@@ -44,7 +45,7 @@ class MainSliderController extends Controller
 
     public function edit(MainSlider $mainSlider)
     {
-        $categories = ProductCategory::all('id','category_name');
+        $categories = ProductCategory::whereIn('category_name',['Male','Female','Kids','Others'])->get();
         $products = Products::all('id','title');
 
         return view('admin.modules.main_sliders.edit',compact('mainSlider','categories','products'));
