@@ -41,7 +41,7 @@
                         </div>
                     </div>
 
-                    <div class="col-lg-4 col-xl-3 col-md-4">
+                    <div class="col-lg-4 col-xl-3 col-md-3">
 
                         <div class="register-login pull-right pt-1 pl-3">
                             @guest
