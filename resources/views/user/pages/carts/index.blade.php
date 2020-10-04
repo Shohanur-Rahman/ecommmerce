@@ -55,10 +55,10 @@
                                 <?php $taotalPrice = 0;?>
                                 @foreach($myCartList as $cartItem)
 
-                                    <tr>
+                                    <tr class="cart-row">
                                         <td>
                                             <div class="cart-product-thumb">
-                                                <a title="{{$cartItem->product->title}}" href="{{route('product.search.show', $cartItem->product->slug)}}"><img src="{{$cartItem->product->featured_image}}" alt="{{$cartItem->product->title}}" /></a>
+                                                <a title="{{$cartItem->product->title}}" href="{{route('product.search.show', $cartItem->product->slug)}}"><img src="{{asset($cartItem->product->featured_image)}}" class="cart-page-image" alt="{{$cartItem->product->title}}" /></a>
                                             </div>
                                         </td>
                                         <td>

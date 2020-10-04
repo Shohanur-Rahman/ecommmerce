@@ -20,12 +20,12 @@
 
                 <li>
                     <i class="fa fa-angle-right mr-2" aria-hidden="true"></i>
-                    <a href="http://demo.magentomagik.com/computerstore/review/customer/">My Product Reviews</a>
+                    <a href="#">My Product Reviews</a>
                 </li>
 
                 <li>
                     <i class="fa fa-angle-right mr-2" aria-hidden="true"></i>
-                    <a href="http://demo.magentomagik.com/computerstore/wishlist/">My Wishlist</a>
+                    <a href="#">My Wishlist</a>
                 </li>
 
                 <li>

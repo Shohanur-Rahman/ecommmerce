@@ -188,8 +188,8 @@ function makeURL($queryString, $key, $value)
                                             </h4>
                                         </div>
                                         <div class="product-thumb">
-                                            <a href="{{route('product.details', ["category" => $categoryDetails->slug ,"slug" => $product->slug])}}"><img
-                                                    src="{{asset($product->featured_image)}}" alt=""/></a>
+                                            <a href="{{route('product.details', ["category" => $categoryDetails->slug ,"slug" => $product->slug])}}"><img class="product-item-listed-image"
+                                                    src="{{asset($product->featured_image)}}" alt="{{$product->title}}" title="{{$product->title}}"/></a>
                                             <div class="product-quick-view">
                                                 <a href="{{route('product.details', ["category" => $categoryDetails->slug ,"slug" => $product->slug])}}">View
                                                     Product</a>
