@@ -3,6 +3,7 @@
 @section('content')
 
 <div class="shopping-cart-steps">
+    <x-inform-users></x-inform-users>
 	<div class="container">
 			<div class="row">
 				<div class="col-lg-12">

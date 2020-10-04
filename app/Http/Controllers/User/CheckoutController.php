@@ -36,7 +36,7 @@ class CheckoutController extends Controller
             return view('user.pages.checkouts.create', compact('user', 'cartItems'));
         }
 
-        return redirect('/');
+        return redirect(route('cart.index')->with('error-message','Currently your cart is empty please purchase some product'));
     }
 
     public function store(Request $request)
@@ -98,7 +98,7 @@ class CheckoutController extends Controller
             return view('user.pages.checkouts.shipping-address');
         }
 
-        return redirect('/');
+        return redirect(route('cart.index')->with('error-message','Currently your cart is empty please purchase some product'));
     }
 
     public function shippingAddressStore(Request $request)
