@@ -1,4 +1,4 @@
-@extends('user.layouts.user')
+@extends('user.layouts.layout-third')
 
 @section('content')
     <div class="container h-100 mt-80 mb-30">

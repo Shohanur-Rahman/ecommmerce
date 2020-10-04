@@ -2,6 +2,8 @@
 
 namespace App\models;
 
+use App\Models\ProductCategory;
+
 use Illuminate\Database\Eloquent\Model;
 
 class MainSlider extends Model

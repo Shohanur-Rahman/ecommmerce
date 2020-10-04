@@ -185,7 +185,7 @@ function makeURL($queryString, $key, $value)
                                             <h4><a href="{{route('product.details', ["category" => $categoryDetails->slug ,"slug" => $product->slug])}}">{{$product->title}}</a></h4>
                                         </div>
                                         <div class="product-thumb">
-                                            <a href="{{route('product.details', ["category" => $categoryDetails->slug ,"slug" => $product->slug])}}"><img src="{{$product->featured_image}}" alt=""/></a>
+                                            <a href="{{route('product.details', ["category" => $categoryDetails->slug ,"slug" => $product->slug])}}"><img src="{{asset($product->featured_image)}}" alt=""/></a>
                                             <div class="product-quick-view">
                                                 <a href="{{route('product.details', ["category" => $categoryDetails->slug ,"slug" => $product->slug])}}">View
                                                     Product</a>
@@ -229,7 +229,7 @@ function makeURL($queryString, $key, $value)
                                 <div class="row align-items-center">
                                     <div class="col-xl-3 col-lg-6 col-md-6">
                                         <div class="product-thumb">
-                                            <a href="{{route('product.details', ["category" => $product->slug ,"slug" => $product->slug])}}"><img src="{{$product->featured_image}}"
+                                            <a href="{{route('product.details', ["category" => $product->slug ,"slug" => $product->slug])}}"><img src="{{asset($product->featured_image)}}"
                                                              alt="{{$product->title}}"/></a>
 
                                         </div>
