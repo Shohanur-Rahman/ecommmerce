@@ -28,17 +28,17 @@ class HelperController extends Controller
             $fileName = time().'_'.$originalName;
             $saveURL = $destinationPath . $fileName;
 
-            if (!is_dir($destinationPath)) {
-                mkdir($destinationPath, 0755, true);
+            if (!is_dir(public_path($destinationPath))) {
+                mkdir(public_path($destinationPath), 0755, true);
             }
 
             if($width && $height){
 
-                Image::make($image)->resize($width,$height)->save($saveURL);
+                Image::make($image)->resize($width,$height)->save(public_path($saveURL));
 
             }else{
 
-                $file->move($destinationPath,$fileName);
+                $file->move(public_path($destinationPath),$fileName);
             }
 
         }

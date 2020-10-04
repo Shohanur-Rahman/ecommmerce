@@ -117,3 +117,56 @@ textarea.parsley-error {
     display: block;
     transition: .3s;
 }
+.logo img {
+    transition: .3s;
+}
+
+.sticker.header-bottom.stick .logo img {
+    max-height: 40px;
+    transition: .3s;
+}
+
+.product-item .product-single {
+    background: #fff;
+}
+.product-item-listed-image{
+    max-height: 220px;
+    overflow: hidden;
+    transition: .3s;
+}
+.product-item .product-single:hover .product-item-listed-image{
+    transform: scale(1.05);
+    transition: .3s;
+}
+
+.add-to-cart {
+    background-color: rgba(204,210,234,.9);
+    border-color: rgba(204,210,234,.9);
+    color: #181818;
+}
+.add-to-cart:hover {
+    background-color: #1467c1;
+    border-color: #1467c1;
+    color: #fff;
+}
+
+.male-products .product-item .product-single:hover,
+.male-products .product-single:hover .product-action{
+    border-color: #1467c1;
+}
+
+.male-products .product-item .product-single:hover,
+.male-products .product-single:hover .product-action{
+    border-color: #1467c1;
+}
+
+
+/*
+.wow{
+    transition:transform 2s ease-in 0s;
+    animation-duration: 1.5s;
+    -webkit-animation-duration: 1.5s;
+    -webkit-animation-timing-function: ease-in-out;
+    animation-timing-function: ease-in-out;
+}
+*/

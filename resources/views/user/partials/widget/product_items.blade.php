@@ -1,12 +1,13 @@
+<?php $itemCount = 1; ?>
 @foreach($categoryProducts as $product)
 
-<div class="col-xl-3 col-md-4 col-sm-6">
+<div class="col-xl-3 col-md-4 col-sm-6 product-item wow {{ ($itemCount % 2) != 0 ?'slideInDown': 'slideInUp'}}">
     <div class="product-single">
         <div class="product-title">
             <h4><a href="{{route('product.details', ["category" => $productCategory->slug ,"slug" => $product->slug])}}">{{$product->title}}</a></h4>
         </div>
         <div class="product-thumb">
-            <a href="{{route('product.details', ["category" => $productCategory->slug ,"slug" => $product->slug])}}"><img src="{{asset($product->featured_image)}}" alt="{{$product->title}}" title="{{$product->title}}" /></a>
+            <a href="{{route('product.details', ["category" => $productCategory->slug ,"slug" => $product->slug])}}"><img class="product-item-listed-image" src="{{asset($product->featured_image)}}" alt="{{$product->title}}" title="{{$product->title}}" /></a>
             <div class="product-quick-view">
                 <a href="{{route('product.details', ["category" => $productCategory->slug ,"slug" => $product->slug])}}" >View Product</a>
             </div>
@@ -39,4 +40,6 @@
         </div>
     </div>
 </div>
+
+<?php $itemCount += 1; ?>
 @endforeach

@@ -17,4 +17,6 @@ $(document).ready(function () {
     $(".mega-menu").each(function () {
         $(this).attr("style", "left : -" +($(this).width()+100) + "px");
     });
+
+    new WOW().init();
 })

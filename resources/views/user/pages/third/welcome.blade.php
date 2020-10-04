@@ -3,7 +3,7 @@
 @section('content')
 
     <div class="row">
-        <div class="col-lg-12 col-md-12 col-xs-12">
+        <div class="col-lg-12 col-md-12 col-xs-12 wow fadeIn">
             @php
                 $maleSlider = \App\models\MainSlider::with('category')->where('category_id',14)->get();
             @endphp
@@ -13,7 +13,7 @@
         </div>
     </div>
 
-    <div class="row">
+    <div class="row male-products">
         <?php
         $maleProducts = Illuminate\Support\Facades\DB::table('products')
             ->join('product_category_maps', 'products.id', '=', 'product_category_maps.product_id')
@@ -31,7 +31,7 @@
     </div>
 
 
-    <div class="row">
+    <div class="row female-products">
         <div class="col-lg-12 col-md-12 col-xs-12">
             @php
                 $femaleSlider = \App\models\MainSlider::with('category')->where('category_id',15)->get();
