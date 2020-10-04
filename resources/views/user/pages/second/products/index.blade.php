@@ -175,17 +175,21 @@ function makeURL($queryString, $key, $value)
                 </div>
                 <div class="tab-content">
                     <div id="grid-products" class="tab-pane active">
-                        <div class="row">
+                        <?php $itemCount = 1; ?>
+                        <div class="row {{request()->is('*male*') ? 'male-products' : ''}} {{request()->is('*female*') ? 'female-products' : ''}}">
 
                             @foreach($products as $product)
 
-                                <div class="col-xl-4 col-md-4 col-sm-6">
+                                <div class="col-xl-4 col-md-4 col-sm-6 product-item wow {{ ($itemCount % 2) != 0 ?'slideInDown': 'slideInUp'}}">
                                     <div class="product-single">
                                         <div class="product-title">
-                                            <h4><a href="{{route('product.details', ["category" => $categoryDetails->slug ,"slug" => $product->slug])}}">{{$product->title}}</a></h4>
+                                            <h4>
+                                                <a href="{{route('product.details', ["category" => $categoryDetails->slug ,"slug" => $product->slug])}}">{{$product->title}}</a>
+                                            </h4>
                                         </div>
                                         <div class="product-thumb">
-                                            <a href="{{route('product.details', ["category" => $categoryDetails->slug ,"slug" => $product->slug])}}"><img src="{{asset($product->featured_image)}}" alt=""/></a>
+                                            <a href="{{route('product.details', ["category" => $categoryDetails->slug ,"slug" => $product->slug])}}"><img
+                                                    src="{{asset($product->featured_image)}}" alt=""/></a>
                                             <div class="product-quick-view">
                                                 <a href="{{route('product.details', ["category" => $categoryDetails->slug ,"slug" => $product->slug])}}">View
                                                     Product</a>
@@ -207,12 +211,15 @@ function makeURL($queryString, $key, $value)
                                         <div class="product-action">
                                             <a href="javascript:void(0);" class="product-compare"><i
                                                     class="ti-control-shuffle"></i></a>
-                                            <form class="d-inline" action="{{route('product.add_to_cart')}}" method="post">
+                                            <form class="d-inline" action="{{route('product.add_to_cart')}}"
+                                                  method="post">
                                                 @csrf
                                                 <input type="hidden" name="product_id" value="{{$product->id}}">
-                                                <input type="hidden" name="product_price" value="{{$product->new_price}}">
-                                                <input type="hidden" value="1" name="quantity" />
-                                                <button type="submit" class="btn btn-success add-to-cart" >Add to Cart </button>
+                                                <input type="hidden" name="product_price"
+                                                       value="{{$product->new_price}}">
+                                                <input type="hidden" value="1" name="quantity"/>
+                                                <button type="submit" class="btn btn-success add-to-cart">Add to Cart
+                                                </button>
                                             </form>
                                             <a href="javascript:void(0);" class="product-wishlist"><i
                                                     class="ti-heart"></i></a>
@@ -229,8 +236,9 @@ function makeURL($queryString, $key, $value)
                                 <div class="row align-items-center">
                                     <div class="col-xl-3 col-lg-6 col-md-6">
                                         <div class="product-thumb">
-                                            <a href="{{route('product.details', ["category" => $product->slug ,"slug" => $product->slug])}}"><img src="{{asset($product->featured_image)}}"
-                                                             alt="{{$product->title}}"/></a>
+                                            <a href="{{route('product.details', ["category" => $product->slug ,"slug" => $product->slug])}}"><img
+                                                    src="{{asset($product->featured_image)}}"
+                                                    alt="{{$product->title}}"/></a>
 
                                         </div>
                                     </div>
@@ -239,7 +247,9 @@ function makeURL($queryString, $key, $value)
                                         <div class="product-title">
                                             <small><a
                                                     href="{{route('product.index', $categoryDetails->slug)}}">{{$categoryDetails->category_name}}</a></small>
-                                            <h4><a href="{{route('product.details', ["category" => $product->slug ,"slug" => $product->slug])}}">{{$product->title}}</a></h4>
+                                            <h4>
+                                                <a href="{{route('product.details', ["category" => $product->slug ,"slug" => $product->slug])}}">{{$product->title}}</a>
+                                            </h4>
                                         </div>
                                         <div class="product-rating">
                                             <i class="fa fa-star"></i>
@@ -264,12 +274,15 @@ function makeURL($queryString, $key, $value)
                                             <div class="product-stock">
                                                 <p>Avability: <span>In stock</span></p>
                                             </div>
-                                            <form class="d-inline" action="{{route('product.add_to_cart')}}" method="post">
+                                            <form class="d-inline" action="{{route('product.add_to_cart')}}"
+                                                  method="post">
                                                 @csrf
                                                 <input type="hidden" name="product_id" value="{{$product->id}}">
-                                                <input type="hidden" name="product_price" value="{{$product->new_price}}">
-                                                <input type="hidden" value="1" name="quantity" />
-                                                <button type="submit" class="btn btn-success add-to-cart" >Add to Cart </button>
+                                                <input type="hidden" name="product_price"
+                                                       value="{{$product->new_price}}">
+                                                <input type="hidden" value="1" name="quantity"/>
+                                                <button type="submit" class="btn btn-success add-to-cart">Add to Cart
+                                                </button>
                                             </form>
                                         </div>
                                     </div>
