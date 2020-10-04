@@ -1,5 +1,5 @@
 <div class="collapse-menu mt-30 main_menubar">
-    <?php $menuCats = App\Models\ProductCategory::where(['parent_id' => 0, 'is_top_menu' => true])->get();?>
+    <?php $menuCats = App\Models\ProductCategory::where(['parent_id' => 0, 'is_top_menu' => true])->whereIn('category_name',['Male','Female','Kids','Others'])->get();?>
     <ul>
         <li><a href="javascript:void(0);" class="vm-menu"><i class="fa fa-navicon"></i><span>All Departments</span></a>
             <ul class="vm-dropdown">
