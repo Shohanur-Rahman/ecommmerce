@@ -42,6 +42,7 @@
                 </div>
             </div>
         </div>
+    </div>
 
     <?php $itemCount += 1; ?>
 @endforeach

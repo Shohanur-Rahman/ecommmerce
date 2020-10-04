@@ -227,6 +227,8 @@ function makeURL($queryString, $key, $value)
                                     </div>
                                 </div>
 
+                                <?php $itemCount += 1; ?>
+
                             @endforeach
                         </div>
                     </div>
