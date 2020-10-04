@@ -12,30 +12,6 @@
                 <div class="copyright">
                     <p>Copyright {{ date('Y') }} &copy; <a href="#">HOBO</a>. All rights reserved.</p>
                 </div>
-                <div class="payment-gateways">
-                    <img src="{{asset('user/assets/images/footer/p1.png')}}" alt="" />
-                    <img src="{{asset('user/assets/images/footer/p2.png')}}" alt="" />
-                    <img src="{{asset('user/assets/images/footer/p3.png')}}" alt="" />
-                    <img src="{{asset('user/assets/images/footer/p4.png')}}" alt="" />
-                    <img src="{{asset('user/assets/images/footer/p5.png')}}" alt="" />
-                    <img src="{{asset('user/assets/images/footer/p6.png')}}" alt="" />
-                </div>
-            </div>
-            <div class="col-lg-2 col-sm-6">
-                <div class="fooer-widget">
-                    <h4>Find It Fast</h4>
-                    <div class="footer-menu">
-                        <ul>
-                            <li><a href="#">Laptop & Computers</a></li>
-                            <li><a href="#">Smart Phone & Tablets</a></li>
-                            <li><a href="#">TV & Audio</a></li>
-                            <li><a href="#">Cameras & Photography</a></li>
-                            <li><a href="#">Gadgets</a></li>
-                            <li><a href="#">Car Electronic & GP5</a></li>
-                            <li><a href="#">Accesories</a></li>
-                        </ul>
-                    </div>
-                </div>
             </div>
             <div class="col-lg-2 col-sm-3 mt-sm-45">
                 <div class="fooer-widget">
@@ -76,7 +52,7 @@
                         <p>Subscribe our newsletter gor get notification about information discount.</p>
                         <form class="custom-validate" action="javascript:" method="post" >
                             @csrf
-                            <input type="email" name="email" id="email" placeholder="Your email address" />
+                            <input type="email" name="email" id="email" placeholder="Your email address" required />
                             @auth()
                                 <button type="submit" onclick="subscribe()">Subscribe</button>
                                 <span class="error text-danger"></span>
@@ -112,10 +88,6 @@
 
     function subscribe(){
         var email = $('#email').val();
-
-        if(email == ''){
-            return false;
-        }
 
         $.ajax({
             type:'post',

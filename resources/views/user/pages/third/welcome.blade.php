@@ -31,7 +31,7 @@
     </div>
 
 
-    <div class="row female-products">
+    <div class="row">
         <div class="col-lg-12 col-md-12 col-xs-12">
             @php
                 $femaleSlider = \App\models\MainSlider::with('category')->where('category_id',15)->get();
@@ -41,7 +41,7 @@
         </div>
     </div>
 
-    <div class="row">
+    <div class="row female-products">
         <?php
         $feMaleProducts = Illuminate\Support\Facades\DB::table('products')
             ->join('product_category_maps', 'products.id', '=', 'product_category_maps.product_id')

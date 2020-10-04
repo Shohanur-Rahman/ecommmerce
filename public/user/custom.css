@@ -144,20 +144,58 @@ textarea.parsley-error {
     border-color: rgba(204,210,234,.9);
     color: #181818;
 }
-.add-to-cart:hover {
+
+.add-to-cart:hover{
     background-color: #1467c1;
     border-color: #1467c1;
     color: #fff;
 }
 
+.product-item .product-single:hover,
+.product-single:hover .product-action{
+    border-color: #1467c1;
+}
+.product-action .product-compare:hover,
+.product-action .product-wishlist:hover {
+    background-color: #1467c1;
+    border-color: #1467c1;
+}
+
 .male-products .product-item .product-single:hover,
 .male-products .product-single:hover .product-action{
-    border-color: #1467c1;
+    border-color: green;
+}
+.male-products .product-action .product-compare:hover,
+.male-products .product-action .product-wishlist:hover {
+    background-color: green;
+    border-color: green;
+}
+.male-products .add-to-cart:hover{
+    background-color: green;
+    border-color: green;
+    color: #fff;
 }
 
 .female-products .product-item .product-single:hover,
 .female-products .product-single:hover .product-action{
+    border-color: hotpink;
+}
+
+.female-products .add-to-cart:hover {
+    background-color: hotpink;
+    border-color: hotpink;
+    color: #fff;
+}
+.product-action .product-compare:hover,
+.product-action .product-wishlist:hover {
+    background-color: #1467c1;
     border-color: #1467c1;
+}
+
+.female-products .product-action .product-compare:hover,
+.female-products .product-action .product-wishlist:hover {
+    background-color: hotpink;
+    border-color: hotpink;
 }
 
 
