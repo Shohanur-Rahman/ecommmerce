@@ -5,7 +5,11 @@
                 @foreach($productReviews as $productReview)
                     <li>
                         <div class="comment-avatar text-center">
-                            <img src="assets/images/blog/comment/4.jpg" alt="">
+                            @if(Auth()->user()->userProfile->avatar != null)
+                                <img  src="{{asset(Auth()->user()->userProfile->avatar)}}" alt="">
+                            @else
+                                <img  src="{{asset('user/assets/images/avatar.png')}}" alt="">
+                            @endif
 
                             <div id="dataReadonlyReview"
                                  data-rating-stars="5"
