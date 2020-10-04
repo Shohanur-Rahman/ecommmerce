@@ -155,8 +155,8 @@ textarea.parsley-error {
     border-color: #1467c1;
 }
 
-.male-products .product-item .product-single:hover,
-.male-products .product-single:hover .product-action{
+.female-products .product-item .product-single:hover,
+.female-products .product-single:hover .product-action{
     border-color: #1467c1;
 }
 

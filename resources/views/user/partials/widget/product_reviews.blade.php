@@ -11,6 +11,8 @@
                                 <img  src="{{asset('user/assets/images/avatar.png')}}" alt="">
                             @endif
 
+                            <img src="{{asset('user/assets/images/blog/comment/4.jpg')}}" alt="">
+
                             <div id="dataReadonlyReview"
                                  data-rating-stars="5"
                                  data-rating-readonly="true"
