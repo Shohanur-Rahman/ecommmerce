@@ -60,7 +60,7 @@ function makeURL($queryString, $key, $value)
                         </div>
                         <div id="slider-range"></div>
                     </div>
-                    @if($categoryDetails->childrens)
+                    @if(count($categoryDetails->childrens) > 0)
                         <div class="vertical-menu">
                             <ul>
 
