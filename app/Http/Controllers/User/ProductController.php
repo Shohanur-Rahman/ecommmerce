@@ -87,7 +87,6 @@ class ProductController extends Controller
         $brands = ProductBrandCategoryMap::with('brand')->where('cat_id',$categoryDetails->id)->get();
         $colors = ProductColor::all();
 
-
         //$products = ProductCategoryMap::with('product')->where(['cat_id' => $categoryDetails->id, 'is_published' => 1])->paginate($page_size);
 
         return view('user.pages.products.index', compact("products", "categoryDetails", "requestString", "brands", "colors"));

@@ -58,7 +58,7 @@ function makeURL($queryString, $key, $value)
                     </div>
                     @if($categories)
                     <div class="vertical-menu">
-                        
+
                         <ul>
                            @foreach($categories as $category)
                             @foreach($category->childrens as $submenu)
@@ -71,7 +71,7 @@ function makeURL($queryString, $key, $value)
                                 </ul>
                             </li>
                             @else
-                            <li><a href="{{route('product.index', $submenu->slug)}}"">{{$submenu->category_name}}</a></li>
+                            <li><a href="{{route('product.index', $submenu->slug)}}">{{$submenu->category_name}}</a></li>
                             @endif
                             @endforeach
                            @endforeach
@@ -831,7 +831,7 @@ function makeURL($queryString, $key, $value)
     $(document).ready(function(){
         var minPrice = "{{request()->query('min') ? request()->query('min') : 10}}";
         var maxPrice = "{{request()->query('max') ? request()->query('max') : 30000}}";
-        
+
 $( "#slider-range" ).slider({
     range: true,
     min: 10,

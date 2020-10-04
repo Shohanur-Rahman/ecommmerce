@@ -78,7 +78,7 @@ function makeURL($queryString, $key, $value)
                                         </li>
                                     @else
                                         <li>
-                                            <a href="{{route('product.index', $submenu->slug)}}"">{{$submenu->category_name}}</a>
+                                            <a href="{{route('product.index', $submenu->slug)}}">{{$submenu->category_name}}</a>
                                         </li>
                                     @endif
                                 @endforeach
@@ -104,7 +104,7 @@ function makeURL($queryString, $key, $value)
                         <ul class="list-none mt-25">
                             @foreach($colors as $color)
                                 <li>
-                                    <a href="{{route('product.index', $categoryDetails->slug).generateQueryString('color', $color->id)}}">{{$color->name}}</a>
+                                    <a href="{{route('product.index', $categoryDetails->slug).generateQueryString('color', $color->id)}}">{{$color->color}}</a>
                                 </li>
                             @endforeach
                         </ul>
