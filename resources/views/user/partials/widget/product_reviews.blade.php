@@ -5,7 +5,7 @@
                 @foreach($productReviews as $productReview)
                     <li>
                         <div class="comment-avatar text-center">
-                            <img src="assets/images/blog/comment/4.jpg" alt="">
+                            <img src="{{asset('user/assets/images/blog/comment/4.jpg')}}" alt="">
 
                             <div id="dataReadonlyReview"
                                  data-rating-stars="5"
