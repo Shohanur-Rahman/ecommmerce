@@ -1,29 +1,36 @@
 <div class="row show m-2">
-    <div class="col-7  product-comments mt-0">
+    <div class="col-md-7  product-comments mt-0">
         <div>
             <ul class="list-none">
                 @foreach($productReviews as $productReview)
-                    <li>
-                        <div class="comment-avatar text-center">
-                            @if(Auth()->user()->userProfile->avatar != null)
-                                <img  src="{{asset(Auth()->user()->userProfile->avatar)}}" alt="">
-                            @else
-                                <img  src="{{asset('user/assets/images/avatar.png')}}" alt="">
-                            @endif
+                    <li class="row mb-4">
+                        <div class="col-md-3">
+                          <div class="d-flex flex-column align-items-lg-start">
+                              <div class="d-flex">
+                                  <div  style="height: 50px;width: 50px">
+                                      @if(Auth()->user()->userProfile->avatar != null)
+                                          <img class="rounded-circle"  src="{{asset(Auth()->user()->userProfile->avatar)}}" alt="">
+                                      @else
+                                          <img class="rounded-circle" src="{{asset('user/assets/images/avatar.png')}}" alt="">
+                                      @endif
+                                  </div>
+                                  <div class="ml-2">
+                                      <span>{{$productReview->name}}</span><br>
+                                      <div  id="dataReadonlyReview"
+                                            data-rating-stars="5"
+                                            data-rating-readonly="true"
+                                            data-rating-half="true"
+                                            data-rating-value="{{$productReview->rating}}"
+                                            data-rating-input="#dataReadonlyInput">
+                                      </div>
 
-                            <img src="{{asset('user/assets/images/blog/comment/4.jpg')}}" alt="">
-
-                            <div id="dataReadonlyReview"
-                                 data-rating-stars="5"
-                                 data-rating-readonly="true"
-                                 data-rating-half="true"
-                                 data-rating-value="{{$productReview->rating}}"
-                                 data-rating-input="#dataReadonlyInput">
-                            </div>
+                                  </div>
+                              </div>
+                              <div>{{$productReview->created_at->format('d M Y')}}</div>
+                          </div>
                         </div>
-                        <div class="comment-desc">
-                            <span>{{$productReview->created_at->format('d M Y')}}</span>
-                            <h4>{{$productReview->name}}</h4>
+                        <div class="comment-desc col-md-7 ">
+
                             <p>{{$productReview->comment}} </p>
                         </div>
                     </li>
@@ -32,7 +39,7 @@
             </ul>
         </div>
     </div>
-    <div class="col-5 blog-comment-form product-comment-form ">
+    <div class="col-md-4 blog-comment-form product-comment-form ">
         <div class="">
             <h4>Add Review</h4>
             <form action="{{route('product-reviews.store',$product->id)}}" method="post">
