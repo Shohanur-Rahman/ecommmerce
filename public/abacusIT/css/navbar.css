@@ -98,7 +98,14 @@ body.stellarnav-noscroll-x { overflow-x: hidden; }
 .stellarnav.dark.left .third, .stellarnav.dark.left .half { border-bottom: 1px solid rgba(255, 255, 255, .15); }
 .stellarnav.dark.right .third, .stellarnav.dark.right .half { border-bottom: 1px solid rgba(255, 255, 255, .15); }
 .stellarnav.light.left .menu-toggle, .stellarnav.light.right .menu-toggle { border-bottom: 0; }
-.stellarnav.dark.left .menu-toggle, .stellarnav.dark.right .menu-toggle { border-bottom: 0; color: #000;}
+.stellarnav.dark.left .menu-toggle, .stellarnav.dark.right .menu-toggle {
+    border-bottom: 0;
+    color: #000;
+    border: 1px solid #ddd;
+    margin-top: 10px;
+    padding: 8px 10px 8px 15px;
+    text-align: center;
+}
 .stellarnav.dark .third:first-child, .stellarnav.dark .half:first-child { border-left: 0; }
 .stellarnav.light .menu-toggle span.bars span { background: #000; }
 .stellarnav.dark .menu-toggle span.bars span { background: #000; }

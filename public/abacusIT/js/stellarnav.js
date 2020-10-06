@@ -1,9 +1,4 @@
-/*
- * Stellarnav.js 2.6.0
- * Responsive, lightweight, multi-level dropdown menu.
- * Copyright (c) 2018 Vinny Moreira - http://vinnymoreira.com
- * Released under the MIT license
- */
+
 (function($) {
 	$.fn.stellarNav = function(options, width, breakpoint) {
 
