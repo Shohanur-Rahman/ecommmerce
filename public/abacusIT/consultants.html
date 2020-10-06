@@ -1,0 +1,499 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <!--meta tags-->
+  <meta charset="UTF-8">
+  <meta name="description" content="Bangladesh eye hospital">
+  <meta name="keywords" content="HTML, CSS, JavaScript">
+  <meta name="author" content="Bangladesh Eye Hospital">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <!--site title-->
+  <title>Bangladesh Eye Hospital</title>
+  <!--google fonts-->
+  <link href="https://fonts.googleapis.com/css2?family=Mulish:ital,wght@0,200;0,400;0,500;0,600;0,700;0,800;0,900;1,400;1,700&display=swap" rel="stylesheet">
+  <!--css links provide-->
+  <link rel="stylesheet" href="css/all.min.css">
+  <link rel="stylesheet" href="css/bootstrap.min.css">
+  <link rel="stylesheet" href="css/slick.css">
+  <link rel="stylesheet" href="css/aos.css">
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="css/responsive.css">
+</head>
+
+<body>
+   <!--navigation bar -->
+    <nav class="navbar navbar-expand-lg navbar-light">
+        <div class="container">
+            <a class="navbar-brand" href="index.html">
+                <img src="images/site_logo.png" class=" site_logo" alt="">
+            </a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation"> <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <ul class="navbar-nav">
+                    <li class="nav-item dropdown" onclick="myFunction()">
+                        
+                        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            About Us
+                        </a>
+                        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                            <ul>
+                                 <li><a href="aboutUs.html">About Us 1</a></li>
+                                 <li><a href="aboutUs.html">About Us 2</a></li>
+                                <li><a href="aboutUs.html">About Us 3</a></li>
+                            </ul>
+                           
+                        </div>
+                    </li>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            Services
+                        </a>
+                        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                            <ul>
+                                 <li><a href="#">Servics 1</a></li>
+                                 <li><a href="#">Services 2</a></li>
+                                <li><a href="#">Services 3</a></li>
+                            </ul>
+                           
+                        </div>
+                    </li>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            Consultants
+                        </a>
+                        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                            <ul>
+                                 <li><a href="consultants.html">Consultants 1</a></li>
+                                 <li><a href="consultants.html">Consultants 2</a></li>
+                                <li><a href="consultants.html">Consultants 3</a></li>
+                            </ul>
+                           
+                        </div>
+                    </li>
+                    <li class="nav-item"> <a class="nav-link" href="news.html">News</a>
+                    </li>
+                    <li class="nav-item"> <a class="nav-link" href="#">Contact Us</a>
+                    </li>
+                </ul>
+                <div class="valuable_info">
+                    <ul>
+                        <li>Hotline<a href="#"><span>16256</span></a>
+                        </li>
+                        <li><a href="#" class="wow heartBeat">Eye Donation</a>
+                        </li>
+                        <li class="app_btn"><a href="appointment.html">Appoinment <i class="fas fa-arrow-right"></i></a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </nav>
+  <!--breadcrumb section-->
+  <section class="breadcrumb-wrapper clear-cache">
+    <div class="container">
+      <div class="row">
+        <div class="col-md-12">
+          <div class="breadcrumb-item content">
+            <h3>Our Consultants</h3>
+          </div>
+          <nav aria-label="breadcrumb">
+            <ol class="breadcrumb">
+              <li class="breadcrumb-item"><a href="#">Home <i class="fas fa-chevron-right"></i></a>
+              </li>
+              <li class="breadcrumb-item " aria-current="page">Our Consultants</li>
+            </ol>
+          </nav>
+        </div>
+      </div>
+    </div>
+  </section>
+  <!--chairman section -->
+  <section class="chairman-wrapper consultants-section section-grap clear-cache">
+    <div class="container">
+      <div class="row">
+        <div class="col-md-12 text-center">
+          <div class="wrapper-txt">
+            <h2 class="section-title"  data-aos="fade-left">
+              Meet Our 
+              <span>Specialized Consultants</span>
+            </h2>
+          </div>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-md-12">
+          <div class="mileston-counter section-grap5">
+            <div class="row">
+              <div class="col-md-4">
+                <div class="counter-content d-flex">
+                  <div class="count-img">
+                    <img src="images/user.png" alt="">
+                  </div>
+                  <div class="query-box">
+                    <form action="">
+                      <input type="text" placeholder="Search Consultants"> <a href="#"><i class="fas fa-search"></i></a>
+                    </form>
+                  </div>
+                </div>
+              </div>
+              <div class="col-md-4">
+                <div class="counter-content d-flex">
+                  <div class="count-img">
+                    <img src="images/menu (1).png" alt="">
+                  </div>
+                  <div class="query-box">
+                    <form>
+                      <label for="">Category:</label>
+                      <select name="active" id="active">
+                        <option value="active">Neorosurgeon</option>
+                        <option>Neorosurgeon</option>
+                        <option>Neorosurgeon</option>
+                      </select>
+                    </form>
+                  </div>
+                </div>
+              </div>
+              <div class="col-md-4">
+                <div class="counter-content d-flex">
+                  <div class="count-img">
+                    <img src="images/hospital (2).png" alt="">
+                  </div>
+                  <div class="query-box">
+                    <form>
+                      <label for="">Branch:</label>
+                      <select name="active" id="active">
+                        <option value="active">Dhanmundi</option>
+                        <option>Khulna</option>
+                        <option>Badda</option>
+                      </select>
+                    </form>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="row" >
+        <div class="col-md-3 col-sm-6">
+          <div class="chairman-wrap-content" data-aos="fade-up">
+            <div class="chairman-img">
+              <img src="images/dr.colis.png" class="w-100" alt="">
+            </div>
+            <div class="chairman-details">
+              <h3>Dr. Collis Molate</h3>
+              <p>Neurosurgeon, F.R.C.S (Glass.UK)</p>
+              <ul>
+                <li><a href="#"><i class="fab fa-facebook-f"></i></a>
+                </li>
+                <li><a href="#"><i class="fab fa-linkedin-in"></i></a>
+                </li>
+                <li><a href="#"><i class="fab fa-twitter"></i></a>
+                </li>
+              </ul>
+              <div class="appoint-btn">
+                <button>Get Appointment</button>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-3 col-sm-6">
+          <div class="chairman-wrap-content"  data-aos="fade-up">
+            <div class="chairman-img">
+              <img src="images/dr.colis.png" class="w-100" alt="">
+            </div>
+            <div class="chairman-details">
+              <h3>Dr. Collis Molate</h3>
+              <p>Neurosurgeon, F.R.C.S (Glass.UK)</p>
+              <ul>
+                <li><a href="#"><i class="fab fa-facebook-f"></i></a>
+                </li>
+                <li><a href="#"><i class="fab fa-linkedin-in"></i></a>
+                </li>
+                <li><a href="#"><i class="fab fa-twitter"></i></a>
+                </li>
+              </ul>
+              <div class="appoint-btn">
+                <button>Get Appointment</button>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-3 col-sm-6">
+          <div class="chairman-wrap-content"  data-aos="fade-up">
+            <div class="chairman-img">
+              <img src="images/dr.colis.png" class="w-100" alt="">
+            </div>
+            <div class="chairman-details">
+              <h3>Dr. Collis Molate</h3>
+              <p>Neurosurgeon, F.R.C.S (Glass.UK)</p>
+              <ul>
+                <li><a href="#"><i class="fab fa-facebook-f"></i></a>
+                </li>
+                <li><a href="#"><i class="fab fa-linkedin-in"></i></a>
+                </li>
+                <li><a href="#"><i class="fab fa-twitter"></i></a>
+                </li>
+              </ul>
+              <div class="appoint-btn">
+                <button>Get Appointment</button>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-3 col-sm-6">
+          <div class="chairman-wrap-content"  data-aos="fade-up">
+            <div class="chairman-img">
+              <img src="images/dr.colis.png" class="w-100" alt="">
+            </div>
+            <div class="chairman-details">
+              <h3>Dr. Collis Molate</h3>
+              <p>Neurosurgeon, F.R.C.S (Glass.UK)</p>
+              <ul>
+                <li><a href="#"><i class="fab fa-facebook-f"></i></a>
+                </li>
+                <li><a href="#"><i class="fab fa-linkedin-in"></i></a>
+                </li>
+                <li><a href="#"><i class="fab fa-twitter"></i></a>
+                </li>
+              </ul>
+              <div class="appoint-btn">
+                <button>Get Appointment</button>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-3 col-sm-6">
+          <div class="chairman-wrap-content"  data-aos="fade-up">
+            <div class="chairman-img">
+              <img src="images/dr.colis.png" class="w-100" alt="">
+            </div>
+            <div class="chairman-details">
+              <h3>Dr. Collis Molate</h3>
+              <p>Neurosurgeon, F.R.C.S (Glass.UK)</p>
+              <ul>
+                <li><a href="#"><i class="fab fa-facebook-f"></i></a>
+                </li>
+                <li><a href="#"><i class="fab fa-linkedin-in"></i></a>
+                </li>
+                <li><a href="#"><i class="fab fa-twitter"></i></a>
+                </li>
+              </ul>
+              <div class="appoint-btn">
+                <button>Get Appointment</button>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-3 col-sm-6">
+          <div class="chairman-wrap-content"  data-aos="fade-up">
+            <div class="chairman-img">
+              <img src="images/dr.colis.png" class="w-100" alt="">
+            </div>
+            <div class="chairman-details">
+              <h3>Dr. Collis Molate</h3>
+              <p>Neurosurgeon, F.R.C.S (Glass.UK)</p>
+              <ul>
+                <li><a href="#"><i class="fab fa-facebook-f"></i></a>
+                </li>
+                <li><a href="#"><i class="fab fa-linkedin-in"></i></a>
+                </li>
+                <li><a href="#"><i class="fab fa-twitter"></i></a>
+                </li>
+              </ul>
+              <div class="appoint-btn">
+                <button>Get Appointment</button>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-3 col-sm-6">
+          <div class="chairman-wrap-content"  data-aos="fade-up">
+            <div class="chairman-img">
+              <img src="images/dr.colis.png" class="w-100" alt="">
+            </div>
+            <div class="chairman-details">
+              <h3>Dr. Collis Molate</h3>
+              <p>Neurosurgeon, F.R.C.S (Glass.UK)</p>
+              <ul>
+                <li><a href="#"><i class="fab fa-facebook-f"></i></a>
+                </li>
+                <li><a href="#"><i class="fab fa-linkedin-in"></i></a>
+                </li>
+                <li><a href="#"><i class="fab fa-twitter"></i></a>
+                </li>
+              </ul>
+              <div class="appoint-btn">
+                <button>Get Appointment</button>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-3 col-sm-6">
+          <div class="chairman-wrap-content"  data-aos="fade-up">
+            <div class="chairman-img">
+              <img src="images/dr.colis.png" class="w-100" alt="">
+            </div>
+            <div class="chairman-details">
+              <h3>Dr. Collis Molate</h3>
+              <p>Neurosurgeon, F.R.C.S (Glass.UK)</p>
+              <ul>
+                <li><a href="#"><i class="fab fa-facebook-f"></i></a>
+                </li>
+                <li><a href="#"><i class="fab fa-linkedin-in"></i></a>
+                </li>
+                <li><a href="#"><i class="fab fa-twitter"></i></a>
+                </li>
+              </ul>
+              <div class="appoint-btn">
+                <button>Get Appointment</button>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-12 text-center">
+          <div class="show-more-btn" data-aos="fade-right">
+            <button>Show More</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+  <!--main footer section-->
+  <section class="main-footer-wrapper">
+    <div class="container">
+      <div class="row">
+        <div class="col-md-4 col-sm-6">
+          <div class="footer-left-info">
+            <div class="footer-logo">
+              <a href="#">
+                <img src="images/site_logo2.png" class="w-100" alt="">
+              </a>
+            </div>
+            <p>At present Bangladesh Eye Hospital Ltd. have 93 consultants, 41 medical officers and over 570 staffs. All of whom are constantly striving to provide the best eye care service to every individual who walks through our doors.</p>
+            <div class="footer-social">
+              <ul>
+                <li><a href="#" title="Facebook"><i class="fab fa-facebook-f"></i></a>
+                </li>
+                <li><a href="#" title="Linkedin"><i class="fab fa-linkedin-in"></i></a>
+                </li>
+                <li><a href="#" title="Twitter"><i class="fab fa-twitter"></i></a>
+                </li>
+              </ul>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-4 col-sm-6">
+          <div class="address-info">
+            <ul>
+              <li>Headquarter: 78, Satmasjid Road</li>
+              <li>(Road#27),Dhanmondi,</li>
+              <li>Dhaka, 1205, Bangladesh.</li>
+              <li>Phone:(+88) 09666787878,</li>
+              <li>01916629999, 02-9102264</li>
+            </ul>
+          </div>
+        </div>
+        <div class="col-md-2 col-sm-6">
+          <div class="footer-links">
+            <ul>
+              <li><a href="#">About Us</a>
+              </li>
+              <li><a href="#">Services</a>
+              </li>
+              <li><a href="#">Consultants</a>
+              </li>
+              <li><a href="#">News</a>
+              </li>
+            </ul>
+          </div>
+        </div>
+        <div class="col-md-2 col-sm-6">
+          <div class="footer-links">
+            <ul>
+              <li><a href="#">About Us</a>
+              </li>
+              <li><a href="#">Services</a>
+              </li>
+              <li><a href="#">Consultants</a>
+              </li>
+              <li><a href="#">News</a>
+              </li>
+            </ul>
+          </div>
+          <div class="back-to-top">
+            <p>Back To Top</p>
+          </div>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-md-4 col-lg-4 col-xl-4 col-sm-6">
+          <div class="footer-txt mb0">
+            <p>© 2018 - 2020 BEH. All Rights Reserved.</p>
+          </div>
+        </div>
+        <div class="col-md-4 col-lg-4 col-xl-5 col-sm-6">
+          <div class="footer-txt made_by mb0">
+            <p>Made with <i class="fas fa-heart"></i> by <a href="#">AbacusIT</a>.</p>
+          </div>
+        </div>
+        <div class="col-md-4 col-lg-4 col-xl-3">
+          <div class="footer-links terms">
+            <ul>
+              <li><a href="#">Privacy Policy</a>
+              </li>
+              <li><a href="#">Terms Of Use</a>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+  <!--js links provide-->
+  <script src="js/jquery-1.12.4.min.js"></script>
+  <script src="js/popper.min.js"></script>
+  <script src="js/bootstrap.min.js"></script>
+  <script src="js/slick.min.js"></script>
+  <script src="js/aos.js"></script>
+  <script src="js/waypoints.min.js"></script>
+  <script src="js/jquery.counterup.min.js"></script>
+  <script src="js/main.js"></script>
+    <script>
+        $(document).ready(function() {
+          if ($(window).width() > 991) {
+            $(".dropdown").hover(
+              function() {
+                  $('.dropdown-menu', this).stop(true, true).fadeIn("fast");
+                  $(this).toggleClass('open');
+                  $('b', this).toggleClass("caret caret-up");
+              },
+                  function() {
+                      $('.dropdown-menu', this).stop(true, true).fadeOut("fast");
+                      $(this).toggleClass('open');
+                      $('b', this).toggleClass("caret caret-up");
+                  });
+            }
+        });
+
+        $(window).resize(function() {
+          if ($(window).width() > 991) {
+            $(".dropdown").hover(
+              function() {
+                  
+                  $(this).toggleClass('open');
+                 
+              },
+              function() {
+                
+                  $(this).toggleClass('open');
+              
+              });
+          }
+        });
+    </script>
+</body>
+
+</html>
