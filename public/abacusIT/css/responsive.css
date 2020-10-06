@@ -1030,7 +1030,6 @@
         font-size: 34px;
     }
 
-    .counter-content.d-flex,
     .items-wrap.d-flex {
         display: block !important;
         text-align: center;
@@ -1088,8 +1087,7 @@
         margin: 0;
     }
 
-    .consultants-section .counter-content .query-box,
-    .consultants-section .counter-content .count-img {
+    .consultants-section .counter-content .query-box{
         margin: auto;
     }
 
@@ -1172,6 +1170,9 @@
 
     .address-info {
         width: 100%;
+    }
+    .consultants-section .query-box form{
+        text-align: left;
     }
 }
 
