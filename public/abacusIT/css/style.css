@@ -1907,13 +1907,33 @@ section.about-eye-hospital.about-page-section.section-grap.clear-cache {
 }
 
 /*branch page style*/
+.branch-page-wrapper {
+    background: #008541;
+    min-height: 300px;
+}
 .branch-page-info {
-    width: 45%;
-    padding: 70px 120px;
+    padding: 70px 15px;
     color: #ffffff;
     height: 430px;
     overflow: hidden;
     background: #008541
+}
+.branch-right {
+    position: absolute;
+    width: 100%;
+    padding-right: 0;
+    background-image: url(../images/branch-img.png);
+    background-repeat: no-repeat;
+    -webkit-background-size: cover;
+    background-size: cover;
+    right: 0;
+    height: 430px;
+    background-position: center;
+}
+
+.branch-left{
+    min-height: 300px;
+    border-right: 15px solid #fff;
 }
 
 .branch-page-info h4 {
@@ -1932,6 +1952,7 @@ section.about-eye-hospital.about-page-section.section-grap.clear-cache {
 
 .branch-overview {
     margin-top: 50px;
+    width: 70%;
 }
 
 .branch-overview h5 {
@@ -1944,15 +1965,6 @@ section.about-eye-hospital.about-page-section.section-grap.clear-cache {
     margin: 0 25px 20px 0;
 }
 
-.branch-overview ul li:nth-child(2),
-.branch-overview ul li:nth-child(4) {
-    margin-right: 0;
-}
-
-.branch-overview ul li:nth-child(3),
-.branch-overview ul li:nth-child(4) {
-    margin-bottom: 0;
-}
 
 .branch-overview ul li span {
     margin-left: 5px;

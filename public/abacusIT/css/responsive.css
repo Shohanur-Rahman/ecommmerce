@@ -218,6 +218,7 @@
 
     .mileston-info-wrapper.clear-cache {
         margin-top: 40px;
+        padding: 0 7.5px;
     }
 
     .mileston-img {
@@ -632,18 +633,33 @@
 
     .branch-page-wrapper.d-flex.clear-cache {
         display: block !important;
+        padding: 0 7.5px;
+    }
+    .branch-overview{
+        width: 100%;
     }
 
     .branch-page-info {
         width: 100%;
         padding: 25px 15px;
         height: auto;
+        margin-top: 15px;
     }
-
+    .branch-page-wrapper{
+        background: transparent;
+    }
     .branch-page-info h4 {
         font-size: 22px;
     }
-
+    .branch-left{
+        border-right: 0;
+        margin-bottom: 15px;
+    }
+    .branch-right{
+        position: relative;
+        height: 250px;
+        overflow: hidden;
+    }
     .branch-page-img {
         margin: 0;
         margin-top: 15px;
@@ -1472,7 +1488,10 @@
     }
 
     .branch-page-info {
-        padding: 50px 30px;
+        padding: 50px 15px;
+    }
+    .branch-overview{
+        width: 100%;
     }
 
     .branch-page-activity .activity-wrap-content {
@@ -1601,11 +1620,6 @@
 
     .navbar-nav {
         width: 100%;
-    }
-
-    .branch-page-info {
-        width: 47%;
-        padding: 70px 3%;
     }
 
     .branch-overview ul li {
