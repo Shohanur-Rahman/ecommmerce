@@ -484,8 +484,6 @@
         margin-right: 0;
         margin: 0 auto;
     }
-
-    .counter-content.d-flex,
     .about-page-branch .branch-info {
         margin-bottom: 35px;
         overflow: hidden;
@@ -501,6 +499,10 @@
     .consultants-section .counter-content img {
         width: 25px;
         height: 25px;
+    }
+    .consultants-section .counter-content{
+        margin-bottom: 0;
+        margin-top: 25px;
     }
 
     .items-wrap.d-flex {
@@ -536,6 +538,7 @@
 
     .consultants-section .mileston-counter {
         margin: 0;
+        padding:15px 0 40px 0;
     }
 
     .consultants-section .wrapper-txt {
@@ -1069,7 +1072,7 @@
         margin-top: 15px;
     }
 
-    .counter-content.d-flex,
+
     .about-page-branch .branch-info {
         margin-bottom: 35px;
         overflow: hidden;
@@ -1101,10 +1104,6 @@
 
     .consultants-section .mileston-counter {
         margin: 0;
-    }
-
-    .consultants-section .counter-content .query-box{
-        margin: auto;
     }
 
     .consultants-section .query-box {
@@ -1189,6 +1188,9 @@
     }
     .consultants-section .query-box form{
         text-align: left;
+    }
+    .nice-select{
+        width: 85%;
     }
 }
 
@@ -1598,6 +1600,22 @@
     }
     .valuable_info{
         padding: 20px 0;
+    }
+    .consultants-section .query-box{
+        width: 70%;
+        margin-top: 0;
+    }
+    .consultants-section .counter-content .count-img{
+        width: 50px;
+        height: 50px;
+        line-height: 40px;
+    }
+    .consultants-section .counter-content img{
+        width: 25px;
+        height: 25px;
+    }
+    .consultants-section .query-box form label{
+        font-size: 14px;
     }
 }
 
