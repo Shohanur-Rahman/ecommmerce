@@ -17,10 +17,71 @@
     <link rel="stylesheet" href="css/animate.css">
     <link rel="stylesheet" href="css/bootstrap.min.css">
     <link rel="stylesheet" type="text/css" media="all" href="css/navbar.css">
+    <link rel="stylesheet" href="css/nice-select.css">
     <link rel="stylesheet" href="css/slick.css">
     <link rel="stylesheet" href="css/venobox.min.css">
     <link rel="stylesheet" href="css/style.css">
     <link rel="stylesheet" href="css/responsive.css">
+    <style>
+        select.beh-dropdown {
+            -webkit-appearance: none;
+            -moz-appearance: none;
+            -ms-appearance: none;
+            appearance: none;
+            outline: 0;
+            box-shadow: none;
+            border: 0 !important;
+            background: #5c6664;
+            background-image: none;
+            flex: 1;
+            padding: 0 .5em;
+            color: #fff;
+            cursor: pointer;
+            font-size: 1em;
+            font-family: 'Open Sans', sans-serif;
+        }
+
+
+        .consultants-section .query-box form select.beh-dropdown option {
+            margin: 40px;
+            background: #008541;
+            color: #fff !important;
+            padding: 8px 12px;
+            cursor: pointer;
+        }
+
+        select.beh-dropdown::-ms-expand {
+            display: none;
+        }
+
+        .select.beh-dropdown {
+            position: relative;
+            display: flex;
+            width: 20em;
+            height: 3em;
+            line-height: 3;
+            background: #5c6664;
+            overflow: hidden;
+            border-radius: .25em;
+        }
+
+        .select.beh-dropdown::after {
+            content: '\25BC';
+            position: absolute;
+            top: 0;
+            right: 0;
+            padding: 0 1em;
+            background: #2b2e2e;
+            cursor: pointer;
+            pointer-events: none;
+            transition: .25s all ease;
+        }
+
+        .select.beh-dropdown:hover::after {
+            color: #23b499;
+        }
+
+    </style>
 </head>
 
 <body>
@@ -79,289 +140,289 @@
     </div>
 
     <!--breadcrumb section-->
-  <section class="breadcrumb-wrapper clear-cache">
-    <div class="container">
-      <div class="row">
-        <div class="col-md-12">
-          <div class="breadcrumb-item content">
-            <h3>Our Consultants</h3>
-          </div>
-          <nav aria-label="breadcrumb">
-            <ol class="breadcrumb">
-              <li class="breadcrumb-item"><a href="#">Home <i class="fas fa-chevron-right"></i></a>
-              </li>
-              <li class="breadcrumb-item " aria-current="page">Our Consultants</li>
-            </ol>
-          </nav>
-        </div>
-      </div>
-    </div>
-  </section>
-  <!--chairman section -->
-  <section class="chairman-wrapper consultants-section section-grap clear-cache">
-    <div class="container">
-      <div class="row">
-        <div class="col-md-12 text-center">
-          <div class="wrapper-txt">
-            <h2 class="section-title wow fadeInUp"  data-aos="fade-left">
-              Meet Our
-              <span>Specialized Consultants</span>
-            </h2>
-          </div>
-        </div>
-      </div>
-      <div class="row">
-        <div class="col-md-12">
-          <div class="mileston-counter section-grap5">
+    <section class="breadcrumb-wrapper clear-cache">
+        <div class="container">
             <div class="row">
-              <div class="col-md-12 col-lg-4">
-                <div class="counter-content d-flex">
-                  <div class="count-img">
-                    <img src="images/user.png" alt="">
-                  </div>
-                  <div class="query-box">
-                    <form action="">
-                      <input type="text" placeholder="Search Consultants"> <a href="#"><i class="fas fa-search"></i></a>
-                    </form>
-                  </div>
+                <div class="col-md-12">
+                    <div class="breadcrumb-item content">
+                        <h3>Our Consultants</h3>
+                    </div>
+                    <nav aria-label="breadcrumb">
+                        <ol class="breadcrumb">
+                            <li class="breadcrumb-item"><a href="#">Home <i class="fas fa-chevron-right"></i></a>
+                            </li>
+                            <li class="breadcrumb-item " aria-current="page">Our Consultants</li>
+                        </ol>
+                    </nav>
                 </div>
-              </div>
-              <div class="col-md-12 col-lg-4">
-                <div class="counter-content d-flex">
-                  <div class="count-img">
-                    <img src="images/menu (1).png" alt="">
-                  </div>
-                  <div class="query-box">
-                    <form>
-                        <div class="select">
-                            <label for="">Branch:</label>
-                            <select name="format" id="format">
-                                <option selected >Neorosurgeon</option>
-                                <option >Neorosurgeon</option>
-                                <option >Neorosurgeon</option>
-                                <option >Neorosurgeon</option>
-                                <option >Neorosurgeon</option>
-                                <option >Neorosurgeon</option>
-                                <option >Neorosurgeon</option>
-                            </select>
+            </div>
+        </div>
+    </section>
+    <!--chairman section -->
+    <section class="chairman-wrapper consultants-section section-grap clear-cache">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-12 text-center">
+                    <div class="wrapper-txt">
+                        <h2 class="section-title wow fadeInUp" data-aos="fade-left">
+                            Meet Our
+                            <span>Specialized Consultants</span>
+                        </h2>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="mileston-counter section-grap5">
+                        <div class="row">
+                            <div class="col-md-12 col-lg-4">
+                                <div class="counter-content d-flex">
+                                    <div class="count-img">
+                                        <img src="images/user.png" alt="">
+                                    </div>
+                                    <div class="query-box">
+                                        <form action="">
+                                            <input type="text" placeholder="Search Consultants"> <a href="#"><i class="fas fa-search"></i></a>
+                                        </form>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-12 col-lg-4">
+                                <div class="counter-content d-flex">
+                                    <div class="count-img">
+                                        <img src="images/menu (1).png" alt="">
+                                    </div>
+                                    <div class="query-box">
+                                        <form>
+                                            <div class="select">
+                                                <label for="">Category:</label>
+                                                <select name="format" id="format" class="beh-dropdown">
+                                                    <option selected>Neorosurgeon</option>
+                                                    <option>Neorosurgeon</option>
+                                                    <option>Neorosurgeon</option>
+                                                    <option>Neorosurgeon</option>
+                                                    <option>Neorosurgeon</option>
+                                                    <option>Neorosurgeon</option>
+                                                    <option>Neorosurgeon</option>
+                                                </select>
+                                            </div>
+                                            </select>
+                                        </form>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-12 col-lg-4">
+                                <div class="counter-content d-flex">
+                                    <div class="count-img">
+                                        <img src="images/hospital (2).png" alt="">
+                                    </div>
+                                    <div class="query-box">
+                                        <form>
+                                            <div class="select">
+                                                <label for="">Branch:</label>
+                                                <select name="format" id="format">
+                                                    <option selected>Dhanmundi</option>
+                                                    <option>Mirpur</option>
+                                                    <option>uttra</option>
+                                                    <option>Shantinagar</option>
+                                                    <option>Rayerbazar</option>
+                                                    <option>Chittagong</option>
+                                                    <option>Khulna</option>
+                                                </select>
+                                            </div>
+                                        </form>
+                                    </div>
+                                </div>
+                            </div>
                         </div>
-                      </select>
-                    </form>
-                  </div>
+                    </div>
                 </div>
-              </div>
-              <div class="col-md-12 col-lg-4">
-                <div class="counter-content d-flex">
-                  <div class="count-img">
-                    <img src="images/hospital (2).png" alt="">
-                  </div>
-                  <div class="query-box">
-                    <form>
-                        <div class="select">
-                            <label for="">Branch:</label>
-                            <select name="format" id="format">
-                                <option selected >Dhanmundi</option>
-                                <option >Mirpur</option>
-                                <option >uttra</option>
-                                <option >Shantinagar</option>
-                                <option >Rayerbazar</option>
-                                <option >Chittagong</option>
-                                <option >Khulna</option>
-                            </select>
+            </div>
+            <div class="row">
+                <div class="col-md-4 col-lg-3 col-sm-6">
+                    <div class="chairman-wrap-content wow fadeInUp">
+                        <div class="chairman-img">
+                            <img src="images/dr.colis.png" class="w-100" alt="">
                         </div>
-                    </form>
-                  </div>
+                        <div class="chairman-details">
+                            <h3>Dr. Collis Molate</h3>
+                            <p>Neurosurgeon, F.R.C.S (Glass.UK)</p>
+                            <ul>
+                                <li><a href="#"><i class="fab fa-facebook-f"></i></a>
+                                </li>
+                                <li><a href="#"><i class="fab fa-linkedin-in"></i></a>
+                                </li>
+                                <li><a href="#"><i class="fab fa-twitter"></i></a>
+                                </li>
+                            </ul>
+                            <div class="appoint-btn">
+                                <a href="appoinment.html"><button>Get Appointment</button></a>
+                            </div>
+                        </div>
+                    </div>
                 </div>
-              </div>
+                <div class="col-md-4 col-lg-3 col-sm-6">
+                    <div class="chairman-wrap-content wow fadeInUp">
+                        <div class="chairman-img">
+                            <img src="images/dr.colis.png" class="w-100" alt="">
+                        </div>
+                        <div class="chairman-details">
+                            <h3>Dr. Collis Molate</h3>
+                            <p>Neurosurgeon, F.R.C.S (Glass.UK)</p>
+                            <ul>
+                                <li><a href="#"><i class="fab fa-facebook-f"></i></a>
+                                </li>
+                                <li><a href="#"><i class="fab fa-linkedin-in"></i></a>
+                                </li>
+                                <li><a href="#"><i class="fab fa-twitter"></i></a>
+                                </li>
+                            </ul>
+                            <div class="appoint-btn">
+                                <a href="appoinment.html"><button>Get Appointment</button></a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4 col-lg-3 col-sm-6">
+                    <div class="chairman-wrap-content wow fadeInUp">
+                        <div class="chairman-img">
+                            <img src="images/dr.colis.png" class="w-100" alt="">
+                        </div>
+                        <div class="chairman-details">
+                            <h3>Dr. Collis Molate</h3>
+                            <p>Neurosurgeon, F.R.C.S (Glass.UK)</p>
+                            <ul>
+                                <li><a href="#"><i class="fab fa-facebook-f"></i></a>
+                                </li>
+                                <li><a href="#"><i class="fab fa-linkedin-in"></i></a>
+                                </li>
+                                <li><a href="#"><i class="fab fa-twitter"></i></a>
+                                </li>
+                            </ul>
+                            <div class="appoint-btn">
+                                <a href="appoinment.html"><button>Get Appointment</button></a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4 col-lg-3 col-sm-6">
+                    <div class="chairman-wrap-content wow fadeInUp">
+                        <div class="chairman-img">
+                            <img src="images/dr.colis.png" class="w-100" alt="">
+                        </div>
+                        <div class="chairman-details">
+                            <h3>Dr. Collis Molate</h3>
+                            <p>Neurosurgeon, F.R.C.S (Glass.UK)</p>
+                            <ul>
+                                <li><a href="#"><i class="fab fa-facebook-f"></i></a>
+                                </li>
+                                <li><a href="#"><i class="fab fa-linkedin-in"></i></a>
+                                </li>
+                                <li><a href="#"><i class="fab fa-twitter"></i></a>
+                                </li>
+                            </ul>
+                            <div class="appoint-btn">
+                                <a href="appoinment.html"><button>Get Appointment</button></a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4 col-lg-3 col-sm-6">
+                    <div class="chairman-wrap-content wow fadeInUp">
+                        <div class="chairman-img">
+                            <img src="images/dr.colis.png" class="w-100" alt="">
+                        </div>
+                        <div class="chairman-details">
+                            <h3>Dr. Collis Molate</h3>
+                            <p>Neurosurgeon, F.R.C.S (Glass.UK)</p>
+                            <ul>
+                                <li><a href="#"><i class="fab fa-facebook-f"></i></a>
+                                </li>
+                                <li><a href="#"><i class="fab fa-linkedin-in"></i></a>
+                                </li>
+                                <li><a href="#"><i class="fab fa-twitter"></i></a>
+                                </li>
+                            </ul>
+                            <div class="appoint-btn">
+                                <a href="appoinment.html"><button>Get Appointment</button></a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4 col-lg-3 col-sm-6">
+                    <div class="chairman-wrap-content wow fadeInUp">
+                        <div class="chairman-img">
+                            <img src="images/dr.colis.png" class="w-100" alt="">
+                        </div>
+                        <div class="chairman-details">
+                            <h3>Dr. Collis Molate</h3>
+                            <p>Neurosurgeon, F.R.C.S (Glass.UK)</p>
+                            <ul>
+                                <li><a href="#"><i class="fab fa-facebook-f"></i></a>
+                                </li>
+                                <li><a href="#"><i class="fab fa-linkedin-in"></i></a>
+                                </li>
+                                <li><a href="#"><i class="fab fa-twitter"></i></a>
+                                </li>
+                            </ul>
+                            <div class="appoint-btn">
+                                <a href="appoinment.html"><button>Get Appointment</button></a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4 col-lg-3 col-sm-6">
+                    <div class="chairman-wrap-content wow fadeInUp">
+                        <div class="chairman-img">
+                            <img src="images/dr.colis.png" class="w-100" alt="">
+                        </div>
+                        <div class="chairman-details">
+                            <h3>Dr. Collis Molate</h3>
+                            <p>Neurosurgeon, F.R.C.S (Glass.UK)</p>
+                            <ul>
+                                <li><a href="#"><i class="fab fa-facebook-f"></i></a>
+                                </li>
+                                <li><a href="#"><i class="fab fa-linkedin-in"></i></a>
+                                </li>
+                                <li><a href="#"><i class="fab fa-twitter"></i></a>
+                                </li>
+                            </ul>
+                            <div class="appoint-btn">
+                                <a href="appoinment.html"><button>Get Appointment</button></a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4 col-lg-3 col-sm-6">
+                    <div class="chairman-wrap-content wow fadeInUp">
+                        <div class="chairman-img">
+                            <img src="images/dr.colis.png" class="w-100" alt="">
+                        </div>
+                        <div class="chairman-details">
+                            <h3>Dr. Collis Molate</h3>
+                            <p>Neurosurgeon, F.R.C.S (Glass.UK)</p>
+                            <ul>
+                                <li><a href="#"><i class="fab fa-facebook-f"></i></a>
+                                </li>
+                                <li><a href="#"><i class="fab fa-linkedin-in"></i></a>
+                                </li>
+                                <li><a href="#"><i class="fab fa-twitter"></i></a>
+                                </li>
+                            </ul>
+                            <div class="appoint-btn">
+                                <a href="appoinment.html"><button>Get Appointment</button></a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-12 text-center">
+                    <div class="show-more-btn wow fadeInRight">
+                        <button>Show More</button>
+                    </div>
+                </div>
             </div>
-          </div>
         </div>
-      </div>
-      <div class="row" >
-        <div class="col-md-4 col-lg-3 col-sm-6">
-          <div class="chairman-wrap-content wow fadeInUp">
-            <div class="chairman-img">
-              <img src="images/dr.colis.png" class="w-100" alt="">
-            </div>
-            <div class="chairman-details">
-              <h3>Dr. Collis Molate</h3>
-              <p>Neurosurgeon, F.R.C.S (Glass.UK)</p>
-              <ul>
-                <li><a href="#"><i class="fab fa-facebook-f"></i></a>
-                </li>
-                <li><a href="#"><i class="fab fa-linkedin-in"></i></a>
-                </li>
-                <li><a href="#"><i class="fab fa-twitter"></i></a>
-                </li>
-              </ul>
-              <div class="appoint-btn">
-                  <a href="appoinment.html"><button >Get Appointment</button></a>
-              </div>
-            </div>
-          </div>
-        </div>
-        <div class="col-md-4 col-lg-3 col-sm-6">
-              <div class="chairman-wrap-content wow fadeInUp">
-                  <div class="chairman-img">
-                      <img src="images/dr.colis.png" class="w-100" alt="">
-                  </div>
-                  <div class="chairman-details">
-                      <h3>Dr. Collis Molate</h3>
-                      <p>Neurosurgeon, F.R.C.S (Glass.UK)</p>
-                      <ul>
-                          <li><a href="#"><i class="fab fa-facebook-f"></i></a>
-                          </li>
-                          <li><a href="#"><i class="fab fa-linkedin-in"></i></a>
-                          </li>
-                          <li><a href="#"><i class="fab fa-twitter"></i></a>
-                          </li>
-                      </ul>
-                      <div class="appoint-btn">
-                          <a href="appoinment.html"><button >Get Appointment</button></a>
-                      </div>
-                  </div>
-              </div>
-          </div>
-        <div class="col-md-4 col-lg-3 col-sm-6">
-              <div class="chairman-wrap-content wow fadeInUp">
-                  <div class="chairman-img">
-                      <img src="images/dr.colis.png" class="w-100" alt="">
-                  </div>
-                  <div class="chairman-details">
-                      <h3>Dr. Collis Molate</h3>
-                      <p>Neurosurgeon, F.R.C.S (Glass.UK)</p>
-                      <ul>
-                          <li><a href="#"><i class="fab fa-facebook-f"></i></a>
-                          </li>
-                          <li><a href="#"><i class="fab fa-linkedin-in"></i></a>
-                          </li>
-                          <li><a href="#"><i class="fab fa-twitter"></i></a>
-                          </li>
-                      </ul>
-                      <div class="appoint-btn">
-                          <a href="appoinment.html"><button >Get Appointment</button></a>
-                      </div>
-                  </div>
-              </div>
-          </div>
-        <div class="col-md-4 col-lg-3 col-sm-6">
-              <div class="chairman-wrap-content wow fadeInUp">
-                  <div class="chairman-img">
-                      <img src="images/dr.colis.png" class="w-100" alt="">
-                  </div>
-                  <div class="chairman-details">
-                      <h3>Dr. Collis Molate</h3>
-                      <p>Neurosurgeon, F.R.C.S (Glass.UK)</p>
-                      <ul>
-                          <li><a href="#"><i class="fab fa-facebook-f"></i></a>
-                          </li>
-                          <li><a href="#"><i class="fab fa-linkedin-in"></i></a>
-                          </li>
-                          <li><a href="#"><i class="fab fa-twitter"></i></a>
-                          </li>
-                      </ul>
-                      <div class="appoint-btn">
-                          <a href="appoinment.html"><button >Get Appointment</button></a>
-                      </div>
-                  </div>
-              </div>
-          </div>
-        <div class="col-md-4 col-lg-3 col-sm-6">
-              <div class="chairman-wrap-content wow fadeInUp">
-                  <div class="chairman-img">
-                      <img src="images/dr.colis.png" class="w-100" alt="">
-                  </div>
-                  <div class="chairman-details">
-                      <h3>Dr. Collis Molate</h3>
-                      <p>Neurosurgeon, F.R.C.S (Glass.UK)</p>
-                      <ul>
-                          <li><a href="#"><i class="fab fa-facebook-f"></i></a>
-                          </li>
-                          <li><a href="#"><i class="fab fa-linkedin-in"></i></a>
-                          </li>
-                          <li><a href="#"><i class="fab fa-twitter"></i></a>
-                          </li>
-                      </ul>
-                      <div class="appoint-btn">
-                          <a href="appoinment.html"><button >Get Appointment</button></a>
-                      </div>
-                  </div>
-              </div>
-          </div>
-        <div class="col-md-4 col-lg-3 col-sm-6">
-              <div class="chairman-wrap-content wow fadeInUp">
-                  <div class="chairman-img">
-                      <img src="images/dr.colis.png" class="w-100" alt="">
-                  </div>
-                  <div class="chairman-details">
-                      <h3>Dr. Collis Molate</h3>
-                      <p>Neurosurgeon, F.R.C.S (Glass.UK)</p>
-                      <ul>
-                          <li><a href="#"><i class="fab fa-facebook-f"></i></a>
-                          </li>
-                          <li><a href="#"><i class="fab fa-linkedin-in"></i></a>
-                          </li>
-                          <li><a href="#"><i class="fab fa-twitter"></i></a>
-                          </li>
-                      </ul>
-                      <div class="appoint-btn">
-                          <a href="appoinment.html"><button >Get Appointment</button></a>
-                      </div>
-                  </div>
-              </div>
-          </div>
-        <div class="col-md-4 col-lg-3 col-sm-6">
-              <div class="chairman-wrap-content wow fadeInUp">
-                  <div class="chairman-img">
-                      <img src="images/dr.colis.png" class="w-100" alt="">
-                  </div>
-                  <div class="chairman-details">
-                      <h3>Dr. Collis Molate</h3>
-                      <p>Neurosurgeon, F.R.C.S (Glass.UK)</p>
-                      <ul>
-                          <li><a href="#"><i class="fab fa-facebook-f"></i></a>
-                          </li>
-                          <li><a href="#"><i class="fab fa-linkedin-in"></i></a>
-                          </li>
-                          <li><a href="#"><i class="fab fa-twitter"></i></a>
-                          </li>
-                      </ul>
-                      <div class="appoint-btn">
-                          <a href="appoinment.html"><button >Get Appointment</button></a>
-                      </div>
-                  </div>
-              </div>
-          </div>
-        <div class="col-md-4 col-lg-3 col-sm-6">
-              <div class="chairman-wrap-content wow fadeInUp">
-                  <div class="chairman-img">
-                      <img src="images/dr.colis.png" class="w-100" alt="">
-                  </div>
-                  <div class="chairman-details">
-                      <h3>Dr. Collis Molate</h3>
-                      <p>Neurosurgeon, F.R.C.S (Glass.UK)</p>
-                      <ul>
-                          <li><a href="#"><i class="fab fa-facebook-f"></i></a>
-                          </li>
-                          <li><a href="#"><i class="fab fa-linkedin-in"></i></a>
-                          </li>
-                          <li><a href="#"><i class="fab fa-twitter"></i></a>
-                          </li>
-                      </ul>
-                      <div class="appoint-btn">
-                          <a href="appoinment.html"><button >Get Appointment</button></a>
-                      </div>
-                  </div>
-              </div>
-          </div>
-        <div class="col-md-12 text-center">
-          <div class="show-more-btn wow fadeInRight">
-            <button>Show More</button>
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
+    </section>
     <!--main footer section-->
     <section class="main-footer-wrapper">
         <div class="container">
@@ -464,6 +525,10 @@
     <script src="js/venobox.min.js"></script>
     <script src="js/main.js"></script>
     <script type="text/javascript" src="js/stellarnav.js"></script>
+    <script src="js/jquery.nice-select.min.js"></script>
+    <script src="js/fastclick.js"></script>
+    <script src="js/prism.js"></script>
+    
     <script type="text/javascript">
         jQuery(document).ready(function($) {
             jQuery('.stellarnav').stellarNav({
@@ -471,6 +536,8 @@
                 breakpoint: 960,
                 position: 'right',
             });
+            
+            $('.beh-dropdown').niceSelect();
         });
 
     </script>
