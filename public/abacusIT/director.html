@@ -22,62 +22,49 @@
 </head>
 
 <body>
-   <!--navigation bar -->
-    <nav class="navbar navbar-expand-lg navbar-light">
-        <div class="container">
-            <a class="navbar-brand" href="index.html">
-                <img src="images/site_logo.png" class=" site_logo" alt="">
-            </a>
-            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation"> <span class="navbar-toggler-icon"></span>
-            </button>
-            <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                <ul class="navbar-nav">
-                    <li class="nav-item dropdown" onclick="myFunction()">
-                        
-                        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                            About Us
-                        </a>
-                        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+    <!--navigation bar -->
+    <div class="container">
+        <div class="row">
+            <div class="col-md-3 col-sm-3 col-xs-5 xs-logo">
+                <a class="navbar-brand" href="index.html">
+                    <img src="images/site_logo.png" class=" site_logo" alt="">
+                </a>
+            </div>
+
+            <div class="col-md-5 col-sm-6 col-xs-7 xs-menu">
+                <div class="stellarnav pt-3">
+                    <ul>
+                        <li><a href="">About Us <i class="fas fa-caret-down"></i></a>
                             <ul>
-                                 <li><a href="aboutUs.html">About Us 1</a></li>
-                                 <li><a href="aboutUs.html">About Us 2</a></li>
+                                <li><a href="aboutUs.html">About Us 1</a></li>
+                                <li><a href="aboutUs.html">About Us 2</a></li>
                                 <li><a href="aboutUs.html">About Us 3</a></li>
                             </ul>
-                           
-                        </div>
-                    </li>
-                    <li class="nav-item dropdown">
-                        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                            Services
-                        </a>
-                        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                        </li>
+
+                        <li><a href="">Services <i class="fas fa-caret-down"></i></a>
                             <ul>
-                                 <li><a href="#">Servics 1</a></li>
-                                 <li><a href="#">Services 2</a></li>
+                                <li><a href="#">Servics 1</a></li>
+                                <li><a href="#">Services 2</a></li>
                                 <li><a href="#">Services 3</a></li>
                             </ul>
-                           
-                        </div>
-                    </li>
-                    <li class="nav-item dropdown">
-                        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                            Consultants
-                        </a>
-                        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                        </li>
+
+                        <li><a href="">Consultants <i class="fas fa-caret-down"></i></a>
                             <ul>
-                                 <li><a href="consultants.html">Consultants 1</a></li>
-                                 <li><a href="consultants.html">Consultants 2</a></li>
+                                <li><a href="consultants.html">Consultants 1</a></li>
+                                <li><a href="consultants.html">Consultants 2</a></li>
                                 <li><a href="consultants.html">Consultants 3</a></li>
                             </ul>
-                           
-                        </div>
-                    </li>
-                    <li class="nav-item"> <a class="nav-link" href="news.html">News</a>
-                    </li>
-                    <li class="nav-item"> <a class="nav-link" href="#">Contact Us</a>
-                    </li>
-                </ul>
-                <div class="valuable_info">
+                        </li>
+                        <li> <a class="nav-link" href="news.html">News</a></li>
+                        <li> <a class="nav-link" href="#">Contact Us</a></li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="col-md-4 col-xs-12  hidden-xs">
+                <div class="valuable_info w-100 pt-3">
                     <ul>
                         <li>Hotline<a href="#"><span>16256</span></a>
                         </li>
@@ -89,8 +76,9 @@
                 </div>
             </div>
         </div>
-    </nav>
-  <!--breadcrumb section-->
+    </div>
+
+<!--breadcrumb section-->
   <section class="breadcrumb-wrapper clear-cache">
     <div class="container">
       <div class="row">
@@ -243,46 +231,25 @@
     </div>
   </section>
   <!--js links provide-->
-  <script src="js/jquery-1.12.4.min.js"></script>
-  <script src="js/popper.min.js"></script>
-  <script src="js/bootstrap.min.js"></script>
-  <script src="js/slick.min.js"></script>
-  <script src="js/aos.js"></script>
-  <script src="js/waypoints.min.js"></script>
-  <script src="js/jquery.counterup.min.js"></script>
-  <script src="js/main.js"></script>
-    <script>
-        $(document).ready(function() {
-          if ($(window).width() > 991) {
-            $(".dropdown").hover(
-              function() {
-                  $('.dropdown-menu', this).stop(true, true).fadeIn("fast");
-                  $(this).toggleClass('open');
-                  $('b', this).toggleClass("caret caret-up");
-              },
-                  function() {
-                      $('.dropdown-menu', this).stop(true, true).fadeOut("fast");
-                      $(this).toggleClass('open');
-                      $('b', this).toggleClass("caret caret-up");
-                  });
-            }
+    <script src="js/jquery-1.12.4.min.js"></script>
+    <script src="js/popper.min.js"></script>
+    <script src="js/bootstrap.min.js"></script>
+    <script src="js/slick.min.js"></script>
+    <script src="js/wow.min.js"></script>
+    <script src="js/waypoints.min.js"></script>
+    <script src="js/jquery.counterup.min.js"></script>
+    <script src="js/venobox.min.js"></script>
+    <script src="js/main.js"></script>
+    <script type="text/javascript" src="js/stellarnav.js"></script>
+    <script type="text/javascript">
+        jQuery(document).ready(function($) {
+            jQuery('.stellarnav').stellarNav({
+                theme: 'dark',
+                breakpoint: 960,
+                position: 'right',
+            });
         });
 
-        $(window).resize(function() {
-          if ($(window).width() > 991) {
-            $(".dropdown").hover(
-              function() {
-                  
-                  $(this).toggleClass('open');
-                 
-              },
-              function() {
-                
-                  $(this).toggleClass('open');
-              
-              });
-          }
-        });
     </script>
 </body>
 

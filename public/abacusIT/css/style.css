@@ -223,8 +223,8 @@ button:focus {
 }
 
 .valuable_info {
-    width: 60%;
     text-align: right;
+    padding: 12px 0;
 }
 
 .valuable_info ul li {
