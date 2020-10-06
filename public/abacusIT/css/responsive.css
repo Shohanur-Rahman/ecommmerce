@@ -143,7 +143,9 @@
         height: auto;
         margin: 0px -7.5px;
     }
-
+    .about-features-content.d-flex .about-feature-txt{
+        text-align: center;
+    }
     .about-features-one.d-flex.flex-column {
         margin: 0 7.5px;
     }
@@ -465,7 +467,7 @@
     }
 
     .about-page-mileston .counter-content.d-flex {
-        text-align-last: left;
+        text-align:center;
     }
 
     .items-wrap.d-flex .mileston-item {
@@ -687,7 +689,9 @@
         margin-bottom: 15px;
         width: 100%;
     }
-
+    .offers-section-wrapper .about-features-item{
+        margin-bottom: 25px;
+    }
 
 }
 
