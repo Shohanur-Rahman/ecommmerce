@@ -1301,18 +1301,22 @@
     }
 
     .xs-menu {
-        width: 28%;
-        float: right;
+        width: 33%;
+        text-align: right;
     }
-    
+    .stellarnav{
+        padding: 0;
+    }
     .xs-menu .stellarnav{
         padding-top: 0 !important;
     }
-    
+
     .xs-menu .fa-caret-down{
         display: none;
     }
-
+    .stellarnav.dark.right .menu-toggle{
+        margin-top: 15px;
+    }
 }
 
 @media (min-width: 992px) and (max-width: 1199.98px) {
