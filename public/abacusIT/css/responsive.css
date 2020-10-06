@@ -1346,7 +1346,7 @@
     .valuable_info ul li,
     .valuable_info ul li a,
     .valuable_info .app_btn a {
-        font-size: 12px;
+        font-size: 14px;
     }
 
     .container {
@@ -1463,7 +1463,7 @@
 
     .date-brach-content ul li span {
         margin: 0 15px;
-        font-size: 18px;
+        font-size: 15px;
     }
 
     .branch-page-info {
@@ -1560,7 +1560,21 @@
         width: 80%;
         margin-left: 15px;
     }
-
+    .stellarnav > ul > li{
+        margin-right: 7px;
+    }
+    .stellarnav > ul > li > a{
+        font-size: 14px;
+    }
+    .valuable_info ul li:last-child{
+        display: none;
+    }
+    .stellarnav{
+        padding: 13px 0;
+    }
+    .valuable_info{
+        padding: 20px 0;
+    }
 }
 
 @media (min-width: 1200px) {
