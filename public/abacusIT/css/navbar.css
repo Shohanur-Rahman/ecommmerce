@@ -124,7 +124,7 @@ body.stellarnav-noscroll-x { overflow-x: hidden; }
 }
 .stellarnav.dark .third:first-child, .stellarnav.dark .half:first-child { border-left: 0; }
 .stellarnav.light .menu-toggle span.bars span { background: #000; }
-.stellarnav.dark .menu-toggle span.bars span { background: #000; }
+.stellarnav.dark .menu-toggle span.bars span { background: #fff; }
 .stellarnav.mobile { position: static; }
 .stellarnav.mobile.fixed { position: static; }
 .stellarnav.mobile ul { position: relative; display: none; }

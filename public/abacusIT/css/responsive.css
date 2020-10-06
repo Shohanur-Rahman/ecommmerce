@@ -1316,6 +1316,9 @@
     }
     .stellarnav.dark.right .menu-toggle{
         margin-top: 15px;
+        background: #049e4f;
+        border: none;
+        border-radius: 2px;
     }
 }
 
