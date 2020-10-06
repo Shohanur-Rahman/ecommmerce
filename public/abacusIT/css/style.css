@@ -1624,8 +1624,34 @@ section.about-eye-hospital.about-page-section.section-grap.clear-cache {
 .consultants-section .query-box form option {
     color: #212121 !important;
 }
+.consultants-section .query-box form select {
+    appearance:none;
+    flex: 1;
+    padding: 0 .5em;
+    color:#fff;
+    cursor:pointer;
+    width: 75%;
+}
+.consultants-section .query-box form select::-ms-expand {
+    display: none;
+}
+.consultants-section .query-box form .select {
+    position: relative;
+}
+.consultants-section .query-box form .select::after {
+    content: '\25BC';
+    position: absolute;
+    top: 0;
+    right: 0;
+    cursor:pointer;
+    pointer-events:none;
+    transition:.25s all ease;
+}
+.consultants-section .query-box form .select:hover::after {
+    color: #23b499;
+}
 
-/*full modal wrapper style*/
+    /*full modal wrapper style*/
 
 .modal {
     box-shadow: 0 3px 35px 0 rgba(33, 33, 33, 0.1);
