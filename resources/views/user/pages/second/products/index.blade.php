@@ -179,7 +179,10 @@ function makeURL($queryString, $key, $value)
                         <div class="row {{request()->is('*male*') ? 'male-products' : ''}} {{request()->is('*female*') ? 'female-products' : ''}}">
 
                             @foreach($products as $product)
-
+                                @php
+                                    $rating = \App\Models\Products::rating($product->id);
+                                    $ratingCount = \App\Models\Products::ratingCount($product->id) ;
+                                @endphp
                                 <div class="col-xl-4 col-md-4 col-sm-6 product-item wow {{ ($itemCount % 2) != 0 ?'slideInDown': 'slideInUp'}}">
                                     <div class="product-single">
                                         <div class="product-title">
@@ -199,14 +202,15 @@ function makeURL($queryString, $key, $value)
                                             <div class="pull-left">
                                                 <span>${{$product->new_price}}</span>
                                             </div>
-                                            <div class="pull-right">
+                                            <div class="pull-right d-flex">
                                                 <div  id="dataReadonlyReview"
                                                       data-rating-stars="5"
                                                       data-rating-readonly="true"
                                                       data-rating-half="true"
-                                                      data-rating-value="3"
+                                                      data-rating-value="{{$rating}}"
                                                       data-rating-input="#dataReadonlyInput">
                                                 </div>
+                                                <span>({{$ratingCount}})</span>
                                             </div>
                                         </div>
                                         <div class="product-action">
@@ -235,6 +239,10 @@ function makeURL($queryString, $key, $value)
                     </div>
                     <div id="list-products" class="tab-pane">
                         @foreach($products as $product)
+                            @php
+                                $rating = \App\Models\Products::rating($product->id);
+                                $ratingCount = \App\Models\Products::ratingCount($product->id)
+                            @endphp
                             <div class="product-single wide-style">
                                 <div class="row align-items-center">
                                     <div class="col-xl-3 col-lg-6 col-md-6">
@@ -259,10 +267,10 @@ function makeURL($queryString, $key, $value)
                                                   data-rating-stars="5"
                                                   data-rating-readonly="true"
                                                   data-rating-half="true"
-                                                  data-rating-value=""
+                                                  data-rating-value="{{$rating}}"
                                                   data-rating-input="#dataReadonlyInput">
                                             </div>
-                                            <span>(5)</span>
+                                            <span>({{$ratingCount}})</span>
                                         </div>
                                         <div class="product-text">
                                             {{$product->short_description}}

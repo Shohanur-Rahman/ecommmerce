@@ -30,9 +30,15 @@ class Products extends Model
         return $this->belongsTo(ProductSize::class,'size_id');
     }
 
-   /* public  function rating()
+    public static function rating($id)
     {
-        $reviews = ProductReview::where('product_id',$this->id)->average('rating');
+        $reviews = ProductReview::where('product_id',$id)->average('rating');
         return $reviews;
-    }*/
+    }
+
+    public static function ratingCount($id)
+    {
+        $count = ProductReview::where('product_id',$id)->count();
+        return $count;
+    }
 }
