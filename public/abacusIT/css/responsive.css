@@ -217,10 +217,17 @@
     }
 
     .mileston-info-wrapper.clear-cache {
-        margin-top: 40px;
-        padding: 0 7.5px;
+        overflow-x: hidden;
     }
-
+    .carousel-slider-icon a.carousel-control-prev{
+        left: 0;
+    }
+    .carousel-slider-icon a.carousel-control-next{
+        right: 0;
+    }
+    .carousel-slider-icon a span i{
+        font-size: 30px;
+    }
     .mileston-img {
         width: 150px;
         height: 150px;
@@ -1192,6 +1199,9 @@
     .nice-select{
         width: 85%;
     }
+    section.mileston-info-wrapper{
+        overflow-x: hidden;
+    }
 }
 
 @media (max-width: 991px) {
@@ -1623,6 +1633,9 @@
     .nav-item.dropdown:hover .dropdown-menu {
         display: block;
         transition: all 1s linear;
+    }
+    section.mileston-info-wrapper{
+        overflow-x: hidden;
     }
 }
 

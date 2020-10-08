@@ -2,7 +2,7 @@
     "use strict"
     var $win = $(window);
     var $top = $(".back-to-top p ")
-  
+
     /*== top to back====*/
     $win.on('scroll', function () {
         var $scrolling = $(this).scrollTop();
@@ -15,18 +15,9 @@
     });
 
   //mileston-reviews-slider
-   $(".mileston-reviews-slider").slick({
-      infinite: true,
-      slidesToShow:1,
-      slidesToScroll:1,
-      autoplay:true,
-      autoplaySpeed:100000,
-      dots:false,
-      fade:false,
-      arrows:true,
-      nextArrow: '<i class="fas fa-chevron-right"></i>',
-      prevArrow: '<i class="fas fa-chevron-left"></i>',
-    });
+    $('.carousel').carousel({
+        interval: 2000
+    })
     //banner-slider
    $(".banner-slider").slick({
       infinite: true,
@@ -55,10 +46,10 @@
   });
 
   $('.venobox').venobox({
-    framewidth : '600px',                            
-    frameheight: '400px',                            
-    border     : '5px',                             
-    bgcolor : '#fff',                          
+    framewidth : '600px',
+    frameheight: '400px',
+    border     : '5px',
+    bgcolor : '#fff',
     share      : ['facebook', 'twitter', 'download'],
     spinner :'double-bounce'
 

@@ -659,6 +659,9 @@ section.mileston-info-wrapper.about-page-mileston.clear-cache {
 }
 
 /*mileston information*/
+section.mileston-info-wrapper{
+    position: relative;
+}
 .mileston-info {
     border-radius: 10px;
     box-shadow: 0 3px 60px 0 rgba(230, 235, 242, 0.7);
@@ -2065,4 +2068,32 @@ section.about-eye-hospital.about-page-section.section-grap.clear-cache {
     display: inline-block;
     margin-left: 2px;
     vertical-align: middle;
+}
+/*carousel*/
+.carousel-icon-position{
+    position: relative;
+
+}
+.carousel-inner{
+    overflow: visible;
+}
+.carousel-slider-icon a{
+    opacity: 1;
+    width: auto;
+}
+.carousel-slider-icon a.carousel-control-prev{
+    left: 25px;
+}
+.carousel-slider-icon a.carousel-control-next{
+    right: 25px;
+}
+.carousel-slider-icon a span i{
+    font-size: 60px;
+    color: #000;
+
+}
+.carousel-slider-icon a span{
+    width: auto;
+    height: auto;
+    background: transparent!important;
 }
