@@ -200,12 +200,13 @@ function makeURL($queryString, $key, $value)
                                                 <span>${{$product->new_price}}</span>
                                             </div>
                                             <div class="pull-right">
-                                                <i class="fa fa-star-o"></i>
-                                                <i class="fa fa-star-o"></i>
-                                                <i class="fa fa-star-o"></i>
-                                                <i class="fa fa-star-o"></i>
-                                                <i class="fa fa-star-o"></i>
-                                                <span class="rating-quantity">(0)</span>
+                                                <div  id="dataReadonlyReview"
+                                                      data-rating-stars="5"
+                                                      data-rating-readonly="true"
+                                                      data-rating-half="true"
+                                                      data-rating-value="3"
+                                                      data-rating-input="#dataReadonlyInput">
+                                                </div>
                                             </div>
                                         </div>
                                         <div class="product-action">
@@ -254,11 +255,13 @@ function makeURL($queryString, $key, $value)
                                             </h4>
                                         </div>
                                         <div class="product-rating">
-                                            <i class="fa fa-star"></i>
-                                            <i class="fa fa-star"></i>
-                                            <i class="fa fa-star"></i>
-                                            <i class="fa fa-star"></i>
-                                            <i class="fa fa-star-o"></i>
+                                            <div  id="dataReadonlyReview"
+                                                  data-rating-stars="5"
+                                                  data-rating-readonly="true"
+                                                  data-rating-half="true"
+                                                  data-rating-value=""
+                                                  data-rating-input="#dataReadonlyInput">
+                                            </div>
                                             <span>(5)</span>
                                         </div>
                                         <div class="product-text">
@@ -337,3 +340,5 @@ function makeURL($queryString, $key, $value)
 
     })
 </script>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.11.2/css/all.min.css">
+<script src="{{asset('user/assets/js/rating.js')}}"></script>

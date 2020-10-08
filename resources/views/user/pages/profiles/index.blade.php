@@ -16,7 +16,7 @@
                                 <button class="btn btn-primary w-100 my-2">Go to Seller Dashboard</button>
                             </a>
                         @else
-                            {{--@if($fillUp)
+                            @if($fillUp)
                                 @if($user->applyVendor)
                                     @if($user->applyVendor->is_approve == 1)
                                         <a class="text-white" href="{{route('dashboard')}}"><button class="btn btn-primary w-100 my-2">Go to Seller Dashboard</button></a>
@@ -31,7 +31,7 @@
                                 @endif
                             @else
                                 <a class="text-white" href="{{route('profiles.edit')}}"><button class="btn btn-primary w-100 my-2">Fill Up Your Profile </button></a>
-                            @endif--}}
+                            @endif
                         @endif
 
                     </div>
