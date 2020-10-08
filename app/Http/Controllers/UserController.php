@@ -56,16 +56,7 @@ class UserController extends Controller
 
         if(Auth::attempt($attempts)) {
 
-            $presentWishList = Wishlist::select('product_id')->where('user_id',Auth::id())->get();
-            dd($presentWishList);
-            if(Session::has('session_id')){
-                $session_id  = Session::get('session_id');
-                $wishList = Wishlist::where(['session_id'=>$session_id,'user_id'=>null])->get();
-
-                $wishList->each(function ($wishList){
-                    $wishList->update(['user_id'=>Auth::id()]);
-                });
-            }
+            $this->wishLists();
 
             return redirect(route('profiles.index'));
         }
@@ -85,34 +76,7 @@ class UserController extends Controller
         $attempts = ['email' => $request['email'], 'password' => $request['password'],'is_active'=>1];
 
         if(Auth::attempt($attempts,$remember_me)) {
-            $presentWishList = Wishlist::select('product_id')->where('user_id',Auth::id())->get()->toArray();
-            $wishListProductID = Arr::flatten($presentWishList);
-
-            if(Session::has('session_id')){
-                $session_id  = Session::get('session_id');
-
-                $wishList = Wishlist::where(['session_id'=>$session_id,'user_id'=>null])
-                    ->whereIn('product_id',$wishListProductID)
-                    ->get();
-
-
-                $wishList->each(function ($wishList){
-                    $oldWishList = Wishlist::where('product_id',$wishList->product_id)->first();
-                    $oldWishList->update([
-                        'quantity'=>$oldWishList->quantity + $wishList->quantity,
-                        'user_id'=>Auth::id()
-                    ]);
-                    $wishList->delete();
-                });
-
-                $newWishList = Wishlist::where(['session_id'=>$session_id,'user_id'=>null])
-                    ->whereNotIn('product_id',$wishListProductID)
-                    ->get();
-
-                $newWishList->each(function ($wishList){
-                    $wishList->update(['user_id'=>Auth::id()]);
-                });
-            }
+            $this->wishLists();
 
             return redirect(route('profiles.index'));
         }
@@ -185,5 +149,38 @@ class UserController extends Controller
         }
 
         return redirect(route('login'));
+    }
+
+
+    private function wishLists()
+    {
+        $presentWishList = Wishlist::select('product_id')->where('user_id',Auth::id())->get()->toArray();
+        $wishListProductID = Arr::flatten($presentWishList);
+
+        if(Session::has('session_id')){
+            $session_id  = Session::get('session_id');
+
+            $wishList = Wishlist::where(['session_id'=>$session_id,'user_id'=>null])
+                ->whereIn('product_id',$wishListProductID)
+                ->get();
+
+
+            $wishList->each(function ($wishList){
+                $oldWishList = Wishlist::where('product_id',$wishList->product_id)->first();
+                $oldWishList->update([
+                    'quantity'=>$oldWishList->quantity + $wishList->quantity,
+                    'user_id'=>Auth::id()
+                ]);
+                $wishList->delete();
+            });
+
+            $newWishList = Wishlist::where(['session_id'=>$session_id,'user_id'=>null])
+                ->whereNotIn('product_id',$wishListProductID)
+                ->get();
+
+            $newWishList->each(function ($wishList){
+                $wishList->update(['user_id'=>Auth::id()]);
+            });
+        }
     }
 }

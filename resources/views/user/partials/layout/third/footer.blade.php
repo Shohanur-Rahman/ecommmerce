@@ -91,7 +91,6 @@
 
             success:function (resp) {
                 if(!isNaN(resp) && resp != ''){
-                    alert('success');
                     $('#wishListCount').html(resp)
                 }
             },
