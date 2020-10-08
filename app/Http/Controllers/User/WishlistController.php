@@ -14,10 +14,10 @@ class WishlistController extends Controller
     public function store(Request $request)
     {
         $product_id = $request['product_id'];
-
+        $sessionCheck = Session::has('session_id');
         $wishList = Wishlist::where('product_id', $product_id)->first();
 
-        if ($wishList) {
+        if ($wishList && ($sessionCheck || Auth::user())) {
             $wishList->update([
                 'quantity' => $wishList->quantity + 1,
             ]);
@@ -37,7 +37,7 @@ class WishlistController extends Controller
                 ]);
             }
 
-            if (Session::has('session_id') && !auth()->user()) {
+            if ($sessionCheck && !auth()->user()) {
                 $wishListCount = Wishlist::where('session_id', Session::get('session_id'))->count();
             } else {
                 $wishListCount = Wishlist::where('user_id', auth()->id())->count();

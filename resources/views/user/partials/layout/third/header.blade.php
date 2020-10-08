@@ -74,6 +74,8 @@
                                        }else{
                                            $wishListCount = \App\Models\User\Wishlist::where('user_id',auth()->id())->count();
                                        }
+
+
                                 @endphp
                                 <li><a href="#"><i class="icon_heart_alt"></i><span id="wishListCount">{{$wishListCount}}</span></a></li>
                                 <li>
