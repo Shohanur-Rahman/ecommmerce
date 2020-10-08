@@ -79,6 +79,31 @@
 
 <script>
 
+
+    $('.product-id').click(function (e) {
+        e.preventDefault();
+        var productId = $(this).attr('id');
+
+        $.ajax({
+            type: 'post',
+            url: 'wish-list',
+            data: {product_id: productId},
+
+            success:function (resp) {
+                if(!isNaN(resp) && resp != ''){
+                    alert('success');
+                    $('#wishListCount').html(resp)
+                }
+            },
+
+            error:function (error) {
+               console.log('error')
+            }
+        })
+
+    });
+
+
     $('#email').keydown(function () {
         $('.error').text('');
         $('.success').text('');

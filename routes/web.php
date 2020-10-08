@@ -82,4 +82,11 @@ Route::group(['middleware'=>'auth'],function(){
     Route::group(['prefix'=>'newsletter'], function(){
         Route::post('/','User\NewsLetterController@store');
     });
+
+
+
+});
+
+Route::group(['prefix'=>'wish-list'], function(){
+    Route::post('/','User\WishlistController@store');
 });

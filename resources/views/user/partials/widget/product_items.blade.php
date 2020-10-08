@@ -45,7 +45,11 @@
                         <button type="submit" class="btn btn-success add-to-cart">Add to Cart</button>
                     </form>
 
-                    <a href="javascript:void(0);" class="product-wishlist"><i class="ti-heart"></i></a>
+                    <form class="d-inline" action="javascript:void(0)" method="post">
+                        @csrf
+                        <a id="{{$product->id}}" href="javascript:void(0)" class="product-wishlist product-id"><i class="ti-heart"></i></a>
+                    </form>
+
                 </div>
             </div>
         </div>
@@ -53,5 +57,8 @@
 
     <?php $itemCount += 1; ?>
 @endforeach
+
+
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.11.2/css/all.min.css">
 <script src="{{asset('user/assets/js/rating.js')}}"></script>
+

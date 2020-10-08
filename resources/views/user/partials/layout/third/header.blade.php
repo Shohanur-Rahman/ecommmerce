@@ -66,7 +66,16 @@
                         <?php $myCartList = App\Models\User\CartItem::with('product')->where('user_id', Auth::id())->get();?>
                         <div class="mini-cart pull-right">
                             <ul>
-                                <li><a href="#"><i class="icon_heart_alt"></i><span>4</span></a></li>
+                                @php
+                                       $session_id = Session::get('session_id');
+
+                                       if($session_id && !auth()->user()){
+                                          $wishListCount =\App\Models\User\Wishlist::where('session_id',$session_id)->count();
+                                       }else{
+                                           $wishListCount = \App\Models\User\Wishlist::where('user_id',auth()->id())->count();
+                                       }
+                                @endphp
+                                <li><a href="#"><i class="icon_heart_alt"></i><span id="wishListCount">{{$wishListCount}}</span></a></li>
                                 <li>
                                     <div class="cart-dropdown">
                                         <ul>

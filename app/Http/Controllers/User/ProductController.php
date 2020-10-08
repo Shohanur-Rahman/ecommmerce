@@ -11,10 +11,12 @@ use App\Models\ProductGalleryMap;
 use App\Models\ProductColor;
 use App\Models\User\CartItem;
 use App\Models\User\ProductReview;
+use App\Models\User\Wishlist;
 use Illuminate\Http\Request;
 use App\Models\Products;
 use Illuminate\Support\Facades\DB;
 use Auth;
+use Illuminate\Support\Facades\Session;
 
 class ProductController extends Controller
 {
