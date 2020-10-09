@@ -87,6 +87,9 @@ Route::group(['middleware'=>'auth'],function(){
 
 });
 
-Route::group(['prefix'=>'wish-list'], function(){
+Route::group(['prefix'=>'wish-lists'], function(){
+    Route::get('/','User\WishlistController@index')->name('wish-lists.index');
     Route::post('/','User\WishlistController@store');
+    Route::get('/{wishlist}','User\WishlistController@destroy')->name('wish-lists.destroy');
+    Route::patch('/','User\WishlistController@update')->name('wish-lists.update');
 });

@@ -3,9 +3,10 @@
 namespace App\Http\Controllers\User;
 
 use App\Http\Controllers\Controller;
+use App\Models\User\Wishlist;
 use Illuminate\Http\Request;
 use App\Models\User\CartItem;
-use Auth;
+use Illuminate\Support\Facades\Auth;
 
 class ProductCartController extends Controller
 {
@@ -35,5 +36,23 @@ class ProductCartController extends Controller
             ]);
         }
         return redirect()->back()->with('success','Cart Item has been updated successfully');
+    }
+
+    public function wishListCartStore()
+    {
+
+        $wishLists = Wishlist::where('user_id', Auth::id())->with('product')->get();
+
+        $wishLists->each(function ($wishList){
+            CartItem::create([
+                'user_id'=>$wishList->user_id,
+                'product_id'=>$wishList->product_id,
+                'quantity'=>$wishList->quantity,
+            ]);
+
+            $wishList->delete();
+        });
+
+        return redirect()->back()->with('success-message','Product has been added shopping cart');
     }
 }

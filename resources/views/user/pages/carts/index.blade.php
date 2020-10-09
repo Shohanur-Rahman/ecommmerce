@@ -109,7 +109,7 @@
                 <div class="row mt-30">
                     <div class="col-lg-6">
                         <div class="cart-update">
-                            <a href="/" class="btn-common">CONTINUE SHOPPING</a>
+                            <a href="{{route('app.home')}}" class="btn-common">CONTINUE SHOPPING</a>
                         </div>
                     </div>
                     <div class="col-lg-6">

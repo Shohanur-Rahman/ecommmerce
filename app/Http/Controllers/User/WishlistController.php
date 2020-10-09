@@ -11,6 +11,21 @@ use Illuminate\Support\Str;
 
 class WishlistController extends Controller
 {
+
+    public function index()
+    {
+        if(Auth::user()){
+            $wishLists = Wishlist::where('user_id',Auth::id())->with('product')->get();
+        }elseif(Session::has('session_id')){
+            $wishLists = Wishlist::where('session_id',Session::get('session_id'))->with('product')->get();
+        }else{
+            $wishLists = collect();
+        }
+
+
+        return view('user.pages.wishlist.index',compact('wishLists'));
+    }
+
     public function store(Request $request)
     {
         $product_id = $request['product_id'];
@@ -49,5 +64,33 @@ class WishlistController extends Controller
 
     }
 
+    public function destroy(Wishlist $wishlist)
+    {
+        $wishlist->delete();
+        return redirect()->back()->with('success-message','WishList has been removed successfully');
+    }
+
+    public function update(Request $request)
+    {
+        if(Auth::user()){
+            $wishLists = Wishlist::where('user_id',Auth::id())->with('product')->get();
+        }
+
+        if(Session::has('session_id')){
+            $wishLists = Wishlist::where('session_id',Session::get('session_id'))->with('product')->get();
+        }
+
+
+        foreach ($wishLists as $key=>$value){
+
+            $value->update([
+                'user_id'=>auth()->id(),
+                'product_id'=>$request['product_id'][$key],
+                'quantity'=>$request['quantity'][$key]
+            ]);
+        }
+
+        return redirect()->back()->with('success-message','WishList has been updated successfully');
+    }
 
 }

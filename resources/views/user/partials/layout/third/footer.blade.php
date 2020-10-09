@@ -86,7 +86,7 @@
 
         $.ajax({
             type: 'post',
-            url: 'wish-list',
+            url: 'wish-lists',
             data: {product_id: productId},
 
             success:function (resp) {

@@ -10,6 +10,7 @@ Route::group(['middleware'=>'auth'],function(){
 	Route::get('/delete/{cart}', 'ProductCartController@delete')->name('cart.delete');
 	Route::patch('/cart', 'ProductCartController@update')->name('cart.update');
 
+    Route::post('/wish-list/carts', 'ProductCartController@wishListCartStore')->name('wish-lists-carts.store');
 });
 
 

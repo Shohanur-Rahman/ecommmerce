@@ -77,7 +77,7 @@
 
 
                                 @endphp
-                                <li><a href="#"><i class="icon_heart_alt"></i><span id="wishListCount">{{$wishListCount}}</span></a></li>
+                                <li><a href="{{route('wish-lists.index')}}"><i class="icon_heart_alt"></i><span id="wishListCount">{{$wishListCount}}</span></a></li>
                                 <li>
                                     <div class="cart-dropdown">
                                         <ul>
