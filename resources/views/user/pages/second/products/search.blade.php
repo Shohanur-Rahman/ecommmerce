@@ -99,19 +99,19 @@ function makeURL($queryString, $key, $value)
                             @endforeach
                         </ul>
                     </div>
-                    <div class="list-filter mt-43">
-                        <div class="section-title">
-                            <h3>Colors</h3>
-                        </div>
-                        <ul class="list-none mt-25">
-                            @foreach($colors as $color)
-                                <li>
-                                    <a href="{{route('product.search').generateQueryString('color', $color->id)}}">{{$color->name}}</a>
-                                </li>
-                            @endforeach
-                        </ul>
+                {{--<div class="list-filter mt-43">
+                    <div class="section-title">
+                        <h3>Colors</h3>
                     </div>
-                    <!--latest-products-->
+                    <ul class="list-none mt-25">
+                        @foreach($colors as $color)
+                            <li>
+                                <a href="{{route('product.search').generateQueryString('color', $color->id)}}">{{$color->name}}</a>
+                            </li>
+                        @endforeach
+                    </ul>
+                </div>--}}
+                <!--latest-products-->
                 </div>
             </div>
             <div class="col-xl-9 col-lg-9">
@@ -145,11 +145,15 @@ function makeURL($queryString, $key, $value)
                             </button>
                             <div class="dropdown-menu filter-dropdown" aria-labelledby="pagerDropdown">
 
-                                <a class="dropdown-item" href="{{route('product.search').generateQueryString('page_size',15)}}">15</a>
+                                <a class="dropdown-item"
+                                   href="{{route('product.search').generateQueryString('page_size',15)}}">15</a>
 
-                                <a class="dropdown-item" href="{{route('product.search').generateQueryString('page_size',25)}}">25</a>
-                                <a class="dropdown-item" href="{{route('product.search').generateQueryString('page_size',40)}}">40</a>
-                                <a class="dropdown-item" href="{{route('product.search').generateQueryString('page_size',60)}}">60</a>
+                                <a class="dropdown-item"
+                                   href="{{route('product.search').generateQueryString('page_size',25)}}">25</a>
+                                <a class="dropdown-item"
+                                   href="{{route('product.search').generateQueryString('page_size',40)}}">40</a>
+                                <a class="dropdown-item"
+                                   href="{{route('product.search').generateQueryString('page_size',60)}}">60</a>
                             </div>
                         </div>
 
@@ -184,7 +188,8 @@ function makeURL($queryString, $key, $value)
                                             </h4>
                                         </div>
                                         <div class="product-thumb">
-                                            <a href="{{route('product.search.show', $product->slug)}}"><img class="product-item-listed-image"
+                                            <a href="{{route('product.search.show', $product->slug)}}"><img
+                                                    class="product-item-listed-image"
                                                     src="{{asset($product->featured_image)}}" alt=""/></a>
                                             <div class="product-quick-view">
                                                 <a href="{{route('product.search.show', $product->slug)}}">View
@@ -207,14 +212,18 @@ function makeURL($queryString, $key, $value)
                                         <div class="product-action">
                                             <a href="javascript:void(0);" class="product-compare"><i
                                                     class="ti-control-shuffle"></i></a>
-                                            <form class="d-inline" action="{{route('product.add_to_cart')}}"
+                                            <form class="d-inline" id="cartForm_{{$product->id}}_list"
+                                                  action="javascript:void(0)"
                                                   method="post">
                                                 @csrf
                                                 <input type="hidden" name="product_id" value="{{$product->id}}">
                                                 <input type="hidden" name="product_price"
                                                        value="{{$product->new_price}}">
                                                 <input type="hidden" value="1" name="quantity"/>
-                                                <button type="submit" class="btn btn-success add-to-cart">Add to Cart
+                                                <button type="submit" frm="#cartForm_{{$product->id}}_list"
+                                                        class="btn btn-success add-to-cart dummy_cart_btn"
+                                                        url="{{route('product.add_to_cart')}}"
+                                                        id="cart_btn_{{$product->id}}_list">Add to Cart
                                                 </button>
                                             </form>
                                             <a href="javascript:void(0);" class="product-wishlist"><i
@@ -313,42 +322,42 @@ function makeURL($queryString, $key, $value)
                 <div class="brand-items">
                     <div class="brand-item">
                         <a href="#">
-                            <img class="brand-static" src="/user/assets/images/brands/1.jpg" alt=""/>
+                            <img class="brand-static" src="{{asset('/user/assets/images/brands/1.jpg')}}" alt=""/>
                         </a>
                     </div>
                     <div class="brand-item">
                         <a href="#">
-                            <img class="brand-static" src="/user/assets/images/brands/2.jpg" alt=""/>
+                            <img class="brand-static" src="{{asset('/user/assets/images/brands/2.jpg')}}" alt=""/>
                         </a>
                     </div>
                     <div class="brand-item">
                         <a href="#">
-                            <img class="brand-static" src="/user/assets/images/brands/3.jpg" alt=""/>
+                            <img class="brand-static" src="{{asset('/user/assets/images/brands/3.jpg')}}" alt=""/>
                         </a>
                     </div>
                     <div class="brand-item">
                         <a href="#">
-                            <img class="brand-static" src="/user/assets/images/brands/4.jpg" alt=""/>
+                            <img class="brand-static" src="{{asset('/user/assets/images/brands/4.jpg')}}" alt=""/>
                         </a>
                     </div>
                     <div class="brand-item">
                         <a href="#">
-                            <img class="brand-static" src="/user/assets/images/brands/5.jpg" alt=""/>
+                            <img class="brand-static" src="{{asset('/user/assets/images/brands/5.jpg')}}" alt=""/>
                         </a>
                     </div>
                     <div class="brand-item">
                         <a href="#">
-                            <img class="brand-static" src="/user/assets/images/brands/6.jpg" alt=""/>
+                            <img class="brand-static" src="{{asset('/user/assets/images/brands/6.jpg')}}" alt=""/>
                         </a>
                     </div>
                     <div class="brand-item">
                         <a href="#">
-                            <img class="brand-static" src="/user/assets/images/brands/7.jpg" alt=""/>
+                            <img class="brand-static" src="{{asset('/user/assets/images/brands/7.jpg')}}" alt=""/>
                         </a>
                     </div>
                     <div class="brand-item">
                         <a href="#">
-                            <img class="brand-static" src="/user/assets/images/brands/8.jpg" alt=""/>
+                            <img class="brand-static" src="{{asset('/user/assets/images/brands/8.jpg')}}" alt=""/>
                         </a>
                     </div>
                 </div>
@@ -381,5 +390,58 @@ function makeURL($queryString, $key, $value)
         $("#hdnMinPrice").val($("#slider-range").slider("values", 0));
         $("#hdnMaxPrice").val($("#slider-range").slider("values", 1));
 
-    })
+
+        $(".dummy_cart_btn").click(function (e) {
+
+        debugger;
+            var $this = $(this);
+            $this.addClass("cart-processing");
+            $this.prop("disabled", true);
+            var submitURL = $.trim($this.attr('url'));
+            var formId = $.trim($this.attr('frm'));
+            $this.html("<i class='fa fa-circle-o-notch fa-spin'></i> Processing");
+
+
+            e.preventDefault();
+            $this.button('loading');
+            /*Ajax Request Header setup*/
+            $.ajaxSetup({
+                headers: {
+                    'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                }
+            });
+
+            /* Submit form data using ajax*/
+            $.ajax({
+                url: submitURL,
+                method: 'post',
+                data: $(formId).serialize(),
+                success: function (response) {
+                    if (response.status == true) {
+                        $this.removeClass("cart-processing");
+                        $this.prop("disabled", false);
+                        $this.html("Add to Cart");
+                    }
+
+                    LoadCartList(response.data);
+
+                }
+            });
+        });
+
+    });
+
+
+    function LoadCartList(cartList) {
+        console.log(cartList);
+
+
+
+        $.each(cartList, function( index, value ) {
+            if(index <5){
+
+            }
+        });
+
+    }
 </script>

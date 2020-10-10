@@ -204,12 +204,6 @@ img.cart-page-image {
 .cart-row{
     border-top: 1px solid #d0e5f5;
 }
-/*
-.wow{
-    transition:transform 2s ease-in 0s;
-    animation-duration: 1.5s;
-    -webkit-animation-duration: 1.5s;
-    -webkit-animation-timing-function: ease-in-out;
-    animation-timing-function: ease-in-out;
+.cart-processing {
+    font-size: 14px;
 }
-*/

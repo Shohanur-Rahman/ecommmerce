@@ -26,15 +26,17 @@
                 <div class="row align-items-center">
                     <div class="col-lg-2 col-xl-2 col-md-3">
                         <div class="logo header-logo">
-                            <a href="{{route('app.home')}}"><img src="{{$siteSetting != null ? asset($siteSetting->logo_url) : asset('user/assets/images/logos/logo-blue.png')}}"
-                                                      alt="logo"/></a>
+                            <a href="{{route('app.home')}}"><img
+                                    src="{{$siteSetting != null ? asset($siteSetting->logo_url) : asset('user/assets/images/logos/logo-blue.png')}}"
+                                    alt="logo"/></a>
                         </div>
                     </div>
                     <div class="col-lg-6 col-xl-7 col-md-4">
                         <div class="mainmenu">
                             <div class="search-box style-3 style-4">
                                 <form method="get" action="{{route('product.search')}}">
-                                    <input type="text" placeholder="Search by name" name="s" required/>
+                                    <input type="text" placeholder="Search by name" name="s"
+                                           value="{{request()->query('s') ?? request()->query('s')}}" required/>
                                     <button><i class="ti-search"></i></button>
                                 </form>
                             </div>
@@ -67,20 +69,22 @@
                         <div class="mini-cart pull-right">
                             <ul>
                                 @php
-                                       $session_id = Session::get('session_id');
+                                    $session_id = Session::get('session_id');
 
-                                       if($session_id && !auth()->user()){
-                                          $wishListCount =\App\Models\User\Wishlist::where('session_id',$session_id)->count();
-                                       }else{
-                                           $wishListCount = \App\Models\User\Wishlist::where('user_id',auth()->id())->count();
-                                       }
+                                    if($session_id && !auth()->user()){
+                                       $wishListCount =\App\Models\User\Wishlist::where('session_id',$session_id)->count();
+                                    }else{
+                                        $wishListCount = \App\Models\User\Wishlist::where('user_id',auth()->id())->count();
+                                    }
 
 
                                 @endphp
-                                <li><a href="{{route('wish-lists.index')}}"><i class="icon_heart_alt"></i><span id="wishListCount">{{$wishListCount}}</span></a></li>
+                                <li><a href="{{route('wish-lists.index')}}"><i class="icon_heart_alt"></i><span
+                                            id="wishListCount">{{$wishListCount}}</span></a></li>
                                 <li>
                                     <div class="cart-dropdown">
                                         <ul>
+                                            {{--
                                             <?php $taotalPrice = 0;?>
                                             @foreach($myCartList as $cart)
                                                 <li>
@@ -99,18 +103,23 @@
                                                     </div>
                                                 </li>
                                                 <?php $taotalPrice = ($taotalPrice + ($cart->product->new_price * $cart->quantity));?>
-                                            @endforeach
+                                            @endforeach--}}
                                         </ul>
                                         <div class="minicart-total fix">
                                             <span class="pull-left">total:</span>
-                                            <span class="pull-right">${{ number_format($taotalPrice,2)}}</span>
+                                            <span
+                                                class="pull-right">${{--{{ number_format($taotalPrice,2)}}--}}</span>
                                         </div>
                                         <div class="mini-cart-checkout">
-                                            <a href="{{route('cart.index')}}" class="btn-common view-cart">VIEW CART</a>
-                                            <a href="{{route('checkouts.create')}}" class="btn-common checkout mt-10">CHECK OUT</a>
+                                            <a href="{{route('cart.index')}}" class="btn-common view-cart">VIEW
+                                                CART</a>
+                                            <a href="{{route('checkouts.create')}}"
+                                               class="btn-common checkout mt-10">CHECK OUT</a>
                                         </div>
                                     </div>
-                                    <a href="javascript:void(0);" class="minicart-icon"><i class="icon_bag_alt"></i>${{ number_format($taotalPrice,2)}}<span>{{count($myCartList)}}</span></a>
+                                    <a href="javascript:void(0);" class="minicart-icon"><i
+                                            class="icon_bag_alt"></i>${{--{{ number_format($taotalPrice,2)}}--}}
+                                        <span>{{count($myCartList)}}</span></a>
                                 </li>
                             </ul>
                         </div>
@@ -128,7 +137,9 @@
             <div class="row align-items-center">
                 <div class="col-sm-4 col-5">
                     <div class="logo">
-                        <a href="{{route('app.home')}}"><img src="{{$siteSetting != null ? asset($siteSetting->logo_url) : asset('user/assets/images/logos/logo-blue.png')}}" alt="logo"/></a>
+                        <a href="{{route('app.home')}}"><img
+                                src="{{$siteSetting != null ? asset($siteSetting->logo_url) : asset('user/assets/images/logos/logo-blue.png')}}"
+                                alt="logo"/></a>
                     </div>
                 </div>
                 <div class="col-sm-8 col-6">
@@ -154,10 +165,11 @@
                     <div class="mini-cart text-right">
                         <ul>
                             <li><a href="#"><i class="icon_heart_alt"></i><span>1</span></a></li>
-                            <li class="minicart-icon"><a href="#"><i class="icon_bag_alt"></i><span>{{count($myCartList)}}</span></a>
+                            <li class="minicart-icon"><a href="#"><i
+                                        class="icon_bag_alt"></i><span>{{count($myCartList)}}</span></a>
                                 <div class="cart-dropdown">
                                     <ul>
-                                        <?php $taotalPrice = 0;?>
+                                        <?php /*$taotalPrice = 0;*/?><!--
                                         @foreach($myCartList as $cart)
                                             <li>
                                                 <div class="mini-cart-thumb">
@@ -171,19 +183,22 @@
                                                     </h5>
                                                 </div>
                                                 <div class="mini-cart-remove">
-                                                    <a class="cart-removal" title="Remove Item" href="{{route('cart.delete',$cart->id)}}"><i class="ti-close"></i></a>
+                                                    <a class="cart-removal" title="Remove Item"
+                                                       href="{{route('cart.delete',$cart->id)}}"><i
+                                                            class="ti-close"></i></a>
                                                 </div>
                                             </li>
-                                            <?php $taotalPrice = ($taotalPrice + ($cart->product->new_price * $cart->quantity));?>
-                                        @endforeach
+                                            <?php /*$taotalPrice = ($taotalPrice + ($cart->product->new_price * $cart->quantity));*/?>
+                                        @endforeach-->
                                     </ul>
                                     <div class="minicart-total fix">
                                         <span class="pull-left">total:</span>
-                                        <span class="pull-right">${{ number_format($taotalPrice,2)}}</span>
+                                        <span class="pull-right">${{--{{ number_format($taotalPrice,2)}}--}}</span>
                                     </div>
                                     <div class="mini-cart-checkout">
                                         <a href="{{route('cart.index')}}" class="btn-common view-cart">VIEW CART</a>
-                                        <a href="{{route('checkouts.create')}}" class="btn-common checkout mt-10">CHECK OUT</a>
+                                        <a href="{{route('checkouts.create')}}" class="btn-common checkout mt-10">CHECK
+                                            OUT</a>
                                     </div>
                                 </div>
                             </li>
@@ -223,10 +238,13 @@
                                                         <li class="megamenu-single">
                                                             @if($childMenu->childrens->count() > 0)
                                                                 <span
-                                                                    class="mega-menu-title"><a href="{{route('product.index', $childMenu->slug)}}">{{$childMenu->category_name}}</a></span>
+                                                                    class="mega-menu-title"><a
+                                                                        href="{{route('product.index', $childMenu->slug)}}">{{$childMenu->category_name}}</a></span>
                                                                 <ul>
                                                                     @foreach($childMenu->childrens as $leaveMenu)
-                                                                        <li><a href="{{route('product.index', $leaveMenu->slug)}}">{{$leaveMenu->category_name}}</a></li>
+                                                                        <li>
+                                                                            <a href="{{route('product.index', $leaveMenu->slug)}}">{{$leaveMenu->category_name}}</a>
+                                                                        </li>
                                                                     @endforeach
                                                                 </ul>
                                                             @else

@@ -25,7 +25,6 @@ class ProductController extends Controller
     {
 
 
-
         $page_size = $request->query('page_size') ? $request->query('page_size') : 15;
         $minPrice = $request->query('min') ? $request->query('min') : 10;
         $mixPrice = $request->query('max') ? $request->query('max') : 30000;
@@ -36,63 +35,64 @@ class ProductController extends Controller
 
         $categoryDetails = ProductCategory::where('slug', $category)->first();
 
-        if(is_null($categoryDetails)){
-           return view('user.error_pages.404');
+        if (is_null($categoryDetails)) {
+            return view('user.error_pages.404');
         }
 
         $products = new Products();
 
-        if($brandId > 0 && $colorId > 0)
+        if ($brandId > 0 && $colorId > 0)
             $products = DB::table('products')
-            ->join('product_category_maps', 'products.id', '=', 'product_category_maps.product_id')
-            ->select('products.*')
-            ->where('products.is_published', 1)
-            ->where('product_category_maps.cat_id', $categoryDetails->id)
-            ->where('products.new_price', '>=', $minPrice)
-            ->where('products.new_price', '<=', $mixPrice)
-            ->where('products.brand_id', '<=', $brandId)
-            ->where('products.color_id', '<=', $colorId)
-            ->distinct()
-            ->paginate($page_size);
+                ->join('product_category_maps', 'products.id', '=', 'product_category_maps.product_id')
+                ->select('products.*')
+                ->where('products.is_published', 1)
+                ->where('product_category_maps.cat_id', $categoryDetails->id)
+                ->where('products.new_price', '>=', $minPrice)
+                ->where('products.new_price', '<=', $mixPrice)
+                ->where('products.brand_id', '<=', $brandId)
+                ->where('products.color_id', '<=', $colorId)
+                ->distinct()
+                ->paginate($page_size);
         elseif ($brandId > 0) {
             $products = DB::table('products')
-            ->join('product_category_maps', 'products.id', '=', 'product_category_maps.product_id')
-            ->select('products.*')
-            ->where('products.is_published', 1)
-            ->where('product_category_maps.cat_id', $categoryDetails->id)
-            ->where('products.new_price', '>=', $minPrice)
-            ->where('products.new_price', '<=', $mixPrice)
-            ->distinct()
-            ->paginate($page_size);
-        }elseif ($colorId > 0) {
+                ->join('product_category_maps', 'products.id', '=', 'product_category_maps.product_id')
+                ->select('products.*')
+                ->where('products.is_published', 1)
+                ->where('product_category_maps.cat_id', $categoryDetails->id)
+                ->where('products.new_price', '>=', $minPrice)
+                ->where('products.new_price', '<=', $mixPrice)
+                ->distinct()
+                ->paginate($page_size);
+        } elseif ($colorId > 0) {
             $products = DB::table('products')
-            ->join('product_category_maps', 'products.id', '=', 'product_category_maps.product_id')
-            ->select('products.*')
-            ->where('products.is_published', 1)
-            ->where('product_category_maps.cat_id', $categoryDetails->id)
-            ->where('products.new_price', '>=', $minPrice)
-            ->where('products.new_price', '<=', $mixPrice)
-            ->distinct()
-            ->paginate($page_size);
-        }else{
+                ->join('product_category_maps', 'products.id', '=', 'product_category_maps.product_id')
+                ->select('products.*')
+                ->where('products.is_published', 1)
+                ->where('product_category_maps.cat_id', $categoryDetails->id)
+                ->where('products.new_price', '>=', $minPrice)
+                ->where('products.new_price', '<=', $mixPrice)
+                ->distinct()
+                ->paginate($page_size);
+        } else {
             $products = DB::table('products')
-            ->join('product_category_maps', 'products.id', '=', 'product_category_maps.product_id')
-            ->select('products.*')
-            ->where('products.is_published', 1)
-            ->where('product_category_maps.cat_id', $categoryDetails->id)
-            ->where('products.new_price', '>=', $minPrice)
-            ->where('products.new_price', '<=', $mixPrice)
-            ->distinct()
-            ->paginate($page_size);
+                ->join('product_category_maps', 'products.id', '=', 'product_category_maps.product_id')
+                ->select('products.*')
+                ->where('products.is_published', 1)
+                ->where('product_category_maps.cat_id', $categoryDetails->id)
+                ->where('products.new_price', '>=', $minPrice)
+                ->where('products.new_price', '<=', $mixPrice)
+                ->distinct()
+                ->paginate($page_size);
         }
 
-        $brands = ProductBrandCategoryMap::with('brand')->where('cat_id',$categoryDetails->id)->get();
+        $brands = ProductBrandCategoryMap::with('brand')->where('cat_id', $categoryDetails->id)->get();
         $colors = ProductColor::all();
 
         //$products = ProductCategoryMap::with('product')->where(['cat_id' => $categoryDetails->id, 'is_published' => 1])->paginate($page_size);
 
         return view('user.pages.products.index', compact("products", "categoryDetails", "requestString", "brands", "colors"));
     }
+
     public function search(Request $request)
     {
 
@@ -100,19 +100,38 @@ class ProductController extends Controller
         $minPrice = $request->query('min') ? $request->query('min') : 10;
         $mixPrice = $request->query('max') ? $request->query('max') : 30000;
         $brandId = $request->query('brand') ? $request->query('brand') : 0;
-        $colorId = $request->query('color') ? $request->query('color') : 0;
+        //$colorId = $request->query('color') ? $request->query('color') : 0;
         $searchText = $request->query('s') ? $request->query('s') : '';
         $requestString = $request->all();
 
-        $products = DB::table('products')
-        ->join('product_category_maps', 'products.id', '=', 'product_category_maps.product_id')
-        ->select('products.*')
-        ->where('products.is_published', 1)
-        ->where('products.title','like', '%'.$searchText.'%')
-        ->where('products.new_price', '>=', $minPrice)
-        ->where('products.new_price', '<=', $mixPrice)
-        ->distinct()
-        ->paginate($page_size);
+        $products = new Products();
+
+        if ($brandId > 0) {
+
+            $products = DB::table('products')
+                ->join('product_category_maps', 'products.id', '=', 'product_category_maps.product_id')
+                ->select('products.*')
+                ->where('products.is_published', 1)
+                ->where('products.title', 'like', '%' . $searchText . '%')
+                ->where('products.new_price', '>=', $minPrice)
+                ->where('products.new_price', '<=', $mixPrice)
+                ->where('products.new_price', '<=', $mixPrice)
+                ->where('products.brand_id',  $brandId)
+                ->distinct()
+                ->paginate($page_size);
+        } else {
+
+            $products = DB::table('products')
+                ->join('product_category_maps', 'products.id', '=', 'product_category_maps.product_id')
+                ->select('products.*')
+                ->where('products.is_published', 1)
+                ->where('products.title', 'like', '%' . $searchText . '%')
+                ->where('products.new_price', '>=', $minPrice)
+                ->where('products.new_price', '<=', $mixPrice)
+                ->distinct()
+                ->paginate($page_size);
+        }
+
 
         $categories = ProductCategory::with('childrens')->where('parent_id', 0)->get();
         $brands = ProductBrands::all();
@@ -120,7 +139,7 @@ class ProductController extends Controller
 
         //dd($categories);
 
-        return view('user.pages.products.search', compact('products', 'categories','brands','colors'));
+        return view('user.pages.products.search', compact('products', 'categories', 'brands', 'colors'));
     }
 
     public function details($category, $slug)
@@ -129,9 +148,9 @@ class ProductController extends Controller
         $categoryList = ProductCategoryMap::where('product_id', $product->id)->get();
         $galleries = ProductGalleryMap::where('product_id', $product->id)->get();
 
-        $productReviews = ProductReview::where('product_id',$product->id)->get();
+        $productReviews = ProductReview::where('product_id', $product->id)->get();
 
-        return view('user.pages.products.details', compact('product','categoryList','galleries','productReviews'));
+        return view('user.pages.products.details', compact('product', 'categoryList', 'galleries', 'productReviews'));
     }
 
     public function show($slug)
@@ -140,20 +159,20 @@ class ProductController extends Controller
         $categoryList = ProductCategoryMap::where('product_id', $product->id)->get();
         $galleries = ProductGalleryMap::where('product_id', $product->id)->get();
 
-        $productReviews = ProductReview::where('product_id',$product->id)->get();
+        $productReviews = ProductReview::where('product_id', $product->id)->get();
 
-        return view('user.pages.products.details', compact('product','categoryList','galleries','productReviews'));
+        return view('user.pages.products.details', compact('product', 'categoryList', 'galleries', 'productReviews'));
     }
 
     public function add_to_cart(Request $request)
     {
         $cartItem = CartItem::where(['product_id' => $request->product_id, 'user_id' => Auth::id()])->first();
 
-        if($cartItem == null)
+        if ($cartItem == null)
             $cartItem = new CartItem();
 
-        if($cartItem)
-            $cartItem->quantity=($cartItem->quantity+$request->quantity);
+        if ($cartItem)
+            $cartItem->quantity = ($cartItem->quantity + $request->quantity);
         else
             $cartItem->quantity = $request->quantity;
 
@@ -161,6 +180,9 @@ class ProductController extends Controller
         $cartItem->product_id = $request->product_id;
         $cartItem->save();
 
-        return redirect()->back();
+        $myCartList = CartItem::with('product')->where('user_id', Auth::id())->take(5)->get();
+        $arr = array('data' => $myCartList, 'status' => true);
+
+        return Response()->json($arr);
     }
 }

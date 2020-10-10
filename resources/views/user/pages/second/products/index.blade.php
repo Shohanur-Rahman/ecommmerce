@@ -97,7 +97,7 @@ function makeURL($queryString, $key, $value)
                             @endforeach
                         </ul>
                     </div>
-                    <div class="list-filter mt-43">
+                    {{--<div class="list-filter mt-43">
                         <div class="section-title">
                             <h3>Colors</h3>
                         </div>
@@ -108,7 +108,7 @@ function makeURL($queryString, $key, $value)
                                 </li>
                             @endforeach
                         </ul>
-                    </div>
+                    </div>--}}
                     <!--latest-products-->
 
                 </div>
