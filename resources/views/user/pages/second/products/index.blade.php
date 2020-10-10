@@ -156,7 +156,7 @@ function makeURL($queryString, $key, $value)
                             </div>
                         </div>
                     </div>
-                    <div class="col-lg-5 col-md-12">
+                    <div class="col-lg-5 col-md-12 pt-3">
 
 
                         <div class="site-pagination pull-right">
@@ -210,7 +210,7 @@ function makeURL($queryString, $key, $value)
                                                       data-rating-value="{{$rating}}"
                                                       data-rating-input="#dataReadonlyInput">
                                                 </div>
-                                                <span>({{$ratingCount}})</span>
+                                                {{--<span>({{$ratingCount}})</span>--}}
                                             </div>
                                         </div>
                                         <div class="product-action">
@@ -270,7 +270,7 @@ function makeURL($queryString, $key, $value)
                                                   data-rating-value="{{$rating}}"
                                                   data-rating-input="#dataReadonlyInput">
                                             </div>
-                                            <span>({{$ratingCount}})</span>
+                                            {{--<span>({{$ratingCount}})</span>--}}
                                         </div>
                                         <div class="product-text">
                                             {{$product->short_description}}
@@ -348,5 +348,3 @@ function makeURL($queryString, $key, $value)
 
     })
 </script>
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.11.2/css/all.min.css">
-<script src="{{asset('user/assets/js/rating.js')}}"></script>

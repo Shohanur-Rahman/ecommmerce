@@ -25,7 +25,7 @@ function makeURL($queryString, $key, $value)
 ?>
 
 <!--products-area start-->
-<div class="shop-area">
+<div class="shop-area pt-0">
     <div class="container-fluid">
         <div class="row">
             <div class="col-xl-3 col-lg-3">
@@ -158,7 +158,7 @@ function makeURL($queryString, $key, $value)
                         </div>
 
                     </div>
-                    <div class="col-lg-5 col-md-12">
+                    <div class="col-lg-5 col-md-12 pt-3">
                         <div class="site-pagination pull-right">
                             <span class="pt-5">Showing {{$products->firstItem()}}–{{$products->lastItem()}} of {{$products->total()}} results</span>
                         </div>
@@ -178,7 +178,10 @@ function makeURL($queryString, $key, $value)
                         <div class="row">
 
                             @foreach($products as $product)
-
+                                @php
+                                    $rating = \App\Models\Products::rating($product->id);
+                                    $ratingCount = \App\Models\Products::ratingCount($product->id)
+                                @endphp
                                 <div
                                     class="col-xl-4 col-md-4 col-sm-6 product-item wow {{ ($itemCount % 2) != 0 ?'slideInDown': 'slideInUp'}}">
                                     <div class="product-single">
@@ -201,17 +204,19 @@ function makeURL($queryString, $key, $value)
                                                 <span>${{$product->new_price}}</span>
                                             </div>
                                             <div class="pull-right">
-                                                <i class="fa fa-star-o"></i>
-                                                <i class="fa fa-star-o"></i>
-                                                <i class="fa fa-star-o"></i>
-                                                <i class="fa fa-star-o"></i>
-                                                <i class="fa fa-star-o"></i>
-                                                <span class="rating-quantity">(0)</span>
+                                                <div  id="dataReadonlyReview"
+                                                      data-rating-stars="5"
+                                                      data-rating-readonly="true"
+                                                      data-rating-half="true"
+                                                      data-rating-value="{{$rating}}"
+                                                      data-rating-input="#dataReadonlyInput">
                                             </div>
+
+                                        </div>
                                         </div>
                                         <div class="product-action">
-                                            <a href="javascript:void(0);" class="product-compare"><i
-                                                    class="ti-control-shuffle"></i></a>
+                                            {{--<a href="javascript:void(0);" class="product-compare"><i
+                                                    class="ti-control-shuffle"></i></a>--}}
                                             <form class="d-inline" id="cartForm_{{$product->id}}_list"
                                                   action="javascript:void(0)"
                                                   method="post">
@@ -226,8 +231,10 @@ function makeURL($queryString, $key, $value)
                                                         id="cart_btn_{{$product->id}}_list">Add to Cart
                                                 </button>
                                             </form>
-                                            <a href="javascript:void(0);" class="product-wishlist"><i
-                                                    class="ti-heart"></i></a>
+                                            <form class="d-inline" action="javascript:void(0)" method="post">
+                                                @csrf
+                                                <a id="{{$product->id}}" href="javascript:void(0)" class="product-wishlist product-id"><i class="ti-heart"></i></a>
+                                            </form>
                                         </div>
                                     </div>
                                 </div>
@@ -239,6 +246,11 @@ function makeURL($queryString, $key, $value)
                     </div>
                     <div id="list-products" class="tab-pane">
                         @foreach($products as $product)
+                            @php
+                                $rating = \App\Models\Products::rating($product->id);
+                                $ratingCount = \App\Models\Products::ratingCount($product->id)
+                            @endphp
+
                             <div class="product-single wide-style">
                                 <div class="row align-items-center">
                                     <div class="col-xl-3 col-lg-6 col-md-6">
@@ -250,19 +262,24 @@ function makeURL($queryString, $key, $value)
                                         </div>
                                     </div>
                                     <div class="col-xl-6 col-lg-8 col-md-8 product-desc mt-md-50 sm-mt-50">
-                                        <a href="#" class="add-to-wishlist"><i class="icon_heart_alt"></i></a>
+                                        <form class="d-inline" action="javascript:void(0)" method="post">
+                                            @csrf
+                                            <a id="{{$product->id}}" href="javascript:void(0)" class="product-wishlist product-id add-to-wishlist"><i class="ti-heart"></i></a>
+                                        </form>
                                         <div class="product-title">
                                             <h4>
                                                 <a href="{{route('product.search.show', $product->slug)}}">{{$product->title}}</a>
                                             </h4>
                                         </div>
                                         <div class="product-rating">
-                                            <i class="fa fa-star"></i>
-                                            <i class="fa fa-star"></i>
-                                            <i class="fa fa-star"></i>
-                                            <i class="fa fa-star"></i>
-                                            <i class="fa fa-star-o"></i>
-                                            <span>(5)</span>
+                                            <div  id="dataReadonlyReview"
+                                                  data-rating-stars="5"
+                                                  data-rating-readonly="true"
+                                                  data-rating-half="true"
+                                                  data-rating-value="{{$rating}}"
+                                                  data-rating-input="#dataReadonlyInput">
+                                            </div>
+                                            {{--<span>({{$ratingCount}})</span>--}}
                                         </div>
                                         <div class="product-text">
                                             {{$product->short_description}}
@@ -276,14 +293,17 @@ function makeURL($queryString, $key, $value)
                                                 </div>
                                                 <span>{{$product->new_price}}</span>
                                             </div>
-                                            <form class="d-inline" action="{{route('product.add_to_cart')}}"
+                                            <form class="d-inline" id="cartForm_{{$product->id}}_grid" action="{{route('product.add_to_cart')}}"
                                                   method="post">
                                                 @csrf
                                                 <input type="hidden" name="product_id" value="{{$product->id}}">
                                                 <input type="hidden" name="product_price"
                                                        value="{{$product->new_price}}">
                                                 <input type="hidden" value="1" name="quantity"/>
-                                                <button type="submit" class="btn btn-success add-to-cart">Add to Cart
+                                                <button type="submit" frm="#cartForm_{{$product->id}}_grid"
+                                                        class="btn btn-success add-to-cart dummy_cart_btn"
+                                                        url="{{route('product.add_to_cart')}}"
+                                                        id="cart_btn_{{$product->id}}_grid">Add to Cart
                                                 </button>
                                             </form>
                                         </div>
@@ -368,6 +388,7 @@ function makeURL($queryString, $key, $value)
 <!--brands-area end-->
 
 
+
 <script type="text/javascript">
     $(document).ready(function () {
         var minPrice = "{{request()->query('min') ? request()->query('min') : 10}}";
@@ -391,72 +412,8 @@ function makeURL($queryString, $key, $value)
         $("#hdnMaxPrice").val($("#slider-range").slider("values", 1));
 
 
-        $(".dummy_cart_btn").click(function (e) {
-
-        debugger;
-            var $this = $(this);
-            $this.addClass("cart-processing");
-            $this.prop("disabled", true);
-            var submitURL = $.trim($this.attr('url'));
-            var formId = $.trim($this.attr('frm'));
-            $this.html("<i class='fa fa-circle-o-notch fa-spin'></i> Processing");
-
-
-            e.preventDefault();
-            $this.button('loading');
-            /*Ajax Request Header setup*/
-            $.ajaxSetup({
-                headers: {
-                    'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-                }
-            });
-
-            /* Submit form data using ajax*/
-            $.ajax({
-                url: submitURL,
-                method: 'post',
-                data: $(formId).serialize(),
-                success: function (response) {
-                    if (response.status == true) {
-                        $this.removeClass("cart-processing");
-                        $this.prop("disabled", false);
-                        $this.html("Add to Cart");
-                    }
-
-                    LoadCartList(response.data);
-
-                }
-            });
-        });
-
     });
 
 
-    function LoadCartList(cartList) {
-        $(".dummy_cart_list_binding").html("");
 
-        $(".dummy_total_cart").text(cartList.length);
-        var totalPrice = 0;
-
-        $.each(cartList, function (index, value) {
-            console.log(value);
-            if (index < 5) {
-                var cartList = "<li> <div class=\"mini-cart-thumb\">" +
-                    "<a href=\"" + absoulatePath + "/product/" + value.product.slug + "\"><img src=\"" + absoulatePath + "/public/" + value.product.featured_image + "\" alt=\"\"></a>" +
-                    "</div>" + "<div class=\"mini-cart-heading\">" +
-                    "<span>$ " + value.product.new_price + "x " + value.quantity + "</span><h5><a href=\"" + absoulatePath + "/product/" + value.product.slug + "\">" + value.product.title + "</a></h5></div>" +
-                    "<div class=\"mini-cart-remove\"><a class=\"cart-removal\" title=\"Remove Item\" href=\"" + absoulatePath + "/delete/" + value.id + "\"><i class=\"ti-close\"></i></a></div></li>"
-
-                $(".dummy_cart_list_binding").append(cartList);
-
-                console.log(totalPrice);
-
-                totalPrice += (value.product.new_price * value.quantity);
-
-            }
-        });
-
-        $(".dummy_total_price").text(totalPrice.toFixed(2));
-
-    }
 </script>

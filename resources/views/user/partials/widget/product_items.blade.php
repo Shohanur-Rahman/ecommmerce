@@ -32,17 +32,20 @@
                           data-rating-value="{{$rating}}"
                           data-rating-input="#dataReadonlyInput">
                     </div>
-                    <span>({{$ratingCount}})</span>
+                    {{--<span>({{$ratingCount}})</span>--}}
                 </div>
                 <div class="product-action">
-                    <a href="javascript:void(0);" class="product-compare"><i class="ti-control-shuffle"></i></a>
+                    {{--<a href="javascript:void(0);" class="product-compare"><i class="ti-control-shuffle"></i></a>--}}
 
-                    <form class="d-inline" action="{{route('product.add_to_cart')}}" method="post">
+                    <form class="d-inline" id="cartForm_{{$product->id}}_list" action="{{route('product.add_to_cart')}}" method="post">
                         @csrf
                         <input type="hidden" name="product_id" value="{{$product->id}}">
                         <input type="hidden" name="product_price" value="{{$product->new_price}}">
                         <input type="hidden" value="1" name="quantity"/>
-                        <button type="submit" class="btn btn-success add-to-cart">Add to Cart</button>
+                        <button type="submit" frm="#cartForm_{{$product->id}}_list"
+                                class="btn btn-success add-to-cart dummy_cart_btn"
+                                url="{{route('product.add_to_cart')}}"
+                                id="cart_btn_{{$product->id}}_list">Add to Cart</button>
                     </form>
 
                     <form class="d-inline" action="javascript:void(0)" method="post">
@@ -57,8 +60,3 @@
 
     <?php $itemCount += 1; ?>
 @endforeach
-
-
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.11.2/css/all.min.css">
-<script src="{{asset('user/assets/js/rating.js')}}"></script>
-
