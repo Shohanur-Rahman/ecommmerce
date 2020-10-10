@@ -192,8 +192,8 @@ function makeURL($queryString, $key, $value)
                                     $rating = \App\Models\Products::rating($product->id);
                                     $ratingCount = \App\Models\Products::ratingCount($product->id) ;
                                 @endphp
-                                <div class="col-xl-4 col-md-4 col-sm-6 product-item wow {{ ($itemCount % 2) != 0 ?'slideInDown': 'slideInUp'}}">
-                                    <div class="product-single">
+                                <div class="col-xl-4 col-md-4 col-sm-6 product-item">
+                                    <div class="product-single wow {{ ($itemCount % 2) != 0 ?'slideInDown': 'slideInUp'}}">
                                         <div class="product-title">
                                             <h4>
                                                 <a href="{{route('product.details', ["category" => $categoryDetails->slug ,"slug" => $product->slug])}}">{{$product->title}}</a>

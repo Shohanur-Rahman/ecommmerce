@@ -178,19 +178,57 @@
                                         </tbody>
                                     </table>
                                     <div class="payment-gateways mt-30">
-                                        <div class="single-payment-gateway">
+                                        {{--<div class="single-payment-gateway">
                                             <input type="radio" name="payment_method" id="Cod" value="cod" >
                                             <label for="Cod">Cash On Delivery</label>
-                                        </div>
+                                        </div>--}}
                                         <div class="single-payment-gateway">
-                                            <input type="radio"  name="payment_method" id="Paypal" value="Paypal">
-                                            <label for="Paypal">Paypal</label>
+                                            {{--<input type="radio"  name="payment_method" id="Paypal" value="Paypal">
+                                            <label for="Paypal">Paypal</label>--}}
+                                            <div id="paypal-button"></div>
+
+                                            <script src="https://www.paypalobjects.com/api/checkout.js"></script>
+                                            <script>
+                                                paypal.Button.render({
+                                                    env: 'sandbox', // Or 'production'
+                                                    style: {
+                                                        size: 'small',
+                                                        color: 'gold',
+                                                        shape: 'pill',
+                                                    },
+                                                    // Set up the payment:
+                                                    // 1. Add a payment callback
+                                                    payment: function(data, actions) {
+                                                        // 2. Make a request to your server
+                                                        return actions.request.post("{{route('pay.create.payment')}}")
+                                                            .then(function(res) {
+                                                                // 3. Return res.id from the response
+                                                                // console.log(res);
+                                                                return res.id;
+                                                            });
+                                                    },
+                                                    // Execute the payment:
+                                                    // 1. Add an onAuthorize callback
+                                                    onAuthorize: function(data, actions) {
+                                                        // 2. Make a request to your server
+                                                        return actions.request.post("{{route('pay.execute.payment')}}}", {
+                                                            paymentID: data.paymentID,
+                                                            payerID:   data.payerID
+                                                        })
+                                                            .then(function(res) {
+                                                                console.log(res);
+                                                                alert('PAYMENT WENT THROUGH!!');
+                                                                // 3. Show the buyer a confirmation message.
+                                                            });
+                                                    }
+                                                }, '#paypal-button');
+                                            </script>
                                         </div>
                                         <span id="error-message"></span>
                                     </div>
-                                    <div class="place-order text-center mt-60">
+                                   {{-- <div class="place-order text-center mt-60">
                                         <button id="submitForm" class="btn btn-common width-180">place order</button>
-                                    </div>
+                                    </div>--}}
                                 </div>
                             </div>
                         </div>
