@@ -24,7 +24,12 @@ class MailController extends Controller
 
     public function store(Request $request)
     {
-        dd($request->all());
+        $emails = [];
+
+        if($request->has('emails') !== null){
+            $emails = explode(';',$request['emails']);
+
+        }
 
         $subject = $request['subject'];
 
@@ -35,14 +40,12 @@ class MailController extends Controller
 
         if($request->has('user_type')){
             $userEmails = User::where('user_type',$request['user_type'])->select('email')->get()->toArray();
-            $userEmails = Arr::flatten($userEmails);
-        }else{
-            $userEmails = $request['emails'];
+            $emails = array_merge($emails,Arr::flatten($userEmails));
         }
 
-        foreach ($userEmails as $key=>$value){
+        foreach ($emails as $key=>$value){
 
-            $email = $userEmails[$key];
+            $email = $emails[$key];
 
             if($request->has('submit')){
                 $mail->mailAddresses()->create(['email'=>$email,'status'=>1]);
@@ -58,6 +61,11 @@ class MailController extends Controller
         return redirect()->back()->with('success','Email sent has been successfully');
     }
 
+    public function destroy(Request $request ,MailAddress $mailAddress)
+    {
+        dd($request->all());
+    }
+
     public function show(MailAddress $mailAddress)
     {
 
@@ -66,8 +74,14 @@ class MailController extends Controller
 
     public function sendMail()
     {
-        $mailAddresses = MailAddress::with('mail')->get();
+        $mailAddresses = MailAddress::with('mail')->where('status',1)->get();
 
         return view('admin.modules.mails.send-mail',compact('mailAddresses'));
+    }
+
+    public function draftMail()
+    {
+        $mailAddresses = MailAddress::with('mail')->where('status',0)->get();
+        return view('admin.modules.mails.draft-mail',compact('mailAddresses'));
     }
 }

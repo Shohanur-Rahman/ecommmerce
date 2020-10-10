@@ -129,11 +129,14 @@ Route::group(['middleware' => 'auth'], function() {
         Route::post('','MailController@store')->name('mails.store');
 
 //        Route::patch('/{mainSlider}','MainSliderController@update')->name('main-sliders.update');
-//        Route::delete('/{mainSlider}','MainSliderController@destroy')->name('main-sliders.destroy');
         Route::get('/send','MailController@sendMail')->name('send-mail.index');
         Route::get('/send/{mailAddress}/show','MailController@show')->name('send-mails.show');
+        Route::get('/draft','MailController@draftMail')->name('draft-mail.index');
+
+        Route::delete('/destroy','MailController@destroy')->name('mails.destroy');
     });
 });
+
 
 
 

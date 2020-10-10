@@ -18,7 +18,8 @@
                             <!-- Box-header -->
                             <div class="box-body">
                                 <div class="form-group">
-                                    <input type="email" class="form-control"  id="dummy_multiple_email" name="emails[email]" placeholder="To:" required="required" data-parsley-required-message="Please enter a email address">
+                                    <input type="text" class="form-control"  id="dummy_multiple_email" name="emails" placeholder="To:">
+                                    <p>Type a email address and press the enter then insert another email address</p>
                                 </div>
 
                                 <div class="form-group mb-30">

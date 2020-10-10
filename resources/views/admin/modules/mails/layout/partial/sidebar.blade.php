@@ -9,7 +9,7 @@
             <ul class="folder-list">
                 <li class="active"><a href="{{route('mails.index')}}"> <i class="ti-email"></i> Inbox <span class="badge badge-pill badge-primary inbox ml-2">25</span> </a></li>
                 <li><a href="{{route('send-mail.index')}}"> <i class="ti-share"></i> Send Mail</a></li>
-                <li><a href="#"> <i class="fa fa-file-text-o"></i> Drafts <span class="badge badge-pill badge-warning inbox ml-2">3</span></a></li>
+                <li><a href="{{route('draft-mail.index')}}"> <i class="fa fa-file-text-o"></i> Drafts <span class="badge badge-pill badge-warning inbox ml-2">3</span></a></li>
                 <li><a href="#"> <i class="fa fa-trash-o"></i> Trash <span class="badge badge-pill badge-danger inbox ml-2">4</span></a></li>
             </ul>
 

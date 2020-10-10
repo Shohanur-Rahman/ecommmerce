@@ -15,7 +15,7 @@
     <!-- Tools -->
     <div class="mail-tools tooltip-demo d-flex align-items-center mb-15 justify-content-between">
         <div class="mail-btn-group d-flex align-items-center mb-15">
-            <a href="#" class="btn"><i class="icon_trash_alt"></i></a>
+            <a href="#" class="btn"  id="dummy_delete_btn" ><i class="icon_trash_alt"></i></a>
             <a href="#" class="btn"><i class="icon_mail_alt"></i></a>
             <a href="#" class="btn"><i class="icon_folder-open_alt"></i></a>
             <a href="#" class="btn"><i class="icon_tag_alt"></i></a>
@@ -26,5 +26,6 @@
             <a href="#"><i class="arrow_carrot-left"></i></a>
             <a href="#"><i class="arrow_carrot-right"></i></a>
         </div>
+
     </div>
 </div>

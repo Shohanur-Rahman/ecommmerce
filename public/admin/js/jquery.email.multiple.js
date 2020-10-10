@@ -18,9 +18,9 @@
 
         return this.each(function()
         {
-            $(this).after("<span class=\"to-input\">Email :</span>\n" +
+            $(this).after("<span class=\"to-input\"></span>\n" +
                 "<div class=\"all-mail\"></div>\n" +
-                "<input type=\"text\" name=\"email\" class=\"enter-mail-id\" placeholder=\"Enter Email ...\" />");
+                "<input type=\"text\" name=\"email\" class=\"enter-mail-id form-control\" placeholder=\"Enter Email ...\" />");
             let $orig = $(this);
             let $element = $('.enter-mail-id');
             $element.keydown(function (e) {
