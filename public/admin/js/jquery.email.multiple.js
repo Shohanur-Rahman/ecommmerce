@@ -47,7 +47,7 @@
             if(settings.data){
                 $.each(settings.data, function (x, y) {
                     if (/^[a-z0-9._-]+@[a-z0-9._-]+\.[a-z]{2,6}$/.test(y)){
-                        $('.all-mail').append('<span class="email-ids">' + y + '<span class="cancel-email">x</span></span>');
+                        $('.all-mail').append('<span class="email-ids form">' + y + '<span class="cancel-email">x</span></span>');
                         $element.val('');
 
                         email += y + ';'

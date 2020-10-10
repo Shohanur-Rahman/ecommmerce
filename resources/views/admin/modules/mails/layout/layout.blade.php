@@ -1,7 +1,7 @@
 @extends('admin.layouts.admin')
 @section('title', "Mail")
 @section('content')
-    <script src="{{asset('admin/css/email.multiple.css')}}"></script>
+
 
 <div class="inbox-area">
     <div class="row">

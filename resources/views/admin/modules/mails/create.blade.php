@@ -2,6 +2,7 @@
 @section('title', "Send Mail")
 @section('mail-content')
     @include('admin.partials.partial_assets.kendo')
+    <link rel="stylesheet" href="{{asset('admin/css/email.multiple.css')}}">
     <div class="row">
         <div class="col-12 box-margin">
             <div class="card">
@@ -21,7 +22,7 @@
                                         <i class="ti-help-alt mr-2"></i>
                                         <span>separate email address by a comma</span>
                                     </p>
-                                    <input type="text" id="email" class="form-control" name="emails[email]" placeholder="To:" required="required" data-parsley-required-message="Please enter a email address">
+                                    <input type="text" class="form-control"  id="dummy_multiple_email" name="emails[email]" placeholder="To:" required="required" data-parsley-required-message="Please enter a email address">
                                 </div>
 
                                 <div class="form-group mb-30">
@@ -78,6 +79,16 @@
         })
     </script>
 
+    <script>
+        $(document).ready(function($){
+            let data = [
+            ];
+
+            $("#dummy_multiple_email").email_multiple({
+                data: data
+            })
+        });
+    </script>
     @include('admin.partials.partial_assets.kendo_init')
 @endsection
 
