@@ -127,10 +127,11 @@ Route::group(['middleware' => 'auth'], function() {
         Route::get('','MailController@index')->name('mails.index');
         Route::get('/create','MailController@create')->name('mails.create');
         Route::post('','MailController@store')->name('mails.store');
-//        Route::get('/{mainSlider}/edit','MainSliderController@edit')->name('main-sliders.edit');
+
 //        Route::patch('/{mainSlider}','MainSliderController@update')->name('main-sliders.update');
 //        Route::delete('/{mainSlider}','MainSliderController@destroy')->name('main-sliders.destroy');
         Route::get('/send','MailController@sendMail')->name('send-mail.index');
+        Route::get('/send/{mailAddress}/show','MailController@show')->name('send-mails.show');
     });
 });
 

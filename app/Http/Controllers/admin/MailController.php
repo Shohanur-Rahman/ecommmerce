@@ -4,6 +4,7 @@ namespace App\Http\Controllers\admin;
 
 use App\Http\Controllers\Controller;
 use App\Models\Mail;
+use App\Models\MailAddress;
 use App\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Arr;
@@ -23,6 +24,7 @@ class MailController extends Controller
 
     public function store(Request $request)
     {
+        dd($request->all());
 
         $subject = $request['subject'];
 
@@ -41,20 +43,31 @@ class MailController extends Controller
         foreach ($userEmails as $key=>$value){
 
             $email = $userEmails[$key];
-            $mail->mailAddresses()->create(['email'=>$email]);
 
-            \Illuminate\Support\Facades\Mail::send('admin.modules.mails.emails.email',['data'=>$email],function ($message) use($email,$subject){
-                $message->to($email)->subject($subject);
-            });
+            if($request->has('submit')){
+                $mail->mailAddresses()->create(['email'=>$email,'status'=>1]);
+                \Illuminate\Support\Facades\Mail::send('admin.modules.mails.emails.email',['email'=>$email,'data'=>$mail],function ($message) use($email,$subject){
+                    $message->to($email)->subject($subject);
+                });
+            }else{
+                $mail->mailAddresses()->create(['email'=>$email]);
+            }
+
         }
 
         return redirect()->back()->with('success','Email sent has been successfully');
     }
 
+    public function show(MailAddress $mailAddress)
+    {
+
+        return view('admin.modules.mails.show',compact('mailAddress'));
+    }
+
     public function sendMail()
     {
-        $mails = Mail::with('mailAddresses')->get();
+        $mailAddresses = MailAddress::with('mail')->get();
 
-        return view('admin.modules.mails.send-mail',compact('mails'));
+        return view('admin.modules.mails.send-mail',compact('mailAddresses'));
     }
 }
