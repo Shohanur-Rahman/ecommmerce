@@ -23,5 +23,5 @@
     </div>
 </div>
 
-<script src="{{asset('admin/js/jquery.email.multiple.js')}}"></script>
+
 @endsection
