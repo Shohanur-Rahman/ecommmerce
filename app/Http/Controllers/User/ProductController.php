@@ -185,4 +185,5 @@ class ProductController extends Controller
 
         return Response()->json($arr);
     }
+
 }

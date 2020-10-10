@@ -433,15 +433,30 @@ function makeURL($queryString, $key, $value)
 
 
     function LoadCartList(cartList) {
-        console.log(cartList);
+        $(".dummy_cart_list_binding").html("");
 
+        $(".dummy_total_cart").text(cartList.length);
+        var totalPrice = 0;
 
+        $.each(cartList, function (index, value) {
+            console.log(value);
+            if (index < 5) {
+                var cartList = "<li> <div class=\"mini-cart-thumb\">" +
+                    "<a href=\"" + absoulatePath + "/product/" + value.product.slug + "\"><img src=\"" + absoulatePath + "/public/" + value.product.featured_image + "\" alt=\"\"></a>" +
+                    "</div>" + "<div class=\"mini-cart-heading\">" +
+                    "<span>$ " + value.product.new_price + "x " + value.quantity + "</span><h5><a href=\"" + absoulatePath + "/product/" + value.product.slug + "\">" + value.product.title + "</a></h5></div>" +
+                    "<div class=\"mini-cart-remove\"><a class=\"cart-removal\" title=\"Remove Item\" href=\"" + absoulatePath + "/delete/" + value.id + "\"><i class=\"ti-close\"></i></a></div></li>"
 
-        $.each(cartList, function( index, value ) {
-            if(index <5){
+                $(".dummy_cart_list_binding").append(cartList);
+
+                console.log(totalPrice);
+
+                totalPrice += (value.product.new_price * value.quantity);
 
             }
         });
+
+        $(".dummy_total_price").text(totalPrice.toFixed(2));
 
     }
 </script>

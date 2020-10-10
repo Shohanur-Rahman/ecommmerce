@@ -27,9 +27,9 @@
 <!-- slick-theme css -->
 <link rel="stylesheet" href="{{asset('user/assets/css/slick-theme.css')}}">
 <!-- cssanimation css -->
-<link rel="stylesheet" href="{{asset('user/assets/css/cssanimation.min.css')}}" />
+<link rel="stylesheet" href="{{asset('user/assets/css/cssanimation.min.css')}}"/>
 <!-- animate css -->
-<link rel="stylesheet" href="{{asset('user/assets/css/animate.css')}}" />
+<link rel="stylesheet" href="{{asset('user/assets/css/animate.css')}}"/>
 <!-- helper css -->
 <link rel="stylesheet" href="{{asset('user/assets/css/helper.css')}}">
 
@@ -51,7 +51,13 @@
 <!-- bootstra.min js -->
 <script src="{{asset('user/assets/js/popper.min.js')}}"></script>
 <script src="{{asset('user/assets/js/bootstrap.min.js')}}"></script>
+<script type="text/javascript">
+    var pathURL = window.location.pathname; // Returns path only (/path/example.html)
+    var pageURL = window.location.href;     // Returns full URL (https://example.com/path/example.html)
+    var domainURL = window.location.origin;   // Returns base URL (https://example.com)
+    var absoulatePath = domainURL + "/ecommmerce";
 
+</script>
 <script src="{{asset('parsley/parsley.min.js')}}"></script>
 <!-- mmenu js -->
 <script src="{{asset('user/assets/js/jquery.mmenu.js')}}"></script>
