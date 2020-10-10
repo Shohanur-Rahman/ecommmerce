@@ -122,6 +122,15 @@ Route::group(['middleware' => 'auth'], function() {
         Route::patch('/{newsLetter}','SubscriberController@update')->name('subscribers.update');
         Route::delete('/{newsLetter}','SubscriberController@destroy')->name('subscribers.destroy');
     });
+
+    Route::group(['prefix'=>'mails'], function(){
+        Route::get('','MailController@index')->name('mails.index');
+      /*  Route::get('/create','MainSliderController@create')->name('main-sliders.create');
+        Route::post('','MainSliderController@store')->name('main-sliders.store');
+        Route::get('/{mainSlider}/edit','MainSliderController@edit')->name('main-sliders.edit');
+        Route::patch('/{mainSlider}','MainSliderController@update')->name('main-sliders.update');
+        Route::delete('/{mainSlider}','MainSliderController@destroy')->name('main-sliders.destroy');*/
+    });
 });
 
 

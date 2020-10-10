@@ -77,6 +77,9 @@
                             <li><a class=" {{activeLink('ecom-settings')}}" href="{{route('ecom-settings.index')}}">- E-com Settings</a></li>
                         </ul>
                     </li>
+
+
+                    <li><a  class="{{activeLink('mails')}}" href="{{route('mails.index')}}"><i class="zmdi zmdi-view-web"></i> <span>Mail</span></a></li>
                 </ul>
             </nav>
         </div>

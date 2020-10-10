@@ -112,4 +112,7 @@
 
         @include('user.partials.widget.product_items', ['categoryProducts' => $othersProducts, 'productCategory' =>$othersProductCategory ])
     </div>
+
+    @include('user.partials.widget.brand_slider')
 @endsection
+
