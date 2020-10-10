@@ -32,14 +32,15 @@ class MailController extends Controller
         ]);
 
         if($request->has('user_type')){
-            $users = User::where('user_type',$request['user_type'])->get()->toArray();
+            $userEmails = User::where('user_type',$request['user_type'])->select('email')->get()->toArray();
+            $userEmails = Arr::flatten($userEmails);
         }else{
-            $users = $request['emails'];
+            $userEmails = $request['emails'];
         }
 
-        foreach ($users as $key=>$value){
+        foreach ($userEmails as $key=>$value){
 
-            $email = $users[$key];
+            $email = $userEmails[$key];
             $mail->mailAddresses()->create(['email'=>$email]);
 
             \Illuminate\Support\Facades\Mail::send('admin.modules.mails.emails.email',['data'=>$email],function ($message) use($email,$subject){
