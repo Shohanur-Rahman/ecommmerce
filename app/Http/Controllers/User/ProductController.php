@@ -30,8 +30,39 @@ class ProductController extends Controller
         $mixPrice = $request->query('max') ? $request->query('max') : 30000;
         $brandId = $request->query('brand') ? $request->query('brand') : 0;
         $colorId = $request->query('color') ? $request->query('color') : 0;
+        $order = $request->query('order') ? $request->query('order') : 0;
         $requestString = $request->all();
 
+
+        $orderColumn = "";
+        $orderOrdering = "";
+        $sortText = "Default";
+
+        if ($order == 0) {
+            $orderColumn = "products.id";
+            $orderOrdering = "desc";
+            $sortText = "Default";
+        } else if ($order == 1) {
+            $orderColumn = "products.title";
+            $orderOrdering = "asc";
+            $sortText = "A - Z";
+        } else if ($order == 2) {
+            $orderColumn = "products.title";
+            $orderOrdering = "desc";
+            $sortText = "Z - A";
+        } else if ($order == 3) {
+            $orderColumn = "products.new_price";
+            $orderOrdering = "asc";
+            $sortText = "Price Low - High";
+        } else if ($order == 4) {
+            $orderColumn = "products.new_price";
+            $orderOrdering = "desc";
+            $sortText = "Price High - Low";
+        } else {
+            $orderColumn = "products.new_price";
+            $orderOrdering = "asc";
+            $sortText = "Price Low - High";
+        }
 
         $categoryDetails = ProductCategory::where('slug', $category)->first();
 
@@ -41,7 +72,7 @@ class ProductController extends Controller
 
         $products = new Products();
 
-        if ($brandId > 0 && $colorId > 0)
+        if ($brandId > 0)
             $products = DB::table('products')
                 ->join('product_category_maps', 'products.id', '=', 'product_category_maps.product_id')
                 ->select('products.*')
@@ -49,11 +80,11 @@ class ProductController extends Controller
                 ->where('product_category_maps.cat_id', $categoryDetails->id)
                 ->where('products.new_price', '>=', $minPrice)
                 ->where('products.new_price', '<=', $mixPrice)
-                ->where('products.brand_id', '<=', $brandId)
-                ->where('products.color_id', '<=', $colorId)
+                ->where('products.brand_id', $brandId)
+                ->orderBy($orderColumn, $orderOrdering)
                 ->distinct()
                 ->paginate($page_size);
-        elseif ($brandId > 0) {
+        else {
             $products = DB::table('products')
                 ->join('product_category_maps', 'products.id', '=', 'product_category_maps.product_id')
                 ->select('products.*')
@@ -61,36 +92,17 @@ class ProductController extends Controller
                 ->where('product_category_maps.cat_id', $categoryDetails->id)
                 ->where('products.new_price', '>=', $minPrice)
                 ->where('products.new_price', '<=', $mixPrice)
-                ->distinct()
-                ->paginate($page_size);
-        } elseif ($colorId > 0) {
-            $products = DB::table('products')
-                ->join('product_category_maps', 'products.id', '=', 'product_category_maps.product_id')
-                ->select('products.*')
-                ->where('products.is_published', 1)
-                ->where('product_category_maps.cat_id', $categoryDetails->id)
-                ->where('products.new_price', '>=', $minPrice)
-                ->where('products.new_price', '<=', $mixPrice)
-                ->distinct()
-                ->paginate($page_size);
-        } else {
-            $products = DB::table('products')
-                ->join('product_category_maps', 'products.id', '=', 'product_category_maps.product_id')
-                ->select('products.*')
-                ->where('products.is_published', 1)
-                ->where('product_category_maps.cat_id', $categoryDetails->id)
-                ->where('products.new_price', '>=', $minPrice)
-                ->where('products.new_price', '<=', $mixPrice)
+                ->orderBy($orderColumn, $orderOrdering)
                 ->distinct()
                 ->paginate($page_size);
         }
 
-        $brands = ProductBrandCategoryMap::with('brand')->where('cat_id', $categoryDetails->id)->get();
+        $brands = ProductBrands::all();
         $colors = ProductColor::all();
 
         //$products = ProductCategoryMap::with('product')->where(['cat_id' => $categoryDetails->id, 'is_published' => 1])->paginate($page_size);
 
-        return view('user.pages.products.index', compact("products", "categoryDetails", "requestString", "brands", "colors"));
+        return view('user.pages.products.index', compact("products", "categoryDetails", "requestString", "brands", "colors", 'sortText'));
     }
 
     public function search(Request $request)
@@ -100,9 +112,41 @@ class ProductController extends Controller
         $minPrice = $request->query('min') ? $request->query('min') : 10;
         $mixPrice = $request->query('max') ? $request->query('max') : 30000;
         $brandId = $request->query('brand') ? $request->query('brand') : 0;
+        $order = $request->query('order') ? $request->query('order') : 0;
         //$colorId = $request->query('color') ? $request->query('color') : 0;
         $searchText = $request->query('s') ? $request->query('s') : '';
         $requestString = $request->all();
+
+        $orderColumn = "";
+        $orderOrdering = "";
+        $sortText = "Default";
+
+        if ($order == 0) {
+            $orderColumn = "products.id";
+            $orderOrdering = "desc";
+            $sortText = "Default";
+        } else if ($order == 1) {
+            $orderColumn = "products.title";
+            $orderOrdering = "asc";
+            $sortText = "A - Z";
+        } else if ($order == 2) {
+            $orderColumn = "products.title";
+            $orderOrdering = "desc";
+            $sortText = "Z - A";
+        } else if ($order == 3) {
+            $orderColumn = "products.new_price";
+            $orderOrdering = "asc";
+            $sortText = "Price Low - High";
+        } else if ($order == 4) {
+            $orderColumn = "products.new_price";
+            $orderOrdering = "desc";
+            $sortText = "Price High - Low";
+        } else {
+            $orderColumn = "products.new_price";
+            $orderOrdering = "asc";
+            $sortText = "Price Low - High";
+        }
+
 
         $products = new Products();
 
@@ -116,7 +160,8 @@ class ProductController extends Controller
                 ->where('products.new_price', '>=', $minPrice)
                 ->where('products.new_price', '<=', $mixPrice)
                 ->where('products.new_price', '<=', $mixPrice)
-                ->where('products.brand_id',  $brandId)
+                ->where('products.brand_id', $brandId)
+                ->orderBy($orderColumn, $orderOrdering)
                 ->distinct()
                 ->paginate($page_size);
         } else {
@@ -128,6 +173,7 @@ class ProductController extends Controller
                 ->where('products.title', 'like', '%' . $searchText . '%')
                 ->where('products.new_price', '>=', $minPrice)
                 ->where('products.new_price', '<=', $mixPrice)
+                ->orderBy($orderColumn, $orderOrdering)
                 ->distinct()
                 ->paginate($page_size);
         }
@@ -139,7 +185,7 @@ class ProductController extends Controller
 
         //dd($categories);
 
-        return view('user.pages.products.search', compact('products', 'categories', 'brands', 'colors'));
+        return view('user.pages.products.search', compact('products', 'categories', 'brands', 'colors', 'sortText'));
     }
 
     public function details($category, $slug)

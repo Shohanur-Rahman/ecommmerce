@@ -25,7 +25,7 @@
                     <span>$ {{$product->new_price}}</span>
                 </div>
                 <div class="pull-right d-flex">
-                    <div  id="dataReadonlyReview"
+                    <div title="{{$rating > 0 ? $rating : 'No rating yet'}}"  id="dataReadonlyReview"
                           data-rating-stars="5"
                           data-rating-readonly="true"
                           data-rating-half="true"

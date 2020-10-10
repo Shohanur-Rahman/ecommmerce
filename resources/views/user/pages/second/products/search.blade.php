@@ -92,6 +92,9 @@ function makeURL($queryString, $key, $value)
                             <h3>Brands</h3>
                         </div>
                         <ul class="list-none mt-25">
+                            <li>
+                                <a href="{{route('product.search').generateQueryString('brand', 0)}}">All Brands</a>
+                            </li>
                             @foreach($brands as $brand)
                                 <li>
                                     <a href="{{route('product.search').generateQueryString('brand', $brand->id)}}">{{$brand->name}}</a>
@@ -122,7 +125,7 @@ function makeURL($queryString, $key, $value)
                         <div class="dropdown filter-box">
                             <button class="btn-filter" type="button" id="shortByDropDown" data-toggle="dropdown"
                                     aria-haspopup="true" aria-expanded="false">
-                                Short By : Default <i class="glyphicon glyphicon-chevron-down"></i>
+                                Short By : {{$sortText}} <i class="glyphicon glyphicon-chevron-down"></i>
                             </button>
                             <div class="dropdown-menu filter-dropdown" aria-labelledby="shortByDropDown">
                                 <a class="dropdown-item"
@@ -131,9 +134,18 @@ function makeURL($queryString, $key, $value)
                                 <a class="dropdown-item"
                                    href="{{route('product.search').generateQueryString('order',1)}}">Sort
                                     by A - Z</a>
+
                                 <a class="dropdown-item"
                                    href="{{route('product.search').generateQueryString('order',2)}}">Sort
+                                    by Z - A</a>
+
+                                <a class="dropdown-item"
+                                   href="{{route('product.search').generateQueryString('order',3)}}">Sort
                                     Price Low - High</a>
+
+                                <a class="dropdown-item"
+                                   href="{{route('product.search').generateQueryString('order',4)}}">Sort
+                                    Price High - Low</a>
                             </div>
                         </div>
 
@@ -204,7 +216,7 @@ function makeURL($queryString, $key, $value)
                                                 <span>${{$product->new_price}}</span>
                                             </div>
                                             <div class="pull-right">
-                                                <div  id="dataReadonlyReview"
+                                                <div title="{{$rating > 0 ? $rating : 'No rating yet'}}"   id="dataReadonlyReview"
                                                       data-rating-stars="5"
                                                       data-rating-readonly="true"
                                                       data-rating-half="true"
@@ -272,7 +284,7 @@ function makeURL($queryString, $key, $value)
                                             </h4>
                                         </div>
                                         <div class="product-rating">
-                                            <div  id="dataReadonlyReview"
+                                            <div title="{{$rating > 0 ? $rating : 'No rating yet'}}"   id="dataReadonlyReview"
                                                   data-rating-stars="5"
                                                   data-rating-readonly="true"
                                                   data-rating-half="true"

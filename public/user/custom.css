@@ -109,7 +109,6 @@ textarea.parsley-error {
 }
 .dropdown.filter-box {
     border: 1px solid #efeeeea8;
-    max-width: 148px;
     display: inline-block;
     margin-left: 5px;
 }
