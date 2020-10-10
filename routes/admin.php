@@ -125,11 +125,12 @@ Route::group(['middleware' => 'auth'], function() {
 
     Route::group(['prefix'=>'mails'], function(){
         Route::get('','MailController@index')->name('mails.index');
-      /*  Route::get('/create','MainSliderController@create')->name('main-sliders.create');
-        Route::post('','MainSliderController@store')->name('main-sliders.store');
-        Route::get('/{mainSlider}/edit','MainSliderController@edit')->name('main-sliders.edit');
-        Route::patch('/{mainSlider}','MainSliderController@update')->name('main-sliders.update');
-        Route::delete('/{mainSlider}','MainSliderController@destroy')->name('main-sliders.destroy');*/
+        Route::get('/create','MailController@create')->name('mails.create');
+        Route::post('','MailController@store')->name('mails.store');
+//        Route::get('/{mainSlider}/edit','MainSliderController@edit')->name('main-sliders.edit');
+//        Route::patch('/{mainSlider}','MainSliderController@update')->name('main-sliders.update');
+//        Route::delete('/{mainSlider}','MainSliderController@destroy')->name('main-sliders.destroy');
+        Route::get('/send','MailController@sendMail')->name('send-mail.index');
     });
 });
 

@@ -27,7 +27,7 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot()
     {
-       View::composer(['admin.modules.settings.website.product_features.partial.*'],function ($view){
+       View::composer(['admin.modules.settings.website.product_features.layout.*'],function ($view){
             $view->with('categories',ProductCategory::where('parent_id',0)->with('user','childrens.childrens')->get());
 
        });
