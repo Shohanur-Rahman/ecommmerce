@@ -32,14 +32,16 @@ class MailController extends Controller
         }
 
         $subject = $request['subject'];
+        $userType = $request['user_type'];
 
         $mail = Mail::create([
             'subject'=>$subject,
-            'description'=>$request['description']
+            'description'=>$request['description'],
+            'user_type'=>$userType
         ]);
 
         if($request->has('user_type')){
-            $userEmails = User::where('user_type',$request['user_type'])->select('email')->get()->toArray();
+            $userEmails = User::where('user_type',$userType)->select('email')->get()->toArray();
             $emails = array_merge($emails,Arr::flatten($userEmails));
         }
 
@@ -99,7 +101,14 @@ class MailController extends Controller
 
     public function draftEdit(Mail $mail)
     {
-        return view('admin.modules.mails.draft-mail-edit',compact('mail'));
+        $userTypes = User::select('user_type')->whereNotIn('user_type',['admin','super-admin'])->distinct()->get();
+
+        return view('admin.modules.mails.draft-mail-edit',compact('mail','userTypes'));
+    }
+
+    public function draftupdate (Request $request)
+    {
+        dd($request->all());
     }
 
     public function trashIndex()
