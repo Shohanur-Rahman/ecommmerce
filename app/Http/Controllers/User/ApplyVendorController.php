@@ -28,9 +28,14 @@ class ApplyVendorController extends Controller
 
     public function create()
     {
+
+        //dd(Session::get('verify_code'));
+
         if(Session::has('verify_code')){
             return view('user.pages.apply-vendors.create');
         }
+
+
 
         return redirect(route('profiles.index'));
     }

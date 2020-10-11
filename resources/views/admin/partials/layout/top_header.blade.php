@@ -25,6 +25,7 @@
         <!-- Top Bar Nav -->
         <ul class="right-side-content d-flex align-items-center">
             <!-- Left Side Nav -->
+            <li>{{"Welcome " . \Illuminate\Support\Facades\Auth::user()->name}}</li>
             {{--<li class="hide-phone app-search">
                 <form role="search" class=""><input type="text" placeholder="Search..." class="form-control"> <button type="submit" class="mr-0"><i class="fa fa-search"></i></button></form>
             </li>--}}

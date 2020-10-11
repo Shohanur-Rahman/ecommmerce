@@ -13,20 +13,42 @@ class OrderController extends Controller
 {
     public function index()
     {
-        $orders = Order::with('orderProducts.product','user')->get();
+        //$orders = Order::with('orderProducts.product','user')->get();
 
-        return view('admin.modules.orders.index',compact('orders'));
+        $userType = Auth::user()->user_type;
+
+        if (strtolower($userType) == "vendor") {
+
+            $orders = DB::table('orders')
+                ->join('order_products', 'order_products.order_id', '=', 'orders.id')
+                ->join('products', 'order_products.product_id', '=', 'products.id')
+                ->select('orders.*', 'products.user_id')
+                ->where('products.user_id', Auth::id())
+                ->orderBy('orders.id', 'desc')
+                ->get();
+        } else {
+            $orders = DB::table('orders')
+                ->join('order_products', 'order_products.order_id', '=', 'orders.id')
+                ->join('products', 'order_products.product_id', '=', 'products.id')
+                ->select('orders.*', 'products.user_id')
+                ->orderBy('orders.id', 'desc')
+                ->get();
+
+        }
+
+
+        return view('admin.modules.orders.index', compact('orders'));
     }
 
     public function show(Order $order)
     {
-        $order = $order->with('user','orderProducts','shippingAddress')
+        $order = $order->with('user', 'orderProducts', 'shippingAddress')
             ->first();
 
         $userType = Auth::user()->user_type;
 
 
-        if(strtolower($userType) == "vendor"){
+        if (strtolower($userType) == "vendor") {
             $productInfo = DB::table('products')
                 ->join('order_products', 'order_products.product_id', '=', 'products.id')
                 ->select('products.*', 'order_products.quantity')
@@ -34,7 +56,7 @@ class OrderController extends Controller
                 ->where('order_products.order_id', $order->id)
                 ->get();
 
-        }else{
+        } else {
 
             $productInfo = DB::table('products')
                 ->join('order_products', 'order_products.product_id', '=', 'products.id')
@@ -45,16 +67,15 @@ class OrderController extends Controller
         }
 
 
-
         //dd($productInfo);
 
-        return view('admin.modules.orders.show',compact('order', 'productInfo'));
+        return view('admin.modules.orders.show', compact('order', 'productInfo'));
     }
 
     public function updateStatus(Request $request, Order $order)
     {
-        $order->update(['status'=>$request['status'] ?? 'New']);
+        $order->update(['status' => $request['status'] ?? 'New']);
 
-        return redirect(route('orders.show',$order->id))->with('success','Ordered status updated successfully');
+        return redirect(route('orders.show', $order->id))->with('success', 'Ordered status updated successfully');
     }
 }

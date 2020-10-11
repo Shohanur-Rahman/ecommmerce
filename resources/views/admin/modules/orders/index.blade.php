@@ -21,42 +21,31 @@
                         <thead>
                         <tr>
                             <th>Id</th>
+                            <th>#P_ID</th>
                             <th>Name</th>
                             <th>Email</th>
-                            <th>Ordered Products</th>
-                            <th>Amount</th>
-                            <th>Order Status</th>
-                            <th>Ordered Date</th>
+                            <th>Invoice</th>
+                            <th>Method</th>
+                            <th>Status</th>
+                            <th>Date</th>
                             <th>Action</th>
                         </tr>
                         </thead>
 
                         <tbody>
                         @foreach($orders as $order)
+                            <?php $customerInfo = \App\User::find($order->user_id);?>
                             <tr>
                                 <td>{{$order->id}}</td>
-                                <td>{{$order->user->name}}</td>
-                                <td>{{$order->user->email}}</td>
-                                <td>
-                                    @foreach($order->orderProducts as $orderProduct)
-                                       <span class="d-block"> {{$orderProduct->product->sku}}</span>
-                                    @endforeach
-                                </td>
-                                <td>
-                                    {{--@php
-                                        $total = 0;
-                                        $shippingCharge = 0;
-                                       foreach($order->orderProducts as $orderProduct){
-                                            $shippingCharge += $order->product->shipping_charge;
-                                           $total += $orderProduct->product->new_price*$orderProduct->quantity + $shippingCharge;
-                                       }
-                                    @endphp
-                                    {{$total}}--}}
-                                </td>
+                                <td>{{$order->payer_email}}</td>
+                                <td>{{$customerInfo->name}}</td>
+                                <td>{{$customerInfo->email}}</td>
+                                <td>#{{$order->invoice_number}}</td>
+                                <td>{{$order->payment_method}}</td>
                                 <td>{{$order->status}}</td>
-                                <td>{{$order->created_at->format('d F Y')}}</td>
+                                <td>{{date('d F Y H:m', strtotime($order->created_at))}}</td>
                                 <td>
-                                    <a class="btn btn-outline-primary table-btn btn-sm" href="{{route('orders.show',$order )}}" title="Edit"><i class="fa fa-eye"></i></a>
+                                    <a class="btn btn-outline-primary table-btn btn-sm" href="{{route('orders.show',$order->id )}}" title="Edit"><i class="fa fa-eye"></i></a>
                                 </td>
 
                             </tr>
