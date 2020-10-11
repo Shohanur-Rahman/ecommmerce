@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\User;
 
 use App\Http\Controllers\Controller;
+use App\Mail\OrderConfirmationMail;
 use App\Models\Products;
 use App\Models\User\CartItem;
 use App\Models\User\Country;
@@ -13,6 +14,7 @@ use App\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Session;
+use Illuminate\Support\Facades\Mail;
 
 class CheckoutController extends Controller
 {
@@ -64,6 +66,7 @@ class CheckoutController extends Controller
             }
 
             $totalCost = ($productCost + $shippingCost);
+            $invoice= $paymentResult->transactions[0]->invoice_number;
 
             $order = Order::create([
                 'customer_id' => auth()->id(),
@@ -72,7 +75,7 @@ class CheckoutController extends Controller
                 'payer_id' => $payment->payer->payer_info->payer_id,
                 'payment_method' => $payment->payer->payment_method,
                 'payer_email' => $payment->payer->payer_info->email,
-                'invoice_number' => $paymentResult->transactions[0]->invoice_number,
+                'invoice_number' => $invoice,
                 'payment_mode' => $paymentResult->transactions[0]->related_resources[0]->sale->payment_mode,
                 'payment_state' => $paymentResult->transactions[0]->related_resources[0]->sale->state,
                 'payment_id' => $paymentResult->id,
@@ -80,6 +83,8 @@ class CheckoutController extends Controller
                 'paid_amount' => $paymentResult->transactions[0]->amount->total,
                 'status' => 'New',
             ]);
+
+            $mailCartList = $cartItems;
 
 
             $cartItems->each(function ($item) use ($order) {
@@ -90,11 +95,28 @@ class CheckoutController extends Controller
                     'quantity' => $item->quantity,
                 ]);
 
-                $item->delete();
+                //$item->delete();
             });
 
 
-            session(['checkoutData' => null, 'payment' => null, 'paymentResult' => null]);
+            //session(['checkoutData' => null, 'payment' => null, 'paymentResult' => null]);
+
+            $shippingInfo = ShippingAddress::where('id', $checkoutData['shipping_id'])->first();
+
+
+            $mailData = [
+                'name' => $checkoutData['name'],
+                'email' => $checkoutData['email'],
+                'subject' => 'Order Complete',
+                'orders' => $mailCartList,
+                'shipping_cost' => $shippingCost,
+                'total' => $totalCost,
+                'invoice' => $invoice,
+                'shipping' => $shippingInfo,
+            ];
+
+            $mailStatus = Mail::to('shohanur.rahman57@gmail.com')->send(new OrderConfirmationMail($mailData));
+
 
             return redirect(Route('checkouts.index'))->with('user_id', auth()->id());
 

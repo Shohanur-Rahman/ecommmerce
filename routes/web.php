@@ -2,8 +2,11 @@
 
 use Illuminate\Support\Facades\Route;
 
+
 Route::get('/', function () {
+
     return view('user.pages.third.welcome');
+
 })->name('app.home');
 
 /*Route::get('/', function () {
@@ -93,3 +96,15 @@ Route::group(['prefix'=>'wish-lists'], function(){
     Route::get('/{wishlist}','User\WishlistController@destroy')->name('wish-lists.destroy');
     Route::patch('/','User\WishlistController@update')->name('wish-lists.update');
 });
+
+
+Route::group(['middleware'=>'auth'],function(){
+
+    Route::post('/add-to-cart', 'User\ProductController@add_to_cart')->name('product.add_to_cart');
+    Route::get('/view-cart', 'User\ProductCartController@index')->name('cart.index');
+    Route::get('/delete/{cart}', 'User\ProductCartController@delete')->name('cart.delete');
+    Route::patch('/cart', 'User\ProductCartController@update')->name('cart.update');
+
+    Route::post('/wish-list/carts', 'User\ProductCartController@wishListCartStore')->name('wish-lists-carts.store');
+});
+
