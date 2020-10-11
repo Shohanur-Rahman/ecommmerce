@@ -18,6 +18,7 @@ class CreateMailAddressesTable extends Migration
             $table->unsignedBigInteger('mail_id');
             $table->string('email');
             $table->boolean('status')->default(0);
+            $table->timestamp('deleted_at')->nullable();
             $table->timestamps();
         });
     }

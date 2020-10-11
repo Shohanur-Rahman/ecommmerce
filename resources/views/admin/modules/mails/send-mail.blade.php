@@ -22,7 +22,7 @@
                             <div class="admi-mail-checkbox">
                                 <div class="form-group mb-0">
                                     <div class="checkbox d-inline">
-                                        <input type="checkbox" name="mail[id]" value="{{$mailAddress->id}}" id="checkbox-{{$mailAddress->id}}">
+                                        <input type="checkbox" name="mail[]" value="{{$mailAddress->id}}" id="checkbox-{{$mailAddress->id}}">
 
                                         <label for="checkbox-{{$mailAddress->id}}" class="cr"></label>
                                     </div>

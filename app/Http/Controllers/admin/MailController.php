@@ -63,7 +63,18 @@ class MailController extends Controller
 
     public function destroy(Request $request)
     {
-        $mails = MailAddress::whereIn('id',$request['id'])
+
+        $mailAddresses = MailAddress::whereIn('id',$request['mail'])->get();
+
+        $mailAddresses->each(function ($mailAddress) use($mailAddresses){
+            $mailAddress->delete();
+
+            if($mailAddresses->count() <= 1){
+                $mailAddress->mail()->delete();
+            }
+        });
+
+        return redirect()->back()->with('success','Email deleted has been successfully');
     }
 
     public function show(MailAddress $mailAddress)
@@ -81,7 +92,36 @@ class MailController extends Controller
 
     public function draftMail()
     {
-        $mailAddresses = MailAddress::with('mail')->where('status',0)->get();
-        return view('admin.modules.mails.draft-mail',compact('mailAddresses'));
+        $mails = Mail::with('mailAddresses')->get();
+
+        return view('admin.modules.mails.draft-mail',compact('mails'));
+    }
+
+    public function draftEdit(Mail $mail)
+    {
+        return view('admin.modules.mails.draft-mail-edit',compact('mail'));
+    }
+
+    public function trashIndex()
+    {
+        $trashMails = MailAddress::onlyTrashed()->with('mail')->get();
+
+        return view('admin.modules.mails.trash-mail',compact('trashMails'));
+    }
+
+    public function trashDestroy(Request $request)
+    {
+
+        $mailAddresses = MailAddress::whereIn('id',$request['mail'])->onlyTrashed()->get();
+
+        $mailAddresses->each(function ($mailAddress) use($mailAddresses){
+            $mailAddress->forceDelete();
+
+            if($mailAddresses->count() <= 1){
+                $mailAddress->mail()->forceDelete();
+            }
+        });
+
+        return redirect()->back()->with('success','Emails permanently deleted successfully');
     }
 }
