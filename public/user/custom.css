@@ -227,23 +227,14 @@ img.cart-page-image {
     font-size: 14px;
 }
 
-.paypal-btn {
+.paypal-btn,
+.btn.paypal-btn:not(:disabled):not(.disabled).active, .btn.paypal-btn:not(:disabled):not(.disabled):active{
     background: url('assets/images/paypal-checkout-button.png');
-    background-size: cover;
+    background-size: contain;
     background-repeat: no-repeat;
     background-color: transparent;
     background-position: center;
     border: none;
     width: 200px;
     height: 60px;
-}
-
-
-.btn.paypal-btn:not(:disabled):not(.disabled).active, .btn.paypal-btn:not(:disabled):not(.disabled):active {
-    background: url('assets/images/paypal-checkout-button.png');
-    background-size: cover;
-    background-repeat: no-repeat;
-    background-color: transparent;
-    background-position: center;
-    border: none;
 }
