@@ -45,7 +45,7 @@
                                 </tr>
                                 </thead>
                                 <tbody>
-                                <?php $totalPrice = 0;?>
+                                <?php $totalPrice = 0; $shippingCharge = 0;?>
                                 @foreach($wishLists as $wishList)
 
                                     <tr class="cart-row">
@@ -95,7 +95,11 @@
                                             </div>
                                         </td>
                                     </tr>
-                                    <?php $totalPrice = ($totalPrice + ($wishList->product->new_price * $wishList->quantity));?>
+                                    <?php
+
+                                    $totalPrice = ($totalPrice + ($wishList->product->new_price * $wishList->quantity));
+                                    $shippingCharge += $wishList->product->shipping_charge;
+                                    ?>
                                 @endforeach
 
                                 <tr>
@@ -160,8 +164,13 @@
                                 </tr>
 
                                 <tr>
+                                    <td>Shipping Charge:</td>
+                                    <td>@if($shippingCharge <= 0) Free Delivery @else ${{$product->shipping_charge}} @endif</td>
+                                </tr>
+
+                                <tr>
                                     <td>GRAND TOTAL:</td>
-                                    <td><span>${{$totalPrice}}</span></td>
+                                    <td><span>${{$totalPrice+$shippingCharge}}</span></td>
                                 </tr>
                                 </tbody>
                             </table>

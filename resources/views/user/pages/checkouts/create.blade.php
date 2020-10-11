@@ -152,7 +152,7 @@
                                         </tr>
                                         </thead>
                                         <tbody>
-                                        @php $totalPrice = 0 @endphp
+                                        @php $totalPrice = 0 ;$shippingCharge = 0;@endphp
                                         @foreach($cartItems as $cartItem)
                                             <tr>
                                                 <td>{{Str::limit($cartItem->product->title,20)}}</td>
@@ -160,6 +160,7 @@
                                             </tr>
                                             @php
                                                 $totalPrice = ($totalPrice + ($cartItem->product->new_price * $cartItem->quantity));
+                                                $shippingCharge += $cartItem->product->shipping_charge;
                                             @endphp
                                         @endforeach
 
@@ -169,11 +170,11 @@
                                         </tr>
                                         <tr>
                                             <td>Shipping and Handling</td>
-                                            <td>Free Shipping</td>
+                                            <td>@if($shippingCharge <= 0)  Free Shipping : @else <b>${{$shippingCharge}}</b> @endif</td>
                                         </tr>
                                         <tr>
                                             <td>ORDER TOTAL</td>
-                                            <td><strong>{{$totalPrice}}</strong></td>
+                                            <td><strong>${{$totalPrice + $shippingCharge}}</strong></td>
                                         </tr>
                                         </tbody>
                                     </table>

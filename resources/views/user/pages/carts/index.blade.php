@@ -52,7 +52,10 @@
                                 </tr>
                                 </thead>
                                 <tbody>
-                                <?php $taotalPrice = 0;?>
+                                <?php
+                                    $taotalPrice = 0;
+                                    $shippingCharge = 0;
+                                ?>
                                 @foreach($myCartList as $cartItem)
 
                                     <tr class="cart-row">
@@ -88,7 +91,11 @@
                                             </div>
                                         </td>
                                     </tr>
-                                    <?php $taotalPrice = ($taotalPrice+($cartItem->product->new_price*$cartItem->quantity));?>
+                                    <?php
+                                    $taotalPrice = ($taotalPrice+($cartItem->product->new_price*$cartItem->quantity));
+
+                                    $shippingCharge += $cartItem->product->shipping_charge;
+                                    ?>
                                 @endforeach
 
                                 <tr>
@@ -143,13 +150,18 @@
                                     </tr>
 
                                     <tr>
-                                        <td>Coupon Discount:</td>
+                                        <td>Coupon Discount <b>(-)</b>:</td>
                                         <td><span>$0.00</span></td>
                                     </tr>
 
                                     <tr>
+                                        <td>Shipping Charge <b>(+)</b>:</td>
+                                        <td><span>${{$shippingCharge}}</span></td>
+                                    </tr>
+
+                                    <tr>
                                         <td>GRAND TOTAL:</td>
-                                        <td><span>${{$taotalPrice}}</span></td>
+                                        <td><span>${{$taotalPrice + $shippingCharge}}</span></td>
                                     </tr>
                                     </tbody></table>
                                 <div class="proceed-checkout">

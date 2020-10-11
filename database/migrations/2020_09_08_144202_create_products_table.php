@@ -39,6 +39,7 @@ class CreateProductsTable extends Migration
             $table->integer('minimum_inventory_qty')->nullable();
             $table->boolean('notify_low_inventory')->nullable();
             $table->bigInteger('warehouse_id')->nullable();
+            $table->float('shipping_charge')->default(0);
             $table->boolean('show_availability')->default(0);
             $table->integer('minimum_cart_qty')->nullable();
             $table->string('featured_image')->nullable();

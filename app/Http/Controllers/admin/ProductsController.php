@@ -161,6 +161,7 @@ class ProductsController extends HelperController
         $product->sku = $request->sku;
         $product->old_price = $request->old_price;
         $product->new_price = $request->new_price;
+        $product->shipping_charge = $request->shipping_charge;
         $product->is_published = $request->has('is_published');
         $product->is_new = $request->has('is_new');
         $product->is_feature = $request->has('is_feature');
@@ -278,6 +279,7 @@ class ProductsController extends HelperController
         $product->sku = $request->sku;
         $product->old_price = $request->old_price;
         $product->new_price = $request->new_price;
+        $product->shipping_charge = $request->shipping_charge;
         $product->is_published = $request->has('is_published');
         $product->is_new = $request->has('is_new');
         $product->is_feature = $request->has('is_feature');

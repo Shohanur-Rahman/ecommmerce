@@ -45,8 +45,10 @@
                                 <td>
                                     @php
                                         $total = 0;
+                                        $shippingCharge = 0;
                                        foreach($order->orderProducts as $orderProduct){
-                                           $total += $orderProduct->product->new_price*$orderProduct->quantity;
+                                            $shippingCharge += $order->product->shipping_charge;
+                                           $total += $orderProduct->product->new_price*$orderProduct->quantity + $shippingCharge;
                                        }
                                     @endphp
                                     {{$total}}

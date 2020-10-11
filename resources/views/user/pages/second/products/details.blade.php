@@ -64,7 +64,9 @@
                         </div>
                         <div class="col-lg-4 col-md-5">
                             <div class="product-action stuck text-left">
-
+                                <div class="free-delivery">
+                                    <a href="#"><i class="ti-truck"></i>@if($product->shipping_charge <= 0) Free Delivery @else ${{$product->shipping_charge}} @endif</a>
+                                </div>
                                 <div class="product-price-rating">
                                     <div>
                                         <del>629.99</del>
@@ -96,13 +98,14 @@
                     </div>
                 </div>
 
-                <div class="col-lg-12">
-                    <div class="product-description">
-                        {!!html_entity_decode($product->description)!!}
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
+
+         <div class="col-lg-12">
+             <div class="product-description">
+                 {!!html_entity_decode($product->description)!!}
+             </div>
+         </div>
+     </div>
+ </div>
+</div>
 </div>
 @include('user.partials.widget.product_reviews')

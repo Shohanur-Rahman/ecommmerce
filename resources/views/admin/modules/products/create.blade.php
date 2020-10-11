@@ -112,6 +112,14 @@
                                             <input class="form-control rounded-0 form-control-md" type="date" id="available_end_date" name="available_end_date" />
                                         </div>
                                     </div>
+
+                                    <div class="col-sm-3">
+                                        <div class="form-group">
+                                            <label for="shipping_charge">Shipping Charge</label>
+                                            <input class="currancy_touchspin" type="text"  name="shipping_charge" id="shipping_charge" />
+                                            <span class="parsley-errors-list filled" id="error"></span>
+                                        </div>
+                                    </div>
                                 </div>
                             </div>
                         </div>

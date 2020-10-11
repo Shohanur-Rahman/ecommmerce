@@ -64,9 +64,10 @@ class CheckoutController extends Controller
         $cartItems = CartItem::where('user_id', Auth::id())->with('product')->get();
 
         $totalPrice = 0;
-
+        $shippingCharge = 0;
         foreach ($cartItems as $cartItem) {
-            $totalPrice = ($totalPrice + ($cartItem->product->new_price * $cartItem->quantity));
+            $shippingCharge += $cartItem->product->shipping_charge;
+            $totalPrice = ($totalPrice + ($cartItem->product->new_price * $cartItem->quantity + $shippingCharge));
         }
 
         $order = Order::create([

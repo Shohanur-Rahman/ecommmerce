@@ -49,8 +49,10 @@
                                                <div class="badge badge-primary badge-pill">
                                                    @php
                                                         $total = 0;
+                                                        $shippingCharge = 0;
                                                        foreach($order->orderProducts as $orderProduct){
-                                                           $total += $orderProduct->product->new_price*$orderProduct->quantity;
+                                                         $shippingCharge += $order->product->shipping_charge;
+                                                           $total += $orderProduct->product->new_price*$orderProduct->quantity +$shippingCharge;
                                                        }
                                                    @endphp
                                                    {{$total}}
@@ -60,7 +62,7 @@
                                        <tr>
                                            <td>Shipping Charge</td>
                                            <td class=" text-right">
-                                               <div class="badge badge-primary badge-pill">{{$order->status}}</div>
+                                               <div class="badge badge-primary badge-pill">{{$shippingCharge}}</div>
                                            </td>
                                        </tr>
                                        <tr>
