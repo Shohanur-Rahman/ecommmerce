@@ -34,7 +34,7 @@
 
                         <tbody>
                         @foreach($orders as $order)
-                            <?php $customerInfo = \App\User::find($order->user_id);?>
+                            <?php $customerInfo = \App\User::find($order->customer_id);?>
                             <tr>
                                 <td>{{$order->id}}</td>
                                 <td>{{$order->payer_email}}</td>
