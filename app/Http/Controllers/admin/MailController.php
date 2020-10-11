@@ -61,9 +61,9 @@ class MailController extends Controller
         return redirect()->back()->with('success','Email sent has been successfully');
     }
 
-    public function destroy(Request $request ,MailAddress $mailAddress)
+    public function destroy(Request $request)
     {
-        dd($request->all());
+        $mails = MailAddress::whereIn('id',$request['id'])
     }
 
     public function show(MailAddress $mailAddress)

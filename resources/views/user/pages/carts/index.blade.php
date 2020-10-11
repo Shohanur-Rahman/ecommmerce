@@ -46,6 +46,7 @@
                                     <th>Image</th>
                                     <th>Product Name</th>
                                     <th>Price</th>
+                                    <th>Shipping Charge</th>
                                     <th>Quantity</th>
                                     <th>Total</th>
                                     <th class="text-center"><i class="fa fa-times" aria-hidden="true"></i></th>
@@ -81,7 +82,10 @@
                                             </div>
                                         </td>
                                         <td>
-                                            <span class="cart-product-price">$<span id="{{$cartItem->id}}_total_price">{{number_format($cartItem->product->new_price*$cartItem->quantity, 2)}}</span></span>
+                                            <span class="cart-product-price">$<span> {{$cartItem->product->shipping_charge}} </span></span>
+                                        </td>
+                                        <td>
+                                            <span class="cart-product-price">$<span id="{{$cartItem->id}}_total_price">{{number_format($cartItem->product->new_price*$cartItem->quantity + $cartItem->product->shipping_charge, 2)}}</span></span>
                                         </td>
                                         <td>
                                             <div class="product-remove">

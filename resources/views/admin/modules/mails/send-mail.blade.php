@@ -22,14 +22,14 @@
                             <div class="admi-mail-checkbox">
                                 <div class="form-group mb-0">
                                     <div class="checkbox d-inline">
-                                        <input type="checkbox" name="mail[]" id="checkbox-{{$mailAddress->id}}">
+                                        <input type="checkbox" name="mail[id]" value="{{$mailAddress->id}}" id="checkbox-{{$mailAddress->id}}">
 
                                         <label for="checkbox-{{$mailAddress->id}}" class="cr"></label>
                                     </div>
                                 </div>
                             </div>
-                            <!-- Admi-mail-star -->
-                            <input type="hidden" name="'emails[]" value="{{$mailAddress->id}}">
+
+
                             <a href="{{route('send-mails.show',$mailAddress->id)}}">
                                 <!-- Admi-mail-body -->
                                 <div class="admi-mail-body d-flex align-items-center mr-3">
