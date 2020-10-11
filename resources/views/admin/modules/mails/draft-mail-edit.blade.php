@@ -62,6 +62,8 @@
         </div>
     </div>
 
+    <script src="{{asset('admin/js/jquery.email.multiple.js')}}"></script>
+
     <script>
         $('#email').change(function () {
             var email = $(this).val();
@@ -82,8 +84,18 @@
     <script>
         $(document).ready(function($){
             let data = [
-
             ];
+
+
+            var mailArray = "{{$mailAddress}}".split(",");
+
+            console.log(mailArray);
+
+            for(var i = 0; i < mailArray.length; i++) {
+                var email = mailArray[i];
+                data.push($.trim(email))
+            }
+
 
             $("#dummy_multiple_email").email_multiple({
                 data: data
@@ -91,7 +103,7 @@
         });
     </script>
     @include('admin.partials.partial_assets.kendo_init')
-    <script src="{{asset('admin/js/jquery.email.multiple.js')}}"></script>
+
 @endsection
 
 
