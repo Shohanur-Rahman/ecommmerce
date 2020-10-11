@@ -3,7 +3,21 @@
 use Illuminate\Support\Facades\Route;
 Route::group(['middleware' => 'auth'], function() {
     @include 'admin_copy.php';
+
+
     Route::get('/dashboard','DashboardController@index')->name('dashboard');
+    Route::get('/monthly-sell','DashboardController@monthlySellChartData')->name('dashboard.monthly_sell');
+    Route::get('/daily-sell','DashboardController@dailySellChartData')->name('dashboard.daily_sell');
+    Route::get('/sell-by-category','DashboardController@productSellByCategory')->name('dashboard.sell_by_category');
+    Route::get('/products-by-category','DashboardController@productCountByCategory')->name('dashboard.product_on_category');
+
+
+
+
+
+    Route::get('/dashboard-copy','DashboardController@index_copy')->name('dashboard.copy');
+
+
 
     Route::group(['prefix'=>'product-categories'], function(){
         Route::get('','ProductCategoryController@index')->name('product-categories.index');
