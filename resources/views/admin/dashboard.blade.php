@@ -7,6 +7,12 @@
         .badge {
             font-size: 15px;
         }
+        .dataTables_filter {
+            display: none;
+        }
+        .dataTables_wrapper .btn-group{
+            margin-bottom: 10px;
+        }
     </style>
     <div class="row justify-content-center">
 
