@@ -4,9 +4,7 @@ namespace App\Http\Controllers\User;
 
 use App\Http\Controllers\Controller;
 use App\Mail\OrderConfirmationMail;
-use App\Models\Products;
 use App\Models\User\CartItem;
-use App\Models\User\Country;
 use App\Models\User\Order;
 use App\Models\User\OrderProduct;
 use App\Models\User\ShippingAddress;
@@ -53,8 +51,8 @@ class CheckoutController extends Controller
         if ($payment) {
             $cartItems = CartItem::where('user_id', Auth::id())->with('product')->get();
 
-            $totalPrice = 0;
-            $shippingCharge = 0;
+            /*  $totalPrice = 0;
+              $shippingCharge = 0;*/
 
             $shippingCost = 0;
             $productCost = 0;
@@ -66,7 +64,7 @@ class CheckoutController extends Controller
             }
 
             $totalCost = ($productCost + $shippingCost);
-            $invoice= $paymentResult->transactions[0]->invoice_number;
+            $invoice = $paymentResult->transactions[0]->invoice_number;
 
             $order = Order::create([
                 'customer_id' => auth()->id(),
@@ -95,7 +93,7 @@ class CheckoutController extends Controller
                     'quantity' => $item->quantity,
                 ]);
 
-                //$item->delete();
+                $item->delete();
             });
 
 
@@ -115,7 +113,7 @@ class CheckoutController extends Controller
                 'shipping' => $shippingInfo,
             ];
 
-            $mailStatus = Mail::to('shohanur.rahman57@gmail.com')->send(new OrderConfirmationMail($mailData));
+            $mailStatus = Mail::to($checkoutData['email'])->send(new OrderConfirmationMail($mailData));
 
 
             return redirect(Route('checkouts.index'))->with('user_id', auth()->id());
@@ -124,55 +122,6 @@ class CheckoutController extends Controller
             return redirect(Route('cart.index'));
 
 
-        /*$userProfileCheck = auth()->user()->userProfile;
-        $userProfile = auth()->user()->userProfile();
-
-        $data = [
-            'phone' => $checkoutData['phone'],
-            'country' => $checkoutData['country'],
-            'state' => $checkoutData['state'],
-            'house' => $checkoutData['house'],
-            'road' => $checkoutData['road'],
-            'city' => $checkoutData['city'],
-            'postcode' => $checkoutData['postcode'],
-        ];
-
-        if($userProfileCheck){
-            $userProfile->update($data);
-        }else{
-            $userProfile->create($data);
-        }
-
-         $cartItems = CartItem::where('user_id', Auth::id())->with('product')->get();
-
-         $totalPrice = 0;
-         $shippingCharge = 0;
-         foreach ($cartItems as $cartItem) {
-             $shippingCharge += $cartItem->product->shipping_charge;
-             $totalPrice = ($totalPrice + ($cartItem->product->new_price * $cartItem->quantity + $shippingCharge));
-         }
-
-         $order = Order::create([
-             'customer_id' => auth()->id(),
-             'shipping_id' => $checkoutData['shipping_id'],
-             'payment_method' => $checkoutData->has('payment_method'),
-             'total_amount' => $totalPrice,
-             'status' => 'New',
-         ]);
-
-         $cartItems->each(function ($item) use ($order) {
-
-             OrderProduct::create([
-                 'order_id' => $order->id,
-                 'product_id' => $item->product->id,
-                 'quantity' => $item->quantity,
-             ]);
-
-             $item->delete();
-         });*/
-
-        //return $paymentResult;
-        //redirect(Route('checkouts.index'))->with('user_id', auth()->id());
     }
 
     public function shippingAddressCreate()

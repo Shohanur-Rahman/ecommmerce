@@ -226,7 +226,7 @@ class ProductController extends Controller
         $cartItem->product_id = $request->product_id;
         $cartItem->save();
 
-        $myCartList = CartItem::with('product')->where('user_id', Auth::id())->take(5)->get();
+        $myCartList = CartItem::with('product')->where('user_id', Auth::id())->get();
         $arr = array('data' => $myCartList, 'status' => true);
 
         return Response()->json($arr);

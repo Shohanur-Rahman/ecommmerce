@@ -104,7 +104,7 @@ Route::group(['middleware'=>'auth'],function(){
     Route::get('/view-cart', 'User\ProductCartController@index')->name('cart.index');
     Route::get('/delete/{cart}', 'User\ProductCartController@delete')->name('cart.delete');
     Route::patch('/cart', 'User\ProductCartController@update')->name('cart.update');
-
+    Route::get('/clear', 'User\ProductCartController@clear')->name('cart.clear');
     Route::post('/wish-list/carts', 'User\ProductCartController@wishListCartStore')->name('wish-lists-carts.store');
 });
 

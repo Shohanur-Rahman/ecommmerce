@@ -103,11 +103,11 @@
                                 @endforeach
 
                                 <tr>
-                                    <td colspan="4">
+                                    <td class="td-subtotal" colspan="5">
                                         <strong>Total</strong>
                                     </td>
 
-                                    <td>
+                                    <td class="td-subtotal" colspan="2">
                                         $<span class="dummy_cartTotal">{{$taotalPrice}}</span>
                                     </td>
                                 </tr>
@@ -118,14 +118,19 @@
                     </div>
                 </div>
                 <div class="row mt-30">
-                    <div class="col-lg-6">
+                    <div class="col-lg-4">
                         <div class="cart-update">
                             <a href="{{route('app.home')}}" class="btn-common">CONTINUE SHOPPING</a>
                         </div>
                     </div>
-                    <div class="col-lg-6">
+                    <div class="col-lg-4">
+                        <div class="cart-update">
+                            <a href="{{route('cart.clear')}}" class="btn-common btn-danger">CLEAR CART</a>
+                        </div>
+                    </div>
+                    <div class="col-lg-4">
                         <div class="cart-update pull-right">
-                            <button type="submit" class="btn-common">UPDATE CART</button>
+                            <button type="submit" class="btn-common btn-success">UPDATE CART</button>
                         </div>
                     </div>
                 </div>

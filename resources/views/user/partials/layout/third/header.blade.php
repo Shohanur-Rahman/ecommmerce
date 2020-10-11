@@ -85,32 +85,36 @@
                                     <div class="cart-dropdown">
                                         <ul class="dummy_cart_list_binding">
 
-                                            <?php $taotalPrice = 0;?>
+                                            <?php $taotalPrice = 0; $itemCount = 0;?>
                                             @foreach($myCartList as $cart)
-                                                <li>
-                                                    <div class="mini-cart-thumb">
-                                                        <a href="#"><img src="{{asset($cart->product->featured_image)}}"
-                                                                         alt=""/></a>
-                                                    </div>
-                                                    <div class="mini-cart-heading">
-                                                        <span>${{$cart->product->new_price}}x {{$cart->quantity}}</span>
-                                                        <h5>
-                                                            <a href="{{route('product.search.show', $cart->product->slug)}}">{{$cart->product->title}}</a>
-                                                        </h5>
-                                                    </div>
-                                                    <div class="mini-cart-remove">
-                                                        <a class="cart-removal" title="Remove Item"
-                                                           href="{{route('cart.delete',$cart->id)}}"><i
-                                                                class="ti-close"></i></a>
-                                                    </div>
-                                                </li>
-                                                <?php $taotalPrice = ($taotalPrice + ($cart->product->new_price * $cart->quantity));?>
+                                                @if($itemCount < 2)
+                                                    <li>
+                                                        <div class="mini-cart-thumb">
+                                                            <a href="#"><img
+                                                                    src="{{asset($cart->product->featured_image)}}"
+                                                                    alt=""/></a>
+                                                        </div>
+                                                        <div class="mini-cart-heading">
+                                                            <span>${{$cart->product->new_price}}x {{$cart->quantity}}</span>
+                                                            <h5>
+                                                                <a href="{{route('product.search.show', $cart->product->slug)}}">{{$cart->product->title}}</a>
+                                                            </h5>
+                                                        </div>
+                                                        <div class="mini-cart-remove">
+                                                            <a class="cart-removal" title="Remove Item"
+                                                               href="{{route('cart.delete',$cart->id)}}"><i
+                                                                    class="ti-close"></i></a>
+                                                        </div>
+                                                    </li>
+                                                @endif
+                                                <?php $taotalPrice = ($taotalPrice + ($cart->product->new_price * $cart->quantity)); $itemCount +=1;?>
                                             @endforeach
                                         </ul>
                                         <div class="minicart-total fix">
                                             <span class="pull-left">total:</span>
                                             <span
-                                                class="pull-right">$ <span class="dummy_total_price">{{ number_format($taotalPrice,2)}}</span>
+                                                class="pull-right">$ <span
+                                                    class="dummy_total_price">{{ number_format($taotalPrice,2)}}</span>
                                         </div>
                                         <div class="mini-cart-checkout">
                                             <a href="{{route('cart.index')}}" class="btn-common view-cart">VIEW
@@ -168,7 +172,8 @@
                         <ul>
                             <li><a href="#"><i class="icon_heart_alt"></i><span>1</span></a></li>
                             <li class="minicart-icon"><a href="#"><i
-                                        class="icon_bag_alt"></i><span class="dummy_total_cart">{{count($myCartList)}}</span></a>
+                                        class="icon_bag_alt"></i><span
+                                        class="dummy_total_cart">{{count($myCartList)}}</span></a>
                                 <div class="cart-dropdown">
                                     <ul class="dummy_cart_list_binding">
                                         <?php $taotalPrice = 0;?>
@@ -195,7 +200,8 @@
                                     </ul>
                                     <div class="minicart-total fix">
                                         <span class="pull-left">total:</span>
-                                        <span class="pull-right">$<span class="dummy_total_price">{{ number_format($taotalPrice,2)}}
+                                        <span class="pull-right">$<span
+                                                class="dummy_total_price">{{ number_format($taotalPrice,2)}}
                                     </div>
                                     <div class="mini-cart-checkout">
                                         <a href="{{route('cart.index')}}" class="btn-common view-cart">VIEW CART</a>

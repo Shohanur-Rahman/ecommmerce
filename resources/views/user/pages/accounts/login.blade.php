@@ -2,8 +2,8 @@
 @section('title', "Login")
 @section('content')
 
-    <div class="container h-100 mt-80 mb-30">
-        <div class="row h-100 align-items-center justify-content-center">
+    <div class="container mb-30">
+        <div class="row align-items-center justify-content-center">
             <div class="col-md-8 col-lg-5">
                 <!-- Middle Box -->
                 <div class="middle-box">

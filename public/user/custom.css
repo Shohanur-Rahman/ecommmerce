@@ -177,18 +177,18 @@ textarea.parsley-error {
 
 .male-products .product-item .product-single:hover,
 .male-products .product-single:hover .product-action {
-    border-color: green;
+    border-color:  #1467c1;
 }
 
 .male-products .product-action .product-compare:hover,
 .male-products .product-action .product-wishlist:hover {
-    background-color: green;
-    border-color: green;
+    background-color: #1467c1;
+    border-color: #1467c1;
 }
 
 .male-products .add-to-cart:hover {
-    background-color: green;
-    border-color: green;
+    background-color: #1467c1;
+    border-color: #1467c1;
     color: #fff;
 }
 
@@ -237,4 +237,33 @@ img.cart-page-image {
     border: none;
     width: 200px;
     height: 60px;
+}
+
+a.cart-removal .ti-close {
+    font-size: 16px;
+    margin-right: 0px;
+}
+
+a.btn-common.btn-danger {
+    color: #fff;
+    background-color: #dc3545;
+    border-color: #dc3545;
+}
+
+button.btn-common.btn-success {
+    color: #fff;
+    background-color: #28a745;
+    border-color: #28a745;
+}
+
+.cart-table tbody tr td,
+.cart-table tbody tr:first-child td, .cart-table tbody tr:last-child td{
+    padding: 3px 30px;
+}
+
+td.td-subtotal {
+    font-size: 18px;
+    font-weight: bold;
+    padding: 15px !important;
+    border-top: 2px solid #ddd;
 }
