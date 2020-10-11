@@ -49,4 +49,10 @@
                 </div>
             </form>
         </div>
+
+        <script>
+            $('#dummy_delete_btn').click(function () {
+                $('#dummy_mail_form_submit').submit()
+            })
+        </script>
 @endsection
