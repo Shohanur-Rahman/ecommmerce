@@ -46,8 +46,8 @@
                                     <th>Image</th>
                                     <th>Product Name</th>
                                     <th>Price</th>
-                                    <th>Shipping Charge</th>
                                     <th>Quantity</th>
+                                    <th>Shipping Charge</th>
                                     <th>Total</th>
                                     <th class="text-center"><i class="fa fa-times" aria-hidden="true"></i></th>
                                 </tr>
@@ -82,7 +82,7 @@
                                             </div>
                                         </td>
                                         <td>
-                                            <span class="cart-product-price">$<span> {{$cartItem->product->shipping_charge}} </span></span>
+                                            <span class="cart-product-price">$<span id="shipping_{{$cartItem->id}}"> {{$cartItem->product->shipping_charge}} </span></span>
                                         </td>
                                         <td>
                                             <span class="cart-product-price">$<span id="{{$cartItem->id}}_total_price">{{number_format($cartItem->product->new_price*$cartItem->quantity + $cartItem->product->shipping_charge, 2)}}</span></span>
@@ -197,8 +197,9 @@
 			var value = parseInt($(element).val());
 			var selector = $.trim($(element).attr('selector'));
 			var price = parseFloat($("#price_"+selector).text());
+			var shippingCost = parseFloat($("#shipping_"+selector).text());
 			if(value  && price){
-				var tPrice = (price*value).toFixed(2);
+				var tPrice = ((price*value)+shippingCost).toFixed(2);
 				$("#"+selector+"_total_price").text(tPrice);
 			}
 			if(value == 0 || value == "" || isNaN(value)){
