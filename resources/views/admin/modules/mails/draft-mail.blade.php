@@ -6,20 +6,21 @@
             <x-inform-users></x-inform-users>
         </div>
     </div>
+    <form action="{{route('draft-mail.destroy')}}" method="post" id="dummy_mail_form_submit">
+        @csrf
+        @method('DELETE')
 
-    @include('admin.modules.mails.layout.common.header')
+        @include('admin.modules.mails.layout.common.header')
 
-    <div class="admi-mail-list mb-30">
-        <!-- Single Mail -->
-        @foreach($mails as $mail)
-            @foreach($mail->mailAddresses as $mailAddress)
-                @if($mailAddress->status == 0)
+        <div class="admi-mail-list mb-30">
+            <!-- Single Mail -->
+            @foreach($mails as $mail)
                 <div class="admi-mail-item">
                     <!-- Admi-mail-checkbox -->
                     <div class="admi-mail-checkbox">
                         <div class="form-group mb-0 mt-2">
                             <div class="checkbox d-inline">
-                                <input type="checkbox" name="checkbox-1" id="checkbox-{{$mail->id}}">
+                                <input type="checkbox" name="mail[]" value="{{$mail->id}}" id="checkbox-{{$mail->id}}">
                                 <label for="checkbox-{{$mail->id}}" class="cr"></label>
                             </div>
                         </div>
@@ -37,11 +38,10 @@
                             </div>
                         </div>
                     </a>
-                    <div class="admi-mail-date">{{$mailAddress->created_at->format('H:m:A')}}</div>
+                    <div class="admi-mail-date">{{$mail->created_at->format('H:m:A')}}</div>
                 </div>
-            @endif
             @endforeach
-        @endforeach
-    </div>
+        </div>
 
+    </form>
 @endsection

@@ -134,6 +134,7 @@ Route::group(['middleware' => 'auth'], function() {
         Route::get('/draft','MailController@draftMail')->name('draft-mail.index');
         Route::get('/draft/{mail}/edit','MailController@draftedit')->name('draft-mail.edit');
         Route::patch('/draft/{mail}','MailController@draftupdate')->name('draft-mail.update');
+        Route::delete('/draft','MailController@draftDestroy')->name('draft-mail.destroy');
 
         Route::delete('/destroy','MailController@destroy')->name('mails.destroy');
 

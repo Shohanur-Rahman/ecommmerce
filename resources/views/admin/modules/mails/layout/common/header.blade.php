@@ -10,8 +10,8 @@
     <div class="mail-tools tooltip-demo d-flex align-items-center mb-15 justify-content-between">
         <div class="mail-btn-group d-flex align-items-center mb-15">
             <a href="#" class="btn"  id="dummy_delete_btn" ><i class="icon_trash_alt"></i></a>
-            <a href="#" class="btn"><i class="icon_mail_alt"></i></a>
-            <a href="#" class="btn"><i class="icon_tag_alt"></i></a>
+            <a href="{{route('mails.index')}}" class="btn"><i class="icon_mail_alt"></i></a>
+            <a href="{{route('draft-mail.index')}}" class="btn"><i class="icon_tag_alt"></i></a>
         </div>
         <div class="mail-pager d-flex align-items-center text-right mb-15">
             <span>1-50 of 9</span>

@@ -8,6 +8,7 @@ use App\Models\MailAddress;
 use App\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Arr;
+use function Sodium\crypto_box_publickey_from_secretkey;
 
 class MailController extends Controller
 {
@@ -68,10 +69,12 @@ class MailController extends Controller
 
         $mailAddresses = MailAddress::whereIn('id',$request['mail'])->get();
 
-        $mailAddresses->each(function ($mailAddress) use($mailAddresses){
+        $mailAddresses->each(function ($mailAddress,$key) use($mailAddresses){
             $mailAddress->delete();
 
-            if($mailAddresses->count() <= 1){
+            $mailTotalCount = MailAddress::where('mail_id',$mailAddress->mail->id)->count();
+
+            if($mailTotalCount == 0){
                 $mailAddress->mail()->delete();
             }
         });
@@ -94,7 +97,10 @@ class MailController extends Controller
 
     public function draftMail()
     {
-        $mails = Mail::with('mailAddresses')->get();
+
+        $mails = Mail::whereHas('mailAddresses', function($q){
+            $q->where('status', 0);
+        })->get();
 
         return view('admin.modules.mails.draft-mail',compact('mails'));
     }
@@ -106,14 +112,28 @@ class MailController extends Controller
         return view('admin.modules.mails.draft-mail-edit',compact('mail','userTypes'));
     }
 
-    public function draftupdate (Request $request)
+    public function draftDestroy(Request $request)
+    {
+        $mails = Mail::whereIn('id',$request['mail'])->with('mailAddresses')->get();
+
+        $mails->each(function ($mail) use($mails){
+            $mail->delete();
+
+            $mail->mailAddresses()->delete();
+        });
+
+        return redirect()->back()->with('success','Draft Email has been deleted successfully');
+    }
+
+
+    public function draftupdate(Request $request)
     {
         dd($request->all());
     }
 
     public function trashIndex()
     {
-        $trashMails = MailAddress::onlyTrashed()->with('mail')->get();
+        $trashMails = MailAddress::onlyTrashed()->where('status',1)->with('mail')->get();
 
         return view('admin.modules.mails.trash-mail',compact('trashMails'));
     }
@@ -121,12 +141,14 @@ class MailController extends Controller
     public function trashDestroy(Request $request)
     {
 
-        $mailAddresses = MailAddress::whereIn('id',$request['mail'])->onlyTrashed()->get();
+        $mailAddresses = MailAddress::whereIn('id',$request['mail'])->with('mail')->onlyTrashed()->get();
 
-        $mailAddresses->each(function ($mailAddress) use($mailAddresses){
+        $mailAddresses->each(function ($mailAddress,$key) use($mailAddresses){
             $mailAddress->forceDelete();
 
-            if($mailAddresses->count() <= 1){
+            $mailTotalCount = MailAddress::where('mail_id',$mailAddress->mail->id)->onlyTrashed()->count();
+
+            if($mailTotalCount == 0){
                 $mailAddress->mail()->forceDelete();
             }
         });

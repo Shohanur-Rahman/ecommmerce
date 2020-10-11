@@ -13,6 +13,14 @@ class Mail extends Model
 
     public function mailAddresses()
     {
-        return $this->hasMany(MailAddress::class);
+        return $this->hasMany(MailAddress::class)->withTrashed();
+    }
+
+    public static function draftCount()
+    {
+        $draftCount = Mail::whereHas('mailAddresses', function($q){
+            $q->where('status', 0);
+        })->count();
+        return $draftCount;
     }
 }

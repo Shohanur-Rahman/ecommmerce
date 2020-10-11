@@ -14,4 +14,17 @@ class MailAddress extends Model
     {
         return $this->belongsTo(Mail::class)->withTrashed();
     }
+
+    /*public static function sendMailCount($status)
+    {
+        $sendMailCount = MailAddress::where('status',$status)->count();
+        return $sendMailCount;
+    }*/
+
+    public static function trashCount()
+    {
+        $trashCount = MailAddress::where('status',1)->onlyTrashed()->count();
+
+        return $trashCount;
+    }
 }
