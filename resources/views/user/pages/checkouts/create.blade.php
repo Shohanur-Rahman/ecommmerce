@@ -51,7 +51,7 @@
                                     <div class="col-lg-9">
                                         <input type="text" placeholder="Enter your name" name="name"
                                                value="{{$user->name ?? old('name')}}" maxlength="100" required
-                                               data-parsley-required-message="Name filed is required">
+                                               data-parsley-required-message="Name filed is required" readonly="readonly">
                                     </div>
                                 </div>
 
@@ -62,7 +62,7 @@
                                     <div class="col-lg-9">
                                         <input type="email" name="email" value="{{$user->email ?? old('email')}}"
                                                placeholder="Enter your email address" maxlength="100" required
-                                               data-parsley-required-message="Email filed is required"/>
+                                               data-parsley-required-message="Email filed is required" readonly="readonly"/>
                                     </div>
                                 </div>
 

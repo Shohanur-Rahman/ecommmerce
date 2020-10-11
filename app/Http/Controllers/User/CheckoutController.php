@@ -46,6 +46,27 @@ class CheckoutController extends Controller
         $payment = session('payment');
         $paymentResult = session('paymentResult');
 
+
+        $userProfileCheck = auth()->user()->userProfile;
+        $userProfile = auth()->user()->userProfile();
+
+        $data = [
+            'phone' => $checkoutData['phone'],
+            'country' => $checkoutData['country'],
+            'state' => $checkoutData['state'],
+            'house' => $checkoutData['house'],
+            'road' => $checkoutData['road'],
+            'city' => $checkoutData['city'],
+            'postcode' => $checkoutData['postcode'],
+        ];
+
+        if($userProfileCheck){
+            $userProfile->update($data);
+        }else{
+            $userProfile->create($data);
+        }
+
+
         //$paymentState= $paymentResult->transactions[0]->related_resources[0]->sale->payment_state;
 
         if ($payment) {
