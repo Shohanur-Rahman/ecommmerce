@@ -18,6 +18,7 @@ class CreateMailsTable extends Migration
             $table->string('subject');
             $table->text('description');
             $table->string('user_type')->nullable();
+            $table->string('read_at')->nullable();
             $table->timestamp('deleted_at')->nullable();
             $table->timestamps();
         });

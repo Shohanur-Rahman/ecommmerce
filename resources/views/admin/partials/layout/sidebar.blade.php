@@ -7,6 +7,8 @@
      return request()->is('*'.$path.'*') ? 'active' : '';
     }
 
+    $type = \Illuminate\Support\Facades\Auth::user()->user_type;
+
 @endphp
 
 <div class="ecaps-sidemenu-area">
@@ -37,49 +39,56 @@
                         </ul>
                     </li>
 
-                    <li class="treeview {{ request()->routeIs('main-sliders.*') ? 'active' : '' }}" >
-                        <a href="javascript:void(0)"><i class="zmdi zmdi-collection-folder-image"></i> <span>Sliders</span> <i class="fa fa-angle-right"></i></a>
-                        <ul class="treeview-menu">
-                            <li><a class="{{activeLink('main-sliders')}}" href="{{route('main-sliders.index')}}">- Main Slider</a></li>
-                        </ul>
-                    </li>
+                    @if( $type !== 'Customer' && $type !== 'Vendor')
+                        <li class="treeview {{ request()->routeIs('main-sliders.*') ? 'active' : '' }}" >
+                            <a href="javascript:void(0)"><i class="zmdi zmdi-collection-folder-image"></i> <span>Sliders</span> <i class="fa fa-angle-right"></i></a>
+                            <ul class="treeview-menu">
+                                <li><a class="{{activeLink('main-sliders')}}" href="{{route('main-sliders.index')}}">- Main Slider</a></li>
+                            </ul>
+                        </li>
+                        {{--<li><a  class="{{activeLink('users')}}" href="{{route('users.index')}}"><i class="zmdi zmdi-view-web"></i> <span>Users</span></a></li>--}}
+                        <li><a  class="{{activeLink('subscribers')}}" href="{{route('subscribers.index')}}"><i class="zmdi zmdi-view-web"></i> <span>Subscribers</span></a></li>
 
-{{--                    <li><a  class="{{activeLink('users')}}" href="{{route('users.index')}}"><i class="zmdi zmdi-view-web"></i> <span>Users</span></a></li>--}}
-                    <li><a  class="{{activeLink('subscribers')}}" href="{{route('subscribers.index')}}"><i class="zmdi zmdi-view-web"></i> <span>Subscribers</span></a></li>
+                        <li class="treeview {{ request()->routeIs('users.*','vendor-applications.*') ? 'active' : '' }}">
+                            <a href="javascript:void(0)"><i class="zmdi zmdi-accounts-alt"></i> <span>Users</span> <i class="fa fa-angle-right"></i></a>
+                            <ul class="treeview-menu {{ request()->routeIs('users.*') ? 'active' : '' }}">
+                                <li><a class="{{userActiveLink('super-admin')}}" href="{{route('users.index',['type'=>'super-admin'])}}">- Super Admins</a></li>
+                                <li><a class="{{request()->is('admin/users/admin*') ? 'text-success' : ''}}" href="{{route('users.index',['type'=>'admin'])}}">- Admins</a></li>
+                                <li><a class="{{userActiveLink('vendor')}}" href="{{route('users.index',['type'=>'vendor'])}}">- Vendors</a></li>
+                                <li><a class="{{userActiveLink('editor')}}" href="{{route('users.index',['type'=>'editor'])}}">- Editors</a></li>
+                                <li><a class="{{userActiveLink('developer')}}" href="{{route('users.index',['type'=>'developer'])}}">- Developers</a></li>
+                                <li><a class="{{userActiveLink('customer')}}" href="{{route('users.index',['type'=>'customer'])}}">- Customers</a></li>
+                                <li><a class="{{activeLink('vendor-applications')}}" href="{{route('vendor-applications.index')}}">- Vendor Applications</a></li>
+                            </ul>
+                        </li>
 
-                    <li class="treeview {{ request()->routeIs('users.*','vendor-applications.*') ? 'active' : '' }}">
-                        <a href="javascript:void(0)"><i class="zmdi zmdi-accounts-alt"></i> <span>Users</span> <i class="fa fa-angle-right"></i></a>
-                        <ul class="treeview-menu {{ request()->routeIs('users.*') ? 'active' : '' }}">
-                            <li><a class="{{userActiveLink('super-admin')}}" href="{{route('users.index',['type'=>'super-admin'])}}">- Super Admins</a></li>
-                            <li><a class="{{request()->is('admin/users/admin*') ? 'text-success' : ''}}" href="{{route('users.index',['type'=>'admin'])}}">- Admins</a></li>
-                            <li><a class="{{userActiveLink('vendor')}}" href="{{route('users.index',['type'=>'vendor'])}}">- Vendors</a></li>
-                            <li><a class="{{userActiveLink('editor')}}" href="{{route('users.index',['type'=>'editor'])}}">- Editors</a></li>
-                            <li><a class="{{userActiveLink('developer')}}" href="{{route('users.index',['type'=>'developer'])}}">- Developers</a></li>
-                            <li><a class="{{userActiveLink('customer')}}" href="{{route('users.index',['type'=>'customer'])}}">- Customers</a></li>
-                            <li><a class="{{activeLink('vendor-applications')}}" href="{{route('vendor-applications.index')}}">- Vendor Applications</a></li>
-                        </ul>
-                    </li>
-
-                    <li class="treeview {{ request()->routeIs('arrivals.*','product-features.*','ecom-supports.*') ? 'active' : '' }}">
-                        <a href="javascript:void(0)"><i class="zmdi zmdi-settings"></i> <span>Website Settings</span> <i class="fa fa-angle-right"></i></a>
-                        <ul class="treeview-menu ">
-                            <li><a class=" {{activeLink('arrivals')}}" href="{{route('arrivals.index')}}">- New Arrival Tab</a></li>
-                            <li><a class="{{activeLink('product-features')}}" href="{{route('product-features.index')}}">- Feature Product Tab </a></li>
-                            {{--<li><a class="{{activeLink('ecom-supports')}}" href="{{route('ecom-supports.index')}}">- E-commerce Supports</a></li>--}}
-                            <li><a class="{{activeLink('site-settings')}}" href="{{route('site-settings.edit')}}">- Site Setting</a></li>
-                        </ul>
-                    </li>
+                        <li class="treeview {{ request()->routeIs('arrivals.*','product-features.*','ecom-supports.*') ? 'active' : '' }}">
+                            <a href="javascript:void(0)"><i class="zmdi zmdi-settings"></i> <span>Website Settings</span> <i class="fa fa-angle-right"></i></a>
+                            <ul class="treeview-menu ">
+                                <li><a class=" {{activeLink('arrivals')}}" href="{{route('arrivals.index')}}">- New Arrival Tab</a></li>
+                                <li><a class="{{activeLink('product-features')}}" href="{{route('product-features.index')}}">- Feature Product Tab </a></li>
+                                {{--<li><a class="{{activeLink('ecom-supports')}}" href="{{route('ecom-supports.index')}}">- E-commerce Supports</a></li>--}}
+                                <li><a class="{{activeLink('site-settings')}}" href="{{route('site-settings.edit')}}">- Site Setting</a></li>
+                            </ul>
+                        </li>
+                    @endif
 
                     <li class="treeview {{ request()->routeIs('orders.*','ecom-settings.*') ? 'active' : '' }}">
                         <a href="javascript:void(0)"><i class="zmdi zmdi-settings"></i> <span>Shop</span> <i class="fa fa-angle-right"></i></a>
                         <ul class="treeview-menu ">
                             <li><a class=" {{activeLink('orders')}}" href="{{route('orders.index')}}">- Ordered</a></li>
-                            <li><a class=" {{activeLink('ecom-settings')}}" href="{{route('ecom-settings.index')}}">- E-com Settings</a></li>
+
+                            @if( $type !== 'Customer' && $type !== 'Vendor')
+                                <li><a class=" {{activeLink('ecom-settings')}}" href="{{route('ecom-settings.index')}}">- E-com Settings</a></li>
+                            @endif
+
                         </ul>
                     </li>
 
+                    @if( $type !== 'Customer' && $type !== 'Vendor')
+                        <li><a  class="{{activeLink('mails')}}" href="{{route('mails.index')}}"><i class="zmdi zmdi-view-web"></i> <span>Mail</span></a></li>
+                    @endif
 
-                    <li><a  class="{{activeLink('mails')}}" href="{{route('mails.index')}}"><i class="zmdi zmdi-view-web"></i> <span>Mail</span></a></li>
                 </ul>
             </nav>
         </div>

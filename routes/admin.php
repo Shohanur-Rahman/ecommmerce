@@ -32,24 +32,6 @@ Route::group(['middleware' => 'auth'], function() {
         Route::delete('/{productAvailability}','ProductAvailabilityController@destroy')->name('product-availabilities.destroy');
     });
 
-    Route::group(['prefix'=>'main-sliders'], function(){
-        Route::get('','MainSliderController@index')->name('main-sliders.index');
-        Route::get('/create','MainSliderController@create')->name('main-sliders.create');
-        Route::post('','MainSliderController@store')->name('main-sliders.store');
-        Route::get('/{mainSlider}/edit','MainSliderController@edit')->name('main-sliders.edit');
-        Route::patch('/{mainSlider}','MainSliderController@update')->name('main-sliders.update');
-        Route::delete('/{mainSlider}','MainSliderController@destroy')->name('main-sliders.destroy');
-    });
-
-     Route::group(['prefix'=>'users'], function(){
-//            Route::get('','UserController@index')->name('users.index');
-//            Route::get('/{user}/edit','UserController@edit')->name('users.edit');
-//            Route::patch('/{user}','UserController@update')->name('users.update');
-            Route::get('{type}','UserController@index')->name('users.index');
-            Route::get('{type}/{user}/edit','UserController@edit')->name('users.edit');
-            Route::patch('/{type}/{user}','UserController@update')->name('users.update');
-     });
-
     Route::group(['prefix'=>'product-sizes'], function(){
         Route::get('','ProductSizeController@index')->name('product-sizes.index');
         Route::get('/create','ProductSizeController@create')->name('product-sizes.create');
@@ -68,39 +50,102 @@ Route::group(['middleware' => 'auth'], function() {
         Route::delete('/{productColor}','ProductColorController@destroy')->name('product-colors.destroy');
     });
 
-    Route::group(['prefix'=>'website-settings/product-features'], function(){
-        Route::get('','Settings\ProductFeatureController@index')->name('product-features.index');
-        Route::get('/create','Settings\ProductFeatureController@create')->name('product-features.create');
-        Route::post('','Settings\ProductFeatureController@store')->name('product-features.store');
-        Route::get('/{productFeature}/edit','Settings\ProductFeatureController@edit')->name('product-features.edit');
-        Route::patch('/{productFeature}','Settings\ProductFeatureController@update')->name('product-features.update');
-        Route::delete('/{productFeature}','Settings\ProductFeatureController@destroy')->name('product-features.destroy');
-    });
 
-    Route::group(['prefix'=>'website-settings/ecom-supports'], function(){
-        Route::get('','Settings\EcomSupportController@index')->name('ecom-supports.index');
-        Route::get('/create','Settings\EcomSupportController@create')->name('ecom-supports.create');
-        Route::post('','Settings\EcomSupportController@store')->name('ecom-supports.store');
-        Route::get('/{ecomSupport}/edit','Settings\EcomSupportController@edit')->name('ecom-supports.edit');
-        Route::patch('/{ecomSupport}','Settings\EcomSupportController@update')->name('ecom-supports.update');
-        Route::delete('/{ecomSupport}','Settings\EcomSupportController@destroy')->name('ecom-supports.destroy');
-    });
+    Route::group(['middleware' => 'isAdmin'], function() {
+        Route::group(['prefix'=>'main-sliders'], function(){
+            Route::get('','MainSliderController@index')->name('main-sliders.index');
+            Route::get('/create','MainSliderController@create')->name('main-sliders.create');
+            Route::post('','MainSliderController@store')->name('main-sliders.store');
+            Route::get('/{mainSlider}/edit','MainSliderController@edit')->name('main-sliders.edit');
+            Route::patch('/{mainSlider}','MainSliderController@update')->name('main-sliders.update');
+            Route::delete('/{mainSlider}','MainSliderController@destroy')->name('main-sliders.destroy');
+        });
 
-    Route::group(['prefix'=>'vendor-applications'], function(){
-        Route::get('/','VendorApplicationController@index')->name('vendor-applications.index');
-        Route::get('{applyVendor}/show','VendorApplicationController@show')->name('vendor-applications.show');
-        Route::patch('{applyVendor}','VendorApplicationController@update')->name('vendor-applications.update');
+        Route::group(['prefix'=>'users'], function(){
+//            Route::get('','UserController@index')->name('users.index');
+//            Route::get('/{user}/edit','UserController@edit')->name('users.edit');
+//            Route::patch('/{user}','UserController@update')->name('users.update');
+            Route::get('{type}','UserController@index')->name('users.index');
+            Route::get('{type}/{user}/edit','UserController@edit')->name('users.edit');
+            Route::patch('/{type}/{user}','UserController@update')->name('users.update');
+        });
+
+        Route::group(['prefix' => 'website-settings'], function () {
+            Route::group(['prefix' => 'arrivals'], function () {
+                Route::get('/', 'Settings\NewArrivalController@index')->name('arrivals.index');
+                Route::get('/create', 'Settings\NewArrivalController@create')->name('arrivals.create');
+                Route::post('/', 'Settings\NewArrivalController@store')->name('arrivals.store');
+                Route::get('/{id}/edit', 'Settings\NewArrivalController@edit')->name('arrivals.edit');
+                Route::patch('/{id}', 'Settings\NewArrivalController@update')->name('arrivals.update');
+
+            });
+        });
+
+        Route::group(['prefix'=>'website-settings/product-features'], function(){
+            Route::get('','Settings\ProductFeatureController@index')->name('product-features.index');
+            Route::get('/create','Settings\ProductFeatureController@create')->name('product-features.create');
+            Route::post('','Settings\ProductFeatureController@store')->name('product-features.store');
+            Route::get('/{productFeature}/edit','Settings\ProductFeatureController@edit')->name('product-features.edit');
+            Route::patch('/{productFeature}','Settings\ProductFeatureController@update')->name('product-features.update');
+            Route::delete('/{productFeature}','Settings\ProductFeatureController@destroy')->name('product-features.destroy');
+        });
+
+        Route::group(['prefix'=>'website-settings/ecom-supports'], function(){
+            Route::get('','Settings\EcomSupportController@index')->name('ecom-supports.index');
+            Route::get('/create','Settings\EcomSupportController@create')->name('ecom-supports.create');
+            Route::post('','Settings\EcomSupportController@store')->name('ecom-supports.store');
+            Route::get('/{ecomSupport}/edit','Settings\EcomSupportController@edit')->name('ecom-supports.edit');
+            Route::patch('/{ecomSupport}','Settings\EcomSupportController@update')->name('ecom-supports.update');
+            Route::delete('/{ecomSupport}','Settings\EcomSupportController@destroy')->name('ecom-supports.destroy');
+        });
+
+        Route::group(['prefix'=>'ecom-settings'], function(){
+            Route::get('/','EcomSettingController@index')->name('ecom-settings.index');
+            Route::patch('{ecomSetting}/show','EcomSettingController@update')->name('ecom-settings.update');
+        });
+
+        Route::group(['prefix'=>'website-settings/site-settings'], function(){
+            Route::get('/edit','SiteSettingController@edit')->name('site-settings.edit');
+            Route::patch('{siteSetting}/show','SiteSettingController@update')->name('site-settings.update');
+        });
+
+        Route::group(['prefix'=>'subscribers'], function(){
+            Route::get('','SubscriberController@index')->name('subscribers.index');
+            Route::get('/{newsLetter}/edit','SubscriberController@edit')->name('subscribers.edit');
+            Route::patch('/{newsLetter}','SubscriberController@update')->name('subscribers.update');
+            Route::delete('/{newsLetter}','SubscriberController@destroy')->name('subscribers.destroy');
+        });
+
+        Route::group(['prefix'=>'mails'], function(){
+            Route::get('','MailController@index')->name('mails.index');
+            Route::get('/create','MailController@create')->name('mails.create');
+            Route::post('','MailController@store')->name('mails.store');
+
+//        Route::patch('/{mainSlider}','MainSliderController@update')->name('main-sliders.update');
+            Route::get('/send','MailController@sendMail')->name('send-mail.index');
+            Route::get('/send/{mailAddress}/show','MailController@show')->name('send-mails.show');
+            Route::get('/draft','MailController@draftMail')->name('draft-mail.index');
+            Route::get('/draft/{mail}/edit','MailController@draftedit')->name('draft-mail.edit');
+            Route::patch('/draft/{mail}','MailController@draftupdate')->name('draft-mail.update');
+            Route::delete('/draft','MailController@draftDestroy')->name('draft-mail.destroy');
+
+            Route::delete('/destroy','MailController@destroy')->name('mails.destroy');
+
+            Route::get('/trash-mails','MailController@trashIndex')->name('trash-mails.index');
+            Route::delete('trash-mails','MailController@trashDestroy')->name('trash-mails.destroy');
+        });
+
+        Route::group(['prefix'=>'vendor-applications'], function(){
+            Route::get('/','VendorApplicationController@index')->name('vendor-applications.index');
+            Route::get('{applyVendor}/show','VendorApplicationController@show')->name('vendor-applications.show');
+            Route::patch('{applyVendor}','VendorApplicationController@update')->name('vendor-applications.update');
+        });
     });
 
     Route::group(['prefix'=>'orders'], function(){
         Route::get('/','OrderController@index')->name('orders.index');
         Route::get('{order}/show','OrderController@show')->name('orders.show');
         Route::patch('status/{order}','OrderController@updateStatus')->name('orders-status.update');
-    });
-
-    Route::group(['prefix'=>'ecom-settings'], function(){
-        Route::get('/','EcomSettingController@index')->name('ecom-settings.index');
-        Route::patch('{ecomSetting}/show','EcomSettingController@update')->name('ecom-settings.update');
     });
 
     Route::group(['prefix'=>'profiles'], function(){
@@ -111,36 +156,6 @@ Route::group(['middleware' => 'auth'], function() {
         Route::patch('/change-password','ProfileController@passwordUpdate')->name('admin-change-password.update');
     });
 
-    Route::group(['prefix'=>'website-settings/site-settings'], function(){
-        Route::get('/edit','SiteSettingController@edit')->name('site-settings.edit');
-        Route::patch('{siteSetting}/show','SiteSettingController@update')->name('site-settings.update');
-    });
-
-    Route::group(['prefix'=>'subscribers'], function(){
-        Route::get('','SubscriberController@index')->name('subscribers.index');
-        Route::get('/{newsLetter}/edit','SubscriberController@edit')->name('subscribers.edit');
-        Route::patch('/{newsLetter}','SubscriberController@update')->name('subscribers.update');
-        Route::delete('/{newsLetter}','SubscriberController@destroy')->name('subscribers.destroy');
-    });
-
-    Route::group(['prefix'=>'mails'], function(){
-        Route::get('','MailController@index')->name('mails.index');
-        Route::get('/create','MailController@create')->name('mails.create');
-        Route::post('','MailController@store')->name('mails.store');
-
-//        Route::patch('/{mainSlider}','MainSliderController@update')->name('main-sliders.update');
-        Route::get('/send','MailController@sendMail')->name('send-mail.index');
-        Route::get('/send/{mailAddress}/show','MailController@show')->name('send-mails.show');
-        Route::get('/draft','MailController@draftMail')->name('draft-mail.index');
-        Route::get('/draft/{mail}/edit','MailController@draftedit')->name('draft-mail.edit');
-        Route::patch('/draft/{mail}','MailController@draftupdate')->name('draft-mail.update');
-        Route::delete('/draft','MailController@draftDestroy')->name('draft-mail.destroy');
-
-        Route::delete('/destroy','MailController@destroy')->name('mails.destroy');
-
-        Route::get('/trash-mails','MailController@trashIndex')->name('trash-mails.index');
-        Route::delete('trash-mails','MailController@trashDestroy')->name('trash-mails.destroy');
-    });
 });
 
 

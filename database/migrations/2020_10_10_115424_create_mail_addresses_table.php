@@ -17,7 +17,9 @@ class CreateMailAddressesTable extends Migration
             $table->id();
             $table->unsignedBigInteger('mail_id');
             $table->string('email');
+            $table->string('user_type')->nullable();
             $table->boolean('status')->default(0);
+            $table->boolean('read_at')->default(0);
             $table->timestamp('deleted_at')->nullable();
             $table->timestamps();
         });
