@@ -108,3 +108,15 @@ Route::group(['middleware'=>'auth'],function(){
     Route::post('/wish-list/carts', 'User\ProductCartController@wishListCartStore')->name('wish-lists-carts.store');
 });
 
+
+
+Route::group(['prefix' => 'website-settings'], function () {
+    Route::group(['prefix' => 'arrivals'], function () {
+        Route::get('/', 'Settings\NewArrivalController@index')->name('arrivals.index');
+        Route::get('/create', 'Settings\NewArrivalController@create')->name('arrivals.create');
+        Route::post('/', 'Settings\NewArrivalController@store')->name('arrivals.store');
+        Route::get('/{id}/edit', 'Settings\NewArrivalController@edit')->name('arrivals.edit');
+        Route::patch('/{id}', 'Settings\NewArrivalController@update')->name('arrivals.update');
+
+    });
+});

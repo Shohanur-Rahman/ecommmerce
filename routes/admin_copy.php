@@ -28,13 +28,4 @@ Route::group(['prefix' => 'products'], function () {
     Route::patch('/{id}/edit', 'ProductsController@update')->name('products.update');
 });
 
-Route::group(['prefix' => 'website-settings'], function () {
-	Route::group(['prefix' => 'arrivals'], function () {
-        Route::get('/', 'Settings\NewArrivalController@index')->name('arrivals.index');
-        Route::get('/create', 'Settings\NewArrivalController@create')->name('arrivals.create');
-        Route::post('/', 'Settings\NewArrivalController@store')->name('arrivals.store');
-        Route::get('/{id}/edit', 'Settings\NewArrivalController@edit')->name('arrivals.edit');
-        Route::patch('/{id}', 'Settings\NewArrivalController@update')->name('arrivals.update');
 
-	});
-});

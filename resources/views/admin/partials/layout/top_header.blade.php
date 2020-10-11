@@ -25,11 +25,11 @@
         <!-- Top Bar Nav -->
         <ul class="right-side-content d-flex align-items-center">
             <!-- Left Side Nav -->
-            <li class="hide-phone app-search">
+            {{--<li class="hide-phone app-search">
                 <form role="search" class=""><input type="text" placeholder="Search..." class="form-control"> <button type="submit" class="mr-0"><i class="fa fa-search"></i></button></form>
-            </li>
+            </li>--}}
 
-            <li class="nav-item dropdown">
+           {{-- <li class="nav-item dropdown">
                 <button type="button" class="btn dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><i class="fa fa-envelope-o" aria-hidden="true"></i></button>
 
                 <div class="dropdown-menu dropdown-menu-right">
@@ -104,9 +104,9 @@
                         </div>
                     </div>
                 </div>
-            </li>
+            </li>--}}
 
-            <li class="nav-item dropdown">
+           {{-- <li class="nav-item dropdown">
                 <button type="button" class="btn dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><i class="fa fa-bell-o" aria-hidden="true"></i> <span class="active-status"></span></button>
                 <div class="dropdown-menu dropdown-menu-right">
                     <!-- Top Notifications Area -->
@@ -171,7 +171,7 @@
                         </div>
                     </div>
                 </div>
-            </li>
+            </li>--}}
 
             <li class="nav-item dropdown">
                 <button type="button" class="btn dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
@@ -185,6 +185,7 @@
                 <div class="dropdown-menu header-profile dropdown-menu-right">
                     <!-- User Profile Area -->
                     <div class="user-profile-area">
+                        <a href="{{route('app.home')}}" target="_blank" class="dropdown-item"><i class="zmdi zmdi-globe profile-icon" aria-hidden="true"></i> Visit Site</a>
                         <a href="{{route('admin-profiles.create')}}" class="dropdown-item"><i class="zmdi zmdi-account profile-icon" aria-hidden="true"></i> My profile</a>
                         <a href="#" class="dropdown-item"><i class="zmdi zmdi-email-open profile-icon" aria-hidden="true"></i> Messages</a>
                         <a href="{{route('admin-change-password.edit')}}" class="dropdown-item"><i class="zmdi zmdi-brightness-7 profile-icon" aria-hidden="true"></i> Account settings</a>

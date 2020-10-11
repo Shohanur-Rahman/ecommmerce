@@ -12,7 +12,7 @@
 <div class="ecaps-sidemenu-area">
             <!-- Desktop Logo -->
     <div class="ecaps-logo">
-        <a href="{{route('dashboard')}}"><img class="desktop-logo" src="{{asset('admin/img/core-img/logo.png')}}" alt="Desktop Logo"> <img class="small-logo" src="{{asset('admin/img/core-img/small-logo.png')}}" alt="Mobile Logo"></a>
+        <a href="{{route('dashboard')}}"><img class="desktop-logo" src="{{asset('logo.png')}}" alt="Desktop Logo"> <img class="small-logo" src="{{asset('admin/img/core-img/small-logo.png')}}" alt="Mobile Logo"></a>
     </div>
 
     <!-- Side Nav -->
