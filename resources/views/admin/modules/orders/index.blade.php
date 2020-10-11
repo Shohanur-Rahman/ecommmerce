@@ -43,7 +43,7 @@
                                     @endforeach
                                 </td>
                                 <td>
-                                    @php
+                                    {{--@php
                                         $total = 0;
                                         $shippingCharge = 0;
                                        foreach($order->orderProducts as $orderProduct){
@@ -51,7 +51,7 @@
                                            $total += $orderProduct->product->new_price*$orderProduct->quantity + $shippingCharge;
                                        }
                                     @endphp
-                                    {{$total}}
+                                    {{$total}}--}}
                                 </td>
                                 <td>{{$order->status}}</td>
                                 <td>{{$order->created_at->format('d F Y')}}</td>

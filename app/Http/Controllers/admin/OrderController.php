@@ -6,6 +6,8 @@ use App\Http\Controllers\Controller;
 use App\Models\Products;
 use App\Models\User\Order;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
 
 class OrderController extends Controller
 {
@@ -18,9 +20,20 @@ class OrderController extends Controller
 
     public function show(Order $order)
     {
-        $order = $order->with('user','orderProducts','shippingAddress')->first();
+        $order = $order->with('user','orderProducts','shippingAddress')
+            ->first();
 
-        return view('admin.modules.orders.show',compact('order'));
+
+        $productInfo = DB::table('products')
+            ->join('order_products', 'order_products.product_id', '=', 'products.id')
+            ->select('products.*', 'order_products.quantity')
+            ->where('products.user_id', Auth::id())
+            ->where('order_products.order_id', $order->id)
+            ->get();
+
+        //dd($productInfo);
+
+        return view('admin.modules.orders.show',compact('order', 'productInfo'));
     }
 
     public function updateStatus(Request $request, Order $order)

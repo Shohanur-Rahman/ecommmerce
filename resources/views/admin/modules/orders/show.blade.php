@@ -12,204 +12,226 @@
                 <div class="card-body ml-3">
                     <h4 class="card-title mb-2">Order ID #{{$order->id}}</h4>
                     <p class="text-muted font-14 mb-4">
-                        The Buttons extension for DataTables provides a common set of options, API methods and styling to display buttons on a page
-                        that will interact with a DataTable. The core library provides the based framework upon which plug-ins can built.
+                        The Buttons extension for DataTables provides a common set of options, API methods and styling
+                        to display buttons on a page
+                        that will interact with a DataTable. The core library provides the based framework upon which
+                        plug-ins can built.
                     </p>
 
                 </div>
 
 
-               <div class="row">
-                   <div class="col-xl-6 ">
-                       <div class="card">
-                           <div class="card-body">
-                               <div class="template-demo">
-                                   <table class="table mb-0">
-                                       <thead>
-                                       <tr>
-                                           <th colspan="2"> <h4 class="card-title mb-0">Ordered Details</h4></th>
-                                       </tr>
-                                       </thead>
-                                       <tbody>
-                                       <tr>
-                                           <td>Ordered Date</td>
-                                           <td class=" text-right">
-                                               <div class="badge badge-primary badge-pill">{{$order->created_at->format('d F Y')}}</div>
-                                           </td>
-                                       </tr>
-                                       <tr>
-                                           <td>Ordered Status</td>
-                                           <td class=" text-right">
-                                               <div class="badge badge-primary badge-pill">{{$order->status}}</div>
-                                           </td>
-                                       </tr>
-                                       <tr>
-                                           <td>Ordered Amount</td>
-                                           <td class=" text-right">
-                                               <div class="badge badge-primary badge-pill">
-                                                   @php
-                                                        $total = 0;
-                                                        $shippingCharge = 0;
-                                                       foreach($order->orderProducts as $orderProduct){
-                                                         $shippingCharge += $order->product->shipping_charge;
-                                                           $total += $orderProduct->product->new_price*$orderProduct->quantity +$shippingCharge;
-                                                       }
-                                                   @endphp
-                                                   {{$total}}
-                                               </div>
-                                           </td>
-                                       </tr>
-                                       <tr>
-                                           <td>Shipping Charge</td>
-                                           <td class=" text-right">
-                                               <div class="badge badge-primary badge-pill">{{$shippingCharge}}</div>
-                                           </td>
-                                       </tr>
-                                       <tr>
-                                           <td>Coupon Code </td>
-                                           <td class=" text-right">
-                                               <div class="badge badge-primary badge-pill">{{$order->status}}</div>
-                                           </td>
-                                       </tr>
-                                       <tr>
-                                           <td>Coupon Amount</td>
-                                           <td class=" text-right">
-                                               <div class="badge badge-primary badge-pill">{{$order->status}}</div>
-                                           </td>
-                                       </tr>
-                                       <tr>
-                                           <td>Transaction Id</td>
-                                           <td class=" text-right">
-                                               <div class="badge badge-primary badge-pill">{{$order->status}}</div>
-                                           </td>
-                                       </tr>
-                                       <tr>
-                                           <td>Payment Method</td>
-                                           <td class=" text-right">
-                                               <div class="badge badge-primary badge-pill">{{$order->status}}</div>
-                                           </td>
-                                       </tr>
-                                       </tbody>
-                                   </table>
-                               </div>
-                           </div>
-                       </div>
+                <div class="row">
+                    <div class="col-xl-6 ">
+                        <div class="card">
+                            <div class="card-body">
+                                <div class="template-demo">
+                                    <table class="table mb-0">
+                                        <thead>
+                                        <tr>
+                                            <th colspan="2"><h4 class="card-title mb-0">Ordered Details</h4></th>
+                                        </tr>
+                                        </thead>
+                                        <tbody>
+                                        <tr>
+                                            <td>Ordered Date</td>
+                                            <td class=" text-right">
+                                                <div
+                                                    class="badge badge-primary badge-pill">{{$order->created_at->format('d F Y')}}</div>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>Ordered Status</td>
+                                            <td class=" text-right">
+                                                <div class="badge badge-primary badge-pill">{{$order->status}}</div>
+                                            </td>
+                                        </tr>
 
-                       <div class="card">
-                           <div class="card-body ml-3">
-                               <div class="template-demo">
-                                   <h4 class="card-title mb-3">Billing Address</h4>
+                                        <?php
+                                        $total = 0;
+                                        $shippingCharge = 0;
+                                        foreach ($productInfo as $orderProduct) {
+                                            $total += $orderProduct->new_price;
+                                            $shippingCharge += $orderProduct->shipping_charge;
 
-                                   <address class="font-16">
-                                       {{$order->user->name}}<br>
-                                       {{$order->user->email}}<br>
-                                       {{$order->user->userProfile->city}}<br>
-                                       {{$order->user->userProfile->house}},{{$order->user->userProfile->road}},{{$order->user->userProfile->state}}<br>
-                                       {{$order->user->userProfile->country}}<br>
-                                       Phone: {{$order->user->userProfile->phone}}<br>
-                                       Describe Address: {{$order->user->userProfile->describe_address}}<br>
-                                   </address>
-                               </div>
-                           </div>
-                       </div>
-                   </div>
+                                        }
 
-                   <div class="col-xl-6 ">
-                       <div class="card">
-                           <div class="card-body">
-                               <div class="template-demo">
-                                   <table class="table mb-0">
-                                       <thead>
-                                       <tr>
-                                           <th colspan="2"> <h4 class="card-title mb-0">Customer Details</h4></th>
-                                       </tr>
-                                       </thead>
-                                       <tbody>
-                                       <tr>
-                                           <td>Customer Name</td>
-                                           <td class=" text-right">
-                                               <div class="badge badge-primary badge-pill">{{$order->user->name}}</div>
-                                           </td>
-                                       </tr>
-                                       <tr>
-                                           <td>Customer Email</td>
-                                           <td class=" text-right">
-                                               <div class="badge badge-primary badge-pill">{{$order->user->email}}</div>
-                                           </td>
-                                       </tr>
-                                       </tbody>
-                                   </table>
-                               </div>
-                           </div>
-                       </div>
+                                        ?>
 
-                       <div class="card">
-                           <div class="card-body ml-3">
-                               <div class="template-demo">
+                                        <tr>
+                                            <td>Ordered Amount</td>
+                                            <td class=" text-right">
+                                                <div class="badge badge-primary badge-pill">
+                                                    {{$total}}
+                                                </div>
+                                            </td>
+                                        </tr>
 
-                                   <h4 class="card-title mb-3">Ordered Status</h4>
-                                   <form action="{{route('orders-status.update',$order->id)}}" method="post">
-                                       @method('PATCH')
-                                       @csrf
-                                       <div class="form-group">
-                                           <div class="new-checkbox">
-                                               <!-- Rectangular switch -->
-                                               <div class="inline-widged">
-                                                   <label for="new" class="single-label">New</label>
-                                                   <label class="switch">
-                                                       <input onclick="submit()" class="status-list" type="checkbox" id="new" name="status" {{$order->status=='New' ? 'checked' : '' }} value="New" />
-                                                       <span class="slider round"></span>
-                                                   </label>
-                                               </div>
-                                               <div class="inline-widged">
-                                                   <label for="pending" class="single-label">Pending</label>
-                                                   <label class="switch">
-                                                       <input onclick="submit()" class="status-list" type="checkbox" id="pending" name="status" {{$order->status=='Pending' ? 'checked' : '' }} value="Pending" />
-                                                       <span class="slider round"></span>
-                                                   </label>
-                                               </div>
-                                               <div class="inline-widged">
-                                                   <label for="delivered" class="single-label">Delivered</label>
-                                                   <label class="switch">
-                                                       <input onclick="submit()" class="status-list" type="checkbox" id="delivered" name="status" {{$order->status=='Delivered' ? 'checked' : '' }} value="Delivered" />
-                                                       <span class="slider round"></span>
-                                                   </label>
-                                               </div>
-                                               <div class="inline-widged">
-                                                   <label for="cancel" class="single-label">Cancel</label>
-                                                   <label class="switch">
-                                                       <input onclick="submit()" class="status-list" type="checkbox" id="cancel" name="status" {{$order->status=='Cancel' ? 'checked' : '' }} value="Cancel" />
-                                                       <span class="slider round"></span>
-                                                   </label>
-                                               </div>
+                                        <tr>
+                                            <td>Shipping Charge</td>
+                                            <td class=" text-right">
+                                                <div class="badge badge-primary badge-pill">{{$shippingCharge}}</div>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>Coupon Code</td>
+                                            <td class=" text-right">
+                                                <div class="badge badge-primary badge-pill">{{$order->status}}</div>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>Payer Email</td>
+                                            <td class=" text-right">
+                                                <div
+                                                    class="badge badge-primary badge-pill">{{$order->payer_email}}</div>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>Invoice</td>
+                                            <td class=" text-right">
+                                                <div class="badge badge-primary badge-pill">
+                                                    #{{$order->invoice_number}}</div>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>Payment Method</td>
+                                            <td class=" text-right">
+                                                <div
+                                                    class="badge badge-primary badge-pill">{{$order->payment_method}}</div>
+                                            </td>
+                                        </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
 
-                                           </div>
-                                       </div>
-                                   </form>
+                        <div class="card">
+                            <div class="card-body ml-3">
+                                <div class="template-demo">
+                                    <h4 class="card-title mb-3">Billing Address</h4>
 
-                               </div>
-                           </div>
-                       </div>
+                                    <address class="font-16">
+                                        {{$order->user->name}}<br>
+                                        {{$order->user->email}}<br>
+                                        {{$order->user->userProfile->city}}<br>
+                                        {{$order->user->userProfile->house}}
+                                        ,{{$order->user->userProfile->road}},{{$order->user->userProfile->state}}<br>
+                                        {{$order->user->userProfile->country}}<br>
+                                        Phone: {{$order->user->userProfile->phone}}<br>
+                                        Describe Address: {{$order->user->userProfile->describe_address}}<br>
+                                    </address>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
 
-                       <div class="card">
-                           <div class="card-body ml-3">
-                               <div class="template-demo">
-                                   <h4 class="card-title mb-3">Shipping Address</h4>
+                    <div class="col-xl-6 ">
+                        <div class="card">
+                            <div class="card-body">
+                                <div class="template-demo">
+                                    <table class="table mb-0">
+                                        <thead>
+                                        <tr>
+                                            <th colspan="2"><h4 class="card-title mb-0">Customer Details</h4></th>
+                                        </tr>
+                                        </thead>
+                                        <tbody>
+                                        <tr>
+                                            <td>Customer Name</td>
+                                            <td class=" text-right">
+                                                <div class="badge badge-primary badge-pill">{{$order->user->name}}</div>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>Customer Email</td>
+                                            <td class=" text-right">
+                                                <div
+                                                    class="badge badge-primary badge-pill">{{$order->user->email}}</div>
+                                            </td>
+                                        </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
 
-                                       <address class="font-16">
-                                           {{$order->shippingAddress->name}}<br>
-                                           {{$order->shippingAddress->email}}<br>
-                                           {{$order->shippingAddress->city}}<br>
-                                           {{$order->shippingAddress->house}},{{$order->shippingAddress->road}},{{$order->shippingAddress->state}}<br>
-                                           {{$order->shippingAddress->country}}<br>
-                                           Phone: {{$order->shippingAddress->phone}}<br>
-                                           Describe Address: {{$order->shippingAddress->describe_address}}<br>
-                                       </address>
-                               </div>
-                           </div>
-                       </div>
-                   </div>
-               </div>
+                        <div class="card">
+                            <div class="card-body ml-3">
+                                <div class="template-demo">
+
+                                    <h4 class="card-title mb-3">Ordered Status</h4>
+                                    <form action="{{route('orders-status.update',$order->id)}}" method="post">
+                                        @method('PATCH')
+                                        @csrf
+                                        <div class="form-group">
+                                            <div class="new-checkbox">
+                                                <!-- Rectangular switch -->
+                                                <div class="inline-widged">
+                                                    <label for="new" class="single-label">New</label>
+                                                    <label class="switch">
+                                                        <input onclick="submit()" class="status-list" type="checkbox"
+                                                               id="new" name="status"
+                                                               {{$order->status=='New' ? 'checked' : '' }} value="New"/>
+                                                        <span class="slider round"></span>
+                                                    </label>
+                                                </div>
+                                                <div class="inline-widged">
+                                                    <label for="pending" class="single-label">Pending</label>
+                                                    <label class="switch">
+                                                        <input onclick="submit()" class="status-list" type="checkbox"
+                                                               id="pending" name="status"
+                                                               {{$order->status=='Pending' ? 'checked' : '' }} value="Pending"/>
+                                                        <span class="slider round"></span>
+                                                    </label>
+                                                </div>
+                                                <div class="inline-widged">
+                                                    <label for="delivered" class="single-label">Delivered</label>
+                                                    <label class="switch">
+                                                        <input onclick="submit()" class="status-list" type="checkbox"
+                                                               id="delivered" name="status"
+                                                               {{$order->status=='Delivered' ? 'checked' : '' }} value="Delivered"/>
+                                                        <span class="slider round"></span>
+                                                    </label>
+                                                </div>
+                                                <div class="inline-widged">
+                                                    <label for="cancel" class="single-label">Cancel</label>
+                                                    <label class="switch">
+                                                        <input onclick="submit()" class="status-list" type="checkbox"
+                                                               id="cancel" name="status"
+                                                               {{$order->status=='Cancel' ? 'checked' : '' }} value="Cancel"/>
+                                                        <span class="slider round"></span>
+                                                    </label>
+                                                </div>
+
+                                            </div>
+                                        </div>
+                                    </form>
+
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="card">
+                            <div class="card-body ml-3">
+                                <div class="template-demo">
+                                    <h4 class="card-title mb-3">Shipping Address</h4>
+
+                                    <address class="font-16">
+                                        {{$order->shippingAddress->name}}<br>
+                                        {{$order->shippingAddress->email}}<br>
+                                        {{$order->shippingAddress->city}}<br>
+                                        {{$order->shippingAddress->house}}
+                                        ,{{$order->shippingAddress->road}},{{$order->shippingAddress->state}}<br>
+                                        {{$order->shippingAddress->country}}<br>
+                                        Phone: {{$order->shippingAddress->phone}}<br>
+                                        Describe Address: {{$order->shippingAddress->describe_address}}<br>
+                                    </address>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
     </div>
@@ -223,25 +245,23 @@
                         <table class="table mb-0">
                             <thead>
                             <tr>
-                                <th>Product Name </th>
-                                <th>Product SKU </th>
-                                <th>Product Size</th>
-                                <th>Product Color</th>
-                                <th>Product price</th>
+                                <th>Product Name</th>
+                                <th>Photo</th>
+                                <th>Product SKU</th>
+                                <th>Product Price</th>
                                 <th>Product Quantity</th>
                                 <th>Total Price</th>
                             </tr>
                             </thead>
                             <tbody>
-                            @foreach($order->orderProducts as $orderProduct)
+                            @foreach($productInfo as $orderProduct)
                                 <tr>
-                                    <td>{{$orderProduct->product->title}}</td>
-                                    <td>{{$orderProduct->product->sku}}</td>
-                                    <td>{{($orderProduct->product->size) ? $orderProduct->product->size->size : ''}}</td>
-                                    <td>{{($orderProduct->product->color) ? $orderProduct->product->size->color : ''}}</td>
-                                    <td>{{$orderProduct->product->new_price}}</td>
+                                    <td>{{$orderProduct->title}}</td>
+                                    <td><img src="{{asset($orderProduct->featured_image)}}" class="table-image"></td>
+                                    <td>{{$orderProduct->sku}}</td>
+                                    <td>${{$orderProduct->new_price}}</td>
                                     <td>{{$orderProduct->quantity}}</td>
-                                    <td>{{$orderProduct->product->new_price*$orderProduct->quantity}}</td>
+                                    <td>${{$orderProduct->new_price*$orderProduct->quantity}}</td>
 
                                 </tr>
                             @endforeach
@@ -254,7 +274,7 @@
     </div>
 
     <script type="text/javascript">
-        $('.status-list').on('change', function() {
+        $('.status-list').on('change', function () {
             $('.status-list').not(this).prop('checked', false);
         });
     </script>

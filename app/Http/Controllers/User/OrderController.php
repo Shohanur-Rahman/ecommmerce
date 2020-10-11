@@ -18,7 +18,9 @@ class OrderController extends Controller
 
     public function show($id)
     {
+
         $order = Order::where('id',$id)->with('orderProducts.product')->first();
+
 
         if(!is_null($order)){
 
