@@ -23,13 +23,28 @@ class OrderController extends Controller
         $order = $order->with('user','orderProducts','shippingAddress')
             ->first();
 
+        $userType = Auth::user()->user_type;
 
-        $productInfo = DB::table('products')
-            ->join('order_products', 'order_products.product_id', '=', 'products.id')
-            ->select('products.*', 'order_products.quantity')
-            ->where('products.user_id', Auth::id())
-            ->where('order_products.order_id', $order->id)
-            ->get();
+
+        if(strtolower($userType) == "vendor"){
+            $productInfo = DB::table('products')
+                ->join('order_products', 'order_products.product_id', '=', 'products.id')
+                ->select('products.*', 'order_products.quantity')
+                ->where('products.user_id', Auth::id())
+                ->where('order_products.order_id', $order->id)
+                ->get();
+
+        }else{
+
+            $productInfo = DB::table('products')
+                ->join('order_products', 'order_products.product_id', '=', 'products.id')
+                ->select('products.*', 'order_products.quantity')
+                //->where('products.user_id', Auth::id())
+                ->where('order_products.order_id', $order->id)
+                ->get();
+        }
+
+
 
         //dd($productInfo);
 

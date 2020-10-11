@@ -62,7 +62,7 @@
                                             <td>Ordered Amount</td>
                                             <td class=" text-right">
                                                 <div class="badge badge-primary badge-pill">
-                                                    {{$total}}
+                                                    ${{$total}}
                                                 </div>
                                             </td>
                                         </tr>
@@ -70,13 +70,13 @@
                                         <tr>
                                             <td>Shipping Charge</td>
                                             <td class=" text-right">
-                                                <div class="badge badge-primary badge-pill">{{$shippingCharge}}</div>
+                                                <div class="badge badge-primary badge-pill">${{$shippingCharge}}</div>
                                             </td>
                                         </tr>
                                         <tr>
-                                            <td>Coupon Code</td>
+                                            <td>Total</td>
                                             <td class=" text-right">
-                                                <div class="badge badge-primary badge-pill">{{$order->status}}</div>
+                                                <div class="badge badge-primary badge-pill">${{($total + $shippingCharge)}}</div>
                                             </td>
                                         </tr>
                                         <tr>
@@ -245,6 +245,7 @@
                         <table class="table mb-0">
                             <thead>
                             <tr>
+                                <th>ID</th>
                                 <th>Product Name</th>
                                 <th>Photo</th>
                                 <th>Product SKU</th>
@@ -256,6 +257,7 @@
                             <tbody>
                             @foreach($productInfo as $orderProduct)
                                 <tr>
+                                    <td>{{$orderProduct->id}}</td>
                                     <td>{{$orderProduct->title}}</td>
                                     <td><img src="{{asset($orderProduct->featured_image)}}" class="table-image"></td>
                                     <td>{{$orderProduct->sku}}</td>
