@@ -5,8 +5,7 @@ use Illuminate\Support\Facades\Route;
 
 
 
-Route::get('/execute-payment', 'PaymentController@execute')->name('payments.execute');
-Route::post('/create-payment', 'PaymentController@create')->name('payments.create');
+
 
 
 Route::get('/search', 'ProductController@search')->name('product.search');

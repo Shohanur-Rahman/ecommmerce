@@ -76,7 +76,7 @@ class CheckoutController extends Controller
                 'invoice_number' => $invoice,
                 'payment_mode' => $paymentResult->transactions[0]->related_resources[0]->sale->payment_mode,
                 'payment_state' => $paymentResult->transactions[0]->related_resources[0]->sale->state,
-                'payment_id' => $paymentResult['id'],
+                'payment_id' => $paymentResult->id,
                 'total_amount' => $totalCost,
                 'paid_amount' => $paymentResult->transactions[0]->amount->total,
                 'status' => 'New',

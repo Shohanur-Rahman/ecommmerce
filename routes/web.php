@@ -69,6 +69,10 @@ Route::group(['middleware'=>'auth'],function(){
         Route::post('/product-reviews/{id}','User\ProductReviewController@productReviews')->name('product-reviews.store');
      });
 
+
+    Route::get('/execute-payment', 'User\PaymentController@execute')->name('payments.execute');
+    Route::post('/create-payment', 'User\PaymentController@create')->name('payments.create');
+
     Route::group(['prefix'=>'checkouts'], function(){
         Route::get('/thank-you','User\CheckoutController@index')->name('checkouts.index');
         Route::get('/','User\CheckoutController@create')->name('checkouts.create');
