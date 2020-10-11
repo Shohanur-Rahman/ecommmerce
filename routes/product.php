@@ -3,6 +3,11 @@
 use Illuminate\Support\Facades\Route;
 
 
+
+
+Route::get('/execute-payment', 'PaymentController@execute')->name('payments.execute');
+Route::post('/create-payment', 'PaymentController@create')->name('payments.create');
+
 Route::group(['middleware'=>'auth'],function(){
 
 	Route::post('/add-to-cart', 'ProductController@add_to_cart')->name('product.add_to_cart');
@@ -20,4 +25,9 @@ Route::get('/{category}/{slug}', 'ProductController@details')->name('product.det
 Route::get('/{category}', 'ProductController@index')->name('product.index');
 
 Route::get('/cart-list', 'ProductController@getCartList')->name('product.cartlist');
+
+
+
+
+
 

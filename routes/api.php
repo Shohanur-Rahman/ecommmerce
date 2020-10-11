@@ -12,6 +12,7 @@ use PayPal\Api\WebProfile;
 use PayPal\Api\InputFields;
 use PayPal\Api\Transaction;
 use PayPal\Api\RedirectUrls;
+use PayPal\Api\PaymentExecution;
 /*
 |--------------------------------------------------------------------------
 | API Routes
@@ -27,9 +28,13 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
     return $request->user();
 });
 
-
+/*
 
 Route::post('create-payment', function () {
+
+    return \Illuminate\Support\Facades\Request::all();
+
+
     $apiContext = new \PayPal\Rest\ApiContext(
         new \PayPal\Auth\OAuthTokenCredential(
             'Ad56MPQaJvtIRSxjYGkFFxrFNtdCAtpRk31ranufYkZymwCT2Wxk77KolPrfBAuq2siFp3GRNCVL0uxc',
@@ -140,4 +145,4 @@ Route::post('execute-payment', function (Request $request) {
     }
 
     return $result;
-})->name('pay.execute.payment');
+})->name('pay.execute.payment');*/

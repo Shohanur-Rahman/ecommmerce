@@ -35,18 +35,19 @@ textarea.parsley-error {
     -webkit-transition: all .3s ease-in;
 }
 
-    .parsley-errors-list.filled {
-        opacity: 1;
-    }
+.parsley-errors-list.filled {
+    opacity: 1;
+}
 
-.ProfileCategory li a{
+.ProfileCategory li a {
     text-decoration: none;
     color: #0d0a0a;
 }
 
-.ProfileCategory li:hover,.ProfileCategory li a:hover{
+.ProfileCategory li:hover, .ProfileCategory li a:hover {
     color: #59b210;
 }
+
 /**
 *
 *End parsley style
@@ -58,64 +59,75 @@ textarea.parsley-error {
     float: left;
     transition: .3s;
 }
-.products-sort li{
+
+.products-sort li {
     list-style: none;
     display: block;
     line-height: 25px;
 }
-.short-dropdown ul{
+
+.short-dropdown ul {
     display: none;
     margin: 0;
     padding: 0;
 }
-.short-dropdown:hover ul{
+
+.short-dropdown:hover ul {
     display: block;
     transition: .3s;
 }
 
-.fixed_main_navbar{
+.fixed_main_navbar {
     position: fixed;
     width: calc(100% - 85.5%) !important;
     z-index: 99;
 }
 
-.main_menubar ul.vm-dropdown{
+.main_menubar ul.vm-dropdown {
     max-height: calc(560px - 50px) !important;
 }
-.mobile-menu-toggler{
+
+.mobile-menu-toggler {
     width: 100%;
 }
+
 .mobile-menu-toggler .fa {
     display: block;
     float: left;
     padding-top: 7px;
 }
+
 .company-info img {
     max-width: 50%;
 }
+
 .btn-filter {
     background: none;
     border: none;
     cursor: pointer;
 }
 
-.filter-dropdown{
+.filter-dropdown {
     padding-left: 15px;
     padding-right: 15px;
 }
+
 .filter-dropdown a.dropdown-item {
     padding: 5px 0;
     line-height: 16px;
 }
+
 .dropdown.filter-box {
     border: 1px solid #efeeeea8;
     display: inline-block;
     margin-left: 5px;
 }
-.btn-filter:hover .filter-dropdown{
+
+.btn-filter:hover .filter-dropdown {
     display: block;
     transition: .3s;
 }
+
 .logo img {
     transition: .3s;
 }
@@ -128,32 +140,35 @@ textarea.parsley-error {
 .product-item .product-single {
     background: #fff;
 }
-.product-item-listed-image{
+
+.product-item-listed-image {
     max-height: 220px;
     overflow: hidden;
     transition: .3s;
 }
-.product-item .product-single:hover .product-item-listed-image{
+
+.product-item .product-single:hover .product-item-listed-image {
     transform: scale(1.05);
     transition: .3s;
 }
 
 .add-to-cart {
-    background-color: rgba(204,210,234,.9);
-    border-color: rgba(204,210,234,.9);
+    background-color: rgba(204, 210, 234, .9);
+    border-color: rgba(204, 210, 234, .9);
     color: #181818;
 }
 
-.add-to-cart:hover{
+.add-to-cart:hover {
     background-color: #1467c1;
     border-color: #1467c1;
     color: #fff;
 }
 
 .product-item .product-single:hover,
-.product-single:hover .product-action{
+.product-single:hover .product-action {
     border-color: #1467c1;
 }
+
 .product-action .product-compare:hover,
 .product-action .product-wishlist:hover {
     background-color: #1467c1;
@@ -161,22 +176,24 @@ textarea.parsley-error {
 }
 
 .male-products .product-item .product-single:hover,
-.male-products .product-single:hover .product-action{
+.male-products .product-single:hover .product-action {
     border-color: green;
 }
+
 .male-products .product-action .product-compare:hover,
 .male-products .product-action .product-wishlist:hover {
     background-color: green;
     border-color: green;
 }
-.male-products .add-to-cart:hover{
+
+.male-products .add-to-cart:hover {
     background-color: green;
     border-color: green;
     color: #fff;
 }
 
 .female-products .product-item .product-single:hover,
-.female-products .product-single:hover .product-action{
+.female-products .product-single:hover .product-action {
     border-color: hotpink;
 }
 
@@ -185,6 +202,7 @@ textarea.parsley-error {
     border-color: hotpink;
     color: #fff;
 }
+
 .product-action .product-compare:hover,
 .product-action .product-wishlist:hover {
     background-color: #1467c1;
@@ -200,9 +218,32 @@ textarea.parsley-error {
 img.cart-page-image {
     max-height: 53px;
 }
-.cart-row{
+
+.cart-row {
     border-top: 1px solid #d0e5f5;
 }
+
 .cart-processing {
     font-size: 14px;
+}
+
+.paypal-btn {
+    background: url('assets/images/paypal-checkout-button.png');
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-color: transparent;
+    background-position: center;
+    border: none;
+    width: 200px;
+    height: 60px;
+}
+
+
+.btn.paypal-btn:not(:disabled):not(.disabled).active, .btn.paypal-btn:not(:disabled):not(.disabled):active {
+    background: url('assets/images/paypal-checkout-button.png');
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-color: transparent;
+    background-position: center;
+    border: none;
 }

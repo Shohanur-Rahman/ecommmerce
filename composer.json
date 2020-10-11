@@ -17,7 +17,7 @@
         "laravel/telescope": "~3.5.1",
         "laravel/tinker": "^2.0",
         "laravel/ui": "^2.2",
-        "paypal/rest-api-sdk-php": "*"
+        "paypal/rest-api-sdk-php": "^1.14"
     },
     "require-dev": {
         "facade/ignition": "^2.0",

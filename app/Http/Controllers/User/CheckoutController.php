@@ -42,6 +42,11 @@ class CheckoutController extends Controller
     public function store(Request $request)
     {
 
+        $value = session('checkoutData');
+
+        dd($value);
+
+
        $userProfileCheck = auth()->user()->userProfile;
        $userProfile = auth()->user()->userProfile();
 
