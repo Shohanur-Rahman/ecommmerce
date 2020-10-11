@@ -174,7 +174,10 @@ class PaymentController extends Controller
         $execution->addTransaction($transaction);
 
         try {
+
             $result = $payment->execute($execution, $apiContext);
+
+            session(['payment' => $payment, 'paymentResult' => $result]);
 
 
         } catch (Exception $ex) {
@@ -183,7 +186,9 @@ class PaymentController extends Controller
         }
 
 
-        return redirect(Route('checkouts.store'))->with( ['payment' => $payment] );
+
+
+        return redirect(Route('checkouts.store'));
 
 
         //return redirect("https://google.com");

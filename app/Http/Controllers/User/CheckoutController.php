@@ -18,7 +18,7 @@ class CheckoutController extends Controller
 {
     public function index()
     {
-        if(Session::has('user_id')){
+        if (Session::has('user_id')) {
             return view('user.pages.checkouts.index');
         }
 
@@ -27,84 +27,140 @@ class CheckoutController extends Controller
 
     public function create()
     {
-        $user = User::where('id',auth()->id(0))->with('shippingAddresses', 'userProfile')->first();
+        $user = User::where('id', auth()->id(0))->with('shippingAddresses', 'userProfile')->first();
 
         $cartItems = CartItem::where('user_id', Auth::id())->with('product')->get();
 
-        if( $this->checkCart()->isNotEmpty()){
+        if ($this->checkCart()->isNotEmpty()) {
 
             return view('user.pages.checkouts.create', compact('user', 'cartItems'));
         }
 
-        return redirect(route('cart.index')->with('error-message','Currently your cart is empty please purchase some product'));
+        return redirect(route('cart.index')->with('error-message', 'Currently your cart is empty please purchase some product'));
     }
 
     public function store(Request $request)
     {
 
-        $value = session('checkoutData');
+        $checkoutData = session('checkoutData');
+        $payment = session('payment');
+        $paymentResult = session('paymentResult');
 
-        dd($value);
+        //$paymentState= $paymentResult->transactions[0]->related_resources[0]->sale->payment_state;
+
+        if ($payment) {
+            $cartItems = CartItem::where('user_id', Auth::id())->with('product')->get();
+
+            $totalPrice = 0;
+            $shippingCharge = 0;
+
+            $shippingCost = 0;
+            $productCost = 0;
 
 
-       $userProfileCheck = auth()->user()->userProfile;
-       $userProfile = auth()->user()->userProfile();
+            foreach ($cartItems as $cartItem) {
+                $shippingCost += ($cartItem->product->shipping_charge);
+                $productCost += ($cartItem->product->new_price * $cartItem->quantity);
+            }
 
-       $data = [
-           'phone' => $request['phone'],
-           'country' => $request['country'],
-           'state' => $request['state'],
-           'house' => $request['house'],
-           'road' => $request['road'],
-           'city' => $request['city'],
-           'postcode' => $request['postcode'],
-       ];
+            $totalCost = ($productCost + $shippingCost);
 
-       if($userProfileCheck){
-           $userProfile->update($data);
-       }else{
-           $userProfile->create($data);
-       }
-
-        $cartItems = CartItem::where('user_id', Auth::id())->with('product')->get();
-
-        $totalPrice = 0;
-        $shippingCharge = 0;
-        foreach ($cartItems as $cartItem) {
-            $shippingCharge += $cartItem->product->shipping_charge;
-            $totalPrice = ($totalPrice + ($cartItem->product->new_price * $cartItem->quantity + $shippingCharge));
-        }
-
-        $order = Order::create([
-            'customer_id' => auth()->id(),
-            'shipping_id' => $request['shipping_id'],
-            'payment_method' => $request->has('payment_method'),
-            'total_amount' => $totalPrice,
-            'status' => 'New',
-        ]);
-
-        $cartItems->each(function ($item) use ($order) {
-
-            OrderProduct::create([
-                'order_id' => $order->id,
-                'product_id' => $item->product->id,
-                'quantity' => $item->quantity,
+            $order = Order::create([
+                'customer_id' => auth()->id(),
+                'shipping_id' => $checkoutData['shipping_id'],
+                'transaction_id' => $paymentResult->transactions[0]->related_resources[0]->sale->id,
+                'payer_id' => $payment->payer->payer_info->payer_id,
+                'payment_method' => $payment->payer->payment_method,
+                'payer_email' => $payment->payer->payer_info->email,
+                'invoice_number' => $paymentResult->transactions[0]->invoice_number,
+                'payment_mode' => $paymentResult->transactions[0]->related_resources[0]->sale->payment_mode,
+                'payment_state' => $paymentResult->transactions[0]->related_resources[0]->sale->state,
+                'payment_id' => $paymentResult->id,
+                'total_amount' => $totalCost,
+                'paid_amount' => $paymentResult->transactions[0]->amount->total,
+                'status' => 'New',
             ]);
 
-            $item->delete();
-        });
 
-        return redirect(Route('checkouts.index'))->with('user_id',auth()->id());
+            $cartItems->each(function ($item) use ($order) {
+
+                OrderProduct::create([
+                    'order_id' => $order->id,
+                    'product_id' => $item->product->id,
+                    'quantity' => $item->quantity,
+                ]);
+
+                $item->delete();
+            });
+
+
+            session(['checkoutData' => null, 'payment' => null, 'paymentResult' => null]);
+
+            return redirect(Route('checkouts.index'))->with('user_id', auth()->id());
+
+        } else
+            return redirect(Route('cart.index'));
+
+
+        /*$userProfileCheck = auth()->user()->userProfile;
+        $userProfile = auth()->user()->userProfile();
+
+        $data = [
+            'phone' => $checkoutData['phone'],
+            'country' => $checkoutData['country'],
+            'state' => $checkoutData['state'],
+            'house' => $checkoutData['house'],
+            'road' => $checkoutData['road'],
+            'city' => $checkoutData['city'],
+            'postcode' => $checkoutData['postcode'],
+        ];
+
+        if($userProfileCheck){
+            $userProfile->update($data);
+        }else{
+            $userProfile->create($data);
+        }
+
+         $cartItems = CartItem::where('user_id', Auth::id())->with('product')->get();
+
+         $totalPrice = 0;
+         $shippingCharge = 0;
+         foreach ($cartItems as $cartItem) {
+             $shippingCharge += $cartItem->product->shipping_charge;
+             $totalPrice = ($totalPrice + ($cartItem->product->new_price * $cartItem->quantity + $shippingCharge));
+         }
+
+         $order = Order::create([
+             'customer_id' => auth()->id(),
+             'shipping_id' => $checkoutData['shipping_id'],
+             'payment_method' => $checkoutData->has('payment_method'),
+             'total_amount' => $totalPrice,
+             'status' => 'New',
+         ]);
+
+         $cartItems->each(function ($item) use ($order) {
+
+             OrderProduct::create([
+                 'order_id' => $order->id,
+                 'product_id' => $item->product->id,
+                 'quantity' => $item->quantity,
+             ]);
+
+             $item->delete();
+         });*/
+
+        //return $paymentResult;
+        //redirect(Route('checkouts.index'))->with('user_id', auth()->id());
     }
 
     public function shippingAddressCreate()
     {
 
-        if( $this->checkCart()->isNotEmpty()){
+        if ($this->checkCart()->isNotEmpty()) {
             return view('user.pages.checkouts.shipping-address');
         }
 
-        return redirect(route('cart.index')->with('error-message','Currently your cart is empty please purchase some product'));
+        return redirect(route('cart.index')->with('error-message', 'Currently your cart is empty please purchase some product'));
     }
 
     public function shippingAddressStore(Request $request)
@@ -130,7 +186,8 @@ class CheckoutController extends Controller
         return redirect(route('checkouts.create'))->with('shipping_id', $shipping->id);
     }
 
-    private function checkCart(){
+    private function checkCart()
+    {
 
         $cartItems = CartItem::where('user_id', Auth::id())->with('product')->get();
         return $cartItems;
