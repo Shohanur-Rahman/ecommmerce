@@ -2,8 +2,11 @@
 
 use Illuminate\Support\Facades\Route;
 
+
 Route::get('/', function () {
+
     return view('user.pages.third.welcome');
+
 })->name('app.home');
 
 /*Route::get('/', function () {
@@ -92,4 +95,28 @@ Route::group(['prefix'=>'wish-lists'], function(){
     Route::post('/','User\WishlistController@store');
     Route::get('/{wishlist}','User\WishlistController@destroy')->name('wish-lists.destroy');
     Route::patch('/','User\WishlistController@update')->name('wish-lists.update');
+});
+
+
+Route::group(['middleware'=>'auth'],function(){
+
+    Route::post('/add-to-cart', 'User\ProductController@add_to_cart')->name('product.add_to_cart');
+    Route::get('/view-cart', 'User\ProductCartController@index')->name('cart.index');
+    Route::get('/delete/{cart}', 'User\ProductCartController@delete')->name('cart.delete');
+    Route::patch('/cart', 'User\ProductCartController@update')->name('cart.update');
+    Route::get('/clear', 'User\ProductCartController@clear')->name('cart.clear');
+    Route::post('/wish-list/carts', 'User\ProductCartController@wishListCartStore')->name('wish-lists-carts.store');
+});
+
+
+
+Route::group(['prefix' => 'website-settings'], function () {
+    Route::group(['prefix' => 'arrivals'], function () {
+        Route::get('/', 'Settings\NewArrivalController@index')->name('arrivals.index');
+        Route::get('/create', 'Settings\NewArrivalController@create')->name('arrivals.create');
+        Route::post('/', 'Settings\NewArrivalController@store')->name('arrivals.store');
+        Route::get('/{id}/edit', 'Settings\NewArrivalController@edit')->name('arrivals.edit');
+        Route::patch('/{id}', 'Settings\NewArrivalController@update')->name('arrivals.update');
+
+    });
 });

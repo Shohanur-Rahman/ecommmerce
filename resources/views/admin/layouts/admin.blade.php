@@ -34,7 +34,7 @@
                 </div>
 
                 <!-- Footer Area -->
-                @include('admin.partials.layout.footer')
+                {{--@include('admin.partials.layout.footer')--}}
             </div>
         </div>
     </div>

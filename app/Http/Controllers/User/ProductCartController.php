@@ -23,6 +23,13 @@ class ProductCartController extends Controller
     	return redirect()->back();
     }
 
+
+    public function clear()
+    {
+        $myCartList = CartItem::with('product')->where('user_id', Auth::id())->delete();
+        return redirect()->back();
+    }
+
     public function update(Request $request)
     {
         $carts = CartItem::where('user_id',auth()->id())->get();

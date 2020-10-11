@@ -70,7 +70,7 @@ function LoadCartList(cartList) {
 
     $.each(cartList, function (index, value) {
 
-        if (index < 5) {
+        if (index < 2) {
             var cartList = "<li> <div class=\"mini-cart-thumb\">" +
                 "<a href=\"" + absoulatePath + "/product/" + value.product.slug + "\"><img src=\"" + absoulatePath + "/public/" + value.product.featured_image + "\" alt=\"\"></a>" +
                 "</div>" + "<div class=\"mini-cart-heading\">" +
@@ -78,10 +78,11 @@ function LoadCartList(cartList) {
                 "<div class=\"mini-cart-remove\"><a class=\"cart-removal\" title=\"Remove Item\" href=\"" + absoulatePath + "/delete/" + value.id + "\"><i class=\"ti-close\"></i></a></div></li>"
 
             $(".dummy_cart_list_binding").append(cartList);
-
-            totalPrice += (value.product.new_price * value.quantity);
-
         }
+
+        totalPrice += (value.product.new_price * value.quantity);
+
+
     });
 
     $(".dummy_total_price").text(totalPrice.toFixed(2));

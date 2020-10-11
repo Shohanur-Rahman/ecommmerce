@@ -24,6 +24,8 @@
     <div class="row ">
         <div class="col-lg-9 col-sm-12 col-xs-12 col-md-12 col-xl-10">
             @yield('content')
+
+            @include('user.partials.widget.brand_slider')
         </div>
         <div class="col-xl-2 col-lg-3 col-md-3 hidden-xs">
             @include('user.partials.layout.third.menu')

@@ -11,7 +11,7 @@
                         <ul class="clearfix">
                             <li class="active">
                                 <div class="inner">
-                                    <span class="step">01</span> <span class="inner-step">WishList</span>
+                                    <span class="step">{{count($wishLists)}}</span> <span class="inner-step">WishList</span>
                                 </div>
                             </li>
                         </ul>
@@ -103,11 +103,11 @@
                                 @endforeach
 
                                 <tr>
-                                    <td colspan="4">
+                                    <td class="td-subtotal" colspan="4">
                                         <strong>Total</strong>
                                     </td>
 
-                                    <td>
+                                    <td class="td-subtotal" colspan="2">
                                         $<span class="dummy_cartTotal">{{$totalPrice}}</span>
                                     </td>
                                 </tr>
@@ -165,7 +165,7 @@
 
                                 <tr>
                                     <td>Shipping Charge:</td>
-                                    <td>@if($shippingCharge <= 0) Free Delivery @else ${{$product->shipping_charge}} @endif</td>
+                                    <td>@if($shippingCharge <= 0) Free Delivery @else ${{$shippingCharge}} @endif</td>
                                 </tr>
 
                                 <tr>
