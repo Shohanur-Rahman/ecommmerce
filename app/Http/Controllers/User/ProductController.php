@@ -10,6 +10,7 @@ use App\Models\ProductCategoryMap;
 use App\Models\ProductColorMap;
 use App\Models\ProductGalleryMap;
 use App\Models\ProductColor;
+use App\Models\ProductSize;
 use App\Models\ProductSizeMap;
 use App\Models\User\CartItem;
 use App\Models\User\ProductReview;
@@ -31,7 +32,7 @@ class ProductController extends Controller
         $minPrice = $request->query('min') ? $request->query('min') : 10;
         $mixPrice = $request->query('max') ? $request->query('max') : 30000;
         $brandId = $request->query('brand') ? $request->query('brand') : 0;
-        $colorId = $request->query('color') ? $request->query('color') : 0;
+
         $order = $request->query('order') ? $request->query('order') : 0;
         $requestString = $request->all();
 
@@ -82,6 +83,31 @@ class ProductController extends Controller
             ->where('products.new_price', '>=', $minPrice)
             ->where('products.new_price', '<=', $mixPrice);
 
+        if($request->query('color')){
+
+            $products = DB::table('products')
+                ->join('product_category_maps', 'products.id', '=', 'product_category_maps.product_id')
+                ->join('product_color_maps', 'products.id', '=', 'product_color_maps.product_id')
+                ->select('products.*')
+                ->where('products.is_published', 1)
+                ->where('product_category_maps.cat_id', $categoryDetails->id)
+                ->where('product_color_maps.color_id', $request->query('color'))
+                ->where('products.new_price', '>=', $minPrice)
+                ->where('products.new_price', '<=', $mixPrice);
+        }
+
+        if($request->query('size')){
+
+            $products = DB::table('products')
+                ->join('product_category_maps', 'products.id', '=', 'product_category_maps.product_id')
+                ->join('product_size_maps', 'products.id', '=', 'product_size_maps.product_id')
+                ->select('products.*')
+                ->where('products.is_published', 1)
+                ->where('product_category_maps.cat_id', $categoryDetails->id)
+                ->where('product_size_maps.size_id', $request->query('size'))
+                ->where('products.new_price', '>=', $minPrice)
+                ->where('products.new_price', '<=', $mixPrice);
+        }
 
         if ($brandId > 0){
             $products = $products
@@ -95,8 +121,8 @@ class ProductController extends Controller
         }
 
         $brands = ProductBrands::distinct()->get();
-        $colors = ProductColorMap::distinct()->get();
-        $sizes = ProductSizeMap::distinct()->get();
+        $colors = ProductColor::distinct()->get();
+        $sizes = ProductSize::distinct()->get();
 
         $products = $products->paginate($page_size)
             ->appends([
