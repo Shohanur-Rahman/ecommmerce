@@ -38,10 +38,10 @@
                     <a href="{{route('shipping-address.index')}}">Shipping Addresses</a>
                 </li>
 
-                <li>
+                {{--<li>
                     <i class="fa fa-angle-right mr-2" aria-hidden="true"></i>
                     <a href="{{route('shipping-address.create')}}">New Shipping Address</a>
-                </li>
+                </li>--}}
 
                 {{--<li>
                     <i class="fa fa-angle-right mr-2" aria-hidden="true"></i>

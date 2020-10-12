@@ -18,8 +18,8 @@
                     <h4>Information</h4>
                     <div class="footer-menu">
                         <ul>
-                            <li><a href="#">About Us</a></li>
-                            <li><a href="#">Contact Us</a></li>
+                            <li><a href="{{route('pages.about')}}" target="_blank">About Us</a></li>
+                            <li><a href="{{route('pages.contact')}}">Contact Us</a></li>
                             <li><a href="#">Delivery information</a></li>
                             <li><a href="#">Privacy Policy</a></li>
                             <li><a href="#">Terms & Conditions</a></li>

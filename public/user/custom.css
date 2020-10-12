@@ -309,3 +309,8 @@ textarea:-moz-placeholder
 {
     color: #e8e6ff;
 }
+
+.full-map {
+    width: 100%;
+    min-height: 500px;
+}
