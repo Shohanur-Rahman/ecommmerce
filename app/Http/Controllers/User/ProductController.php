@@ -7,8 +7,10 @@ use App\Models\ProductBrandCategoryMap;
 use App\Models\ProductBrands;
 use App\Models\ProductCategory;
 use App\Models\ProductCategoryMap;
+use App\Models\ProductColorMap;
 use App\Models\ProductGalleryMap;
 use App\Models\ProductColor;
+use App\Models\ProductSizeMap;
 use App\Models\User\CartItem;
 use App\Models\User\ProductReview;
 use App\Models\User\Wishlist;
@@ -25,7 +27,7 @@ class ProductController extends Controller
     {
 
 
-        $page_size = $request->query('page_size') ? $request->query('page_size') : 15;
+        $page_size = $request->query('page_size') ? $request->query('page_size') : 2;
         $minPrice = $request->query('min') ? $request->query('min') : 10;
         $mixPrice = $request->query('max') ? $request->query('max') : 30000;
         $brandId = $request->query('brand') ? $request->query('brand') : 0;
@@ -72,7 +74,7 @@ class ProductController extends Controller
 
         $products = new Products();
 
-        if ($brandId > 0)
+        if ($brandId > 0){
             $products = DB::table('products')
                 ->join('product_category_maps', 'products.id', '=', 'product_category_maps.product_id')
                 ->select('products.*')
@@ -82,9 +84,8 @@ class ProductController extends Controller
                 ->where('products.new_price', '<=', $mixPrice)
                 ->where('products.brand_id', $brandId)
                 ->orderBy($orderColumn, $orderOrdering)
-                ->distinct()
-                ->paginate($page_size);
-        else {
+                ->distinct();
+        } else {
             $products = DB::table('products')
                 ->join('product_category_maps', 'products.id', '=', 'product_category_maps.product_id')
                 ->select('products.*')
@@ -93,16 +94,22 @@ class ProductController extends Controller
                 ->where('products.new_price', '>=', $minPrice)
                 ->where('products.new_price', '<=', $mixPrice)
                 ->orderBy($orderColumn, $orderOrdering)
-                ->distinct()
-                ->paginate($page_size);
+                ->distinct();
         }
 
-        $brands = ProductBrands::all();
-        $colors = ProductColor::all();
+        $productBrandIdArr = $products->pluck('brand_id')->toArray();
+        $productIdArr = $products->pluck('id')->toArray();
+
+        $brands = ProductBrands::whereIn('id',$productBrandIdArr)->get();
+
+        $colors = ProductColorMap::whereIn('product_id',$productIdArr)->get();
+        $sizes = ProductSizeMap::whereIn('product_id',$productIdArr)->get();
+
+        $products = $products->paginate($page_size);
 
         //$products = ProductCategoryMap::with('product')->where(['cat_id' => $categoryDetails->id, 'is_published' => 1])->paginate($page_size);
 
-        return view('user.pages.products.index', compact("products", "categoryDetails", "requestString", "brands", "colors", 'sortText'));
+        return view('user.pages.products.index', compact("products", "categoryDetails", "requestString", "brands", "colors", 'sortText','sizes'));
     }
 
     public function search(Request $request)
@@ -162,8 +169,7 @@ class ProductController extends Controller
                 ->where('products.new_price', '<=', $mixPrice)
                 ->where('products.brand_id', $brandId)
                 ->orderBy($orderColumn, $orderOrdering)
-                ->distinct()
-                ->paginate($page_size);
+                ->distinct();
         } else {
 
             $products = DB::table('products')
@@ -174,18 +180,26 @@ class ProductController extends Controller
                 ->where('products.new_price', '>=', $minPrice)
                 ->where('products.new_price', '<=', $mixPrice)
                 ->orderBy($orderColumn, $orderOrdering)
-                ->distinct()
-                ->paginate($page_size);
+                ->distinct();
         }
 
+        $productBrandIdArr = $products->pluck('brand_id')->toArray();
+        $productIdArr = $products->pluck('id')->toArray();
+
+        $brands = ProductBrands::whereIn('id',$productBrandIdArr)->get();
+
+        $colors = ProductColorMap::whereIn('product_id',$productIdArr)->get();
+        $sizes = ProductSizeMap::whereIn('product_id',$productIdArr)->get();
+
+        $products = $products->paginate($page_size);
 
         $categories = ProductCategory::with('childrens')->where('parent_id', 0)->get();
-        $brands = ProductBrands::all();
-        $colors = ProductColor::all();
+
+
 
         //dd($categories);
 
-        return view('user.pages.products.search', compact('products', 'categories', 'brands', 'colors', 'sortText'));
+        return view('user.pages.products.search', compact('products', 'categories', 'brands', 'colors', 'sortText','sizes'));
     }
 
     public function details($category, $slug)
@@ -227,7 +241,7 @@ class ProductController extends Controller
 
         $cartItem->user_id = Auth::id();
         $cartItem->product_id = $request->product_id;
-        $cartItem->size = $request->has('size');
+        $cartItem->size = $request->size;
         $cartItem->save();
 
         $myCartList = CartItem::with('product')->where('user_id', Auth::id())->get();

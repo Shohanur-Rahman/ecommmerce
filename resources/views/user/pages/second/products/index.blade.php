@@ -100,19 +100,31 @@ function makeURL($queryString, $key, $value)
                             @endforeach
                         </ul>
                     </div>
-                    {{--<div class="list-filter mt-43">
+                    <div class="list-filter mt-43">
                         <div class="section-title">
                             <h3>Colors</h3>
                         </div>
                         <ul class="list-none mt-25">
                             @foreach($colors as $color)
                                 <li>
-                                    <a href="{{route('product.index', $categoryDetails->slug).generateQueryString('color', $color->id)}}">{{$color->color}}</a>
+                                    <a href="{{route('product.index', $categoryDetails->slug).generateQueryString('color', $color->id)}}">{{$color->color->color}}</a>
                                 </li>
                             @endforeach
                         </ul>
-                    </div>--}}
-                    <!--latest-products-->
+                    </div>
+
+                    <div class="list-filter mt-43">
+                        <div class="section-title">
+                            <h3>Sizes</h3>
+                        </div>
+                        <ul class="list-none mt-25">
+                            @foreach($sizes as $size)
+                                <li>
+                                    <a href="{{route('product.index', $categoryDetails->slug).generateQueryString('color', $size->id)}}">{{$size->size->size}}</a>
+                                </li>
+                            @endforeach
+                        </ul>
+                    </div>
 
                 </div>
             </div>
