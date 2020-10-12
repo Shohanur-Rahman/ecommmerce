@@ -5,10 +5,10 @@
 <!-- The above 4 meta tags *must* come first in the head; any other head content must come *after* these tags -->
 
 <!-- Title -->
-<title>@yield('title') | Ecommerce admin</title>
+<title>@yield('title') | HOBO admin</title>
 
 <!-- Favicon -->
-<link rel="icon" href="{{asset('admin/img/core-img/favicon.png')}}">
+<link rel="icon" href="{{asset('logo.png')}}">
 
 <!-- Master Stylesheet [If you remove this CSS file, your file will be broken undoubtedly.] -->
 <link rel="stylesheet" href="{{asset('admin/style.css')}}">

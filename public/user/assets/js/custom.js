@@ -54,6 +54,13 @@ $(document).ready(function () {
 
                 LoadCartList(response.data);
 
+            },
+            error: function (e) {
+
+                if(e.statusText == "Unauthorized"){
+                    window.location.replace(absoulatePath + "/login");
+                }
+                console.log(e);
             }
         });
     });
