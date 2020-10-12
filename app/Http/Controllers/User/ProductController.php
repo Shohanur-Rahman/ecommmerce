@@ -27,7 +27,7 @@ class ProductController extends Controller
     {
 
 
-        $page_size = $request->query('page_size') ? $request->query('page_size') : 2;
+        $page_size = $request->query('page_size') ? $request->query('page_size') : 15;
         $minPrice = $request->query('min') ? $request->query('min') : 10;
         $mixPrice = $request->query('max') ? $request->query('max') : 30000;
         $brandId = $request->query('brand') ? $request->query('brand') : 0;
@@ -98,6 +98,7 @@ class ProductController extends Controller
         }
 
         $productBrandIdArr = $products->pluck('brand_id')->toArray();
+
         $productIdArr = $products->pluck('id')->toArray();
 
         $brands = ProductBrands::whereIn('id',$productBrandIdArr)->get();
@@ -105,7 +106,16 @@ class ProductController extends Controller
         $colors = ProductColorMap::whereIn('product_id',$productIdArr)->get();
         $sizes = ProductSizeMap::whereIn('product_id',$productIdArr)->get();
 
-        $products = $products->paginate($page_size);
+        $products = $products->paginate($page_size)
+            ->appends([
+                'page_size'=> $request->query('page_size'),
+                'order'=>$request->query('order'),
+                'max'=> $request->query('min'),
+                'min'=> $request->query('max'),
+                'brand'=> $request->query('brand'),
+                'color'=> $request->query('color'),
+                'size'=> $request->query('size'),
+            ]);
 
         //$products = ProductCategoryMap::with('product')->where(['cat_id' => $categoryDetails->id, 'is_published' => 1])->paginate($page_size);
 
@@ -191,7 +201,16 @@ class ProductController extends Controller
         $colors = ProductColorMap::whereIn('product_id',$productIdArr)->get();
         $sizes = ProductSizeMap::whereIn('product_id',$productIdArr)->get();
 
-        $products = $products->paginate($page_size);
+        $products = $products->paginate($page_size)
+            ->appends([
+                'page_size'=> $request->query('page_size'),
+                'order'=>$request->query('order'),
+                'max'=> $request->query('min'),
+                'min'=> $request->query('max'),
+                'brand'=> $request->query('brand'),
+                'color'=> $request->query('color'),
+                'size'=> $request->query('size'),
+            ]);;
 
         $categories = ProductCategory::with('childrens')->where('parent_id', 0)->get();
 
