@@ -12,6 +12,7 @@ use App\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Arr;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
 use phpDocumentor\Reflection\Types\False_;
 
@@ -24,7 +25,10 @@ class UserProfileController extends Controller
 
         $shippingAddresses = ShippingAddress::where('user_id',$userId)->get();
 
-        $arrayProfiles = UserProfile:: Where('user_id',$userId)->first()->toArray();
+        $arrayProfiles = DB::table('user_profiles')
+            ->select('avatar', 'dob', 'nid','nid_image','describe_address')
+            ->where('user_id',$userId)
+            ->first();
 
         $fillUp = true;
         foreach ($arrayProfiles as $profile){
