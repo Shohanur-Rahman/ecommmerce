@@ -16,76 +16,41 @@
                     <form class="py-3 row" action="{{route('shipping-address.store')}}" method="post" data-parsley-validate>
                         @csrf
 
-                        <div class="form-group col-12">
-                            <label class="float-left" for="title">Title</label>
-                            <input class="form-control" type="text" name="title" id="title" value="{{old('title')}}"
-                                   placeholder="Enter your title" required="required" data-parsley-error-message="Enter your title">
-
-                        </div>
-
-                        <div class="form-group col-12">
-                            <label class="float-left" for="name">Username</label>
-                            <input class="form-control" type="text" name="name" id="name" value="{{old('name')}}"
-                                   placeholder="Enter your name" required="required" data-parsley-error-message="Enter your name">
-
-                        </div>
-
-                        <div class="form-group col-12">
-                            <label class="float-left" for="email">Email</label>
-                            <input class="form-control" type="text" name="email" id="email" value="{{old('email')}}"
-                                   placeholder="Enter Email Address" required="required" data-parsley-error-message="Enter Email Address">
-
-                            @error('email')
-                                <span class="text-danger">{{$message}}</span>
-                            @enderror
-                        </div>
-
-                        <div class="form-group col-12">
+                        <div class="form-group col-6">
                             <label class="float-left" for="phone">Phone</label>
-                            <input class="form-control" type="number" name="phone" id="phone" value="{{old('phone')}}"
-                                   placeholder="Enter your Secondary Phone" required="required" data-parsley-error-message="Enter Phone Number">
+                            <input class="form-control phone-formate" type="text" name="phone" id="phone"
+                                   value="{{$authUser->userProfile->phone}}"
+                                   placeholder="(123) 345-3455" required="required"
+                                   data-parsley-error-message="Enter Phone Number">
                         </div>
 
 
                         <div class="form-group col-6">
-                            <label class="float-left" for="house">House</label>
-                            <input class="form-control" type="text" name="house" id="house" value="{{old('house')}}"
-                                   placeholder="Enter House Number" data-parsley-error-message="Enter House Number">
+                            <label class="float-left" for="line1">Line 1</label>
+                            <input class="form-control" type="text" name="line1" id="line1" value="{{old('line1')}}"
+                                   placeholder="Address line 1" data-parsley-error-message="Enter address line 1"
+                                   required>
                         </div>
-
                         <div class="form-group col-6">
-                            <label class="float-left" for="road">Road</label>
-                            <input class="form-control" type="text" name="road" id="road" value="{{ old('road')}}"
-                                   placeholder="Enter Road Number" required="required" data-parsley-error-message="Enter Road Number">
+                            <label class="float-left" for="line2">Line 2</label>
+                            <input class="form-control" type="text" name="line2" id="line2" value="{{old('line2')}}"
+                                   placeholder="Address line 2" data-parsley-error-message="Enter address line 2"
+                                   required>
                         </div>
 
                         <div class="form-group col-4">
-                            <label class="float-left" for="postcode">PostCode</label>
-                            <input class="form-control" type="number" name="postcode" id="postcode" value="{{old('postcode')}}"
-                                   placeholder="Enter PostCode Number" required="required" data-parsley-error-message="Enter PostCode Number">
+                            <label class="float-left" for="postcode">zipcode</label>
+                            <input class="form-control zipcode" type="text" name="postcode" id="postcode"
+                                   value="{{old('postcode')}}"
+                                   placeholder="Enter PostCode Number" required="required"
+                                   data-parsley-error-message="Enter PostCode Number">
                         </div>
 
-                        <div class="form-group col-4">
-                            <label class="float-left" for="state">State</label>
-                            <input class="form-control" type="text" name="state" id="state" value="{{old('state')}}"
-                                   placeholder="Enter State Name" required="required" data-parsley-error-message="Enter State Name">
-                        </div>
-
-                        <div class="form-group col-4">
-                            <label class="float-left" for="city">City</label>
-                            <input class="form-control" type="text" name="city" id="city" value="{{old('city')}}"
-                                   placeholder="Enter City Name" required="required" data-parsley-error-message="Enter City Name">
-                        </div>
-
-                        <div class="form-group col-12">
-                            @include('user.pages.common.countries.create')
-
-                        </div>
 
                         <div class="form-group col-12">
                             <label class="float-left" for="full_address">Full Address</label>
-
-                            <textarea class="form-control" name="describe_address" id="full_address" cols="" rows="6">{{old('describe_address')}}</textarea>
+                            <textarea class="form-control" name="describe_address" id="full_address" cols=""
+                                      rows="2">{{old('describe_address')}}</textarea>
                             <span>Give us your full location address so we can find you and deliver your order accurately.</span>
                         </div>
 

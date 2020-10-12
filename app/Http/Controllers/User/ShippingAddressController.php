@@ -13,25 +13,50 @@ class ShippingAddressController extends Controller
     public function index()
     {
         $authUser = Auth::user();
-        return view('user.pages.shippings.index', compact('authUser'));
+        $shippingAddresses = ShippingAddress::where('user_id',Auth::id())->get();
+        return view('user.pages.shippings.index', compact('authUser', 'shippingAddresses'));
     }
 
     public function create()
     {
-
-        return view('user.pages.shippings.create');
+        $authUser = Auth::user();
+        return view('user.pages.shippings.create', compact('authUser'));
     }
 
     public function store(Request $request)
     {
         $this->validate($request,[
             'line1' => ['required'],
+            'postcode' => ['required'],
         ]);
 
-        $user = Auth::user();
-        $user->shippingAddresses()->create($this->requestField($request));
+        $shipping = new ShippingAddress();
+        $shipping->title = $request->line1. ' (' . $request->postcode . ')';
+        $shipping->name = Auth::user()->name;
+        $shipping->email = Auth::user()->email;
+        $shipping->phone = $request->phone;
+        $shipping->line1 = $request->line1;
+        $shipping->line2 = $request->line2;
+        $shipping->postcode = $request->postcode;
+        $shipping->state = '';
+        $shipping->city = '';
+        $shipping->country = '';
+        $shipping->describe_address = $request->describe_address;
+        $shipping->user_id = Auth::id();
+        $shipping->save();
 
-        return redirect(route('profiles.index'))->with('success','New Shipping Address is Created Successfully');
+
+
+
+        //$user = Auth::user();
+        //$user->shippingAddresses()->create($this->requestField($request));
+
+        if($request->ship_form == "profile")
+            return redirect(route('shipping-address.index'))->with('success','New Shipping Address is Created Successfully');
+        else
+            return redirect(route('profiles.index'))->with('success','New Shipping Address is Created Successfully');
+
+
     }
 
     public function edit(ShippingAddress $shippingAddress)

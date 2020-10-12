@@ -6,11 +6,32 @@
 
             @include('user.pages.profiles.partial.sidebar')
             <div class="col-md-9 col-sm-8 col-xs-12 col-sm-push-4 col-md-push-3 pb-4">
-
+                <x-inform-users></x-inform-users>
                 @include('user.pages.profiles.partial.details')
 
-                <div class="card">
+                <div class="card px-3 py-3 mt-3">
+                    <div class="row">
+                        @foreach($shippingAddresses as $shippingAddress)
+                            <div class="col-md-4 col-sl-3 col-sm-6">
+                                <h5>{!!html_entity_decode($shippingAddress->title ? $shippingAddress->title . '<br/>' : '')!!}</h5>
+                                <address>
+                                    {!!html_entity_decode($shippingAddress->name ? $shippingAddress->name . '<br/>' : '')!!}
+                                    {!!html_entity_decode($shippingAddress->email ? $shippingAddress->email . '<br/>' : '')!!}
+                                    {!!html_entity_decode($shippingAddress->city ? $shippingAddress->city . '<br/>' : '')!!}
+                                    {!!html_entity_decode($shippingAddress->house ? $shippingAddress->house . ',' : '')!!}
+                                    {!!html_entity_decode($shippingAddress->road ? $shippingAddress->road . ',' : '')!!}
+                                    {!!html_entity_decode($shippingAddress->state ? $shippingAddress->state . '<br/>' : '')!!}
+                                    {!!html_entity_decode($shippingAddress->country ? $shippingAddress->country . '<br/>' : '')!!}
+                                    {!!html_entity_decode($shippingAddress->phone ? 'Phone: ' . $shippingAddress->phone . '<br/>' : '')!!}
+                                    {!!html_entity_decode($shippingAddress->describe_address ? 'Describe Address: ' . $shippingAddress->describe_address . '<br/>' : '')!!}
 
+                                    <a class="text-success"
+                                       href="{{route('shipping-address.edit',$shippingAddress->id)}}">Edit
+                                        Address</a>
+                                </address>
+                            </div>
+                        @endforeach
+                    </div>
                 </div>
 
                 <div class="card border-0 pt-5">
@@ -25,7 +46,7 @@
                         <div class="form-group col-6">
                             <label class="float-left" for="phone">Phone</label>
                             <input class="form-control phone-formate" type="text" name="phone" id="phone"
-                                   value="{{old('phone')}}"
+                                   value="{{$authUser->userProfile->phone}}"
                                    placeholder="(123) 345-3455" required="required"
                                    data-parsley-error-message="Enter Phone Number">
                         </div>
@@ -46,7 +67,7 @@
 
                         <div class="form-group col-4">
                             <label class="float-left" for="postcode">zipcode</label>
-                            <input class="form-control" type="number" name="postcode" id="postcode"
+                            <input class="form-control zipcode" type="text" name="postcode" id="postcode"
                                    value="{{old('postcode')}}"
                                    placeholder="Enter PostCode Number" required="required"
                                    data-parsley-error-message="Enter PostCode Number">
@@ -73,6 +94,23 @@
 
     <script>
         $(document).ready(function () {
+
+            $(".zipcode").keydown(function (event) {
+
+                $(this).attr('maxlength', 5);
+                // Prevent shift key since its not needed
+                if (event.shiftKey == true) {
+                    event.preventDefault();
+                }
+                // Allow Only: keyboard 0-9, numpad 0-9, backspace, tab, left arrow, right arrow, delete
+                if ((event.keyCode >= 48 && event.keyCode <= 57) || (event.keyCode >= 96 && event.keyCode <= 105) || event.keyCode == 8 || event.keyCode == 9 || event.keyCode == 37 || event.keyCode == 39 || event.keyCode == 46) {
+                } else {
+                    event.preventDefault();
+                }
+
+            });
+
+
             $('.phone-formate')
 
                 .on('keypress', function (e) {
