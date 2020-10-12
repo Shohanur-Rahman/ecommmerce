@@ -110,7 +110,7 @@ function makeURL($queryString, $key, $value)
                     <ul class="list-none mt-25">
                         @foreach($colors as $color)
                             <li>
-                                <a href="{{route('product.search').generateQueryString('color', $color->id)}}">{{$color->color->color}}</a>
+                                <a href="{{route('product.search').generateQueryString('color', $color->id)}}">{{$color->color}}</a>
                             </li>
                         @endforeach
                     </ul>
@@ -123,7 +123,7 @@ function makeURL($queryString, $key, $value)
                     <ul class="list-none mt-25">
                         @foreach($sizes as $size)
                             <li>
-                                <a href="{{route('product.search').generateQueryString('size', $size->id)}}">{{$size->size->size}}</a>
+                                <a href="{{route('product.search').generateQueryString('size', $size->id)}}">{{$size->size}}</a>
                             </li>
                         @endforeach
                     </ul>

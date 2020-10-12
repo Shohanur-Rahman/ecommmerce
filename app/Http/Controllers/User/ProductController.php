@@ -96,7 +96,7 @@ class ProductController extends Controller
                 ->where('products.new_price', '<=', $mixPrice);
         }
 
-        if($request->query('size')){
+        else if($request->query('size')){
 
             $products = DB::table('products')
                 ->join('product_category_maps', 'products.id', '=', 'product_category_maps.product_id')
@@ -109,7 +109,7 @@ class ProductController extends Controller
                 ->where('products.new_price', '<=', $mixPrice);
         }
 
-        if ($brandId > 0){
+        else if ($brandId > 0){
             $products = $products
                 ->where('products.brand_id', $brandId)
                 ->orderBy($orderColumn, $orderOrdering)
@@ -185,20 +185,34 @@ class ProductController extends Controller
 
         $products = new Products();
 
-        if ($brandId > 0) {
+        $products = DB::table('products')
+            ->join('product_category_maps', 'products.id', '=', 'product_category_maps.product_id')
+            ->select('products.*')
+            ->where('products.is_published', 1)
+            ->where('products.title', 'like', '%' . $searchText . '%')
+            ->where('products.new_price', '>=', $minPrice)
+            ->where('products.new_price', '<=', $mixPrice)
+            ->where('products.new_price', '<=', $mixPrice);
 
-            $products = DB::table('products')
-                ->join('product_category_maps', 'products.id', '=', 'product_category_maps.product_id')
-                ->select('products.*')
-                ->where('products.is_published', 1)
-                ->where('products.title', 'like', '%' . $searchText . '%')
-                ->where('products.new_price', '>=', $minPrice)
-                ->where('products.new_price', '<=', $mixPrice)
-                ->where('products.new_price', '<=', $mixPrice)
+        if($request->query('color')){
+            $products = $products
+                ->join('product_color_maps', 'products.id', '=', 'product_color_maps.product_id')
+                ->where('product_color_maps.color_id', $request->query('color'));
+        }
+
+        else if($request->query('size')){
+            $products = $products
+                ->join('product_size_maps', 'products.id', '=', 'product_size_maps.product_id')
+                ->where('product_size_maps.size_id', $request->query('size'));
+        }
+        else if ($brandId > 0) {
+            $products =$products
                 ->where('products.brand_id', $brandId)
                 ->orderBy($orderColumn, $orderOrdering)
                 ->distinct();
-        } else {
+        }
+
+        else {
 
             $products = DB::table('products')
                 ->join('product_category_maps', 'products.id', '=', 'product_category_maps.product_id')
@@ -212,8 +226,8 @@ class ProductController extends Controller
         }
 
         $brands = ProductBrands::distinct()->get();
-        $colors = ProductColorMap::distinct()->get();
-        $sizes = ProductSizeMap::distinct()->get();
+        $colors = ProductColor::distinct()->get();
+        $sizes = ProductSize::distinct()->get();
 
         $products = $products->paginate($page_size)
             ->appends([
