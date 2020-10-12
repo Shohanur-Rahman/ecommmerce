@@ -39,6 +39,8 @@ class VendorApplicationController extends Controller
             });
         }
 
+        $applyVendor->user()->update(['user_type'=>'Vendor']);
+
         $applyVendor->update([
             'is_approve'=>$status
         ]);
