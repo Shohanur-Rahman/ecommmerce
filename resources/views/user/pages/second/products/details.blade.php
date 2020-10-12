@@ -104,7 +104,7 @@
                                 </div>
                                 <form id="cartForm_{{$product->id}}_details" action="{{route('product.add_to_cart')}}" method="post">
                                     @csrf
-                                    <input id="dummy_product_size_value" type="hidden" value="" name="=size">
+                                    <input id="dummy_product_size_value" type="hidden" value="" name="size">
                                     <input type="hidden" name="product_id" value="{{$product->id}}">
                                     <input type="hidden" name="product_price" value="{{$product->new_price}}">
                                     <div class="product-quantity mt-15">
