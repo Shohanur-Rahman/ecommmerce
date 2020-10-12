@@ -130,6 +130,7 @@ textarea.parsley-error {
 
 .logo img {
     transition: .3s;
+    max-height: 105px;
 }
 
 .sticker.header-bottom.stick .logo img {
