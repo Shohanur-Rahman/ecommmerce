@@ -27,6 +27,10 @@ Route::post('/register','UserController@store')->name('register.store');
 Route::get('/forget-password','UserController@forgetPasswordIndex')->name('forget-password.index');
 Route::post('/forget-password','UserController@forgetPasswordStore')->name('forget-password.store');
 
+Route::get('/about-us','User\PagesController@about')->name('pages.about');
+Route::get('/contact-us','User\PagesController@contact')->name('pages.contact');
+
+
 //password recovery code
 Route::group(['middleware' => 'recovery_code'], function() {
     Route::get('/password-recovery', 'UserController@passwordRecoveryIndex')->name('password.recovery.index');
