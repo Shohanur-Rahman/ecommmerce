@@ -25,6 +25,7 @@
             <nav>
                 <ul class="sidebar-menu" data-widget="tree">
                     <li><a  class="{{activeLink('dashboard')}}" href="{{route('dashboard')}}"><i class="zmdi zmdi-view-web"></i> <span>Dashboard</span></a></li>
+                    <li><a  class="{{activeLink('dashboard')}}" href="{{route('app.home')}}" target="_blank"><i class="zmdi zmdi-globe"></i> <span>Visit Site</span></a></li>
                     <li class="treeview {{ request()->routeIs('products.*','product-categories.*','brands.*','tags.*','warehouses.*','product-availabilities.*','product-sizes.*','product-colors.*') ? 'active' : '' }}" >
                         <a href="javascript:void(0)"><i class="zmdi zmdi-shopping-basket"></i> <span>Catalog</span> <i class="fa fa-angle-right"></i></a>
                         <ul class="treeview-menu">
