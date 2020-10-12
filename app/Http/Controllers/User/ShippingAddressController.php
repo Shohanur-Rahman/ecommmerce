@@ -12,7 +12,8 @@ class ShippingAddressController extends Controller
 {
     public function index()
     {
-        return view('user.pages.shippings.index');
+        $authUser = Auth::user();
+        return view('user.pages.shippings.index', compact('authUser'));
     }
 
     public function create()
@@ -24,7 +25,7 @@ class ShippingAddressController extends Controller
     public function store(Request $request)
     {
         $this->validate($request,[
-            'email' => ['required', 'string', 'email', 'max:255', 'unique:shipping_addresses'],
+            'line1' => ['required'],
         ]);
 
         $user = Auth::user();
