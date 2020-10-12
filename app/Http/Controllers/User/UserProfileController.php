@@ -55,13 +55,6 @@ class UserProfileController extends Controller
     {
         $user = Auth::user();
 
-        $this->validate($request,[
-            'secondary_email' => 'required|string|email|max:255|unique:user_profiles,secondary_email,'.$user->userProfile->id,
-            'nid' => 'required|string|max:255|unique:user_profiles,nid,'.$user->userProfile->id,
-        ]);
-
-
-
         $user->userProfile()->update($this->requestField($request));
 
 

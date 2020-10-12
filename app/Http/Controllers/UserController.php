@@ -90,11 +90,20 @@ class UserController extends Controller
         $remember_me = $request['remember'] ? true : false;
         $attempts = ['email' => $request['email'], 'password' => $request['password'], 'is_active' => 1];
 
-        if (Auth::attempt($attempts, $remember_me)) {
-            $this->wishLists();
+        if(Auth::attempt($attempts, $remember_me) == false){
 
+            $attemptActivate = ['email' => $request['email'], 'password' => $request['password']];
+            if(Auth::attempt($attemptActivate, $remember_me) == true){
+
+                return redirect()->back()->with('error-message', 'Your account has been disabled. Please contact your administrator.');
+            }
+        }else{
+
+            $this->wishLists();
             return redirect(route('profiles.index'));
+
         }
+
 
         return redirect()->back()->with('error-message', 'Email or Password is Wrong');
     }

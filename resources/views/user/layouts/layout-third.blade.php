@@ -1,8 +1,16 @@
 @php
     $siteSetting = \App\Models\SiteSetting::first();
+
+if (Auth::check()) {
+    if(Auth::user()->is_active == 0){
+        Auth::logout();
+        return redirect(route('login'));
+    }
+}
+
 @endphp
 
-<!doctype html>
+    <!doctype html>
 <html class="no-js" lang="zxx">
 
 <head>

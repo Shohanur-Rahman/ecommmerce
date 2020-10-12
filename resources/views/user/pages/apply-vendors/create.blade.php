@@ -13,7 +13,7 @@
                                 @csrf
                                 <div class="form-group">
                                     <label class="float-left" for="code">Verify Your Email Account</label>
-                                    <input class="form-control" type="number" name="code" id="code" value="{{old('code')}}" required="required" placeholder="Enter your Email Verify code" maxlength="6" minlength="6" data-parsley-trigger="change" data-parsley-required-message="Enter Your Email Verify Code">
+                                    <input class="form-control" type="text" name="code" id="code" value="{{old('code')}}" required="required" placeholder="Enter your Email Verify code" maxlength="6" minlength="6" data-parsley-trigger="change" data-parsley-required-message="Enter Your Email Verify Code">
 
                                     @error('code')
                                     <span class="text-danger d-block">

@@ -10,22 +10,28 @@ use Illuminate\Support\Facades\Mail;
 class VendorApplicationController extends Controller
 {
     public function index(){
-        $applications = ApplyVendor::with('user.userProfile')->get();
+        $applications = ApplyVendor::with('user.userProfile')->where('is_approve', 0)->get();
+
 
         return view('admin.modules.vendor_applications.index',compact('applications'));
     }
 
     public function show(ApplyVendor $applyVendor)
     {
-        $profile = $applyVendor->with('user.userProfile')->first();
+
+
+        $profile = $applyVendor->with('user.userProfile')->where('id',$applyVendor->id)->first();
 
         return view('admin.modules.vendor_applications.show',compact('profile'));
+
+
     }
 
     public function update(Request $request, ApplyVendor $applyVendor){
         $email = $applyVendor->user->email;
 
         $status = $request->has('approve');
+
 
         if($status){
             Mail::send('emails.vendors.accepted-mail',['user'=>$applyVendor->user],function($message) use($email) {
@@ -41,9 +47,8 @@ class VendorApplicationController extends Controller
 
         $applyVendor->user()->update(['user_type'=>'Vendor']);
 
-        $applyVendor->update([
-            'is_approve'=>$status
-        ]);
+        $applyVendor->is_approve = $request->has('approve');
+        $applyVendor->save();
 
         return redirect()->back()->with('success','Application approval has been updated successfully');
     }

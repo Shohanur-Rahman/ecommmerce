@@ -1,3 +1,13 @@
+@php
+
+    if(Auth::user()->is_active == 0){
+        Auth::logout();
+        return redirect(route('login'));
+    }
+@endphp
+
+
+
 <!doctype html>
 <html lang="en">
 

@@ -48,7 +48,7 @@
                                 </td>
                                 <td>{{$application->created_at->format('d F Y')}}</td>
                                 <td>
-                                    <a class="btn btn-outline-primary table-btn btn-sm" href="{{route('vendor-applications.show',$application )}}" title="Edit"><i class="fa fa-eye"></i></a>
+                                    <a class="btn btn-outline-primary table-btn btn-sm" href="{{route('vendor-applications.show',$application->id )}}" title="Edit"><i class="fa fa-eye"></i></a>
                                 </td>
 
                             </tr>
