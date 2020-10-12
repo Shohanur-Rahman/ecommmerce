@@ -68,7 +68,7 @@
 
                                             @if($product->productSizeMaps->isNotEmpty())
                                                 @foreach($product->productSizeMaps as $productSizeMap)
-                                                    <span onclick="selectButton()" class="badge badge-success text-white" id="{{$productSizeMap->size->size}}"> {{$productSizeMap->size->size}}</span>
+                                                    <span  class="badge badge-success text-white dummy_select_size"  id="{{$productSizeMap->size->size}}"> {{$productSizeMap->size->size}}</span>
                                                 @endforeach
                                             @endif
                                         </li>
@@ -104,7 +104,7 @@
                                 </div>
                                 <form id="cartForm_{{$product->id}}_details" action="{{route('product.add_to_cart')}}" method="post">
                                     @csrf
-                                    <input type="hidden" value="{{$productSizeMap->size->size}}" name="=size">
+                                    <input id="dummy_product_size_value" type="hidden" value="" name="=size">
                                     <input type="hidden" name="product_id" value="{{$product->id}}">
                                     <input type="hidden" name="product_price" value="{{$product->new_price}}">
                                     <div class="product-quantity mt-15">
@@ -112,7 +112,7 @@
                                     <input type="number" value="1" name="quantity" />
                                     </div>
                                     <div class="add-to-get mt-50">
-                                        <button type="submit" frm="#cartForm_{{$product->id}}_details"
+                                        <button type="submit" form="#cartForm_{{$product->id}}_details"
                                                 class="btn btn-success add-to-cart dummy_cart_btn"
                                                 url="{{route('product.add_to_cart')}}"
                                                 id="cart_btn_{{$product->id}}_details">Add to Cart
@@ -138,3 +138,11 @@
 </div>
 @include('user.partials.widget.product_reviews')
 
+<script>
+    $('.dummy_select_size').click(function () {
+        var val = $(this).attr('id');
+
+       $('#dummy_product_size_value').val(val);
+    });
+
+</script>

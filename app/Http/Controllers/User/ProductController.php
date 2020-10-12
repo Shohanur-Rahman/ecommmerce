@@ -225,6 +225,7 @@ class ProductController extends Controller
 
         $cartItem->user_id = Auth::id();
         $cartItem->product_id = $request->product_id;
+        $cartItem->size = $request->has('size');
         $cartItem->save();
 
         $myCartList = CartItem::with('product')->where('user_id', Auth::id())->get();
