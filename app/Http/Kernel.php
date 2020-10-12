@@ -66,5 +66,6 @@ class Kernel extends HttpKernel
         'verified' => \Illuminate\Auth\Middleware\EnsureEmailIsVerified::class,
         'recovery_code' => \App\Http\Middleware\VerifyRecoveryCode::class,
         'isAdmin' => \App\Http\Middleware\AdminVerfiy::class,
+        'isCustomer' => \App\Http\Middleware\CustomerCheck::class,
     ];
 }

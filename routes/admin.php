@@ -1,7 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
-Route::group(['middleware' => 'auth'], function() {
+Route::group(['middleware' => ['auth','isCustomer']], function() {
     @include 'admin_copy.php';
 
 
