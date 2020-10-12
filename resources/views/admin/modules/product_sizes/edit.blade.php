@@ -19,7 +19,7 @@
                                 @csrf
                                 <div class="form-group">
                                     <label for="size">Product Size</label>
-                                    <input type="text" class="form-control" value="{{$productSize->size ?? old('size')}}" id="size" maxlength="5" placeholder="Enter Product Size" name="size" required="required" data-parsley-error-message="Enter Product Size">
+                                    <input type="text" class="form-control" value="{{$productSize->size ?? old('size')}}" id="size"  placeholder="Enter Product Size" name="size" required="required" data-parsley-error-message="Enter Product Size">
                                 </div>
                                 @can('access-settings',$productSize)
                                     <button type="submit" class="btn btn-success mr-2">Update Product Size</button>

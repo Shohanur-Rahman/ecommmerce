@@ -9,6 +9,8 @@
 
             <input type="hidden" name="categories" id="categories" value="{{$existingCatMap}}"/>
             <input type="hidden" name="tags" id="hdnTagsId" value="{{$existingTagMap}}" />
+            <input type="hidden" name="color" id="colorId" value="{{$existingColorMap}}"/>
+            <input type="hidden" name="size" id="sizeId" value="{{$existingSizeMap}}"/>
 
         <div class="tab-content pt-0">
             <div class="tab-pane active" id="tabProductOverview">
@@ -185,25 +187,25 @@
                                 </div>
                             </div>
 
-                            <div class="col-sm-3">
+                            <div class="col-sm-3 col-xs-3">
                                 <div class="form-group">
-                                    <label for="size_id">Size</label>
-                                    <select id="size_id" class="form-control" name="size_id" data-parsley-error-message="Choose your product size">
-                                        <option value="">-- Select One --</option>
+                                    <label for="mltSize" class="col-form-label">Size</label>
+                                    <select id="mltSize" class="form-control" data-placeholder="Size" data-parsley-error-message="Choose product Size">
+
                                         @foreach($productSizes as $size)
-                                        <option value="{{$size->id}}" {{ $aProduct->size_id == $size->id ? 'selected="selected"' : '' }}>{{$size->size}}</option>
+                                            <option value="{{$size->id}}">{{$size->size}}</option>
                                         @endforeach
+
                                     </select>
                                 </div>
                             </div>
 
-                            <div class="col-sm-3">
+                            <div class="col-sm-3 col-xs-3">
                                 <div class="form-group">
-                                    <label for="color_id">Colour</label>
-                                    <select id="color_id" class="form-control" name="color_id" data-parsley-error-message="Choose your product colour">
-                                        <option value="">-- Select One --</option>
+                                    <label for="mltColor" class="col-form-label">Color</label>
+                                    <select id="mltColor" class="form-control" data-placeholder="Select at least one tag"  data-parsley-error-message="Choose a color">
                                         @foreach($productColors as $color)
-                                        <option value="{{$color->id}}" {{ $aProduct->color_id == $color->id ? 'selected="selected"' : '' }}>{{$color->color}}</option>
+                                            <option value="{{$color->id}}">{{$color->color}}</option>
                                         @endforeach
                                     </select>
                                 </div>
@@ -448,6 +450,8 @@
 <script type="text/javascript">
     var mltCategories;
     var mltTags;
+    var mltColor;
+    var mltSize;
 
     $(document).ready(function () {
 
@@ -455,6 +459,8 @@
 
         mltCategories = $("#mltCategories").kendoMultiSelect().data("kendoMultiSelect");
         mltTags = $("#mltTags").kendoMultiSelect().data("kendoMultiSelect");
+        mltColor = $("#mltColor").kendoMultiSelect().data("kendoMultiSelect");
+        mltSize = $("#mltSize").kendoMultiSelect().data("kendoMultiSelect");
 
         mltCategories.bind("change", function () {
             if (mltCategories.selectedIndex === -1 && mltCategories.value()) {
@@ -473,6 +479,25 @@
                 $("#hdnTagsId").val(cID);
             }
         });
+
+        mltColor.bind("change", function () {
+            if (mltColor.selectedIndex === -1 && mltColor.value()) {
+                $("#colorId").val("");
+            } else {
+                var cID = mltColor.value();
+                $("#colorId").val(cID);
+            }
+        });
+
+        mltSize.bind("change", function () {
+            if (mltSize.selectedIndex === -1 && mltSize.value()) {
+                $("#sizeId").val("");
+            } else {
+                var cID = mltSize.value();
+                $("#sizeId").val(cID);
+            }
+        });
+
 
 
         $("#imgInp").change(function () {
@@ -533,6 +558,16 @@
         var tagArray = tagList.split(',');
         var resTag = $.merge([], tagArray);
         mltTags.value(resTag);
+
+        var colorList = $.trim("{{$existingColorMap}}");
+        var colorArray = colorList.split(',');
+        var resColor = $.merge([], colorArray);
+        mltColor.value(resColor);
+
+        var SizeList = $.trim("{{$existingSizeMap}}");
+        var SizeArray = SizeList.split(',');
+        var resSize = $.merge([], SizeArray);
+        mltSize.value(resSize);
 
         var imageList = "{{$galleryArray}}";
         var imageArray = imageList.split("?");

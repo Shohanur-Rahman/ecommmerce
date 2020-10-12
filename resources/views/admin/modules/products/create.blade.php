@@ -8,6 +8,8 @@
 
             <input type="hidden" name="categories" id="categories" />
             <input type="hidden" name="tags" id="hdnTagsId" />
+            <input type="hidden" name="color" id="colorId" />
+            <input type="hidden" name="size" id="sizeId" />
 
         <div class="tab-content pt-0">
             <div class="tab-pane active" id="tabProductOverview">
@@ -73,7 +75,7 @@
                                     <div class="col-sm-6">
                                         <div class="form-group">
                                             <label for="title">Title</label>
-                                            <input type="text" class="form-control" id="title" placeholder="Product title" max="23"  maxlength="23" name="title" required="required" data-parsley-error-message="Product title is required" />
+                                            <input type="text" class="form-control" id="title" placeholder="Product title"   name="title" required="required" data-parsley-error-message="Product title is required" />
                                         </div>
                                     </div>
 
@@ -184,29 +186,30 @@
                                 </div>
                             </div>
 
-                            <div class="col-sm-3">
+                            <div class="col-sm-3 col-xs-3">
                                 <div class="form-group">
-                                    <label for="size_id">Size</label>
-                                    <select id="size_id" class="form-control" name="size_id" data-parsley-error-message="Choose your product size">
-                                        <option value="">-- Select One --</option>
+                                    <label for="mltSize" class="col-form-label">Size</label>
+                                    <select id="mltSize" class="form-control" data-placeholder="Size" data-parsley-error-message="Choose product Size">
+
                                         @foreach($productSizes as $size)
-                                        <option value="{{$size->id}}">{{$size->size}}</option>
+                                            <option value="{{$size->id}}">{{$size->size}}</option>
+                                        @endforeach
+
+                                    </select>
+                                </div>
+                            </div>
+
+                            <div class="col-sm-3 col-xs-3">
+                                <div class="form-group">
+                                    <label for="mltColor" class="col-form-label">Color</label>
+                                    <select id="mltColor" class="form-control" data-placeholder="Select at least one tag" required="required" data-parsley-error-message="Choose at least one tag">
+                                        @foreach($productColors as $color)
+                                            <option value="{{$color->id}}">{{$color->color}}</option>
                                         @endforeach
                                     </select>
                                 </div>
                             </div>
 
-                            <div class="col-sm-3">
-                                <div class="form-group">
-                                    <label for="color_id">Colour</label>
-                                    <select id="color_id" class="form-control" name="color_id" data-parsley-error-message="Choose your product colour">
-                                        <option value="">-- Select One --</option>
-                                        @foreach($productColors as $color)
-                                        <option value="{{$color->id}}">{{$color->color}}</option>
-                                        @endforeach
-                                    </select>
-                                </div>
-                            </div>
 
                             <div class="col-sm-12 col-xs-12">
                                <div class="input-field">
@@ -445,6 +448,8 @@
 <script type="text/javascript">
     var mltCategories;
     var mltTags;
+    var mltColor;
+    var mltSize;
 
     $(document).ready(function () {
 
@@ -452,6 +457,8 @@
 
         mltCategories = $("#mltCategories").kendoMultiSelect().data("kendoMultiSelect");
         mltTags = $("#mltTags").kendoMultiSelect().data("kendoMultiSelect");
+        mltColor = $("#mltColor").kendoMultiSelect().data("kendoMultiSelect");
+        mltSize = $("#mltSize").kendoMultiSelect().data("kendoMultiSelect");
 
         mltCategories.bind("change", function () {
             if (mltCategories.selectedIndex === -1 && mltCategories.value()) {
@@ -471,8 +478,29 @@
             }
         });
 
+        mltColor.bind("change", function () {
+            if (mltColor.selectedIndex === -1 && mltColor.value()) {
+                $("#colorId").val("");
+            } else {
+                var cID = mltColor.value();
+                $("#colorId").val(cID);
+            }
+        });
+
+        mltSize.bind("change", function () {
+            if (mltSize.selectedIndex === -1 && mltSize.value()) {
+                $("#sizeId").val("");
+            } else {
+                var cID = mltSize.value();
+                $("#sizeId").val(cID);
+            }
+        });
+
+
         mltCategories.value("");
         mltTags.value("");
+        mltColor.value("");
+        mltSize.value("");
 
         $("#imgInp").change(function () {
             readURL(this);

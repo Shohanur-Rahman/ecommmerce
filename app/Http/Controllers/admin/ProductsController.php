@@ -4,6 +4,8 @@ namespace App\Http\Controllers\admin;
 
 use App\Http\Controllers\Controller;
 use App\Http\Controllers\admin\HelperController;
+use App\Models\ProductColorMap;
+use App\Models\ProductSizeMap;
 use Illuminate\Http\Request;
 use App\Models\Products;
 use App\Models\Warehouse;
@@ -79,6 +81,25 @@ class ProductsController extends HelperController
                 $existingTagMap =$existingTagMap.",".$key->tag_id;
         }
 
+        $colorMap = ProductColorMap::where('product_id', $id)->get();
+        $existingColorMap="";
+        foreach ($colorMap as $key) {
+            if($existingColorMap == "")
+                $existingColorMap=$key->color_id;
+            else
+                $existingColorMap =$existingColorMap.",".$key->color_id;
+        }
+
+        $sizeMap = ProductSizeMap::where('product_id', $id)->get();
+
+        $existingSizeMap="";
+        foreach ($sizeMap as $key) {
+            if($existingSizeMap == "")
+                $existingSizeMap=$key->size_id;
+            else
+                $existingSizeMap =$existingSizeMap.",".$key->size_id;
+        }
+
 
         $imgGallery = ProductGalleryMap::where('product_id', $id)->get();
         $galleryArray="";
@@ -91,7 +112,7 @@ class ProductsController extends HelperController
 
 
 
-        return view('admin.modules.products.edit', compact("warehouses", "avalabilitites", "categories", "brands","tags", "productSizes", "productColors", "aProduct", "existingCatMap", "existingTagMap", "galleryArray"));
+        return view('admin.modules.products.edit', compact("warehouses", "avalabilitites", "categories", "brands","tags", "productSizes", "productColors", "aProduct", "existingCatMap", "existingTagMap", "galleryArray",'existingColorMap','existingSizeMap'));
     }
 
     public function copy($id)
@@ -145,7 +166,7 @@ class ProductsController extends HelperController
 
     public function store(Request $request)
     {
-        //dd($request->all());
+
         $helper = new HelperController();
 
         /*
@@ -262,6 +283,29 @@ class ProductsController extends HelperController
                 $tagMap->tag_id = $catId;
                 $tagMap->product_id = $product->id;
                 $tagMap->save();
+            }
+        }
+
+        if($request->color){
+            $colorArr = explode(',', $request->color);
+
+            foreach($colorArr as $colorId) {
+                $productColorMap = new ProductColorMap();
+
+                $productColorMap->color_id = $colorId;
+                $productColorMap->product_id = $product->id;
+                $productColorMap->save();
+            }
+        }
+
+        if($request->size){
+            $sizeArray = explode(',', $request->size);
+
+            foreach($sizeArray as $sizeId) {
+                $productSizeMap = new ProductSizeMap();
+                $productSizeMap->size_id = $sizeId;
+                $productSizeMap->product_id = $product->id;
+                $productSizeMap->save();
             }
         }
 
@@ -415,6 +459,37 @@ class ProductsController extends HelperController
                 $tagMap->save();
             }
         }
+
+
+        /*Delete existing tags*/
+        $deleteColor = ProductColorMap::where('product_id', $id)->delete();
+
+        if($request->color){
+            $colorArr = explode(',', $request->color);
+
+            foreach($colorArr as $colorId) {
+                $productColorMap = new ProductColorMap();
+
+                $productColorMap->color_id = $colorId;
+                $productColorMap->product_id = $product->id;
+                $productColorMap->save();
+            }
+        }
+
+        /*Delete existing tags*/
+        $deleteColor = ProductSizeMap::where('product_id', $id)->delete();
+
+        if($request->size){
+            $sizeArray = explode(',', $request->size);
+
+            foreach($sizeArray as $sizeId) {
+                $productSizeMap = new ProductSizeMap();
+                $productSizeMap->size_id = $sizeId;
+                $productSizeMap->product_id = $product->id;
+                $productSizeMap->save();
+            }
+        }
+
          return redirect(route('products.index'))->with('success','Your product has been successfully updated.');
 
     }

@@ -30,6 +30,16 @@ class Products extends Model
         return $this->belongsTo(ProductSize::class,'size_id');
     }
 
+//    public function productColorMaps()
+//    {
+//        return $this->hasMany(ProductColorMap::class);
+//    }
+//
+//    public function productSizeMaps()
+//    {
+//        return $this->hasMany(ProductSizeMap::class);
+//    }
+
     public static function rating($id)
     {
         $reviews = ProductReview::where('product_id',$id)->average('rating');
