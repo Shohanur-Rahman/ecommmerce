@@ -19,9 +19,15 @@
                             @if($fillUp)
                                 @if($user->applyVendor)
                                     @if($user->applyVendor->is_approve == 1)
-                                        <a class="text-white" href="{{route('dashboard')}}"><button class="btn btn-primary w-100 my-2">Go to Seller Dashboard</button></a>
+                                        <a class="text-white" href="{{route('dashboard')}}">
+                                            <button class="btn btn-primary w-100 my-2">Go to Seller Dashboard</button>
+                                        </a>
                                     @else
-                                        <a class="text-white" href="javascript:"><button class="btn btn-secondary disabled w-100 my-2">Your Request is Pending</button></a>
+                                        <a class="text-white" href="javascript:">
+                                            <button class="btn btn-secondary disabled w-100 my-2">Your Request is
+                                                Pending
+                                            </button>
+                                        </a>
                                     @endif
                                 @else
                                     <form action="{{route('verify-email.store')}}" method="post">
@@ -30,7 +36,9 @@
                                     </form>
                                 @endif
                             @else
-                                <a class="text-white" href="{{route('profiles.edit')}}"><button class="btn btn-primary w-100 my-2">Fill Up Your Profile </button></a>
+                                <a class="text-white" href="{{route('profiles.edit')}}">
+                                    <button class="btn btn-primary w-100 my-2">Fill Up Your Profile</button>
+                                </a>
                             @endif
                         @endif
 
@@ -86,7 +94,8 @@
                             </div>
                             <div class="d-flex justify-content-between flex-wrap">
                                 <div class="col-md-4 col-xs-12">
-                                    <h5>Contact Information <a class="text-success pl-3" href="{{route('profiles.edit')}}">Edit</a></h5>
+                                    <h5>Contact Information <a class="text-success pl-3"
+                                                               href="{{route('profiles.edit')}}">Edit</a></h5>
 
                                     <p> {{$user->name}}<br>
                                         {{$user->email}}!<br>
@@ -100,24 +109,25 @@
                                 </div>--}}
                             </div>
                             <div class="">
-                                <h4>Address Book</h4>
+                                <h4>Shipping Address Book</h4>
                                 <div class="manage_add"><a class="text-success"
                                                            href="{{route('shipping-address.create')}}">New Shipping
                                         Addresses</a></div>
                                 <div class="d-flex justify-content-between flex-wrap">
                                     @foreach($shippingAddresses as $shippingAddress)
                                         <div class="">
-                                            <h5>Primary Billing Address</h5>
+                                            <h5>{!!html_entity_decode($shippingAddress->title ? $shippingAddress->title . '' : '')!!}</h5>
                                             <address>
-                                                {{$shippingAddress->title}}<br>
-                                                {{$shippingAddress->name}}<br>
-                                                {{$shippingAddress->email}}<br>
-                                                {{$shippingAddress->city}}<br>
-                                                {{$shippingAddress->house}}
-                                                ,{{$shippingAddress->road}},{{$shippingAddress->state}}<br>
-                                                {{$shippingAddress->country}}<br>
-                                                Phone: {{$shippingAddress->phone}}<br>
-                                                Describe Address: {{$shippingAddress->describe_address}}<br>
+                                                {!!html_entity_decode($shippingAddress->name ? $shippingAddress->name . '<br/>' : '')!!}
+                                                {!!html_entity_decode($shippingAddress->email ? $shippingAddress->email . '<br/>' : '')!!}
+                                                {!!html_entity_decode($shippingAddress->city ? $shippingAddress->city . '<br/>' : '')!!}
+                                                {!!html_entity_decode($shippingAddress->house ? $shippingAddress->house . ',' : '')!!}
+                                                {!!html_entity_decode($shippingAddress->road ? $shippingAddress->road . ',' : '')!!}
+                                                {!!html_entity_decode($shippingAddress->state ? $shippingAddress->state . '<br/>' : '')!!}
+                                                {!!html_entity_decode($shippingAddress->country ? $shippingAddress->country . '<br/>' : '')!!}
+                                                {!!html_entity_decode($shippingAddress->phone ? 'Phone: ' . $shippingAddress->phone . '<br/>' : '')!!}
+                                                {!!html_entity_decode($shippingAddress->describe_address ? 'Describe Address: ' . $shippingAddress->describe_address . '<br/>' : '')!!}
+
                                                 <a class="text-success"
                                                    href="{{route('shipping-address.edit',$shippingAddress->id)}}">Edit
                                                     Address</a>

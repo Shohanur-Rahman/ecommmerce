@@ -1,105 +1,61 @@
 @extends('user.layouts.layout-third')
 
 @section('content')
-    <div class="container ">
-        <div class="row mt-3 ">
-            <div class="col-12 justify-content-center mb-5">
-                <div class="billing-form">
-                    <h4>Billing Address</h4>
-                    <form action="{{route('new-shipping-address.store')}}" method="post" data-parsley-validate>
-                        @csrf
-                        <div class="row">
-                            <div class="col-lg-3">
-                                <label>Title *</label>
-                            </div>
-                            <div class="col-lg-9">
-                                <input type="text" placeholder="Enter your shipping title" name="title" value="{{old('title')}}" maxlength="100" required
-                                       data-parsley-required-message="Shipping title filed is required" />
-                            </div>
-                        </div>
 
-                        <div class="row">
-                            <div class="col-lg-3">
-                                <label>USERNAME *</label>
-                            </div>
-                            <div class="col-lg-9">
-                                <input type="text" placeholder="Enter your name" name="name" value="{{old('name')}}" maxlength="100" required
-                                       data-parsley-required-message="Username filed is required" />
-                            </div>
-                        </div>
+    <div class="col-12 justify-content-center mb-5">
+        <div class="billing-form">
+            <h4>Shipping Address</h4>
+            <form action="{{route('new-shipping-address.store')}}" method="post" data-parsley-validate>
+                @csrf
+                <div class="row">
+                    <div class="form-group col-6">
+                        <label class="float-left" for="phone">Phone</label>
+                        <input class="form-control phone-formate" type="text" name="phone" id="phone"
+                               value="{{$authUser->userProfile->phone}}"
+                               placeholder="(123) 345-3455" required="required"
+                               data-parsley-error-message="Enter Phone Number">
+                    </div>
 
-                        <div class="row">
-                            <div class="col-lg-3">
-                                <label>EMAIL ADDRESS *</label>
-                            </div>
-                            <div class="col-lg-9">
-                                <input type="email" name="email" value="{{old('email')}}" maxlength="150" required
-                                       data-parsley-required-message="Email filed is required" placeholder="Enter your email address" />
-                                @error('email')
-                                <span class="text-danger">{{$message}}</span>
-                                @enderror
-                            </div>
-                        </div>
 
-                        <div class="row">
-                            <div class="col-lg-3">
-                                <label>PHONE *</label>
-                            </div>
-                            <div class="col-lg-9">
-                                <input type="number" name="phone" value="{{ old('phone')}}"
-                                       placeholder="Enter your phone number" maxlength="100" required data-parsley-required-message="Phone filed is required">
-                            </div>
-                        </div>
+                    <div class="form-group col-6">
+                        <label class="float-left" for="line1">Line 1</label>
+                        <input class="form-control" type="text" name="line1" id="line1" value="{{old('line1')}}"
+                               placeholder="Address line 1" data-parsley-error-message="Enter address line 1"
+                               required>
+                    </div>
+                    <div class="form-group col-6">
+                        <label class="float-left" for="line2">Line 2</label>
+                        <input class="form-control" type="text" name="line2" id="line2" value="{{old('line2')}}"
+                               placeholder="Address line 2" data-parsley-error-message="Enter address line 2"
+                               required>
+                    </div>
 
-                        <div class="row">
-                           @include('user.pages.common.countries.create',['col3'=>'col-lg-3 text-uppercase','col9'=>'col-lg-9'])
+                    <div class="form-group col-4">
+                        <label class="float-left" for="postcode">zipcode</label>
+                        <input class="form-control zipcode" type="text" name="postcode" id="postcode"
+                               value="{{old('postcode')}}"
+                               placeholder="Enter PostCode Number" required="required"
+                               data-parsley-error-message="Enter PostCode Number">
+                    </div>
 
-                        </div>
 
-                        <div class="row">
-                            <div class="col-lg-3">
-                                <label>ADDRESS *</label>
-                            </div>
-                            <div class="col-lg-9">
-                                <input type="text" name="state" value="{{old('state')}}" placeholder="Street Address" maxlength="50" required
-                                       data-parsley-required-message="Address filed is required">
-                                <input type="text" name="house" value="{{old('house')}}" placeholder="Apartment (optinal)"
-                                       class="mt-sm-30">
-                                <input type="text" name="road" value="{{old('road')}}" placeholder="Road (optinal)"
-                                       class="mt-sm-30">
-                            </div>
-                        </div>
-
-                        <div class="row">
-                            <div class="col-lg-3">
-                                <label>TOWN / CITY *</label>
-                            </div>
-                            <div class="col-lg-9">
-                                <input type="text" name="city" value="{{old('city')}}" class="mt-sm-30 " required
-                                       data-parsley-required-message="Town/City filed is required">
-
-                            </div>
-                        </div>
-
-                        <div class="row">
-                            <div class="col-lg-3">
-                                <label>POSTCODE / ZIP *</label>
-                            </div>
-                            <div class="col-lg-9">
-                                <input type="number" name="postcode" value="{{old('postcode')}}" class="mt-sm-30" required
-                                       data-parsley-required-message="Postcode filed is required">
-                            </div>
-                        </div>
-
-                        <div class="row">
-
-                            <div class="col-lg-9">
-                                <button class="btn btn-success text-white btn-common width-180">Submit</button>
-                            </div>
-                        </div>
-
-                    </form>
+                    <div class="form-group col-12">
+                        <label class="float-left" for="full_address">Full Address</label>
+                        <textarea class="form-control" name="describe_address" id="full_address" cols=""
+                                  rows="2">{{old('describe_address')}}</textarea>
+                        <span>Give us your full location address so we can find you and deliver your order accurately.</span>
+                    </div>
                 </div>
-            </div>
+
+                <div class="row">
+
+                    <div class="col-lg-9">
+                        <button class="btn btn-success text-white btn-common width-180">Submit</button>
+                    </div>
+                </div>
+
+            </form>
         </div>
+    </div>
+
 @endsection

@@ -148,8 +148,10 @@ class CheckoutController extends Controller
     public function shippingAddressCreate()
     {
 
+        $authUser = Auth::user();
+
         if ($this->checkCart()->isNotEmpty()) {
-            return view('user.pages.checkouts.shipping-address');
+            return view('user.pages.checkouts.shipping-address', compact('authUser'));
         }
 
         return redirect(route('cart.index')->with('error-message', 'Currently your cart is empty please purchase some product'));

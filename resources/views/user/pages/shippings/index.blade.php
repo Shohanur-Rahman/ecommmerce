@@ -13,7 +13,7 @@
                     <div class="row">
                         @foreach($shippingAddresses as $shippingAddress)
                             <div class="col-md-4 col-sl-3 col-sm-6">
-                                <h5>{!!html_entity_decode($shippingAddress->title ? $shippingAddress->title . '<br/>' : '')!!}</h5>
+                                <h5>{!!html_entity_decode($shippingAddress->title ? $shippingAddress->title . '' : '')!!}</h5>
                                 <address>
                                     {!!html_entity_decode($shippingAddress->name ? $shippingAddress->name . '<br/>' : '')!!}
                                     {!!html_entity_decode($shippingAddress->email ? $shippingAddress->email . '<br/>' : '')!!}
@@ -91,78 +91,5 @@
         </div>
     </div>
 
-
-    <script>
-        $(document).ready(function () {
-
-            $(".zipcode").keydown(function (event) {
-
-                $(this).attr('maxlength', 5);
-                // Prevent shift key since its not needed
-                if (event.shiftKey == true) {
-                    event.preventDefault();
-                }
-                // Allow Only: keyboard 0-9, numpad 0-9, backspace, tab, left arrow, right arrow, delete
-                if ((event.keyCode >= 48 && event.keyCode <= 57) || (event.keyCode >= 96 && event.keyCode <= 105) || event.keyCode == 8 || event.keyCode == 9 || event.keyCode == 37 || event.keyCode == 39 || event.keyCode == 46) {
-                } else {
-                    event.preventDefault();
-                }
-
-            });
-
-
-            $('.phone-formate')
-
-                .on('keypress', function (e) {
-                    var key = e.charCode || e.keyCode || 0;
-
-                    var phone = $(this);
-                    if (phone.val().length === 0) {
-                        phone.val(phone.val() + '(');
-                    }
-
-                    // Auto-format- do not expose the mask as the user begins to type
-                    if (key !== 8 && key !== 9) {
-                        if (phone.val().length === 4) {
-                            phone.val(phone.val() + ')');
-                        }
-                        if (phone.val().length === 5) {
-                            phone.val(phone.val() + ' ');
-                        }
-                        if (phone.val().length === 9) {
-                            phone.val(phone.val() + '-');
-                        }
-                        if (phone.val().length >= 14) {
-                            phone.val(phone.val().slice(0, 13));
-                        }
-                    }
-
-                    return (key == 8 ||
-                        key == 9 ||
-                        key == 46 ||
-                        (key >= 48 && key <= 57)
-                    );
-
-                })
-                .on('focus', function () {
-                    phone = $(this);
-
-                    if (phone.val().length === 0) {
-                        phone.val('(');
-                    } else {
-                        var val = phone.val();
-                        phone.val('').val(val); // Ensure cursor remains at the end
-                    }
-                })
-
-                .on('blur', function () {
-                    $phone = $(this);
-
-                    if ($phone.val() === '(') {
-                        $phone.val('');
-                    }
-                });
-        })
-    </script>
 
 @endsection
