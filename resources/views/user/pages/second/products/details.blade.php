@@ -27,6 +27,7 @@
                         @endforeach
                     </div>
                 </div>
+
                 <div class="col-lg-7 mt-sm-50">
                     <div class="row">
                         <div class="col-lg-8 col-md-7">
@@ -36,20 +37,38 @@
                                     {{$product->short_description}}
                                 </div>
                                 <div class="product-meta">
-                                    <ul class="list-none">
-                                        <li>SKU: 00012 <span>|</span></li>
+                                    <ul class="list-none d-flex flex-column">
+                                        <li>SKU: 00012 </li>
                                         <li>Categories:
 
                                             @foreach($categoryList as $aCategory)
                                                 <a href="{{route('product.index', $aCategory->category->slug)}}">{{$aCategory->category->category_name}}</a> &nbsp;
                                             @endforeach
-                                            <span>|</span>
+
                                         </li>
                                         <li>Tags:
                                             <?php $tagList = App\Models\ProductTagMap::where('product_id', $product->id)->get(); ?>
                                             @foreach($tagList as $aTag)
                                             <a href="#">{{$aTag->tag->name}}</a>
                                             @endforeach
+                                        </li>
+
+                                        <li>
+
+                                            @if($product->productSizeMaps->isNotEmpty())
+                                                @foreach($product->productSizeMaps as $productSizeMap)
+                                                    <span class="badge badge-success text-white"> {{$productSizeMap->size->size}}</span>
+                                                @endforeach
+                                            @endif
+                                        </li>
+
+                                        <li>
+                                            @if($product->productColorMaps->isNotEmpty())
+                                                @foreach($product->productColorMaps as $productColorMap)
+                                                    <span class="badge badge-danger bg-primary text-white">{{$productColorMap->color->color}}</span>
+                                                @endforeach
+
+                                            @endif
                                         </li>
                                     </ul>
                                 </div>

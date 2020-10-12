@@ -9,6 +9,11 @@ class ProductColorMap extends Model
     protected $guarded = [];
 
     public function products(){
-        $this->belongsToMany('App\Models\Products');
+        $this->belongsToMany(Products::class);
+    }
+
+    public function color()
+    {
+        return $this->belongsTo(ProductColor::class);
     }
 }

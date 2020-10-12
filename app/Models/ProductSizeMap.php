@@ -11,4 +11,9 @@ class ProductSizeMap extends Model
     public function products(){
         $this->belongsToMany('App\Models\Products');
     }
+
+    public function size()
+    {
+        return $this->belongsTo(ProductSize::class);
+    }
 }

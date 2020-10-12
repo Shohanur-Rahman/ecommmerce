@@ -190,7 +190,8 @@ class ProductController extends Controller
 
     public function details($category, $slug)
     {
-        $product = Products::where('slug', $slug)->firstOrFail();
+        $product = Products::where('slug', $slug)->with('productColorMaps.color','productSizeMaps.size')->firstOrFail();
+
         $categoryList = ProductCategoryMap::where('product_id', $product->id)->get();
         $galleries = ProductGalleryMap::where('product_id', $product->id)->get();
 

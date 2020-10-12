@@ -30,15 +30,15 @@ class Products extends Model
         return $this->belongsTo(ProductSize::class,'size_id');
     }
 
-//    public function productColorMaps()
-//    {
-//        return $this->hasMany(ProductColorMap::class);
-//    }
-//
-//    public function productSizeMaps()
-//    {
-//        return $this->hasMany(ProductSizeMap::class);
-//    }
+    public function productColorMaps()
+    {
+        return $this->hasMany(ProductColorMap::class,'product_id');
+    }
+
+    public function productSizeMaps()
+    {
+        return $this->hasMany(ProductSizeMap::class,'product_id');
+    }
 
     public static function rating($id)
     {
