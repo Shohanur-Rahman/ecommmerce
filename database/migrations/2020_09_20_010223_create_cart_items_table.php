@@ -18,6 +18,7 @@ class CreateCartItemsTable extends Migration
             $table->unsignedBigInteger('user_id')->nullable();
             $table->unsignedBigInteger('product_id');
             $table->integer('quantity');
+            $table->integer('size')->nullable();
             $table->timestamps();
         });
     }

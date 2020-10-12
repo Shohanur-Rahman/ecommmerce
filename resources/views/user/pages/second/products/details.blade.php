@@ -42,43 +42,46 @@
                                         <li>Categories:
 
                                             @foreach($categoryList as $aCategory)
-                                                <a href="{{route('product.index', $aCategory->category->slug)}}">{{$aCategory->category->category_name}}</a> &nbsp;
+                                                <a href="{{route('product.index', $aCategory->category->slug)}}">{{$aCategory->category->category_name}}  @if (!$loop->last) | @endif </a>
                                             @endforeach
 
                                         </li>
                                         <li>Tags:
                                             <?php $tagList = App\Models\ProductTagMap::where('product_id', $product->id)->get(); ?>
                                             @foreach($tagList as $aTag)
-                                            <a href="#">{{$aTag->tag->name}}</a>
+                                            <a href="#">{{$aTag->tag->name}}  @if (!$loop->last) | @endif </a>
                                             @endforeach
+                                        </li>
+
+                                        <li>Color:
+                                            @if($product->productColorMaps->isNotEmpty())
+                                                @foreach($product->productColorMaps as $productColorMap)
+                                                    <a href="javascript:" > {{$productColorMap->color->color}}
+                                                        @if (!$loop->last) | @endif </a>
+
+                                                @endforeach
+
+                                            @endif
                                         </li>
 
                                         <li>
 
                                             @if($product->productSizeMaps->isNotEmpty())
                                                 @foreach($product->productSizeMaps as $productSizeMap)
-                                                    <span class="badge badge-success text-white"> {{$productSizeMap->size->size}}</span>
+                                                    <span onclick="selectButton()" class="badge badge-success text-white" id="{{$productSizeMap->size->size}}"> {{$productSizeMap->size->size}}</span>
                                                 @endforeach
                                             @endif
                                         </li>
 
-                                        <li>
-                                            @if($product->productColorMaps->isNotEmpty())
-                                                @foreach($product->productColorMaps as $productColorMap)
-                                                    <span class="badge badge-danger bg-primary text-white">{{$productColorMap->color->color}}</span>
-                                                @endforeach
-
-                                            @endif
-                                        </li>
                                     </ul>
                                 </div>
-                                <div class="social-icons style-5">
+                               {{-- <div class="social-icons style-5">
                                     <span>Share Link:</span>
                                     <a href="#"><i class="fa fa-facebook"></i></a>
                                     <a href="#"><i class="fa fa-twitter"></i></a>
                                     <a href="#"><i class="fa fa-google-plus"></i></a>
                                     <a href="#"><i class="fa fa-rss"></i></a>
-                                </div>
+                                </div>--}}
                             </div>
                         </div>
                         <div class="col-lg-4 col-md-5">
@@ -101,6 +104,7 @@
                                 </div>
                                 <form id="cartForm_{{$product->id}}_details" action="{{route('product.add_to_cart')}}" method="post">
                                     @csrf
+                                    <input type="hidden" value="{{$productSizeMap->size->size}}" name="=size">
                                     <input type="hidden" name="product_id" value="{{$product->id}}">
                                     <input type="hidden" name="product_price" value="{{$product->new_price}}">
                                     <div class="product-quantity mt-15">
@@ -133,3 +137,4 @@
 </div>
 </div>
 @include('user.partials.widget.product_reviews')
+
