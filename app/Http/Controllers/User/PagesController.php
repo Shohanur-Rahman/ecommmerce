@@ -21,4 +21,25 @@ class PagesController extends Controller
         return view('user.pages.links.contact');
 
     }
+
+
+    public function faq()
+    {
+
+        return view('user.pages.links.faq');
+
+    }
+
+    public function privacyPolicy()
+    {
+
+        return view('user.pages.links.privacy');
+
+    }
+    public function termsConditions()
+    {
+
+        return view('user.pages.links.terms');
+
+    }
 }

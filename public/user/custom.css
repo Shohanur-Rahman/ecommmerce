@@ -338,3 +338,6 @@ textarea:-moz-placeholder
     color: #fff;
     border-color: #fff;
 }
+.product-details-desc ul li {
+    margin-bottom: 0px;
+}

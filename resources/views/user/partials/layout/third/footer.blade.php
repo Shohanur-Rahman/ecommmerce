@@ -19,10 +19,10 @@
                     <div class="footer-menu">
                         <ul>
                             <li><a href="{{route('pages.about')}}" target="_blank">About Us</a></li>
-                            <li><a href="{{route('pages.contact')}}">Contact Us</a></li>
-                            <li><a href="#">Delivery information</a></li>
-                            <li><a href="#">Privacy Policy</a></li>
-                            <li><a href="#">Terms & Conditions</a></li>
+                            <li><a href="{{route('pages.contact')}}" target="_blank">Contact Us</a></li>
+                            <li><a href="{{route('orders-details.index')}}" target="_blank">Delivery information</a></li>
+                            <li><a href="{{route('pages.privacy.policy')}}" target="_blank">Privacy Policy</a></li>
+                            <li><a href="{{route('pages.terms.conditions')}}" target="_blank">Terms & Conditions</a></li>
                         </ul>
                     </div>
                 </div>
@@ -32,11 +32,11 @@
                     <h4>Customer Care</h4>
                     <div class="footer-menu">
                         <ul>
-                            <li><a href="#">My Account</a></li>
-                            <li><a href="#">Order History</a></li>
-                            <li><a href="#">Wish List</a></li>
-                            <li><a href="#">Customer Service</a></li>
-                            <li><a href="#">FAQs</a></li>
+                            <li><a href="{{route('profiles.index')}}" target="_blank">My Account</a></li>
+                            <li><a href="{{route('orders-details.index')}}" target="_blank">Order History</a></li>
+                            <li><a href="{{route('wish-lists.index')}}" target="_blank">Wish List</a></li>
+                            <li><a href="#" target="_blank">Customer Service</a></li>
+                            <li><a href="{{route('pages.faq')}}" target="_blank">FAQs</a></li>
                         </ul>
                     </div>
                 </div>
