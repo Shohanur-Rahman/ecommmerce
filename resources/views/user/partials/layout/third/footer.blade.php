@@ -5,7 +5,7 @@
             <div class="col-lg-3 col-sm-6">
                 <div class="company-info">
                     <img src="{{$siteSetting != null ? asset($siteSetting->logo_url) : asset('user/assets/images/logos/logo-blue.png')}}" alt="logo" />
-                    <p>{{$siteSetting != null ? $siteSetting->address : 'Address 1, city 1, country'}}</p>
+                    <p>{{$siteSetting != null ? $siteSetting->address : 'Address , city , country'}}</p>
                     <p>Phone: {{$siteSetting != null ? $siteSetting->phone : 'XXX XXXX XXXX'}}</p>
                     <p>Email: {{$siteSetting !=null ? $siteSetting->email : 'email@email.com'}}</p>
                 </div>
@@ -18,13 +18,11 @@
                     <h4>Information</h4>
                     <div class="footer-menu">
                         <ul>
-                            <li><a href="#">Find a Store</a></li>
                             <li><a href="#">About Us</a></li>
                             <li><a href="#">Contact Us</a></li>
                             <li><a href="#">Delivery information</a></li>
                             <li><a href="#">Privacy Policy</a></li>
                             <li><a href="#">Terms & Conditions</a></li>
-                            <li><a href="#">Gift Cards</a></li>
                         </ul>
                     </div>
                 </div>
@@ -38,9 +36,7 @@
                             <li><a href="#">Order History</a></li>
                             <li><a href="#">Wish List</a></li>
                             <li><a href="#">Customer Service</a></li>
-                            <li><a href="#">Returns / Exchange</a></li>
                             <li><a href="#">FAQs</a></li>
-                            <li><a href="#">Product Support</a></li>
                         </ul>
                     </div>
                 </div>
@@ -67,7 +63,6 @@
                         <a href="#"><i class="fa fa-facebook"></i></a>
                         <a href="#"><i class="fa fa-twitter"></i></a>
                         <a href="#"><i class="fa fa-instagram"></i></a>
-                        <a href="#"><i class="fa fa-youtube"></i></a>
                     </div>
                 </div>
             </div>

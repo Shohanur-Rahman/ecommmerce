@@ -267,3 +267,12 @@ td.td-subtotal {
     padding: 15px !important;
     border-top: 2px solid #ddd;
 }
+.cart-row{
+    transition: .5s;
+}
+.cart-row:hover{
+    transform: scale(1.003);
+    background: #f6f1f1;
+    transition: .5s;
+    overflow: hidden;
+}
