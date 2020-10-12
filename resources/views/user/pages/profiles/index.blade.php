@@ -114,26 +114,31 @@
                                                            href="{{route('shipping-address.create')}}">New Shipping
                                         Addresses</a></div>
                                 <div class="d-flex justify-content-between flex-wrap">
-                                    @foreach($shippingAddresses as $shippingAddress)
-                                        <div class="">
-                                            <h5>{!!html_entity_decode($shippingAddress->title ? $shippingAddress->title . '' : '')!!}</h5>
-                                            <address>
-                                                {!!html_entity_decode($shippingAddress->name ? $shippingAddress->name . '<br/>' : '')!!}
-                                                {!!html_entity_decode($shippingAddress->email ? $shippingAddress->email . '<br/>' : '')!!}
-                                                {!!html_entity_decode($shippingAddress->city ? $shippingAddress->city . '<br/>' : '')!!}
-                                                {!!html_entity_decode($shippingAddress->house ? $shippingAddress->house . ',' : '')!!}
-                                                {!!html_entity_decode($shippingAddress->road ? $shippingAddress->road . ',' : '')!!}
-                                                {!!html_entity_decode($shippingAddress->state ? $shippingAddress->state . '<br/>' : '')!!}
-                                                {!!html_entity_decode($shippingAddress->country ? $shippingAddress->country . '<br/>' : '')!!}
-                                                {!!html_entity_decode($shippingAddress->phone ? 'Phone: ' . $shippingAddress->phone . '<br/>' : '')!!}
-                                                {!!html_entity_decode($shippingAddress->describe_address ? 'Describe Address: ' . $shippingAddress->describe_address . '<br/>' : '')!!}
+                                    <div class="row">
+                                        @foreach($shippingAddresses as $shippingAddress)
+                                            <div class="col-md-4 col-xl-3 col-sm-6 address-height">
+                                                <h5>{!!html_entity_decode($shippingAddress->title ? $shippingAddress->title . '' : '')!!}</h5>
+                                                <address>
+                                                    {{--{!!html_entity_decode($shippingAddress->name ? $shippingAddress->name . '<br/>' : '')!!}
+                                        {!!html_entity_decode($shippingAddress->email ? $shippingAddress->email . '<br/>' : '')!!}--}}
+                                                    {!!html_entity_decode($shippingAddress->city ? $shippingAddress->city . '<br/>' : '')!!}
+                                                    {!!html_entity_decode($shippingAddress->house ? $shippingAddress->house . ',' : '')!!}
+                                                    {!!html_entity_decode($shippingAddress->road ? $shippingAddress->road . ',' : '')!!}
+                                                    {!!html_entity_decode($shippingAddress->state ? $shippingAddress->state . '<br/>' : '')!!}
+                                                    {!!html_entity_decode($shippingAddress->country ? $shippingAddress->country . '<br/>' : '')!!}
+                                                    {!!html_entity_decode($shippingAddress->phone ? 'Phone: ' . $shippingAddress->phone . '<br/>' : '')!!}
+                                                    {!!html_entity_decode($shippingAddress->line1 ? $shippingAddress->line1 . ', ' : '')!!}
+                                                    {!!html_entity_decode($shippingAddress->line2 ? $shippingAddress->line2 . ',' : '')!!}
+                                                    {!!html_entity_decode($shippingAddress->postcode ? $shippingAddress->postcode . ',' : '')!!}
+                                                    {!!html_entity_decode($shippingAddress->describe_address ? 'Describe Address: ' . $shippingAddress->describe_address . '<br/>' : '')!!}
 
-                                                <a class="text-success"
-                                                   href="{{route('shipping-address.edit',$shippingAddress->id)}}">Edit
-                                                    Address</a>
-                                            </address>
-                                        </div>
-                                    @endforeach
+                                                    <a class="text-success"
+                                                       href="{{route('shipping-address.edit',$shippingAddress->id)}}">Edit
+                                                        Address</a>
+                                                </address>
+                                            </div>
+                                        @endforeach
+                                    </div>
                                 </div>
                             </div>
                         </div>

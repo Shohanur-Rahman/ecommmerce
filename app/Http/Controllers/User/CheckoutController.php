@@ -159,23 +159,27 @@ class CheckoutController extends Controller
 
     public function shippingAddressStore(Request $request)
     {
-        $this->validate($request, [
-            'email' => ['required', 'string', 'email', 'max:255', 'unique:shipping_addresses'],
+
+        $this->validate($request,[
+            'line1' => ['required'],
+            'postcode' => ['required'],
         ]);
 
-        $shipping = ShippingAddress::create([
-            'user_id' => auth()->id(),
-            'title' => $request['title'],
-            'name' => $request['name'],
-            'email' => $request['email'],
-            'phone' => $request['phone'],
-            'house' => $request['house'],
-            'road' => $request['road'],
-            'postcode' => $request['postcode'],
-            'state' => $request['state'],
-            'city' => $request['city'],
-            'country' => $request['country'],
-        ]);
+        $shipping = new ShippingAddress();
+        $shipping->title = $request->line1. ' (' . $request->postcode . ')';
+        $shipping->name = Auth::user()->name;
+        $shipping->email = Auth::user()->email;
+        $shipping->phone = $request->phone;
+        $shipping->line1 = $request->line1;
+        $shipping->line2 = $request->line2;
+        $shipping->postcode = $request->postcode;
+        $shipping->state = '';
+        $shipping->city = '';
+        $shipping->country = '';
+        $shipping->describe_address = $request->describe_address;
+        $shipping->user_id = Auth::id();
+        $shipping->save();
+
 
         return redirect(route('checkouts.create'))->with('shipping_id', $shipping->id);
     }

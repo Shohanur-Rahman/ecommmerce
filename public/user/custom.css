@@ -322,3 +322,7 @@ textarea:-moz-placeholder
     cursor: pointer;
 }
 
+.address-height {
+    min-height: 200px;
+    margin-top: 10px;
+}
