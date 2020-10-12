@@ -314,3 +314,11 @@ textarea:-moz-placeholder
     width: 100%;
     min-height: 500px;
 }
+
+.product-meta ul li span{
+    font-size: 11px;
+    background-color: #28a745;
+    padding: 7px;
+    cursor: pointer;
+}
+
