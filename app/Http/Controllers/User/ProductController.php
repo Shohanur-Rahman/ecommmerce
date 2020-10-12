@@ -74,37 +74,29 @@ class ProductController extends Controller
 
         $products = new Products();
 
+        $products = DB::table('products')
+            ->join('product_category_maps', 'products.id', '=', 'product_category_maps.product_id')
+            ->select('products.*')
+            ->where('products.is_published', 1)
+            ->where('product_category_maps.cat_id', $categoryDetails->id)
+            ->where('products.new_price', '>=', $minPrice)
+            ->where('products.new_price', '<=', $mixPrice);
+
+
         if ($brandId > 0){
-            $products = DB::table('products')
-                ->join('product_category_maps', 'products.id', '=', 'product_category_maps.product_id')
-                ->select('products.*')
-                ->where('products.is_published', 1)
-                ->where('product_category_maps.cat_id', $categoryDetails->id)
-                ->where('products.new_price', '>=', $minPrice)
-                ->where('products.new_price', '<=', $mixPrice)
+            $products = $products
                 ->where('products.brand_id', $brandId)
                 ->orderBy($orderColumn, $orderOrdering)
                 ->distinct();
         } else {
-            $products = DB::table('products')
-                ->join('product_category_maps', 'products.id', '=', 'product_category_maps.product_id')
-                ->select('products.*')
-                ->where('products.is_published', 1)
-                ->where('product_category_maps.cat_id', $categoryDetails->id)
-                ->where('products.new_price', '>=', $minPrice)
-                ->where('products.new_price', '<=', $mixPrice)
+            $products = $products
                 ->orderBy($orderColumn, $orderOrdering)
                 ->distinct();
         }
 
-        $productBrandIdArr = $products->pluck('brand_id')->toArray();
-
-        $productIdArr = $products->pluck('id')->toArray();
-
-        $brands = ProductBrands::whereIn('id',$productBrandIdArr)->get();
-
-        $colors = ProductColorMap::whereIn('product_id',$productIdArr)->get();
-        $sizes = ProductSizeMap::whereIn('product_id',$productIdArr)->get();
+        $brands = ProductBrands::distinct()->get();
+        $colors = ProductColorMap::distinct()->get();
+        $sizes = ProductSizeMap::distinct()->get();
 
         $products = $products->paginate($page_size)
             ->appends([
@@ -193,13 +185,9 @@ class ProductController extends Controller
                 ->distinct();
         }
 
-        $productBrandIdArr = $products->pluck('brand_id')->toArray();
-        $productIdArr = $products->pluck('id')->toArray();
-
-        $brands = ProductBrands::whereIn('id',$productBrandIdArr)->get();
-
-        $colors = ProductColorMap::whereIn('product_id',$productIdArr)->get();
-        $sizes = ProductSizeMap::whereIn('product_id',$productIdArr)->get();
+        $brands = ProductBrands::distinct()->get();
+        $colors = ProductColorMap::distinct()->get();
+        $sizes = ProductSizeMap::distinct()->get();
 
         $products = $products->paginate($page_size)
             ->appends([
