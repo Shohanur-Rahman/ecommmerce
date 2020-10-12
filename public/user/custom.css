@@ -276,3 +276,10 @@ td.td-subtotal {
     transition: .5s;
     overflow: hidden;
 }
+.change-password-link {
+    list-style: none;
+    padding: 0;
+    display: block;
+    margin: 0;
+    overflow: hidden;
+}

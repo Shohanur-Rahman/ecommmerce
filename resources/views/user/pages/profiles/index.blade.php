@@ -85,19 +85,19 @@
                                 <h3>Account Information</h3>
                             </div>
                             <div class="d-flex justify-content-between flex-wrap">
-                                <div class="">
-                                    <h5>Contact Information</h5>
-                                    <a class="text-success" href="{{route('profiles.edit')}}">Edit</a>
+                                <div class="col-md-4 col-xs-12">
+                                    <h5>Contact Information <a class="text-success pl-3" href="{{route('profiles.edit')}}">Edit</a></h5>
+
                                     <p> {{$user->name}}<br>
                                         {{$user->email}}!<br>
                                         <a class="text-success" href="{{route('change-password.edit')}}">Change
                                             Password</a></p>
                                 </div>
-                                <div class="">
+                                {{--<div class="">
                                     <h5>Newsletters</h5>
                                     <a class="text-success" href="#">Edit</a>
                                     <p> You are currently not subscribed to any newsletter. </p>
-                                </div>
+                                </div>--}}
                             </div>
                             <div class="">
                                 <h4>Address Book</h4>

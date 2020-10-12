@@ -59,6 +59,13 @@
                     Phone: {{Auth::user()->userProfile->phone}} <br>
                 @endif
             </address>
+
+            <ul class="change-password-link">
+                <li>
+                    <i class="fa fa-angle-right mr-2" aria-hidden="true"></i>
+                    <a href="{{route('change-password.edit')}}">Change Password</a>
+                </li>
+            </ul>
         </div>
     </div>
     <div>

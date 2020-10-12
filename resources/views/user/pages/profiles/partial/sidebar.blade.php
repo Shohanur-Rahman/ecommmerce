@@ -43,10 +43,10 @@
                     <a href="{{route('shipping-address.create')}}">New Shipping Address</a>
                 </li>
 
-                <li>
+                {{--<li>
                     <i class="fa fa-angle-right mr-2" aria-hidden="true"></i>
                     <a href="{{route('change-password.edit')}}">Change Password</a>
-                </li>
+                </li>--}}
             </ul>
         </div>
     </div>
