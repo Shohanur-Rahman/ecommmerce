@@ -93,20 +93,17 @@
                                 <h3>Account Information</h3>
                             </div>
                             <div class="d-flex justify-content-between flex-wrap">
-                                <div class="col-md-4 col-xs-12">
-                                    <h5>Contact Information <a class="text-success pl-3"
-                                                               href="{{route('profiles.edit')}}">Edit</a></h5>
+                                <div class="row" style="width: 100%;">
+                                    <div class="col-md-4 col-xs-12">
+                                        <h5>Contact Information <a class="text-success pl-3"
+                                                                   href="{{route('profiles.edit')}}">Edit</a></h5>
 
-                                    <p> {{$user->name}}<br>
-                                        {{$user->email}}!<br>
-                                        <a class="text-success" href="{{route('change-password.edit')}}">Change
-                                            Password</a></p>
+                                        <p> {{$user->name}}<br>
+                                            {{$user->email}}!<br>
+                                            <a class="text-success" href="{{route('change-password.edit')}}">Change
+                                                Password</a></p>
+                                    </div>
                                 </div>
-                                {{--<div class="">
-                                    <h5>Newsletters</h5>
-                                    <a class="text-success" href="#">Edit</a>
-                                    <p> You are currently not subscribed to any newsletter. </p>
-                                </div>--}}
                             </div>
                             <div class="">
                                 <h4>Shipping Address Book</h4>
@@ -114,7 +111,7 @@
                                                            href="{{route('shipping-address.create')}}">New Shipping
                                         Addresses</a></div>
                                 <div class="d-flex justify-content-between flex-wrap">
-                                    <div class="row">
+                                    <div class="row" style="width: 100%;">
                                         @foreach($shippingAddresses as $shippingAddress)
                                             <div class="col-md-4 col-xl-3 col-sm-6 address-height">
                                                 <h5>{!!html_entity_decode($shippingAddress->title ? $shippingAddress->title . '' : '')!!}</h5>
