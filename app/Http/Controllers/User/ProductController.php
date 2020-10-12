@@ -213,6 +213,8 @@ class ProductController extends Controller
 
     public function add_to_cart(Request $request)
     {
+
+
         $cartItem = CartItem::where(['product_id' => $request->product_id, 'user_id' => Auth::id()])->first();
 
         if ($cartItem == null)
@@ -230,6 +232,9 @@ class ProductController extends Controller
 
         $myCartList = CartItem::with('product')->where('user_id', Auth::id())->get();
         $arr = array('data' => $myCartList, 'status' => true);
+
+        if($request->form == "details")
+            return redirect()->back();
 
         return Response()->json($arr);
     }

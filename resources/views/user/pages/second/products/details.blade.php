@@ -102,22 +102,19 @@
                                         <i class="fa fa-star-o"></i>
                                     </div>
                                 </div>
-                                <form id="cartForm_{{$product->id}}_details" action="{{route('product.add_to_cart')}}" method="post">
+
+                                <form id="cartForm_{{$product->id}}_details"  action="{{route('product.add_to_cart')}}" method="post">
                                     @csrf
                                     <input id="dummy_product_size_value" type="hidden" value="" name="size">
+                                    <input type="hidden" value="details" name="form" readonly>
                                     <input type="hidden" name="product_id" value="{{$product->id}}">
                                     <input type="hidden" name="product_price" value="{{$product->new_price}}">
                                     <div class="product-quantity mt-15">
-                                    <label>Quatity:</label>
-                                    <input type="number" value="1" name="quantity" />
+                                        <label>Quatity:</label>
+                                        <input type="number" value="1" name="quantity" />
                                     </div>
                                     <div class="add-to-get mt-50">
-                                        <button type="submit" form="#cartForm_{{$product->id}}_details"
-                                                class="btn btn-success add-to-cart dummy_cart_btn"
-                                                url="{{route('product.add_to_cart')}}"
-                                                id="cart_btn_{{$product->id}}_details">Add to Cart
-                                        </button>
-
+                                        <button type="submit" class="btn btn-success add-to-cart">Add to Cart</button>
                                     </div>
                                 </form>
 

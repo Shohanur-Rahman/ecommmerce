@@ -8,7 +8,7 @@
                 <h4>{{$slider->category != null ? $slider->category->category_name : ''}}</h4>
                 <h2 class="cssanimation leDoorCloseLeft sequence">{{$slider->name}}</h2>
                 <p>{{$slider->caption}}</p>
-                <a href="{{$slider->category != null ? route('product.index', $slider->category->slug) : '#'}}" class="btn-common mt-43">buy now</a>
+                <a href="{{$slider->category != null ? route('product.index', $slider->category->slug) : '#'}}" class="btn-common mt-43">view more</a>
             </div>
         </div>
     </div>
