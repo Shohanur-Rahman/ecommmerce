@@ -47,6 +47,8 @@ class ProductCategoryController extends Controller
 
     public function edit(ProductCategory $productCategory)
     {
+        $this->authorize('access-settings',$productCategory);
+
         $Categories = ProductCategory::where('parent_id',0)->with('user','childrens.user')->get();
 
         return view('admin.modules.product_categories.edit',compact('productCategory','Categories'));
@@ -54,6 +56,8 @@ class ProductCategoryController extends Controller
 
     public function update(Request $request, ProductCategory $productCategory)
     {
+        $this->authorize('access-settings',$productCategory);
+
         $this->validate($request,[
             'category_name'=>'unique:product_categories,category_name,'.$productCategory->id,
         ]);
@@ -75,11 +79,13 @@ class ProductCategoryController extends Controller
 
     public function destroy(ProductCategory $productCategory)
     {
-        $this->authorize('isAdmin');
+        $this->authorize('access-settings',$productCategory);
 
-        $productCategory->children->each(function ($children){
-            $children->update(['parent_id'=>0]);
-        });
+        if( $productCategory->children){
+            $productCategory->children->each(function ($children){
+                $children->update(['parent_id'=>0]);
+            });
+        }
 
         $productCategory->delete();
 

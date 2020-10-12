@@ -22,7 +22,9 @@
                                 <input type="text" class="form-control" id="name" placeholder="Enter tag name" name="name" required="required" value="{{$tag->name}}" data-parsley-error-message="Enter tag name">
                             </div>
 
-                            <button type="submit" class="btn btn-success float-right mr-2">Update Tag</button>
+                           @can('access-settings',$tag)
+                                <button type="submit" class="btn btn-success float-right mr-2">Update Tag</button>
+                           @endcan
                             <a href="{{route('tags.index')}}" class="btn btn-danger float-left">Back to Tag</a>
                         </form>
                     </div>

@@ -48,13 +48,18 @@
                             <td>{{$aTag->user->name ?? ''}}</td>
                             <td>{{$aTag->created_at->format('d F Y')}}</td>
                             <td>
-                                <a class="btn btn-outline-primary table-btn btn-sm" href="{{route('tags.edit', $aTag->id)}}" title="Edit"><i class="zmdi zmdi-edit"></i></a>
-                                <form class="d-inline"  action="{{route('tags.destroy',$aTag->id)}}" method="post">
-                                    @method('DELETE')
-                                    @csrf
+                                @can('access-settings',$aTag)
+                                    <a class="btn btn-outline-primary table-btn btn-sm" href="{{route('tags.edit', $aTag->id)}}" title="Edit"><i class="zmdi zmdi-edit"></i></a>
+                                @endcan
 
-                                    <button class="btn btn-outline-danger table-btn btn-sm"  title="Delete"><i class="zmdi zmdi-delete"></i></button>
-                                </form>
+                                @can('access-settings',$aTag)
+                                    <form class="d-inline"  action="{{route('tags.destroy',$aTag->id)}}" method="post">
+                                        @method('DELETE')
+                                        @csrf
+
+                                        <button class="btn btn-outline-danger table-btn btn-sm"  title="Delete"><i class="zmdi zmdi-delete"></i></button>
+                                    </form>
+                                @endcan
                             </td>
                         </tr>
                         @endforeach

@@ -33,7 +33,9 @@
                             <li><a class="{{activeLink('brands')}}" href="{{route('brands.index')}}">- Brands</a></li>
                             <li><a class="{{activeLink('tags')}}" href="{{route('tags.index')}}">- Tags</a></li>
                             <li><a class="{{activeLink('warehouses')}}" href="{{route('warehouses.index')}}">- Warehouses</a></li>
-                            <li><a class="{{activeLink('product-availabilities')}}" href="{{route('product-availabilities.index')}}">- Availabilities</a></li>
+                            @if( $type !== 'Customer' && $type !== 'Vendor')
+                                <li><a class="{{activeLink('product-availabilities')}}" href="{{route('product-availabilities.index')}}">- Availabilities</a></li>
+                            @endif
                             <li><a class="{{activeLink('product-sizes')}}" href="{{route('product-sizes.index')}}">- Product Sizes</a></li>
                             <li><a class="{{activeLink('product-colors')}}" href="{{route('product-colors.index')}}">- Product Colors</a></li>
                         </ul>

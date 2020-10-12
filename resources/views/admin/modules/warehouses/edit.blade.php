@@ -27,7 +27,9 @@
                                     <input type="text" class="form-control" id="name"  value="{{$warehouse->location ?? old('location')}}" placeholder="Enter Warehouses Location" name="location" required="required" data-parsley-error-message="Enter Warehouses Location">
                                 </div>
 
-                                <button type="submit" class="btn btn-success float-right mr-2">Update Warehouse</button>
+                                @can('access-setting',$warehouse)
+                                    <button type="submit" class="btn btn-success float-right mr-2">Update Warehouse</button>
+                                @endcan
                             </form>
 
                             <a href="{{route('warehouses.index')}}" class="btn btn-danger float-left">Back to Warehouses</a>

@@ -51,8 +51,11 @@
                                 <td>{{$category->created_at->format('d F Y')}}</td>
 
                                 <td>
-                                    <a class="btn btn-outline-primary table-btn btn-sm" href="{{route('product-categories.edit', $category->id)}}" title="Edit"><i class="zmdi zmdi-edit"></i></a>
-                                    @can('isAdmin')
+                                    @can('access-settings',$category)
+                                        <a class="btn btn-outline-primary table-btn btn-sm" href="{{route('product-categories.edit', $category->id)}}" title="Edit"><i class="zmdi zmdi-edit"></i></a>
+                                    @endcan
+
+                                    @can('access-settings',$category)
                                         <form class="d-inline"  action="{{route('product-categories.destroy',$category->id)}}" method="post">
                                             @method('DELETE')
                                             @csrf

@@ -34,12 +34,15 @@ class WarehouseController extends Controller
 
     public function edit(Warehouse $warehouse)
     {
+        $this->authorize('access-settings',$warehouse);
 
         return view('admin.modules.warehouses.edit',compact('warehouse'));
     }
 
     public function update(Request $request, Warehouse $warehouse)
     {
+        $this->authorize('access-settings',$warehouse);
+
         $warehouse->update([
             'user_id'=> Auth::id(),
             'name'=> $request['name'],
@@ -51,6 +54,8 @@ class WarehouseController extends Controller
 
     public function destroy(Warehouse $warehouse)
     {
+        $this->authorize('access-settings',$warehouse);
+
         $warehouse->delete();
 
         return redirect(route('warehouses.index'))->with('success','WareHouse Deleted Successfully');

@@ -81,6 +81,8 @@ class ProductBrandsController extends Controller
 
         $brand = ProductBrands::findOrFail($id);
 
+        $this->authorize('access-settings',$brand);
+
         if($brand == null)
             return view('not_found');
 
@@ -104,6 +106,9 @@ class ProductBrandsController extends Controller
     {
 
     	$brand = ProductBrands::findOrFail($id);
+
+        $this->authorize('access-settings',$brand);
+
     	$brand->name = $req->name;
 
     	$fileURL = "";
@@ -150,6 +155,8 @@ class ProductBrandsController extends Controller
 
     public function destroy(ProductBrands $brand)
     {
+        $this->authorize('access-settings',$brand);
+
         $child = $brand->categories()->delete();
         if($brand->image)
             @unlink($brand->image);

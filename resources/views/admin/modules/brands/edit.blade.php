@@ -48,8 +48,9 @@
                                         @endforeach
                                     </select>
                                 </div>
-
-                                <button type="submit" class="btn btn-success float-right mr-2">Update Brand</button>
+                                @can('access-settings',$brand)
+                                    <button type="submit" class="btn btn-success float-right mr-2">Update Brand</button>
+                                @endcan
                                 <a href="{{route('brands.index')}}" class="btn btn-danger float-left">Back to Brands</a>
                             </form>
                         </div>

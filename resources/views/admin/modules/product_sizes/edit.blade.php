@@ -21,8 +21,9 @@
                                     <label for="size">Product Size</label>
                                     <input type="text" class="form-control" value="{{$productSize->size ?? old('size')}}" id="size" maxlength="5" placeholder="Enter Product Size" name="size" required="required" data-parsley-error-message="Enter Product Size">
                                 </div>
-
-                                <button type="submit" class="btn btn-success mr-2">Update Product Size</button>
+                                @can('access-settings',$productSize)
+                                    <button type="submit" class="btn btn-success mr-2">Update Product Size</button>
+                                @endcan
                             </form>
 
                             <a href="{{route('product-sizes.index')}}" class="btn btn-danger float-left">Back to Product Sizes</a>

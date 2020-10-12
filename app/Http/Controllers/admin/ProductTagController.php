@@ -38,7 +38,13 @@ class ProductTagController extends Controller
     public function edit($id)
     {
         $tag = null;
+        $tag = ProductTags::findOrFail($id);
+
+        $this->authorize('access-settings',$tag);
+
+
         $userType = Auth::user()->user_type;
+
 
         $tag = ProductTags::findOrFail($id);
 
@@ -51,6 +57,9 @@ class ProductTagController extends Controller
     public function update(Request $req, $id)
     {
         $tag = ProductTags::findOrFail($id);
+
+        $this->authorize('access-settings',$tag);
+
         $tag->name = $req->name;
         $tag->save();
 
@@ -61,6 +70,9 @@ class ProductTagController extends Controller
     public function destroy($id)
     {
         $tag = ProductTags::findOrFail($id);
+
+        $this->authorize('access-settings',$tag);
+
         if($tag == null)
             return view('not_found');
 

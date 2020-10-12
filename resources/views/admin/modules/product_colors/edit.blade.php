@@ -14,16 +14,19 @@
 
                     <div class="row">
                         <div class="col-sm-12 col-xs-12">
-                            <form method="post" action="{{route('product-colors.update',$productColor->id)}}" class="d-inline" data-parsley-validate>
-                                @method('PATCH')
-                                @csrf
-                                <div class="form-group">
-                                    <label for="color">Product Color</label>
-                                    <input type="text" class="form-control" value="{{$productColor->color ?? old('color')}}" id="color" maxlength="20" placeholder="Enter Product Color" name="color" required="required" data-parsley-error-message="Enter Product Color">
-                                </div>
 
-                                <button type="submit" class="btn btn-success float-right mr-2">Update Product Color</button>
-                            </form>
+                                <form method="post" action="{{route('product-colors.update',$productColor->id)}}" class="d-inline" data-parsley-validate>
+                                    @method('PATCH')
+                                    @csrf
+                                    <div class="form-group">
+                                        <label for="color">Product Color</label>
+                                        <input type="text" class="form-control" value="{{$productColor->color ?? old('color')}}" id="color" maxlength="20" placeholder="Enter Product Color" name="color" required="required" data-parsley-error-message="Enter Product Color">
+                                    </div>
+
+                                    @can('access-settings',$productColor)
+                                        <button type="submit" class="btn btn-success float-right mr-2">Update Product Color</button>
+                                    @endcan
+                                </form>
 
                             <a href="{{route('product-colors.index')}}" class="btn btn-danger float-left">Back to Product Color</a>
                         </div>

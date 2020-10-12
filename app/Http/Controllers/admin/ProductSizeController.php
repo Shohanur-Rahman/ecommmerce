@@ -33,12 +33,15 @@ class ProductSizeController extends Controller
 
     public function edit(ProductSize $productSize)
     {
+        $this->authorize('access-settings',$productSize);
 
         return view('admin.modules.product_sizes.edit',compact('productSize'));
     }
 
     public function update(Request $request, ProductSize $productSize)
     {
+        $this->authorize('access-settings',$productSize);
+
         $productSize->update([
             'user_id'=>Auth::id(),
             'size'=>$request['size'],
@@ -49,6 +52,8 @@ class ProductSizeController extends Controller
 
     public function destroy(ProductSize $productSize)
     {
+        $this->authorize('access-settings',$productSize);
+
         $productSize->delete();
 
         return redirect(route('product-sizes.index'))->with('success','Your product size has been successfully deleted.');

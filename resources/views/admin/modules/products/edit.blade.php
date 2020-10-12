@@ -394,7 +394,9 @@
                         <div class="row">
                             <div class="col-md-12">
                                 <a href="{{route('products.index')}}" class="btn btn-danger">Back to Products</a>
-                                <button type="submit" id="submitProduct" class="btn btn-primary mr-2 float-right">Save Product</button>
+                                @can('access-settings',$aProduct)
+                                    <button type="submit" id="submitProduct" class="btn btn-primary mr-2 float-right">Save Product</button>
+                                @endcan
                             </div>
                         </div>
                     </div>

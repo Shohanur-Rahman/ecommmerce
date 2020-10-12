@@ -52,8 +52,9 @@
                                 </div>
 
 
-                                <button type="submit" class="btn btn-success mr-2 float-right">Update Category</button>
-
+                                @can('access-settings',$productCategory)
+                                    <button type="submit" class="btn btn-success mr-2 float-right">Update Category</button>
+                                @endcan
                             </form>
 
                             <a href="{{route('product-categories.index')}}" class="btn btn-danger float-left">Back to Categories</a>

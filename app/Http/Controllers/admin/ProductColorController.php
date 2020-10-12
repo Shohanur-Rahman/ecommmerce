@@ -33,12 +33,15 @@ class ProductColorController extends Controller
 
     public function edit(ProductColor $productColor)
     {
+        $this->authorize('access-settings',$productColor);
 
         return view('admin.modules.product_colors.edit',compact('productColor'));
     }
 
     public function update(Request $request, ProductColor $productColor)
     {
+        $this->authorize('access-settings',$productColor);
+
         $productColor->update([
             'user_id'=>Auth::id(),
             'color'=>$request['color'],
@@ -49,6 +52,8 @@ class ProductColorController extends Controller
 
     public function destroy(ProductColor $productColor)
     {
+        $this->authorize('access-settings',$productColor);
+
         $productColor->delete();
 
         return redirect(route('product-colors.index'))->with('success','Your product color has been successfully deleted.');

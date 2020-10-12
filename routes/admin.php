@@ -11,13 +11,7 @@ Route::group(['middleware' => 'auth'], function() {
     Route::get('/sell-by-category','DashboardController@productSellByCategory')->name('dashboard.sell_by_category');
     Route::get('/products-by-category','DashboardController@productCountByCategory')->name('dashboard.product_on_category');
 
-
-
-
-
     Route::get('/dashboard-copy','DashboardController@index_copy')->name('dashboard.copy');
-
-
 
     Route::group(['prefix'=>'product-categories'], function(){
         Route::get('','ProductCategoryController@index')->name('product-categories.index');
@@ -35,15 +29,6 @@ Route::group(['middleware' => 'auth'], function() {
         Route::get('/{warehouse}/edit','WarehouseController@edit')->name('warehouses.edit');
         Route::patch('/{warehouse}','WarehouseController@update')->name('warehouses.update');
         Route::delete('/{warehouse}','WarehouseController@destroy')->name('warehouses.destroy');
-    });
-
-    Route::group(['prefix'=>'product-availabilities'], function(){
-        Route::get('','ProductAvailabilityController@index')->name('product-availabilities.index');
-        Route::get('/create','ProductAvailabilityController@create')->name('product-availabilities.create');
-        Route::post('','ProductAvailabilityController@store')->name('product-availabilities.store');
-        Route::get('/{productAvailability}/edit','ProductAvailabilityController@edit')->name('product-availabilities.edit');
-        Route::patch('/{productAvailability}','ProductAvailabilityController@update')->name('product-availabilities.update');
-        Route::delete('/{productAvailability}','ProductAvailabilityController@destroy')->name('product-availabilities.destroy');
     });
 
     Route::group(['prefix'=>'product-sizes'], function(){
@@ -66,6 +51,15 @@ Route::group(['middleware' => 'auth'], function() {
 
 
     Route::group(['middleware' => 'isAdmin'], function() {
+        Route::group(['prefix'=>'product-availabilities'], function(){
+            Route::get('','ProductAvailabilityController@index')->name('product-availabilities.index');
+            Route::get('/create','ProductAvailabilityController@create')->name('product-availabilities.create');
+            Route::post('','ProductAvailabilityController@store')->name('product-availabilities.store');
+            Route::get('/{productAvailability}/edit','ProductAvailabilityController@edit')->name('product-availabilities.edit');
+            Route::patch('/{productAvailability}','ProductAvailabilityController@update')->name('product-availabilities.update');
+            Route::delete('/{productAvailability}','ProductAvailabilityController@destroy')->name('product-availabilities.destroy');
+        });
+
         Route::group(['prefix'=>'main-sliders'], function(){
             Route::get('','MainSliderController@index')->name('main-sliders.index');
             Route::get('/create','MainSliderController@create')->name('main-sliders.create');
