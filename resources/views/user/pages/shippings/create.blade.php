@@ -39,7 +39,7 @@
                         </div>
 
                         <div class="form-group col-4">
-                            <label class="float-left" for="postcode">zipcode</label>
+                            <label class="float-left" for="postcode">Zipcode</label>
                             <input class="form-control zipcode" type="text" name="postcode" id="postcode"
                                    value="{{old('postcode')}}"
                                    placeholder="Enter PostCode Number" required="required"

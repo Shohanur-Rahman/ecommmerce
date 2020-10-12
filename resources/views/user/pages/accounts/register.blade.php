@@ -11,12 +11,12 @@
                         <div class="card-body p-4">
                             <h4 class="font-24 mb-30">Create account.</h4>
 
-                            <form action="{{route('register.store')}}" method="post" data-parsley-validate>
+                            <form action="{{route('register.store')}}" method="post"  autocomplete="off" data-parsley-validate >
                                 @csrf
                                 <div class="form-group">
                                     <label for="username">Username</label>
                                     <input class="form-control " type="text" name="name" id="username"
-                                           placeholder="Enter your name" value="{{old('name')}}" autocomplete="name"
+                                           placeholder="Enter your name" value="{{old('name')}}" autocomplete="off"
                                            required="required" data-parsley-error-message="Enter your name">
 
                                     @error('name')
@@ -29,8 +29,8 @@
                                 <div class="form-group">
                                     <label for="email">Email</label>
                                     <input class="form-control" type="email" name="email" id="email"
-                                           placeholder="Enter your email" value="{{old('email')}}" autocomplete="email"
-                                           required="required" data-parsley-error-message="Enter your email">
+                                           placeholder="Enter your email" value="{{old('email')}}"
+                                           required="required" data-parsley-error-message="Enter your email" autocomplete="off">
 
                                     @error('email')
                                     <span class="text-danger">
@@ -43,8 +43,7 @@
                                     <label for="phone">Phone</label>
                                     <input class="form-control phone-formate" type="text" name="phone" id="phone"
                                            placeholder="Enter your phone" value="{{old('phone')}}"
-                                           autocomplete="phone"
-                                           required="required" data-parsley-error-message="Enter your phone">
+                                           required="required" data-parsley-error-message="Enter your phone" autocomplete="off">
 
                                     @error('mobile')
                                     <span class="text-danger">
@@ -57,7 +56,7 @@
                                     <label for="password">Password</label>
                                     <input class="form-control" type="password" name="password" id="password"
                                            placeholder="Enter your password" required="required"
-                                           data-parsley-error-message="Enter your password">
+                                           data-parsley-error-message="Enter your password" autocomplete="off">
 
                                     @error('password')
                                     <span class="text-danger">
@@ -71,7 +70,7 @@
                                     <input class="form-control" type="password" name="password_confirmation"
                                            id="password_confirmation" placeholder="Enter your password"
                                            required="required" data-parsley-error-message="Please confirm your password"
-                                           data-parsley-equalto="#password">
+                                           data-parsley-equalto="#password" autocomplete="off">
                                 </div>
 
                                 <div class="form-group mb-0 mt-15">

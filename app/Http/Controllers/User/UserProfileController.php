@@ -56,7 +56,11 @@ class UserProfileController extends Controller
             'nid' => 'required|string|max:255|unique:user_profiles,nid,'.$user->userProfile->id,
         ]);
 
+
+
         $user->userProfile()->update($this->requestField($request));
+
+
 
         $user->update(['name'=>$request['name']]);
 
@@ -128,6 +132,8 @@ class UserProfileController extends Controller
             'city'=>$request['city'],
             'country'=>$request['country'],
             'describe_address'=>$request['describe_address'],
+            'line1'=>$request['line1'],
+            'line2'=>$request['line2'],
         ];
     }
 }

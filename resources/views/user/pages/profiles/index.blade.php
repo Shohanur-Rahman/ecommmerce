@@ -80,7 +80,7 @@
                                         <tr class="first odd">
                                             <td>{{$order->id}}</td>
                                             <td>{{$order->created_at->format('d m Y')}}</td>
-                                            <td>{{--{{$order->shippingAddress->name ? $order->shippingAddress->name : ''}}--}}</td>
+                                            <td>{{$order->shippingAddress ? $order->shippingAddress->name : ''}}</td>
                                             <td><span class="price">${{$order->total_amount}}</span></td>
                                             <td><em>{{$order->status}}</em></td>
                                             <td class="a-center last">

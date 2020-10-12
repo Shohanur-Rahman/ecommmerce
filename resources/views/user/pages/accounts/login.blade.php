@@ -14,11 +14,11 @@
                             <h4 class="font-24 mb-1">Login.</h4>
                             <p class="mb-30">Sign in to your account to continue.</p>
 
-                            <form action="{{route('login')}}" method="post" data-parsley-validate>
+                            <form action="{{route('login')}}" method="post" autocomplete="off" data-parsley-validate>
                                 @csrf
                                 <div class="form-group">
                                     <label class="float-left" for="email">Email address</label>
-                                    <input class="form-control" type="email" name="email" id="email" value="{{old('email')}}" required="" placeholder="Enter your email" required="required" data-parsley-error-message="Enter your email">
+                                    <input class="form-control" type="email" name="email" id="email" value="{{old('email')}}" required="" placeholder="Enter your email" required="required" data-parsley-error-message="Enter your email" autocomplete="off">
 
                                     @error('email')
                                     <span class="text-danger">
@@ -30,7 +30,7 @@
                                 <div class="form-group">
                                     <a href="forget-password.html" class="text-dark float-right"></a>
                                     <label class="float-left" for="password">Password</label>
-                                    <input class="form-control" type="password" name="password" value="{{old('email')}}" required="" id="password" placeholder="Enter your password" required="required" data-parsley-error-message="Enter your password">
+                                    <input class="form-control" type="password" name="password" value="{{old('email')}}" required="" id="password" placeholder="Enter your password" required="required" data-parsley-error-message="Enter your password" autocomplete="off">
 
                                     @error('email')
                                     <span class="text-danger">

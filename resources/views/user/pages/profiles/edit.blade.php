@@ -15,20 +15,25 @@
                     <div class="bg-white">
                         <h3 class="text-uppercase font-weight-bold h5">Update User Profile</h3>
                     </div>
-                    <form class="row py-3" action="{{route('profiles.update')}}" method="post" enctype="multipart/form-data" data-parsley-validate>
+                    <form class="row py-3" action="{{route('profiles.update')}}" method="post"
+                          enctype="multipart/form-data" autocomplete="off" data-parsley-validate>
                         @method('PATCH')
                         @csrf
                         <div class="form-group col-12">
                             <label class="float-left" for="name">Username</label>
-                            <input class="form-control" type="text" name="name" id="name" value="{{Auth::user()->name ?? old('name')}}"
-                                   placeholder="Enter your name" required="required" data-parsley-error-message="Enter your name">
+                            <input class="form-control" type="text" name="name" id="name"
+                                   value="{{Auth::user()->name ?? old('name')}}"
+                                   placeholder="Enter your name" required="required"
+                                   data-parsley-error-message="Enter your name" autocomplete="off">
 
                         </div>
 
                         <div class="form-group col-12">
                             <label class="float-left" for="email">Secondary Email</label>
-                            <input class="form-control" type="text" name="secondary_email" id="email" value="{{$userProfile->secondary_email ?? old('secondary_email')}}"
-                                   placeholder="Enter your Secondary Email" required="required" data-parsley-error-message="Enter your Secondary Email">
+                            <input class="form-control" type="text" name="secondary_email" id="email"
+                                   value="{{$userProfile->secondary_email ?? old('secondary_email')}}"
+                                   placeholder="Enter your Secondary Email"
+                                   data-parsley-error-message="Enter your Secondary Email" autocomplete="off">
 
                             @error('secondary_email')
                             <span class="text-danger">{{$message}}</span>
@@ -37,14 +42,18 @@
 
                         <div class="form-group col-12">
                             <label class="float-left" for="dob">Date Of Birth</label>
-                            <input class="form-control" type="date" name="dob" id="dob" value="{{$userProfile->dob ?? old('dob')}}"
-                                   placeholder="Enter your Date Of Birth" required="required" data-parsley-required-message="Enter Your Date Of Birth">
+                            <input class="form-control" type="date" name="dob" id="dob"
+                                   value="{{$userProfile->dob ?? old('dob')}}"
+                                   placeholder="Enter your Date Of Birth"
+                                   data-parsley-required-message="Enter Your Date Of Birth" autocomplete="off">
                         </div>
 
                         <div class="form-group col-6">
                             <label class="float-left" for="nid">Enter Your NID Number && NID Photo</label>
-                            <input class="form-control" type="number" name="nid" id="nid" value="{{$userProfile->nid ?? old('nid')}}"
-                                   placeholder="Enter Your NID Number" required="required" data-parsley-required-message="Enter Your NID Number">
+                            <input class="form-control" type="text" name="nid" id="nid"
+                                   value="{{$userProfile->nid ?? old('nid')}}"
+                                   placeholder="Enter Your NID Number"
+                                   data-parsley-required-message="Enter Your NID Number" autocomplete="off">
 
                             @error('nid')
                             <span class="text-danger">{{$message}}</span>
@@ -56,61 +65,55 @@
 
                             <label for="nidImg" class="upload-preview">
                                 @if($userProfile->nid_image)
-                                    <img src="{{asset($userProfile->nid_image)}}" id="PreviewImage" style="width: 80px;height: 80px"/>
+                                    <img src="{{asset($userProfile->nid_image)}}" id="PreviewImage"
+                                         style="width: 80px;height: 80px"/>
                                 @else
-                                    <img src="{{asset('images/noimage.PNG')}}" id="PreviewImage" style="width: 80px;height: 80px"/>
+                                    <img src="{{asset('images/noimage.PNG')}}" id="PreviewImage"
+                                         style="width: 80px;height: 80px"/>
                                 @endif
 
                             </label>
 
-                            <input type="file"  name="nid_image" class="hdn-uploder d-none" id="nidImg" {{$userProfile->nid_image ? '' : 'required'}} accept="image/*" data-parsley-error-message="Upload NID image"/>
+                            <input type="file" name="nid_image" class="hdn-uploder d-none" id="nidImg" accept="image/*"
+                                   data-parsley-error-message="Upload NID image"/>
 
                         </div>
 
-                        <div class="form-group col-12">
+
+                        <div class="form-group col-6">
                             <label class="float-left" for="phone">Phone</label>
-                            <input class="form-control" type="number" name="phone" id="phone" value="{{$userProfile->phone ?? old('phone')}}"
-                                   placeholder="Enter your Secondary Phone" required="required" data-parsley-error-message="Enter your Secondary Phone">
+                            <input class="form-control phone-formate" type="text" name="phone" id="phone"
+                                   value="{{$userProfile->phone}}"
+                                   placeholder="(123) 345-3455" required="required"
+                                   data-parsley-error-message="Enter Phone Number">
+                        </div>
+
+
+                        <div class="form-group col-6">
+                            <label class="float-left" for="line1">Line 1</label>
+                            <input class="form-control" type="text" name="line1" id="line1" value="{{$userProfile->line1}}"
+                                   placeholder="Address line 1" data-parsley-error-message="Enter address line 1"
+                            >
+                        </div>
+                        <div class="form-group col-6">
+                            <label class="float-left" for="line2">Line 2</label>
+                            <input class="form-control" type="text" name="line2" id="line2" value="{{$userProfile->line2}}"
+                                   placeholder="Address line 2" data-parsley-error-message="Enter address line 2"
+                            >
                         </div>
 
                         <div class="form-group col-6">
-                            <label class="float-left" for="house">House</label>
-                            <input class="form-control" type="text" name="house" id="email" value="{{$userProfile->house ?? old('house')}}"
-                                   placeholder="Enter your House" data-parsley-error-message="Enter your House">
-                        </div>
-
-                        <div class="form-group col-6">
-                            <label class="float-left" for="road">Road</label>
-                            <input class="form-control" type="text" name="road" id="road" value="{{$userProfile->road ?? old('road')}}"
-                                   placeholder="Enter your Road" required="required" data-parsley-error-message="Enter your Road">
-                        </div>
-
-                        <div class="form-group col-4">
-                            <label class="float-left" for="postcode">PostCode</label>
-                            <input class="form-control" type="number" name="postcode" id="postcode" value="{{$userProfile->postcode ?? old('postcode')}}"
-                                   placeholder="Enter your PostCode" required="required" data-parsley-error-message="Enter your PostCode">
-                        </div>
-
-                        <div class="form-group col-4">
-                            <label class="float-left" for="state">State</label>
-                            <input class="form-control" type="text" name="state" id="state" value="{{$userProfile->state ?? old('state')}}"
-                                   placeholder="Enter your State" required="required" data-parsley-error-message="Enter your State">
-                        </div>
-
-                        <div class="form-group col-4">
-                            <label class="float-left" for="city">City</label>
-                            <input class="form-control" type="text" name="city" id="city" value="{{$userProfile->city ?? old('city')}}"
-                                   placeholder="Enter your City" required="required" data-parsley-error-message="Enter your City">
-                        </div>
-
-                        <div class="form-group col-12">
-                           @include('user.pages.common.countries.edit',['presentCountry'=>$userProfile])
+                            <label class="float-left" for="postcode">Zipcode</label>
+                            <input class="form-control zipcode" type="text" name="postcode" id="postcode"
+                                   value="{{$userProfile->postcode ?? old('postcode')}}"
+                                   placeholder="Enter your PostCode" data-parsley-error-message="Enter your PostCode">
                         </div>
 
                         <div class="form-group col-12">
                             <label class="float-left" for="full_address">Full Address</label>
 
-                            <textarea class="form-control" name="describe_address" id="full_address" cols="" rows="6">{{$userProfile->describe_address ?? old('describe_address')}}</textarea>
+                            <textarea class="form-control" name="describe_address" id="full_address" cols=""
+                                      rows="2">{{$userProfile->describe_address ?? old('describe_address')}}</textarea>
                             <span>Give us your full location address so we can find you and deliver your order accurately.</span>
                         </div>
 
@@ -124,11 +127,18 @@
     </div>
 
 
+    <style>
+        label.upload-preview img {
+            height: 49px;
+            width: 84px;
+            cursor: pointer;
+        }
+    </style>
 
 
 
     <script>
-        $(document).ready(function(){
+        $(document).ready(function () {
             $("#nidImg").change(function () {
                 readURL(this);
             });
