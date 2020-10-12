@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Http\Controllers\Controller;
+use App\Models\User\UserProfile;
 use App\Models\User\Wishlist;
 use App\User;
 use Carbon\Carbon;
@@ -29,32 +30,46 @@ class UserController extends Controller
 
     public function store(Request $request)
     {
-        $data =request()->validate(
+        $data = request()->validate(
             [
                 'name' => ['required', 'string', 'max:255'],
                 'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
-                'password' => ['required', 'string', 'min:8','required_with:password_confirmation','same:password_confirmation'],
+                'phone' => ['required', 'string', 'max:255'],
+                'password' => ['required', 'string', 'min:8', 'required_with:password_confirmation', 'same:password_confirmation'],
             ]
         );
 
-        Session::put('register-session',$data['email']);
+        Session::put('register-session', $data['email']);
 
-         $user = User::create([
+
+        $user = User::create([
             'name' => $data['name'],
             'email' => $data['email'],
             'password' => Hash::make($data['password']),
         ]);
 
-         $user->userProfile()->create();
+        $userProfile = new UserProfile();
+        $userProfile->phone = $data['phone'];
+        $userProfile->user_id = $user->id;
+        $userProfile->save();
 
-         $email = $data['email'];
-         $password = $data['password'];
+        //$user->userProfile()->save($userProfile);
 
 
+        /*$user->userProfile([
+            'avatar' => $data['phone']
+        ])->create();*/
 
-        $attempts = ['email' => $email, 'password' => $password,'is_active'=>1];
+       //dd($user);
 
-        if(Auth::attempt($attempts)) {
+
+        $email = $data['email'];
+        $password = $data['password'];
+
+
+        $attempts = ['email' => $email, 'password' => $password, 'is_active' => 1];
+
+        if (Auth::attempt($attempts)) {
 
             $this->wishLists();
 
@@ -62,26 +77,26 @@ class UserController extends Controller
         }
 
 
-        return redirect()->back()->with('success-message','registration successfully complete. Please Check Your Email!!');
+        return redirect()->back()->with('success-message', 'registration successfully complete. Please Check Your Email!!');
     }
 
     public function show(Request $request)
     {
-        $this->validate($request,[
-            'email'=>'required|email|string|max:250',
-            'password'=>'required|min:8'
+        $this->validate($request, [
+            'email' => 'required|email|string|max:250',
+            'password' => 'required|min:8'
         ]);
 
         $remember_me = $request['remember'] ? true : false;
-        $attempts = ['email' => $request['email'], 'password' => $request['password'],'is_active'=>1];
+        $attempts = ['email' => $request['email'], 'password' => $request['password'], 'is_active' => 1];
 
-        if(Auth::attempt($attempts,$remember_me)) {
+        if (Auth::attempt($attempts, $remember_me)) {
             $this->wishLists();
 
             return redirect(route('profiles.index'));
         }
 
-        return redirect()->back()->with('error-message','Email or Password is Wrong');
+        return redirect()->back()->with('error-message', 'Email or Password is Wrong');
     }
 
     public function forgetPasswordIndex()
@@ -92,11 +107,11 @@ class UserController extends Controller
     public function forgetPasswordStore(Request $request)
     {
         $email = $request['email'];
-        $code = ['code'=>Str::random(5),'email'=>$email];
+        $code = ['code' => Str::random(5), 'email' => $email];
 
-        Session::put('password-recovery-code',$code);
+        Session::put('password-recovery-code', $code);
 
-        Mail::send('emails.forget-password', $code, function($message) use($email){
+        Mail::send('emails.forget-password', $code, function ($message) use ($email) {
             $message->to($email)->subject('Recover Password via the code');
         });
 
@@ -105,19 +120,19 @@ class UserController extends Controller
 
     public function passwordRecovery(Request $request)
     {
-        $this->validate($request,[
-            'code'=>'required|min:5|max:5'
+        $this->validate($request, [
+            'code' => 'required|min:5|max:5'
         ]);
 
-        $code =  Session::get('password-recovery-code');
-        if( $code == null)
+        $code = Session::get('password-recovery-code');
+        if ($code == null)
             return redirect(route('login'));
 
-        if($code['code'] === $request['code']){
+        if ($code['code'] === $request['code']) {
             return redirect(route('password.update'));
         }
 
-        return redirect()->back()->with('error-message','Recovery Code is Wrong');
+        return redirect()->back()->with('error-message', 'Recovery Code is Wrong');
 
     }
 
@@ -134,16 +149,16 @@ class UserController extends Controller
 
     public function passwordUpdateStore(Request $request)
     {
-        $this->validate( $request,[
-            'password' => ['required', 'string', 'min:8','required_with:confirm-password','same:confirm-password'],
+        $this->validate($request, [
+            'password' => ['required', 'string', 'min:8', 'required_with:confirm-password', 'same:confirm-password'],
         ]);
 
-        $code =  Session::get('password-recovery-code');
+        $code = Session::get('password-recovery-code');
 
-        if(Session::has('password-recovery-code')){
-            $user = User::where('email',$code['email'])->first();
+        if (Session::has('password-recovery-code')) {
+            $user = User::where('email', $code['email'])->first();
 
-            $user->update(['password'=>Hash::make($request['password']),]);
+            $user->update(['password' => Hash::make($request['password']),]);
 
             return view('user.welcome');
         }
@@ -154,32 +169,32 @@ class UserController extends Controller
 
     private function wishLists()
     {
-        $presentWishList = Wishlist::select('product_id')->where('user_id',Auth::id())->get()->toArray();
+        $presentWishList = Wishlist::select('product_id')->where('user_id', Auth::id())->get()->toArray();
         $wishListProductID = Arr::flatten($presentWishList);
 
-        if(Session::has('session_id')){
-            $session_id  = Session::get('session_id');
+        if (Session::has('session_id')) {
+            $session_id = Session::get('session_id');
 
-            $wishList = Wishlist::where(['session_id'=>$session_id,'user_id'=>null])
-                ->whereIn('product_id',$wishListProductID)
+            $wishList = Wishlist::where(['session_id' => $session_id, 'user_id' => null])
+                ->whereIn('product_id', $wishListProductID)
                 ->get();
 
 
-            $wishList->each(function ($wishList){
-                $oldWishList = Wishlist::where('product_id',$wishList->product_id)->first();
+            $wishList->each(function ($wishList) {
+                $oldWishList = Wishlist::where('product_id', $wishList->product_id)->first();
                 $oldWishList->update([
-                    'quantity'=>$oldWishList->quantity + $wishList->quantity,
-                    'user_id'=>Auth::id()
+                    'quantity' => $oldWishList->quantity + $wishList->quantity,
+                    'user_id' => Auth::id()
                 ]);
                 $wishList->delete();
             });
 
-            $newWishList = Wishlist::where(['session_id'=>$session_id,'user_id'=>null])
-                ->whereNotIn('product_id',$wishListProductID)
+            $newWishList = Wishlist::where(['session_id' => $session_id, 'user_id' => null])
+                ->whereNotIn('product_id', $wishListProductID)
                 ->get();
 
-            $newWishList->each(function ($wishList){
-                $wishList->update(['user_id'=>Auth::id()]);
+            $newWishList->each(function ($wishList) {
+                $wishList->update(['user_id' => Auth::id()]);
             });
         }
     }

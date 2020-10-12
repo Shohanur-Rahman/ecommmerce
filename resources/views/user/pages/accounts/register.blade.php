@@ -40,6 +40,20 @@
                                 </div>
 
                                 <div class="form-group">
+                                    <label for="phone">Phone</label>
+                                    <input class="form-control phone-formate" type="text" name="phone" id="phone"
+                                           placeholder="Enter your phone" value="{{old('phone')}}"
+                                           autocomplete="phone"
+                                           required="required" data-parsley-error-message="Enter your phone">
+
+                                    @error('mobile')
+                                    <span class="text-danger">
+                                        <strong>{{ $message }}</strong>
+                                    </span>
+                                    @enderror
+                                </div>
+
+                                <div class="form-group">
                                     <label for="password">Password</label>
                                     <input class="form-control" type="password" name="password" id="password"
                                            placeholder="Enter your password" required="required"
@@ -75,4 +89,57 @@
             </div>
         </div>
     </div>
+
+    <script type="text/javascript">
+
+        $(document).ready(function () {
+            $('.phone-formate')
+                .on('keypress', function (e) {
+                    var key = e.charCode || e.keyCode || 0;
+                    var phone = $(this);
+                    if (phone.val().length === 0) {
+                        phone.val(phone.val() + '(');
+                    }
+                    // Auto-format- do not expose the mask as the user begins to type
+                    if (key !== 8 && key !== 9) {
+                        if (phone.val().length === 4) {
+                            phone.val(phone.val() + ')');
+                        }
+                        if (phone.val().length === 5) {
+                            phone.val(phone.val() + ' ');
+                        }
+                        if (phone.val().length === 9) {
+                            phone.val(phone.val() + '-');
+                        }
+                        if (phone.val().length >= 14) {
+                            phone.val(phone.val().slice(0, 13));
+                        }
+                    }
+
+                    return (key == 8 ||
+                        key == 9 ||
+                        key == 46 ||
+                        (key >= 48 && key <= 57)
+                    );
+                })
+                .on('focus', function () {
+                    phone = $(this);
+
+                    if (phone.val().length === 0) {
+                        phone.val('(');
+                    } else {
+                        var val = phone.val();
+                        phone.val('').val(val); // Ensure cursor remains at the end
+                    }
+                })
+                .on('blur', function () {
+                    $phone = $(this);
+
+                    if ($phone.val() === '(') {
+                        $phone.val('');
+                    }
+                });
+        });
+
+    </script>
 @endsection
