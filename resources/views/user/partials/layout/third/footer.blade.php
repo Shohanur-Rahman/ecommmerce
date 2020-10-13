@@ -35,7 +35,7 @@
                             <li><a href="{{route('profiles.index')}}" target="_blank">My Account</a></li>
                             <li><a href="{{route('orders-details.index')}}" target="_blank">Order History</a></li>
                             <li><a href="{{route('wish-lists.index')}}" target="_blank">Wish List</a></li>
-                            <li><a href="#" target="_blank">Customer Service</a></li>
+                            <li><a href="{{route('pages.contact')}}" target="_blank" target="_blank">Customer Service</a></li>
                             <li><a href="{{route('pages.faq')}}" target="_blank">FAQs</a></li>
                         </ul>
                     </div>
