@@ -38,8 +38,8 @@ class ShippingAddressController extends Controller
         $shipping->line1 = $request->line1;
         $shipping->line2 = $request->line2;
         $shipping->postcode = $request->postcode;
-        $shipping->state = '';
-        $shipping->city = '';
+        $shipping->state = $request->state;
+        $shipping->city = $request->city;
         $shipping->country = '';
         $shipping->describe_address = $request->describe_address;
         $shipping->user_id = Auth::id();
@@ -67,9 +67,11 @@ class ShippingAddressController extends Controller
 
     public function update(Request $request, ShippingAddress $shippingAddress)
     {
-        $this->validate($request,[
+        /*$this->validate($request,[
             'email' => 'required|string|email|max:255|unique:shipping_addresses,email,'.$shippingAddress->id
-        ]);
+        ]);*/
+
+        //dd($request);
 
         $shippingAddress->update($this->requestField($request));
 
@@ -83,8 +85,8 @@ class ShippingAddressController extends Controller
             'name'=>$request['name'],
             'email'=>$request['email'],
             'phone'=>$request['phone'],
-            'house'=>$request['house'],
-            'road'=>$request['road'],
+            //'house'=>$request['house'],
+            //'road'=>$request['road'],
             'postcode'=>$request['postcode'],
             'state'=>$request['state'],
             'city'=>$request['city'],
