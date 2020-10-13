@@ -3,12 +3,14 @@
         <div>
             <ul class="list-none">
                 @foreach($productReviews as $productReview)
+
                     <li class="row mb-4">
                         <div class="col-md-3">
                           <div class="d-flex flex-column align-items-lg-start">
                               <div class="d-flex">
                                   <div  style="height: 50px;width: 50px">
-                                      @if(Auth()->user()->userProfile->avatar != null)
+
+                                      @if(Auth::id() && Auth()->user()->userProfile->avatar != null)
                                           <img class="rounded-circle"  src="{{asset(Auth()->user()->userProfile->avatar)}}" alt="">
                                       @else
                                           <img class="rounded-circle" src="{{asset('user/assets/images/avatar.png')}}" alt="">
