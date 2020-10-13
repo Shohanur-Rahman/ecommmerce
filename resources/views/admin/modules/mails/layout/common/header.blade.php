@@ -16,11 +16,11 @@
                 <a href="javascript:" id="dummy_restore_btn" class="btn"><i class="fa fa-trash-restore"></i></a>
            @endif
         </div>
-        <div class="mail-pager d-flex align-items-center text-right mb-15">
+       {{-- <div class="mail-pager d-flex align-items-center text-right mb-15">
             <span>1-50 of 9</span>
             <a href="#"><i class="arrow_carrot-left"></i></a>
             <a href="#"><i class="arrow_carrot-right"></i></a>
-        </div>
+        </div>--}}
 
     </div>
 </div>

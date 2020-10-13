@@ -7,7 +7,7 @@
             <x-inform-users></x-inform-users>
         </div>
     </div>
-    <div>
+    <div class="mb-5">
         <form action="{{route('trash-mails.destroy')}}" method="post" id="dummy_mail_form_submit">
 
             @method('DELETE')
@@ -43,7 +43,7 @@
                             </div>
                         </a>
 
-                        <div class="admi-mail-date">{{$trashMail->created_at->format('H:m:A')}}</div>
+                        <div class="admi-mail-date">{{$trashMail->deleted_at->format('H:m:A')}}</div>
                     </div>
                 @endforeach
                 <input type="hidden" id="dummy_method_type" name="method_type" value="">
