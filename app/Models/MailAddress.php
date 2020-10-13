@@ -23,7 +23,7 @@ class MailAddress extends Model
 
     public static function trashCount()
     {
-        $trashCount = MailAddress::where('status',1)->onlyTrashed()->count();
+        $trashCount = MailAddress::where(['status'=>1,'read_at'=>0])->onlyTrashed()->count();
 
         return $trashCount;
     }

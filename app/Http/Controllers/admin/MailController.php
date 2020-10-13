@@ -26,12 +26,13 @@ class MailController extends Controller
 
     public function store(Request $request)
     {
-        $emails = [];
+        $emailAddresses = [];
 
         if ($request->has('emails') !== null) {
-            $emails = explode(';', $request['emails']);
+            $emailAddresses = explode(';', $request['emails']);
 
         }
+
 
         $subject = $request['subject'];
         $userType = $request['user_type'];
@@ -44,12 +45,13 @@ class MailController extends Controller
 
         if ($request->has('user_type')) {
             $userEmails = User::where('user_type', $userType)->select('email')->get()->toArray();
-            $emails = array_merge($emails, Arr::flatten($userEmails));
+            $userEmails = Arr::flatten($userEmails);
+
         }
 
-        foreach ($emails as $key => $value) {
+        foreach ($emailAddresses as $key => $value) {
 
-            $email = $emails[$key];
+            $email = $emailAddresses[$key];
 
             if ($request->has('submit')) {
                 $mail->mailAddresses()->create(['email' => $email, 'status' => 1]);
@@ -58,6 +60,23 @@ class MailController extends Controller
                 });
             } else {
                 $mail->mailAddresses()->create(['email' => $email]);
+
+            }
+
+        }
+
+        foreach ($userEmails as $key => $value) {
+
+            $email = $userEmails[$key];
+
+            if ($request->has('submit')) {
+                $mail->mailAddresses()->create(['email' => $email, 'status' => 1]);
+                \Illuminate\Support\Facades\Mail::send('admin.modules.mails.emails.email', ['email' => $email, 'data' => $mail], function ($message) use ($email, $subject) {
+                    $message->to($email)->subject($subject);
+                });
+            } else {
+                $mail->mailAddresses()->create(['email' => $email,'user_type'=>$userType]);
+
             }
 
         }
@@ -103,6 +122,12 @@ class MailController extends Controller
             $q->where('status', 0);
         })->get();
 
+        $mails->each(function ($mail){
+            if($mail->read_at == 0){
+                $mail->update(['read_at'=>1]);
+            }
+        });
+
         return view('admin.modules.mails.draft-mail', compact('mails'));
     }
 
@@ -112,7 +137,9 @@ class MailController extends Controller
 
         $mailAddress = "";
 
-        foreach ($mail->mailAddresses as $address) {
+        $mailAddresses = $mail->mailAddresses->whereNotIn('user_type',$mail->user_type);
+
+        foreach ($mailAddresses as $address) {
             if ($mailAddress == "")
                 $mailAddress = $address->email;
             else
@@ -120,31 +147,50 @@ class MailController extends Controller
 
 
         }
+
         return view('admin.modules.mails.draft-mail-edit', compact('mail', 'userTypes', 'mailAddress'));
     }
+
+    public function draftUpdate(Request $request, Mail $mail)
+    {
+        foreach ($mail->mailAddresses as $mailAddress) {
+
+            $email = $mailAddress->email;
+
+            $mail->mailAddresses()->create(['email' => $email, 'status' => 1]);
+            \Illuminate\Support\Facades\Mail::send('admin.modules.mails.emails.email', ['email' => $email, 'data' => $mail], function ($message) use ($email, $mail) {
+                $message->to($email)->subject($mail->subject);
+            });
+        }
+
+        return redirect()->back()->with('success', 'Email sent has been successfully');
+    }
+
 
     public function draftDestroy(Request $request)
     {
         $mails = Mail::whereIn('id', $request['mail'])->with('mailAddresses')->get();
 
         $mails->each(function ($mail) use ($mails) {
-            $mail->delete();
+            $mail->forceDelete();
 
-            $mail->mailAddresses()->delete();
+            $mail->mailAddresses()->forceDelete();
         });
 
         return redirect()->back()->with('success', 'Draft Email has been deleted successfully');
     }
 
 
-    public function draftupdate(Request $request)
-    {
-       // dd($request->all());
-    }
 
     public function trashIndex()
     {
         $trashMails = MailAddress::onlyTrashed()->where('status', 1)->with('mail')->get();
+
+        $trashMails->each(function ($trashMail){
+            if($trashMail->read_at == 0){
+                $trashMail->update(['read_at'=>1]);
+            }
+        });
 
         return view('admin.modules.mails.trash-mail', compact('trashMails'));
     }
@@ -153,13 +199,11 @@ class MailController extends Controller
     {
 
         $mailAddresses = MailAddress::whereIn('id', $request['mail'])->with('mail')->onlyTrashed()->get();
+        $mailCount = MailAddress::whereIn('id', $request['mail'])->with('mail')->count();
 
-        $mailAddresses->each(function ($mailAddress, $key) use ($mailAddresses) {
+        $mailAddresses->each(function ($mailAddress, $key) use ($mailCount) {
             $mailAddress->forceDelete();
-
-            $mailTotalCount = MailAddress::where('mail_id', $mailAddress->mail->id)->onlyTrashed()->count();
-
-            if ($mailTotalCount == 0) {
+            if ($mailCount == 0) {
                 $mailAddress->mail()->forceDelete();
             }
         });

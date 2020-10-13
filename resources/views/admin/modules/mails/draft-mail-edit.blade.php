@@ -47,9 +47,7 @@
                                     <button type="submit" name="submit"  value="update" class="btn btn-primary btn-sm mb-2"><i
                                             class="fa fa-envelope-o"></i> Send
                                     </button>
-                                    <button  type="submit" name="draft"  value="draft"  class="btn btn-primary btn-sm mb-2"><i
-                                            class="fa fa-pencil"></i> Draft
-                                    </button>
+
                                     <button type="reset" class="btn btn-primary btn-sm mb-2"><i
                                             class="fa fa-times"></i> Discard
                                     </button>

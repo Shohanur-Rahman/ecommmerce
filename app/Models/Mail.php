@@ -20,7 +20,8 @@ class Mail extends Model
     {
         $draftCount = Mail::whereHas('mailAddresses', function($q){
             $q->where('status', 0);
-        })->count();
+        })->where('read_at',0)->count();
+
         return $draftCount;
     }
 }
