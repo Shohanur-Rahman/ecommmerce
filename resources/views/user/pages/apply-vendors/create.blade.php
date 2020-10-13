@@ -5,6 +5,7 @@
         <div class="row h-100 align-items-center justify-content-center">
             <div class="col-md-8 col-lg-5">
                 <!-- Middle Box -->
+                <input type="hidden" value="{{$code}}">
                 <div class="middle-box">
                     <div class="card">
                         <div class="card-body p-4">

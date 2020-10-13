@@ -4,6 +4,7 @@ namespace App\Http\Controllers\admin;
 
 use App\Http\Controllers\Controller;
 use App\Models\ProductSize;
+use App\Models\Warehouse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
@@ -11,7 +12,15 @@ class ProductSizeController extends Controller
 {
     public function index()
     {
-        $productSizes = ProductSize::all();
+        $userType = \Illuminate\Support\Facades\Auth::user()->user_type;
+
+        if (strtolower($userType) == "vendor") {
+            $productSizes = ProductSize::where('user_id', Auth::id())->get();
+
+        }else{
+            $productSizes = ProductSize::all();
+        }
+
 
         return view('admin.modules.product_sizes.index',compact('productSizes'));
     }

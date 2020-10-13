@@ -4,15 +4,27 @@ namespace App\Http\Controllers\admin;
 
 use App\Http\Controllers\Controller;
 use App\Models\ProductCategory;
+use App\Models\Products;
 use Illuminate\Http\Request;
 use Illuminate\Support\Str;
+use Illuminate\Support\Facades\Auth;
 
 class ProductCategoryController extends Controller
 {
 
     public function index()
     {
-        $productCategories = ProductCategory::with('parent')->get();
+
+        $userType = Auth::user()->user_type;
+
+        if (strtolower($userType) == "vendor") {
+            $productCategories = ProductCategory::with('parent')->where('user_id', Auth::id())->get();
+
+        }else{
+            $productCategories = ProductCategory::with('parent')->get();
+
+        }
+
 
         return view('admin.modules.product_categories.index',compact('productCategories'));
     }

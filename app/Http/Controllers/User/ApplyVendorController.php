@@ -29,10 +29,10 @@ class ApplyVendorController extends Controller
     public function create()
     {
 
-        //dd(Session::get('verify_code'));
+        $code  = Session::get('verify_code');
 
         if(Session::has('verify_code')){
-            return view('user.pages.apply-vendors.create');
+            return view('user.pages.apply-vendors.create', compact('code'));
         }
 
 

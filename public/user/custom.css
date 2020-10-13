@@ -346,3 +346,15 @@ textarea:-moz-placeholder
     color: #fff;
     background: #1467c1;
 }
+
+
+.row-eq-height > [class^=col] {
+    display: flex;
+    flex-direction: column;
+}
+
+
+
+.row-eq-height  [class^=col]:first-of-type .product-single {
+    flex-grow: 1;
+}

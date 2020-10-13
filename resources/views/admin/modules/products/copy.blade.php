@@ -73,7 +73,7 @@
                                         <div class="col-sm-6">
                                             <div class="form-group">
                                                 <label for="title">Title</label>
-                                                <input type="text" class="form-control"  id="title" max="23"  maxlength="23" placeholder="Product title" name="title" required="required" data-parsley-error-message="Product title is required" value="{{$aProduct->title}}" />
+                                                <input type="text" class="form-control"  id="title" maxlength="200" placeholder="Product title" name="title" required="required" data-parsley-error-message="Product title is required" value="{{$aProduct->title}}" />
                                             </div>
                                         </div>
 
@@ -110,6 +110,14 @@
                                             <div class="form-group">
                                                 <label for="available_end_date">Available End</label>
                                                 <input class="form-control rounded-0 form-control-md" type="date" id="available_end_date" name="available_end_date" value="{{$aProduct->available_end_date}}" />
+                                            </div>
+                                        </div>
+
+                                        <div class="col-sm-3">
+                                            <div class="form-group">
+                                                <label for="shipping_charge">Shipping Charge</label>
+                                                <input class="currancy_touchspin" type="text"  name="shipping_charge" id="shipping_charge" value="{{$aProduct->shipping_charge}}" required/>
+                                                <span class="parsley-errors-list filled" id="error"></span>
                                             </div>
                                         </div>
                                     </div>
@@ -298,11 +306,11 @@
 
                                 <div class="col-sm-3">
                                     <div class="form-group">
-                                        <label for="availability_id">Warehouse</label>
-                                        <select id="availability_id" class="form-control dummy_inventory_control" name="Warehouse_id" required="required" data-parsley-error-message="Choose your store id">
+                                        <label for="Warehouse_id">Warehouse</label>
+                                        <select id="Warehouse_id" class="form-control dummy_inventory_control" name="Warehouse_id" required="required" data-parsley-error-message="Choose your store id">
                                             <option value="">-- Select One --</option>
                                             @foreach($warehouses as $cat)
-                                                <option value="{{$cat->id}}" {{ $aProduct->Warehouse_id == $cat->id ? 'selected="selected"' : '' }}>{{$cat->name}}</option>
+                                                <option value="{{$cat->id}}" {{ $aProduct->warehouse_id == $cat->id ? 'selected="selected"' : '' }}>{{$cat->name}}</option>
                                             @endforeach
                                         </select>
                                     </div>
@@ -528,7 +536,7 @@
         let preUpload = [];
         for (var i = 0; i < imageArray.length; i++) {
             var thisImage = imageArray[i].split(",");
-            var glUrl = window.location.origin+"/"+thisImage[1];
+            var glUrl = absoulatePath +"/public/"+thisImage[1];
             if(thisImage[0] > 0){
                 preUpload.push({
                     id: thisImage[0],

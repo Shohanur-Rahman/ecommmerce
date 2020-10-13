@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\admin;
 
 use App\Http\Controllers\Controller;
+use App\Models\ProductBrands;
 use Illuminate\Http\Request;
 use App\Models\ProductTags;
 use Auth;
@@ -11,9 +12,16 @@ class ProductTagController extends Controller
     public function index()
     {
         $tags = null;
-        $userType = Auth::user()->user_type;
+        $userType = \Illuminate\Support\Facades\Auth::user()->user_type;
 
-        $tags = ProductTags::all();
+        if (strtolower($userType) == "vendor") {
+            $tags = ProductTags::where('user_id', Auth::id())->get();
+
+        }else{
+            $tags = ProductTags::all();
+        }
+
+
 
     	return view('admin.modules.tags.index', compact("tags"));
     }

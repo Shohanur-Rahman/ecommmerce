@@ -18,9 +18,16 @@ class ProductBrandsController extends Controller
     public function index()
     {
         $brands = null;
-        $userType = Auth::user()->user_type;
+        $userType = \Illuminate\Support\Facades\Auth::user()->user_type;
 
-        $brands = ProductBrands::all();
+        if (strtolower($userType) == "vendor") {
+            $brands = ProductBrands::where('user_id', Auth::id())->get();
+
+        }else{
+            $brands = ProductBrands::all();
+        }
+
+
     	return view('admin.modules.brands.index', compact("brands"));
     }
 

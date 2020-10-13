@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\admin;
 
 use App\Http\Controllers\Controller;
+use App\Models\ProductTags;
 use App\Models\Warehouse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -11,7 +12,15 @@ class WarehouseController extends Controller
 {
     public function index()
     {
-        $warehouses = Warehouse::all();
+
+        $userType = \Illuminate\Support\Facades\Auth::user()->user_type;
+
+        if (strtolower($userType) == "vendor") {
+            $warehouses = Warehouse::where('user_id', Auth::id())->get();
+
+        }else{
+           $warehouses = Warehouse::all();
+        }
 
         return view('admin.modules.warehouses.index',compact('warehouses'));
     }
