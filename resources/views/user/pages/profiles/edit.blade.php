@@ -89,17 +89,21 @@
                         </div>
 
 
-                        <div class="form-group col-6">
-                            <label class="float-left" for="line1">Line 1</label>
-                            <input class="form-control" type="text" name="line1" id="line1" value="{{$userProfile->line1}}"
-                                   placeholder="Address line 1" data-parsley-error-message="Enter address line 1"
-                            >
-                        </div>
-                        <div class="form-group col-6">
-                            <label class="float-left" for="line2">Line 2</label>
-                            <input class="form-control" type="text" name="line2" id="line2" value="{{$userProfile->line2}}"
-                                   placeholder="Address line 2" data-parsley-error-message="Enter address line 2"
-                            >
+                        <div class="col-md-12">
+                            <div class="row">
+                                <div class="form-group col-6">
+                                    <label class="float-left" for="line1">Line 1</label>
+                                    <input class="form-control" type="text" name="line1" id="line1" value="{{$userProfile->line1}}"
+                                           placeholder="Address line 1" data-parsley-error-message="Enter address line 1"
+                                    >
+                                </div>
+                                <div class="form-group col-6">
+                                    <label class="float-left" for="line2">Line 2</label>
+                                    <input class="form-control" type="text" name="line2" id="line2" value="{{$userProfile->line2}}"
+                                           placeholder="Address line 2" data-parsley-error-message="Enter address line 2"
+                                    >
+                                </div>
+                            </div>
                         </div>
 
                         <div class="form-group col-6">

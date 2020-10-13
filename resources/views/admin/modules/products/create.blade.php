@@ -53,7 +53,7 @@
                                         <div class="inline-widged">
                                             <label for="show_on_home" class="single-label">Show on Home</label>
                                             <label class="switch">
-                                                <input type="checkbox" id="show_on_home" name="show_on_home" />
+                                                <input type="checkbox" id="show_on_home" name="show_on_home" checked="checked" />
                                                 <span class="slider round"></span>
                                             </label>
                                         </div>
@@ -75,7 +75,7 @@
                                     <div class="col-sm-6">
                                         <div class="form-group">
                                             <label for="title">Title</label>
-                                            <input type="text" class="form-control" id="title" placeholder="Product title"   name="title" required="required" data-parsley-error-message="Product title is required" />
+                                            <input type="text" class="form-control" id="title" placeholder="Product title"   name="title" required="required" data-parsley-error-message="Product title is required" maxlength="200" />
                                         </div>
                                     </div>
 
@@ -118,7 +118,7 @@
                                     <div class="col-sm-3">
                                         <div class="form-group">
                                             <label for="shipping_charge">Shipping Charge</label>
-                                            <input class="currancy_touchspin" type="text"  name="shipping_charge" id="shipping_charge" />
+                                            <input class="currancy_touchspin" type="text"  name="shipping_charge" value="0" id="shipping_charge" required/>
                                             <span class="parsley-errors-list filled" id="error"></span>
                                         </div>
                                     </div>
@@ -272,7 +272,7 @@
                                         <div class="inline-widged">
                                             <label for="is_inventory" class="single-label">Manage Inventory</label>
                                             <label class="switch">
-                                                <input type="checkbox" id="is_inventory" name="is_inventory" checked="checked" />
+                                                <input type="checkbox" id="is_inventory" name="is_inventory" />
                                                 <span class="slider round"></span>
                                             </label>
                                         </div>
@@ -365,7 +365,7 @@
                                         <div class="inline-widged">
                                             <label for="allow_seo" class="single-label">Allow SEO</label>
                                             <label class="switch">
-                                                <input type="checkbox" id="allow_seo" name="allow_seo" checked="checked" />
+                                                <input type="checkbox" id="allow_seo" name="allow_seo"/>
                                                 <span class="slider round"></span>
                                             </label>
                                         </div>
@@ -525,6 +525,29 @@
                 $(".dummy_seo_control").removeAttr("required")
             }
         });
+
+        setTimeout(function(){
+            if ($("#allow_seo").is(':checked')) {
+                $(".dummy_seo_control").prop("disabled", false);
+                $(".dummy_seo_control").attr("required","required")
+            }else{
+                $(".dummy_seo_control").prop("disabled", true);
+                $(".dummy_seo_control").prop("disabled", true);
+                $(".dummy_seo_control").removeAttr("required")
+            }
+
+            if ($("#is_inventory").is(':checked')) {
+                $(".dummy_inventory_control").prop("disabled", false);
+                $(".dummy_inventory_control").attr("required","required")
+            }else{
+                $(".dummy_inventory_control").val("");
+                $(".dummy_inventory_control").prop("disabled", true);
+                $(".dummy_inventory_control").removeAttr("required")
+            }
+
+        }, 300);
+
+
     });
 
     function readURL(input) {

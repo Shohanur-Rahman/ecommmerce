@@ -16,6 +16,13 @@
 <!-- Must needed plugins to the run this Template -->
 <script src="{{asset('admin/js/jquery.min.js')}}"></script>
 <script src="{{asset('admin/js/popper.min.js')}}"></script>
+<script type="text/javascript">
+    var pathURL = window.location.pathname; // Returns path only (/path/example.html)
+    var pageURL = window.location.href;     // Returns full URL (https://example.com/path/example.html)
+    var domainURL = window.location.origin;   // Returns base URL (https://example.com)
+    var absoulatePath = domainURL + "/ecommmerce";
+
+</script>
 <script src="{{asset('admin/js/bootstrap.min.js')}}"></script>
 <script src="{{asset('admin/js/bundle.js')}}"></script>
 <script src="{{asset('admin/js/default-assets/setting.js')}}"></script>

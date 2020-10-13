@@ -4,6 +4,7 @@ namespace App\Http\Controllers\admin;
 
 use App\Http\Controllers\Controller;
 use App\Models\ProductColor;
+use App\Models\ProductSize;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
@@ -11,7 +12,14 @@ class ProductColorController extends Controller
 {
     public function index()
     {
-        $productColors = ProductColor::all();
+        $userType = \Illuminate\Support\Facades\Auth::user()->user_type;
+
+        if (strtolower($userType) == "vendor") {
+            $productColors = ProductColor::where('user_id', Auth::id())->get();
+
+        }else{
+            $productColors = ProductColor::all();
+        }
 
         return view('admin.modules.product_colors.index',compact('productColors'));
     }
