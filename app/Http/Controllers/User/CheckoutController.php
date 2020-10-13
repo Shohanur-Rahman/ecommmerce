@@ -36,7 +36,8 @@ class CheckoutController extends Controller
             return view('user.pages.checkouts.create', compact('user', 'cartItems'));
         }
 
-        return redirect(route('cart.index')->with('error-message', 'Currently your cart is empty please purchase some product'));
+
+        return redirect()->route('cart.index')->with('error-message', 'Currently your cart is empty please purchase some product');
     }
 
     public function store(Request $request)
@@ -173,9 +174,9 @@ class CheckoutController extends Controller
         $shipping->line1 = $request->line1;
         $shipping->line2 = $request->line2;
         $shipping->postcode = $request->postcode;
-        $shipping->state = '';
-        $shipping->city = '';
-        $shipping->country = '';
+        $shipping->state = $request->state;
+        $shipping->city = $request->city;
+        $shipping->country = $request->country;
         $shipping->describe_address = $request->describe_address;
         $shipping->user_id = Auth::id();
         $shipping->save();

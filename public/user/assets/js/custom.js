@@ -51,9 +51,7 @@ $(document).ready(function () {
                     $this.prop("disabled", false);
                     $this.html("Add to Cart");
                 }
-                console.log(response);
-
-                //LoadCartList(response.data);
+                LoadCartList(response.data);
 
             },
             error: function (e) {

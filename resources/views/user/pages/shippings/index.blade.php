@@ -62,7 +62,7 @@
                                     <label class="float-left" for="line2">Line 2</label>
                                     <input class="form-control" type="text" name="line2" id="line2" value="{{old('line2')}}"
                                            placeholder="Address line 2" data-parsley-error-message="Enter address line 2"
-                                           required>
+                                           >
                                 </div>
                             </div>
                         </div>
@@ -75,7 +75,7 @@
                                    data-parsley-error-message="Enter PostCode Number">
                         </div>
                         <div class="form-group col-4">
-                            <label class="float-left" for="postcode">State</label>
+                            <label class="float-left" for="state">State</label>
                             <select required="" name="state" id="state" class="form-control">
                                 <option value=""></option>
                                 <option value="AL">Alabama (AL)</option>
@@ -136,7 +136,7 @@
                             <label class="float-left" for="postcode">Zipcode</label>
                             <input class="form-control zipcode" type="text" name="postcode" id="postcode"
                                    value="{{old('postcode')}}"
-                                   placeholder="Enter your PostCode" data-parsley-error-message="Enter your PostCode">
+                                   placeholder="Enter your PostCode" data-parsley-error-message="Enter your PostCode" required>
                         </div>
 
 
@@ -144,7 +144,7 @@
                         <div class="form-group col-12">
                             <label class="float-left" for="full_address">Full Address</label>
                             <textarea class="form-control" name="describe_address" id="full_address" cols=""
-                                      rows="2">{{old('describe_address')}}</textarea>
+                                      rows="2" required>{{old('describe_address')}}</textarea>
                             <span>Give us your full location address so we can find you and deliver your order accurately.</span>
                         </div>
 
