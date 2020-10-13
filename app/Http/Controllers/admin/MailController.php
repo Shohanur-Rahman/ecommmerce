@@ -33,7 +33,6 @@ class MailController extends Controller
 
         }
 
-
         $subject = $request['subject'];
         $userType = $request['user_type'];
 
@@ -49,37 +48,43 @@ class MailController extends Controller
 
         }
 
-        foreach ($emailAddresses as $key => $value) {
+        if($emailAddresses[0] != null){
 
-            $email = $emailAddresses[$key];
+            foreach ($emailAddresses as $key => $value) {
 
-            if ($request->has('submit')) {
-                $mail->mailAddresses()->create(['email' => $email, 'status' => 1]);
-                \Illuminate\Support\Facades\Mail::send('admin.modules.mails.emails.email', ['email' => $email, 'data' => $mail], function ($message) use ($email, $subject) {
-                    $message->to($email)->subject($subject);
-                });
-            } else {
-                $mail->mailAddresses()->create(['email' => $email]);
+                $email = $emailAddresses[$key];
+                if ($request->has('submit')) {
+                    $mail->mailAddresses()->create(['email' => $email, 'status' => 1]);
+                    \Illuminate\Support\Facades\Mail::send('admin.modules.mails.emails.email', ['email' => $email, 'data' => $mail], function ($message) use ($email, $subject) {
+                        $message->to($email)->subject($subject);
+                    });
+                } else {
+                    $mail->mailAddresses()->create(['email' => $email]);
 
-            }
-
-        }
-
-        foreach ($userEmails as $key => $value) {
-
-            $email = $userEmails[$key];
-
-            if ($request->has('submit')) {
-                $mail->mailAddresses()->create(['email' => $email, 'status' => 1]);
-                \Illuminate\Support\Facades\Mail::send('admin.modules.mails.emails.email', ['email' => $email, 'data' => $mail], function ($message) use ($email, $subject) {
-                    $message->to($email)->subject($subject);
-                });
-            } else {
-                $mail->mailAddresses()->create(['email' => $email,'user_type'=>$userType]);
+                }
 
             }
-
         }
+
+
+        if(!empty($userEmails)){
+            foreach ($userEmails as $key => $value) {
+
+                $email = $userEmails[$key];
+
+                if ($request->has('submit')) {
+                    $mail->mailAddresses()->create(['email' => $email, 'status' => 1]);
+                    \Illuminate\Support\Facades\Mail::send('admin.modules.mails.emails.email', ['email' => $email, 'data' => $mail], function ($message) use ($email, $subject) {
+                        $message->to($email)->subject($subject);
+                    });
+                } else {
+                    $mail->mailAddresses()->create(['email' => $email,'user_type'=>$userType]);
+
+                }
+
+            }
+        }
+
 
         return redirect()->back()->with('success', 'Email sent has been successfully');
     }
@@ -202,10 +207,13 @@ class MailController extends Controller
     {
 
         $mailAddresses = MailAddress::whereIn('id', $request['mail'])->with('mail')->onlyTrashed()->get();
-        $mailCount = MailAddress::whereIn('id', $request['mail'])->with('mail')->count();
 
-        $mailAddresses->each(function ($mailAddress, $key) use ($mailCount) {
+
+        $mailAddresses->each(function ($mailAddress, $key) {
+
             $mailAddress->forceDelete();
+            $mailCount = MailAddress::where('mail_id', $mailAddress->mail_id)->count();
+
             if ($mailCount == 0) {
                 $mailAddress->mail()->forceDelete();
             }
