@@ -81,16 +81,18 @@ class ShippingAddressController extends Controller
     public function requestField($request)
     {
         return [
-            'title'=>$request['title'],
-            'name'=>$request['name'],
-            'email'=>$request['email'],
+            //'title'=>$request['title'],
+            //'name'=>$request['name'],
+            //'email'=>$request['email'],
             'phone'=>$request['phone'],
             //'house'=>$request['house'],
             //'road'=>$request['road'],
-            'postcode'=>$request['postcode'],
-            'state'=>$request['state'],
+            'line1'=>$request['line1'],
+            'line2'=>$request['line2'],
             'city'=>$request['city'],
-            'country'=>$request['country'],
+            'state'=>$request['state'],
+            'postcode'=>$request['postcode'],
+            //'country'=>$request['country'],
             'describe_address'=>$request['describe_address'],
         ];
     }
