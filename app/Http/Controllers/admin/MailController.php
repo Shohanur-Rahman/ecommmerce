@@ -16,7 +16,7 @@ class MailController extends Controller
     {
         $query = MailAddress::where('name' ,'!=' ,null)->with('mail');
 
-        $mailAddresses = $query->paginate(15);
+        $mailAddresses = $query->orderBy('created_at', 'desc')->paginate(15);
 
         $query->get()->each(function ($mail){
             if($mail->read_at == 0){
@@ -126,6 +126,7 @@ class MailController extends Controller
     {
         $mailAddresses = MailAddress::with('mail')->where('status', 1)
             ->where('name','=', null)
+            ->orderBy('created_at', 'desc')
             ->paginate(15);
 
         return view('admin.modules.mails.send-mail', compact('mailAddresses'));
@@ -142,7 +143,7 @@ class MailController extends Controller
             $q->where('name','=', null);
         });
 
-        $mails = $query->paginate(2);
+        $mails = $query->orderBy('created_at', 'desc')->paginate(2);
 
         $query->get()->each(function ($mail){
             if($mail->read_at == 0){
@@ -205,7 +206,7 @@ class MailController extends Controller
     public function trashIndex()
     {
         $query = MailAddress::onlyTrashed()->with('mail');
-        $trashMails = $query->paginate(15);;
+        $trashMails = $query->orderBy('created_at', 'desc')->paginate(15);
 
         $query->get()->each(function ($trashMail){
             if($trashMail->read_at == 0){
@@ -243,8 +244,6 @@ class MailController extends Controller
             });
 
             $mailAddresses = $mailAddresses->restore();
-
-
 
         }
 
