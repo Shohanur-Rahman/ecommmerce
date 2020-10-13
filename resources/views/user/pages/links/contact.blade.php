@@ -49,24 +49,25 @@
                 </div>
                 <div class="col-lg-7">
                     <div class="contact-form mt-sm-30">
-                        <form id="contactForm" data-toggle="validator" method="POST"
-                              action="http://lionsbite.co.uk/html/hakduck-preview/assets/php/contact.php">
+                        <form id="contactForm"  data-toggle="validator" method="POST"
+                              action="{{route('send-mail.store')}}" data-parsley-validate>
+                            @csrf
                             <div class="row">
                                 <div class="col-sm-12">
-                                    <input type="text" placeholder="Name" id="name" required
-                                           data-error="NEW ERROR MESSAGE"/>
+                                    <input type="text" placeholder="Name" id="name" required="required"
+                                          name="name" data-parsley-maxlength="255" data-error="NEW ERROR MESSAGE"/>
                                 </div>
                                 <div class="col-sm-12 mt-30">
-                                    <input type="text" placeholder="Email" id="email"/>
+                                    <input type="email" required="required"  name="email" placeholder="Email" id="email" data-parsley-maxlength="255"  data-parsley-type="email"/>
                                 </div>
                                 <div class="col-sm-12 mt-30">
-                                    <input type="text" placeholder="Subject" id="subject"/>
+                                    <input type="text" name="subject" required="required" placeholder="Subject" id="subject" data-parsley-maxlength="255"/>
                                 </div>
                                 <div class="col-sm-12 mt-30">
-                                    <textarea placeholder="Message" id="message"></textarea>
+                                    <textarea placeholder="Message" required="required" name="description" id="message"></textarea>
                                 </div>
                                 <div class="col-sm-12 mt-40">
-                                    <button class="btn-common" id="form-submit">Send message</button>
+                                    <button type="submit" class="btn-common" id="form-submit">Send message</button>
                                 </div>
                                 <div class="col-sm-8 text-left pt-30">
                                     <div id="msgSubmit" class="hidden"></div>

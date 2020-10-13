@@ -30,6 +30,7 @@ Route::post('/forget-password','UserController@forgetPasswordStore')->name('forg
 
 Route::get('/about-us','User\PagesController@about')->name('pages.about');
 Route::get('/contact-us','User\PagesController@contact')->name('pages.contact');
+Route::post('/contact-us/send-mail','User\PagesController@sendMailStore')->name('send-mail.store');
 Route::get('/faq','User\PagesController@faq')->name('pages.faq');
 Route::get('/privacy-policy','User\PagesController@privacyPolicy')->name('pages.privacy.policy');
 Route::get('/terms-conditions','User\PagesController@termsConditions')->name('pages.terms.conditions');

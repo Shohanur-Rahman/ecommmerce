@@ -30,7 +30,7 @@
                         </div>
 
 
-                        <a href="{{route('send-mails.show',$trashMail->id)}}">
+                        <a href="javascript:">
                             <!-- Admi-mail-body -->
                             <div class="admi-mail-body d-flex align-items-center mr-3">
                                 <div class="div">
@@ -46,6 +46,7 @@
                         <div class="admi-mail-date">{{$trashMail->created_at->format('H:m:A')}}</div>
                     </div>
                 @endforeach
+                <input type="hidden" id="dummy_method_type" name="method_type" value="">
             </div>
         </form>
         {{ $trashMails->links() }}
@@ -53,6 +54,13 @@
 
     <script>
         $('#dummy_delete_btn').click(function () {
+
+            $('#dummy_method_type').val('destroy');
+            $('#dummy_mail_form_submit').submit()
+        });
+
+        $('#dummy_restore_btn').click(function () {
+            $('#dummy_method_type').val('restore');
             $('#dummy_mail_form_submit').submit()
         })
     </script>

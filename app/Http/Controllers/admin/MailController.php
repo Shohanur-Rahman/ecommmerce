@@ -14,8 +14,17 @@ class MailController extends Controller
 {
     public function index()
     {
+        $query = MailAddress::where('name' ,'!=' ,null)->with('mail');
 
-        return view('admin.modules.mails.index');
+        $mailAddresses = $query->paginate(15);
+
+        $query->get()->each(function ($mail){
+            if($mail->read_at == 0){
+                $mail->update(['read_at'=>1]);
+            }
+        });
+
+        return view('admin.modules.mails.index',compact('mailAddresses'));
     }
 
     public function create()
@@ -89,12 +98,18 @@ class MailController extends Controller
         return redirect()->back()->with('success', 'Email sent has been successfully');
     }
 
+    public function show(MailAddress $mailAddress)
+    {
+        return view('admin.modules.mails.show', compact('mailAddress'));
+    }
+
     public function destroy(Request $request)
     {
 
         $mailAddresses = MailAddress::whereIn('id', $request['mail'])->get();
 
         $mailAddresses->each(function ($mailAddress, $key) use ($mailAddresses) {
+            $mailAddress->update(['read_at'=>0]);
             $mailAddress->delete();
 
             $mailTotalCount = MailAddress::where('mail_id', $mailAddress->mail->id)->count();
@@ -107,25 +122,25 @@ class MailController extends Controller
         return redirect()->back()->with('success', 'Email deleted has been successfully');
     }
 
-    public function show(MailAddress $mailAddress)
-    {
-
-        return view('admin.modules.mails.show', compact('mailAddress'));
-    }
-
     public function sendMail()
     {
-        $mailAddresses = MailAddress::with('mail')->where('status', 1)->paginate(15);
+        $mailAddresses = MailAddress::with('mail')->where('status', 1)
+            ->where('name','=', null)
+            ->paginate(15);
 
         return view('admin.modules.mails.send-mail', compact('mailAddresses'));
     }
+
+
+
 
     public function draftMail()
     {
 
         $query = Mail::whereHas('mailAddresses', function ($q) {
             $q->where('status', 0);
-        });;
+            $q->where('name','=', null);
+        });
 
         $mails = $query->paginate(2);
 
@@ -151,9 +166,7 @@ class MailController extends Controller
                 $mailAddress = $address->email;
             else
                 $mailAddress = $mailAddress . ', '.$address->email;
-
-
-        }
+            }
 
         return view('admin.modules.mails.draft-mail-edit', compact('mail', 'userTypes', 'mailAddress'));
     }
@@ -164,13 +177,13 @@ class MailController extends Controller
 
             $email = $mailAddress->email;
 
-            $mail->mailAddresses()->create(['email' => $email, 'status' => 1]);
+            $mail->mailAddresses()->update(['email' => $email, 'status' => 1]);
             \Illuminate\Support\Facades\Mail::send('admin.modules.mails.emails.email', ['email' => $email, 'data' => $mail], function ($message) use ($email, $mail) {
                 $message->to($email)->subject($mail->subject);
             });
         }
 
-        return redirect()->back()->with('success', 'Email sent has been successfully');
+        return redirect(route('send-mail.index'))->back()->with('success', 'Email sent has been successfully');
     }
 
 
@@ -191,7 +204,7 @@ class MailController extends Controller
 
     public function trashIndex()
     {
-        $query = MailAddress::onlyTrashed()->where('status', 1)->with('mail');
+        $query = MailAddress::onlyTrashed()->with('mail');
         $trashMails = $query->paginate(15);;
 
         $query->get()->each(function ($trashMail){
@@ -206,18 +219,35 @@ class MailController extends Controller
     public function trashDestroy(Request $request)
     {
 
-        $mailAddresses = MailAddress::whereIn('id', $request['mail'])->with('mail')->onlyTrashed()->get();
+        $mailAddresses = MailAddress::whereIn('id', $request['mail'])->with('mail')->onlyTrashed();
 
 
-        $mailAddresses->each(function ($mailAddress, $key) {
+        if($request['method_type'] == 'destroy'){
+            $mailAddresses->get()->each(function ($mailAddress, $key) {
 
-            $mailAddress->forceDelete();
-            $mailCount = MailAddress::where('mail_id', $mailAddress->mail_id)->count();
+                $mailAddress->forceDelete();
+                $mailCount = MailAddress::where('mail_id', $mailAddress->mail_id)->count();
 
-            if ($mailCount == 0) {
-                $mailAddress->mail()->forceDelete();
-            }
-        });
+                if ($mailCount == 0) {
+                    $mailAddress->mail()->forceDelete();
+                }
+            });
+        }else{
+            $mailAddresses->get()->each(function ($mailAddress){
+
+                if($mailAddress->read_at == 1){
+                    $mailAddress->update(['read_at'=>0,'deleted_at'=>null]);
+                    $mailAddress->mail()->update(['deleted_at'=>null]);
+                }
+
+            });
+
+            $mailAddresses = $mailAddresses->restore();
+
+
+
+        }
+
 
         return redirect()->back()->with('success', 'Emails permanently deleted successfully');
     }

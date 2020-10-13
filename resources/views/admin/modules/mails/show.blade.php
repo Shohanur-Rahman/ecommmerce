@@ -13,8 +13,7 @@
                     <div class="row justify-content-between">
                         <div class="col-xs-6">
                             <div class="mail-window-header-text mb-20">
-                                <a href="compose-mail.html"><i class="fa fa-angle-left"></i></a>
-                                <a href="#"><i class="fa fa-trash"></i></a>
+                                <a href="{{url()->previous()}}"><i class="fa fa-angle-left"></i></a>
                                {{-- <a href="#"><i class="fa fa-print"></i></a>--}}
                             </div>
                         </div>
@@ -32,8 +31,8 @@
                     <p>{{$mailAddress->created_at->format('h.m a M D Y')}}</p>
                     <div class="mail-avatra d-flex align-items-center mb-15">
                         <div class="mail-avatra-text">
-                            <h6 class="mb-0">Andy Patel</h6>
-                            <p class="mb-0">adm@nytimes.com</p>
+                            <h6 class="mb-0">{{$mailAddress->name}}</h6>
+                            <p class="mb-0">{{$mailAddress->email}}</p>
                         </div>
                     </div>
 

@@ -16,6 +16,7 @@ class CreateMailAddressesTable extends Migration
         Schema::create('mail_addresses', function (Blueprint $table) {
             $table->id();
             $table->unsignedBigInteger('mail_id');
+            $table->string('name')->nullable();
             $table->string('email');
             $table->string('user_type')->nullable();
             $table->boolean('status')->default(0);

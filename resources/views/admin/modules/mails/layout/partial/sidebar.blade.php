@@ -7,20 +7,44 @@
                 <h6 class="mb-3 primary-color-text">Folders</h6>
             </div>
             <ul class="folder-list">
-                <li class="{{Route::is('mails.index') ? 'active' : ''}}"><a href="{{route('mails.index')}}"> <i class="ti-email"></i> Inbox <span class="badge badge-pill badge-primary inbox ml-2">25</span> </a></li>
-                <li class="{{Route::is('send-mail.index') ? 'active' : ''}}"><a href="{{route('send-mail.index')}}"> <i class="ti-share"></i> Send Mail</a></li>
-                <li class="{{Route::is('draft-mail.index') ? 'active' : ''}}"><a href="{{route('draft-mail.index')}}"> <i class="fa fa-file-text-o"></i> Drafts
-                        <span class="badge badge-pill badge-warning inbox ml-2">
-                            @php $mailCount = \App\Models\Mail::draftCount() @endphp
-                            {{$mailCount}}
-                        </span>
+                <li class="{{Route::is('mails.index') ? 'active' : ''}}">
+                    <a href="{{route('mails.index')}}">
+                        <i class="ti-email"></i> Inbox
+
+                         @php $indexMailCount = \App\Models\MailAddress::indexMailCount() @endphp
+
+                         @if($indexMailCount >0)
+                            <span class="badge badge-pill badge-primary inbox ml-2">
+                                {{$indexMailCount}}
+                            </span>
+                         @endif
                     </a>
                 </li>
-                <li class="{{Route::is('trash-mails.index') ? 'active' : ''}}"><a href="{{route('trash-mails.index')}}"> <i class="fa fa-trash-o"></i> Trash
-                        <span class="badge badge-pill badge-danger inbox ml-2">
-                                @php $trashCount = \App\Models\MailAddress::trashCount() @endphp
+                <li class="{{Route::is('send-mail.index') ? 'active' : ''}}">
+                    <a href="{{route('send-mail.index')}}">
+                        <i class="ti-share"></i> Send Mail
+                    </a>
+                </li>
+                <li class="{{Route::is('draft-mail.index') ? 'active' : ''}}">
+                    <a href="{{route('draft-mail.index')}}">
+                        <i class="far fa-file-alt"></i> Drafts
+                        @php $mailCount = \App\Models\Mail::draftCount() @endphp
+                        @if($mailCount >0)
+                            <span class="badge badge-pill badge-warning inbox ml-2">
+                                {{$mailCount}}
+                            </span>
+                        @endif
+                    </a>
+                </li>
+                <li class="{{Route::is('trash-mails.index') ? 'active' : ''}}">
+                    <a href="{{route('trash-mails.index')}}">
+                        <i class="far fa-trash-alt"></i>Trash
+                        @php $trashCount = \App\Models\MailAddress::trashCount() @endphp
+                        @if($trashCount >0)
+                            <span class="badge badge-pill badge-danger inbox ml-2">
                                 {{$trashCount}}
-                        </span>
+                            </span>
+                        @endif
                     </a>
                 </li>
             </ul>

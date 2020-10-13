@@ -15,15 +15,15 @@ class MailAddress extends Model
         return $this->belongsTo(Mail::class)->withTrashed();
     }
 
-    /*public static function sendMailCount($status)
+    public static function indexMailCount()
     {
-        $sendMailCount = MailAddress::where('status',$status)->count();
+        $sendMailCount = MailAddress::where('name','!=',null)->where('read_at',0)->count();
         return $sendMailCount;
-    }*/
+    }
 
     public static function trashCount()
     {
-        $trashCount = MailAddress::where(['status'=>1,'read_at'=>0])->onlyTrashed()->count();
+        $trashCount = MailAddress::where(['read_at'=>0])->onlyTrashed()->count();
 
         return $trashCount;
     }

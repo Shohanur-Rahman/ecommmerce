@@ -7,7 +7,7 @@
                 <x-inform-users></x-inform-users>
             </div>
         </div>
-        <div>
+        <div class="mb-5">
             <form action="{{route('mails.destroy')}}" method="post" id="dummy_mail_form_submit">
 
                 @method('DELETE')
@@ -31,7 +31,7 @@
                             </div>
 
 
-                            <a href="{{route('send-mails.show',$mailAddress->id)}}">
+                            <a href="{{route('mails.show',$mailAddress->id)}}">
                                 <!-- Admi-mail-body -->
                                 <div class="admi-mail-body d-flex align-items-center mr-3">
                                     <div class="div">

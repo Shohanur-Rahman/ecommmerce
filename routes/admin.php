@@ -126,12 +126,12 @@ Route::group(['middleware' => ['auth','isCustomer']], function() {
 
         Route::group(['prefix'=>'mails'], function(){
             Route::get('','MailController@index')->name('mails.index');
+
             Route::get('/create','MailController@create')->name('mails.create');
             Route::post('','MailController@store')->name('mails.store');
 
-//        Route::patch('/{mainSlider}','MainSliderController@update')->name('main-sliders.update');
             Route::get('/send','MailController@sendMail')->name('send-mail.index');
-            Route::get('/send/{mailAddress}/show','MailController@show')->name('send-mails.show');
+//            Route::get('/send/{mailAddress}/show','MailController@sendMailShow')->name('send-mails.show');
             Route::get('/draft','MailController@draftMail')->name('draft-mail.index');
             Route::get('/draft/{mail}/edit','MailController@draftedit')->name('draft-mail.edit');
             Route::patch('/draft/{mail}','MailController@draftUpdate')->name('draft-mail.update');
@@ -140,6 +140,7 @@ Route::group(['middleware' => ['auth','isCustomer']], function() {
             Route::delete('/destroy','MailController@destroy')->name('mails.destroy');
 
             Route::get('/trash-mails','MailController@trashIndex')->name('trash-mails.index');
+            Route::get('/{mailAddress}','MailController@show')->name('mails.show');
             Route::delete('trash-mails','MailController@trashDestroy')->name('trash-mails.destroy');
         });
 
