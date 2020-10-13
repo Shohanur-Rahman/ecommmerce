@@ -33,8 +33,12 @@ class SiteSettingController extends Controller
             'name'=>$request['name'],
             'email'=>$request['email'],
             'phone'=>$request['phone'],
+            'line1'=>$request['line1'],
+            'line2'=>$request['line2'],
+            'postcode'=>$request['postcode'],
+            'state'=>$request['state'],
+            'city'=>$request['city'],
             'address'=>$request['address'],
-            'description'=>$request['description'],
             'logo_url'=>$imageUpload,
         ]);
 

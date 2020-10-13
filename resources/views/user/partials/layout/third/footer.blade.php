@@ -4,8 +4,17 @@
         <div class="row">
             <div class="col-lg-3 col-sm-6">
                 <div class="company-info">
-                    <img src="{{$siteSetting != null ? asset($siteSetting->logo_url) : asset('user/assets/images/logos/logo-blue.png')}}" alt="logo" />
-                    <p>{{$siteSetting != null ? $siteSetting->address : 'Address , city , country'}}</p>
+                    <img
+                        src="{{$siteSetting != null ? asset($siteSetting->logo_url) : asset('user/assets/images/logos/logo-blue.png')}}"
+                        alt="logo"/>
+                    <p>
+                        {!!html_entity_decode($siteSetting->line1 ? $siteSetting->line1 . ', ' : '')!!}
+                        {!!html_entity_decode($siteSetting->line2 ? $siteSetting->line2 . '<br/>' : '')!!}
+                        {!!html_entity_decode($siteSetting->city ? $siteSetting->city . ', ' : '')!!}
+                        {!!html_entity_decode($siteSetting->state ? $siteSetting->state . ', ' : '')!!}
+                        {!!html_entity_decode($siteSetting->postcode ? $siteSetting->postcode . '<br/>' : '')!!}
+                        {!!html_entity_decode($siteSetting->address ? $siteSetting->address . '' : '')!!}
+                    </p>
                     <p>Phone: {{$siteSetting != null ? $siteSetting->phone : 'XXX XXXX XXXX'}}</p>
                     <p>Email: {{$siteSetting !=null ? $siteSetting->email : 'email@email.com'}}</p>
                 </div>
@@ -20,9 +29,11 @@
                         <ul>
                             <li><a href="{{route('pages.about')}}" target="_blank">About Us</a></li>
                             <li><a href="{{route('pages.contact')}}" target="_blank">Contact Us</a></li>
-                            <li><a href="{{route('orders-details.index')}}" target="_blank">Delivery information</a></li>
+                            <li><a href="{{route('orders-details.index')}}" target="_blank">Delivery information</a>
+                            </li>
                             <li><a href="{{route('pages.privacy.policy')}}" target="_blank">Privacy Policy</a></li>
-                            <li><a href="{{route('pages.terms.conditions')}}" target="_blank">Terms & Conditions</a></li>
+                            <li><a href="{{route('pages.terms.conditions')}}" target="_blank">Terms & Conditions</a>
+                            </li>
                         </ul>
                     </div>
                 </div>
@@ -35,7 +46,8 @@
                             <li><a href="{{route('profiles.index')}}" target="_blank">My Account</a></li>
                             <li><a href="{{route('orders-details.index')}}" target="_blank">Order History</a></li>
                             <li><a href="{{route('wish-lists.index')}}" target="_blank">Wish List</a></li>
-                            <li><a href="{{route('pages.contact')}}" target="_blank" target="_blank">Customer Service</a></li>
+                            <li><a href="{{route('pages.contact')}}" target="_blank" target="_blank">Customer
+                                    Service</a></li>
                             <li><a href="{{route('pages.faq')}}" target="_blank">FAQs</a></li>
                         </ul>
                     </div>
@@ -46,15 +58,15 @@
                     <div class="subscribe-form">
                         <h3>Sign Up to <strong>Newsletter</strong></h3>
                         <p>Subscribe our newsletter gor get notification about information discount.</p>
-                        <form class="custom-validate" action="javascript:" method="post" >
+                        <form class="custom-validate" action="javascript:" method="post">
                             @csrf
-                            <input type="email" name="email" id="email" placeholder="Your email address" required />
+                            <input type="email" name="email" id="email" placeholder="Your email address" required/>
                             @auth()
                                 <button type="submit" onclick="subscribe()">Subscribe</button>
                                 <span class="error text-danger"></span>
                                 <span class="success text-success"></span>
                             @else
-                                <button :disabled  class="disabled">login first</button>
+                                <button :disabled class="disabled">login first</button>
                             @endauth
                         </form>
                     </div>
@@ -84,14 +96,14 @@
             url: 'wish-lists',
             data: {product_id: productId},
 
-            success:function (resp) {
-                if(!isNaN(resp) && resp != ''){
+            success: function (resp) {
+                if (!isNaN(resp) && resp != '') {
                     $('#wishListCount').html(resp)
                 }
             },
 
-            error:function (error) {
-               console.log('error')
+            error: function (error) {
+                console.log('error')
             }
         })
 
@@ -105,24 +117,24 @@
     });
 
 
-    function subscribe(){
+    function subscribe() {
         var email = $('#email').val();
 
         $.ajax({
-            type:'post',
-            data:{email:email},
-            url:'newsletter',
+            type: 'post',
+            data: {email: email},
+            url: 'newsletter',
 
-            success:function (resp) {
-                if(resp == 'success'){
+            success: function (resp) {
+                if (resp == 'success') {
                     $('.success').html('Subscribed Successfully');
                     $('.error').text('');
 
                 }
             },
 
-            error: function(xhr, status, error) {
-               /* alert(xhr.responseText);*/
+            error: function (xhr, status, error) {
+                /* alert(xhr.responseText);*/
                 $('.error').html(xhr.responseJSON.errors.email[0])
             }
         })

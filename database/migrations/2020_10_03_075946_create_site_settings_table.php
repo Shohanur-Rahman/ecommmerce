@@ -15,12 +15,17 @@ class CreateSiteSettingsTable extends Migration
     {
         Schema::create('site_settings', function (Blueprint $table) {
             $table->id();
-            $table->string('name');
-            $table->string('email');
-            $table->string('phone');
-            $table->text('address');
-            $table->string('logo_url');
-            $table->text('description');
+            $table->string('name')->nullable();
+            $table->string('email')->nullable();
+            $table->string('phone')->nullable();
+            $table->string('line1')->nullable();
+            $table->string('line2')->nullable();
+            $table->integer('postcode')->nullable();
+            $table->string('state')->nullable();
+            $table->string('city')->nullable();
+            $table->text('address')->nullable();
+            $table->string('logo_url')->nullable();
+            $table->text('description')->nullable();
             $table->timestamps();
         });
     }

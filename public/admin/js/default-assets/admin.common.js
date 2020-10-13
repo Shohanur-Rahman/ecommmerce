@@ -46,126 +46,6 @@ $(document).ready(function () {
         $(".quick-settings-panel").removeClass("active");
     })
 
-    // :: Slider Active Code
-    if ($.fn.owlCarousel) {
-        // :: Widget Slider Active Code
-        $(".widget-slides").owlCarousel({
-            items: 1,
-            loop: true,
-            autoplay: true,
-            smartSpeed: 750,
-            margin: 0
-        });
-
-        // :: Widget Slider Active Code
-        $(".widget-slides-inbox").owlCarousel({
-            items: 3,
-            loop: true,
-            autoplay: true,
-            smartSpeed: 500,
-            margin: 30,
-            responsive: {
-                0: {
-                    items: 1
-                },
-                576: {
-                    items: 2
-                },
-                768: {
-                    items: 3
-                },
-                1200: {
-                    items: 3
-                }
-            }
-        });
-
-        // :: Widget Slider Active Code
-        $(".widget-slider-2").owlCarousel({
-            items: 1,
-            loop: true,
-            autoplay: true,
-            smartSpeed: 700,
-            margin: 30,
-            center: true,
-            dots: false
-        });
-
-        // :: Widget Slider Active Code
-        $(".widget-slider-3").owlCarousel({
-            items: 1,
-            loop: true,
-            autoplay: true,
-            smartSpeed: 600,
-            margin: 30,
-            center: true,
-            nav: false,
-            dots: false
-        });
-
-        // :: Widget Slider Active Code
-        $(".eco-slides").owlCarousel({
-            items: 1,
-            loop: true,
-            autoplay: true,
-            smartSpeed: 600,
-            margin: 5,
-            center: true,
-            nav: false,
-            dots: false
-        });
-
-        // :: Widget Slider Active Code
-        $(".index-1").owlCarousel({
-            items: 1,
-            loop: true,
-            autoplay: true,
-            smartSpeed: 600,
-            center: true,
-            margin: 15,
-            nav: false,
-            dots: false
-        });
-
-        // :: Widget Slider Active Code
-        $(".index-2").owlCarousel({
-            items: 1,
-            loop: true,
-            autoplay: true,
-            smartSpeed: 700,
-            margin: 15,
-            center: true,
-            nav: false,
-            dots: false
-        });
-
-        // :: Widget Slider Active Code
-        $(".solution-slider").owlCarousel({
-            items: 3,
-            loop: true,
-            autoplay: true,
-            smartSpeed: 700,
-            margin: 30,
-            center: true,
-            nav: false,
-            dots: false,
-            responsive: {
-                0: {
-                    items: 1
-                },
-                576: {
-                    items: 2
-                },
-                768: {
-                    items: 3
-                },
-                1200: {
-                    items: 3
-                }
-            }
-        });
-    }
-
     // :: Popover Active Code
     if ($.fn.popover) {
         $('[data-toggle="popover"]').popover();
@@ -235,4 +115,75 @@ $(document).ready(function () {
             $(this).html(event.strftime("<div>%D <span>Days</span></div> <div>%H <span>Hours</span></div> <div>%M <span>Minutes</span></div> <div>%S <span>Seconds</span></div>"));
         });
     }
+
+
+
+    $(".zipcode").keydown(function (event) {
+
+        $(this).attr('maxlength', 5);
+        // Prevent shift key since its not needed
+        if (event.shiftKey == true) {
+            event.preventDefault();
+        }
+        // Allow Only: keyboard 0-9, numpad 0-9, backspace, tab, left arrow, right arrow, delete
+        if ((event.keyCode >= 48 && event.keyCode <= 57) || (event.keyCode >= 96 && event.keyCode <= 105) || event.keyCode == 8 || event.keyCode == 9 || event.keyCode == 37 || event.keyCode == 39 || event.keyCode == 46) {
+        } else {
+            event.preventDefault();
+        }
+
+    });
+
+
+    $('.phone-formate')
+
+        .on('keypress', function (e) {
+            var key = e.charCode || e.keyCode || 0;
+
+            var phone = $(this);
+            if (phone.val().length === 0) {
+                phone.val(phone.val() + '(');
+            }
+
+            // Auto-format- do not expose the mask as the user begins to type
+            if (key !== 8 && key !== 9) {
+                if (phone.val().length === 4) {
+                    phone.val(phone.val() + ')');
+                }
+                if (phone.val().length === 5) {
+                    phone.val(phone.val() + ' ');
+                }
+                if (phone.val().length === 9) {
+                    phone.val(phone.val() + '-');
+                }
+                if (phone.val().length >= 14) {
+                    phone.val(phone.val().slice(0, 13));
+                }
+            }
+
+            return (key == 8 ||
+                key == 9 ||
+                key == 46 ||
+                (key >= 48 && key <= 57)
+            );
+
+        })
+        .on('focus', function () {
+            phone = $(this);
+
+            if (phone.val().length === 0) {
+                phone.val('(');
+            } else {
+                var val = phone.val();
+                phone.val('').val(val); // Ensure cursor remains at the end
+            }
+        })
+
+        .on('blur', function () {
+            $phone = $(this);
+
+            if ($phone.val() === '(') {
+                $phone.val('');
+            }
+        });
+
 })

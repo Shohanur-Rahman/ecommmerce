@@ -99,6 +99,7 @@ textarea.parsley-error {
 
 .company-info img {
     max-width: 50%;
+    max-height: 50px;
 }
 
 .btn-filter {

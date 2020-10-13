@@ -118,7 +118,7 @@
                                 </div>
                                 <div class="form-group">
                                     <label for="phone">Phone</label>
-                                    <input class="form-control" type="text" name="phone" id="phone" value="{{$userProfile->phone ?? old('phone')}}"
+                                    <input class="form-control phone-formate" type="text" name="phone" id="phone" value="{{$userProfile->phone ?? old('phone')}}"
                                            placeholder="Enter your Phone" required="required" data-parsley-error-message="Enter your Phone">
                                 </div>
 
