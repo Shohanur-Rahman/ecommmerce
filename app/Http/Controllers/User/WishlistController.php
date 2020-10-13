@@ -31,24 +31,31 @@ class WishlistController extends Controller
         $product_id = $request['product_id'];
         $sessionCheck = Session::has('session_id');
 
-        $wishList = new Wishlist();
 
-        if ($sessionCheck)
-            $wishList = Wishlist::where(['product_id' => $product_id, 'session_id' => $sessionCheck])->first();
-        elseif ($sessionCheck)
+        $wishList = '';
+
+        if(Auth::check()){
             $wishList = Wishlist::where(['product_id' => $product_id, 'user_id' => auth()->id()])->first();
+        } elseif ($sessionCheck){
+            $wishList = Wishlist::where(['product_id' => $product_id, 'session_id' => Session::get('session_id')])->first();
+        }
 
-        if ($wishList && ($sessionCheck || Auth::user())) {
+        if (!empty($wishList) && ($sessionCheck || Auth::user())) {
             $wishList->update([
                 'quantity' => $wishList->quantity + 1,
             ]);
-        } else {
-            if (Auth::user()) {
+
+        }
+
+        if(empty($wishList)){
+
+            if (Auth::check()) {
                 Wishlist::create([
                     'product_id' => $product_id,
                     'user_id' => Auth::id(),
                 ]);
-            } else {
+            }
+            else {
                 $session_id = (Session::has('session_id') ? Session::get('session_id') : Str::random(40));
                 Session::put('session_id', $session_id);
 
@@ -57,16 +64,15 @@ class WishlistController extends Controller
                     'session_id' => $session_id,
                 ]);
             }
-
-            if ($sessionCheck && !auth()->user()) {
-                $wishListCount = Wishlist::where('session_id', Session::get('session_id'))->count();
-            } else {
-                $wishListCount = Wishlist::where('user_id', auth()->id())->count();
-
-            }
-
-            return $wishListCount;
         }
+
+        if (Auth::check()) {
+            $wishListCount = Wishlist::where('user_id', auth()->id())->count();
+        } else {
+            $wishListCount = Wishlist::where('session_id', Session::get('session_id'))->count();
+        }
+
+        return $wishListCount;
 
     }
 

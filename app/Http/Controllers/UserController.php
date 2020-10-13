@@ -203,7 +203,7 @@ class UserController extends Controller
                 ->get();
 
             $newWishList->each(function ($wishList) {
-                $wishList->update(['user_id' => Auth::id()]);
+                $wishList->update(['user_id' => Auth::id(),'session_id'=>null]);
             });
         }
     }
