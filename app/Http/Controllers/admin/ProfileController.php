@@ -93,6 +93,8 @@ class ProfileController extends Controller
             'nid'=>$request['nid'],
             'nid_image'=>$imageUpload,
             'phone'=>$request['phone'],
+            'line1'=>$request['line1'],
+            'line2'=>$request['line2'],
             'house'=>$request['house'],
             'road'=>$request['road'],
             'postcode'=>$request['postcode'],
