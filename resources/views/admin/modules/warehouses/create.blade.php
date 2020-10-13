@@ -18,7 +18,7 @@
                                 @csrf
                                 <div class="form-group">
                                     <label for="name">Warehouses Name</label>
-                                    <input type="text" class="form-control" id="name" placeholder="Enter Warehouses name" name="name" required="required" maxlength="20" data-parsley-error-message="Enter Warehouses name">
+                                    <input type="text" class="form-control" id="name" placeholder="Enter Warehouses name" name="name" required="required" maxlength="50" data-parsley-error-message="Enter Warehouses name">
                                 </div>
 
                                 <div class="form-group">

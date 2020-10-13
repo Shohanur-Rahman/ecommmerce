@@ -32,32 +32,14 @@ class ProductBrandsController extends Controller
 
     public function store(Request $req)
     {
+        $helper = new HelperController();
+
     	$brand = new ProductBrands();
     	$brand->name = $req->name;
         $brand->user_id = Auth::id();
 
-    	$fileURL = "";
-
-        if ($req->file('imgInp')) {
-            $file = $req->file('imgInp');
-            $filename = $file->getClientOriginalName();
-            $mainFolder = Carbon::now()->format('F_Y');
-            $subFolder = Carbon::now()->format('d');
-            $destinationPath = 'uploads/brand/' . $mainFolder . "/" . $subFolder;
-            $current_timestamp = Carbon::now()->timestamp;
-
-            if (!File::isDirectory($destinationPath)) {
-                //File::makeDirectory($destinationPath);
-                File::makeDirectory(public_path() . '/' . $destinationPath, 0777, true);
-            }
-
-            $savingFileName = $current_timestamp . "_" . $file->getClientOriginalName();
-
-            $file->move($destinationPath, $savingFileName);
-
-            $fileURL = $destinationPath . "/" . $savingFileName;
-            $brand->image = $fileURL;
-        }
+        $fileURL = $helper->uploadImage($req->file('imgInp'),'uploads/brands/');
+        $brand->image = $fileURL;
 
         $brand->save();
 
@@ -104,35 +86,25 @@ class ProductBrandsController extends Controller
 
     public function update(Request $req, $id)
     {
-
+        $helper = new HelperController();
     	$brand = ProductBrands::findOrFail($id);
 
         $this->authorize('access-settings',$brand);
 
     	$brand->name = $req->name;
 
-    	$fileURL = "";
 
-        if ($req->file('imgInp')) {
-            $file = $req->file('imgInp');
-            $filename = $file->getClientOriginalName();
-            $mainFolder = Carbon::now()->format('F_Y');
-            $subFolder = Carbon::now()->format('d');
-            $destinationPath = 'uploads/brand/' . $mainFolder . "/" . $subFolder;
-            $current_timestamp = Carbon::now()->timestamp;
+        $fileURL = $helper->uploadImage($req->file('imgInp'),'uploads/brands/');
 
-            if (!File::isDirectory($destinationPath)) {
-                //File::makeDirectory($destinationPath);
-                File::makeDirectory(public_path() . '/' . $destinationPath, 0777, true);
-            }
+        if($fileURL){
+            if($brand->image)
+                @unlink($brand->image);
 
-            $savingFileName = $current_timestamp . "_" . $file->getClientOriginalName();
-
-            $file->move($destinationPath, $savingFileName);
-
-            $fileURL = $destinationPath . "/" . $savingFileName;
             $brand->image = $fileURL;
+
         }
+
+
 
         $categoriMap = ProductBrandCategoryMap::where('brand_id', $id)->delete();
 

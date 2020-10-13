@@ -19,7 +19,7 @@
                             @if($fillUp)
                                 @if($user->applyVendor)
                                     @if($user->applyVendor->is_approve == 1 && $user->user_type != 'Customer')
-                                        <a class="text-white" href="{{route('dashboard')}}">
+                                        <a class="text-white" href="{{route('dashboard')}}" target="_blank">
                                             <button class="btn btn-primary w-100 my-2">Go to Seller Dashboard</button>
                                         </a>
                                     @else

@@ -20,7 +20,7 @@
 
                                 <div class="form-group">
                                     <label for="name">Availability Name</label>
-                                    <input type="text" class="form-control" id="name" value="{{$productAvailability->name ?? old('name')}}" placeholder="Enter Availability name" name="name" required="required" data-parsley-error-message="Enter Availability name">
+                                    <input type="text" class="form-control" id="name" value="{{$productAvailability->name ?? old('name')}}" placeholder="Enter Availability name" name="name" maxlength="50" required="required" data-parsley-error-message="Enter Availability name">
                                 </div>
 
                                 <div class="form-group mt-20">

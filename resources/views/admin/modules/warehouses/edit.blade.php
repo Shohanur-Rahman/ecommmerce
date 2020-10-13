@@ -19,17 +19,17 @@
                                 @csrf
                                 <div class="form-group">
                                     <label for="name">Warehouses Name</label>
-                                    <input type="text" class="form-control" id="name" value="{{$warehouse->name ?? old('name')}}" placeholder="Enter Warehouses name" name="name" required="required" data-parsley-error-message="Enter Warehouses name">
+                                    <input type="text" class="form-control" id="name" value="{{$warehouse->name ?? old('name')}}" placeholder="Enter Warehouses name" maxlength="50" name="name" required="required" data-parsley-error-message="Enter Warehouses name">
                                 </div>
 
                                 <div class="form-group">
                                     <label for="name">Warehouses Location</label>
-                                    <input type="text" class="form-control" id="name"  value="{{$warehouse->location ?? old('location')}}" placeholder="Enter Warehouses Location" name="location" required="required" data-parsley-error-message="Enter Warehouses Location">
+                                    <input type="text" class="form-control" id="name"  value="{{$warehouse->location ?? old('location')}}" placeholder="Enter Warehouses Location" maxlength="200" name="location" required="required" data-parsley-error-message="Enter Warehouses Location">
                                 </div>
 
-                                @can('access-setting',$warehouse)
+                                {{--@can('access-setting',$warehouse)--}}
                                     <button type="submit" class="btn btn-success float-right mr-2">Update Warehouse</button>
-                                @endcan
+                                {{--@endcan--}}
                             </form>
 
                             <a href="{{route('warehouses.index')}}" class="btn btn-danger float-left">Back to Warehouses</a>

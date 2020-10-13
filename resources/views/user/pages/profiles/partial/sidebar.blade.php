@@ -28,10 +28,10 @@
                     <a href="{{route('orders-details.index')}}">My Orders</a>
                 </li>
 
-                <li>
+                {{--<li>
                     <i class="fa fa-angle-right mr-2" aria-hidden="true"></i>
                     <a href="#">My Product Reviews</a>
-                </li>
+                </li>--}}
 
                 <li>
                     <i class="fa fa-angle-right mr-2" aria-hidden="true"></i>

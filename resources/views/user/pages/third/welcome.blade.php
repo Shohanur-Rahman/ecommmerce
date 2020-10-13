@@ -2,16 +2,26 @@
 @section('title', "HOBO")
 @section('content')
 
-    <div class="row">
-        <div class="col-lg-12 col-md-12 col-xs-12 wow fadeIn">
-            @php
-                $maleSlider = \App\models\MainSlider::with('category')->where('category_id',14)->get();
-            @endphp
+    @php
+        $allSliders = \App\models\MainSlider::all();
 
-            @include('user.partials.widget.category_slider', ['sliders' => $maleSlider])
+        $allProductCategory = \App\Models\ProductCategory::all();
 
+    @endphp
+
+    @if(count($allSliders) > 0 )
+        <div class="row">
+            <div class="col-lg-12 col-md-12 col-xs-12 wow fadeIn">
+
+                @php
+                    $maleSlider = $allSliders->where('category_id',14)->get();
+                @endphp
+
+                @include('user.partials.widget.category_slider', ['sliders' => $maleSlider])
+
+            </div>
         </div>
-    </div>
+    @endif
 
     <div class="row male-products">
         <?php
@@ -24,22 +34,23 @@
             ->take(50)
             ->get();
 
-        $maleProductCategory = App\models\ProductCategory::where('id', 14)->firstOrFail();
+            $maleProductCategory = $allProductCategory->where('category_name', 'Male')->first();
         ?>
 
         @include('user.partials.widget.product_items', ['categoryProducts' => $maleProducts, 'productCategory' =>$maleProductCategory ])
     </div>
 
+    @if(count($allSliders) > 0 )
+        <div class="row">
+            <div class="col-lg-12 col-md-12 col-xs-12">
+                @php
+                    $femaleSlider = $allSliders->where('category_id',15)->get();
+                @endphp
 
-    <div class="row">
-        <div class="col-lg-12 col-md-12 col-xs-12">
-            @php
-                $femaleSlider = \App\models\MainSlider::with('category')->where('category_id',15)->get();
-            @endphp
-
-            @include('user.partials.widget.category_slider', ['sliders' => $femaleSlider])
+                @include('user.partials.widget.category_slider', ['sliders' => $femaleSlider])
+            </div>
         </div>
-    </div>
+    @endif
 
     <div class="row female-products">
         <?php
@@ -52,22 +63,24 @@
             ->take(50)
             ->get();
 
-        $femaleProductCategory = App\models\ProductCategory::where('id', 15)->firstOrFail();
+        $femaleProductCategory = $allProductCategory->where('category_name', 'Female')->first();
         ?>
 
         @include('user.partials.widget.product_items', ['categoryProducts' => $feMaleProducts, 'productCategory' =>$femaleProductCategory ])
     </div>
 
+    @if(count($allSliders) > 0 )
+        <div class="row">
+            <div class="col-lg-12 col-md-12 col-xs-12">
+                @php
+                    $kidsSlider = $allSliders->where('category_id',16)->get();
+                @endphp
 
-    <div class="row">
-        <div class="col-lg-12 col-md-12 col-xs-12">
-            @php
-                $kidsSlider = \App\models\MainSlider::with('category')->where('category_id',16)->get();
-            @endphp
-
-            @include('user.partials.widget.category_slider', ['sliders' => $kidsSlider])
+                @include('user.partials.widget.category_slider', ['sliders' => $kidsSlider])
+            </div>
         </div>
-    </div>
+
+    @endif
 
     <div class="row">
         <?php
@@ -80,21 +93,24 @@
             ->take(50)
             ->get();
 
-        $kidsProductCategory = App\models\ProductCategory::where('id', 15)->firstOrFail();
+        $kidsProductCategory = $allProductCategory->where('category_name', 'Kids')->first();
         ?>
 
         @include('user.partials.widget.product_items', ['categoryProducts' => $kidsProducts, 'productCategory' =>$kidsProductCategory ])
     </div>
 
-    <div class="row">
-        <div class="col-lg-12 col-md-12 col-xs-12">
-            @php
-                $otherslider = \App\models\MainSlider::with('category')->where('category_id',17)->get();
-            @endphp
 
-            @include('user.partials.widget.category_slider', ['sliders' => $otherslider])
+    @if(count($allSliders) > 0 )
+        <div class="row">
+            <div class="col-lg-12 col-md-12 col-xs-12">
+                @php
+                    $otherslider = $allSliders->where('category_id',17)->get();
+                @endphp
+
+                @include('user.partials.widget.category_slider', ['sliders' => $otherslider])
+            </div>
         </div>
-    </div>
+    @endif
 
     <div class="row">
         <?php
@@ -107,7 +123,7 @@
             ->take(50)
             ->get();
 
-        $othersProductCategory = App\models\ProductCategory::where('id', 15)->firstOrFail();
+        $othersProductCategory = $allProductCategory->where('category_name', 'Others')->first();
         ?>
 
         @include('user.partials.widget.product_items', ['categoryProducts' => $othersProducts, 'productCategory' =>$othersProductCategory ])

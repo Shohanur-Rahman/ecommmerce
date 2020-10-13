@@ -18,13 +18,13 @@
                                 @csrf
                                 <div class="form-group">
                                     <label for="name">Availability Name</label>
-                                    <input type="text" class="form-control" id="name" placeholder="Enter Availability name" name="name" required="required" data-parsley-error-message="Enter Availability name">
+                                    <input type="text" class="form-control" id="name" placeholder="Enter Availability name" name="name" required="required" maxlength="50" data-parsley-error-message="Enter Availability name">
                                 </div>
 
                                 <div class="form-group mt-20">
                                     <label for="name">Availability Days</label>
                                     <div class="input-group bootstrap-touchspin bootstrap-touchspin-injected">
-                                        <input id="demo3" type="number" value="1" name="demo3" class="form-control" min="1" required="required" data-parsley-error-message="Enter Availability Days" data-parsley-errors-container=".qtyError">
+                                        <input id="demo3" type="number" value="1" name="demo3" class="form-control" min="1" required="required" maxlength="200" data-parsley-error-message="Enter Availability Days" data-parsley-errors-container=".qtyError">
                                         <span class="qtyError"></span>
                                     </div>
                                 </div>

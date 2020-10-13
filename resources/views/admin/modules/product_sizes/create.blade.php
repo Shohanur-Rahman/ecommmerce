@@ -18,7 +18,7 @@
                                 @csrf
                                 <div class="form-group">
                                     <label for="size">Product Size</label>
-                                    <input type="text" class="form-control" id="size" placeholder="Enter Product Size" name="size" required="required" data-parsley-error-message="Enter Product Size">
+                                    <input type="text" class="form-control" id="size" placeholder="Enter Product Size" name="size" required="required" maxlength="10" data-parsley-error-message="Enter Product Size">
                                 </div>
 
                                 <button type="submit" class="btn btn-success float-right mr-2">Save Product Size</button>

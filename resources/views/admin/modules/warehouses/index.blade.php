@@ -43,18 +43,18 @@
                                 <td>{{$warehouse->created_at->format('d F Y')}}</td>
 
                                 <td>
-                                    @can('access-setting',$warehouse)
+                                   {{-- @can('access-setting',$warehouse)--}}
                                         <a class="btn btn-outline-primary table-btn btn-sm" href="{{route('warehouses.edit', $warehouse->id)}}" title="Edit"><i class="zmdi zmdi-edit"></i></a>
-                                    @endcan
+                                   {{-- @endcan
 
-                                    @can('access-setting',$warehouse)
+                                    @can('access-setting',$warehouse)--}}
                                         <form class="d-inline"  action="{{route('warehouses.destroy',$warehouse->id)}}" method="post">
                                             @method('DELETE')
                                             @csrf
 
                                             <button class="btn btn-outline-danger table-btn btn-sm"  title="Delete"><i class="zmdi zmdi-delete"></i></button>
                                         </form>
-                                    @endcan
+                                    {{--@endcan--}}
                                 </td>
 
                             </tr>
