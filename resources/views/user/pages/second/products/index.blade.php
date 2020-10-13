@@ -87,14 +87,14 @@ function makeURL($queryString, $key, $value)
                     @endif
                     <div class="list-filter mt-43">
                         <div class="section-title">
-                            <h3>Brands</h3>
+                            <h3>Brands </h3>
                         </div>
                         <ul class="list-none mt-25">
-                            <li>
+                            <li class="{{request()->query('brand') == 0 ? 'active' : ''}}" data-id="0">
                                 <a href="{{route('product.index', $categoryDetails->slug).generateQueryString('brand', 0)}}">All Brands</a>
                             </li>
                             @foreach($brands as $brand)
-                                <li>
+                                <li class="{{request()->query('brand') == $brand->id ? 'active' : ''}}" data-id="{{$brand->id}}">
                                     <a href="{{route('product.index', $categoryDetails->slug).generateQueryString('brand', $brand->id)}}">{{$brand->name}}</a>
                                 </li>
                             @endforeach
@@ -105,8 +105,11 @@ function makeURL($queryString, $key, $value)
                             <h3>Colors</h3>
                         </div>
                         <ul class="list-none mt-25">
+                            <li class="{{request()->query('color') == 0 ? 'active' : ''}}" data-id="0">
+                                <a href="{{route('product.index', $categoryDetails->slug).generateQueryString('color', 0)}}">All Colors</a>
+                            </li>
                             @foreach($colors as $color)
-                                <li>
+                                <li class="{{request()->query('color') == $color->id ? 'active' : ''}}" data-id="{{$color->id}}">
                                     <a href="{{route('product.index', $categoryDetails->slug).generateQueryString('color', $color->id)}}">{{$color->color}}</a>
                                 </li>
                             @endforeach
@@ -118,8 +121,11 @@ function makeURL($queryString, $key, $value)
                             <h3>Sizes</h3>
                         </div>
                         <ul class="list-none mt-25">
+                            <li class="{{request()->query('size') == 0 ? 'active' : ''}}" data-id="0">
+                                <a href="{{route('product.index', $categoryDetails->slug).generateQueryString('size', 0)}}">All Sizes</a>
+                            </li>
                             @foreach($sizes as $size)
-                                <li>
+                                <li class="{{request()->query('size') == $size->id ? 'active' : ''}}" data-id="{{$size->id}}">
                                     <a href="{{route('product.index', $categoryDetails->slug).generateQueryString('size', $size->id)}}">{{$size->size}}</a>
                                 </li>
                             @endforeach

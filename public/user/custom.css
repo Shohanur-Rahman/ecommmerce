@@ -341,3 +341,7 @@ textarea:-moz-placeholder
 .product-details-desc ul li {
     margin-bottom: 0px;
 }
+.list-filter ul li.active a {
+    color: #fff;
+    background: #1467c1;
+}
