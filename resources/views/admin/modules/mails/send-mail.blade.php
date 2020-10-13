@@ -17,6 +17,7 @@
                 <div class="admi-mail-list mb-30">
                     <!-- Single Mail -->
                     @foreach($mailAddresses as $mailAddress)
+
                         <div class="admi-mail-item">
                             <!-- Admi-mail-checkbox -->
                             <div class="admi-mail-checkbox">
@@ -48,6 +49,7 @@
                     @endforeach
                 </div>
             </form>
+            {{ $mailAddresses->links() }}
         </div>
 
 

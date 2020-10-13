@@ -110,7 +110,7 @@ class MailController extends Controller
 
     public function sendMail()
     {
-        $mailAddresses = MailAddress::with('mail')->where('status', 1)->get();
+        $mailAddresses = MailAddress::with('mail')->where('status', 1)->paginate(15);
 
         return view('admin.modules.mails.send-mail', compact('mailAddresses'));
     }
@@ -118,11 +118,13 @@ class MailController extends Controller
     public function draftMail()
     {
 
-        $mails = Mail::whereHas('mailAddresses', function ($q) {
+        $query = Mail::whereHas('mailAddresses', function ($q) {
             $q->where('status', 0);
-        })->get();
+        });;
 
-        $mails->each(function ($mail){
+        $mails = $query->paginate(2);
+
+        $query->get()->each(function ($mail){
             if($mail->read_at == 0){
                 $mail->update(['read_at'=>1]);
             }
@@ -184,9 +186,10 @@ class MailController extends Controller
 
     public function trashIndex()
     {
-        $trashMails = MailAddress::onlyTrashed()->where('status', 1)->with('mail')->get();
+        $query = MailAddress::onlyTrashed()->where('status', 1)->with('mail');
+        $trashMails = $query->paginate(15);;
 
-        $trashMails->each(function ($trashMail){
+        $query->get()->each(function ($trashMail){
             if($trashMail->read_at == 0){
                 $trashMail->update(['read_at'=>1]);
             }

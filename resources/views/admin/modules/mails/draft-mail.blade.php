@@ -42,6 +42,6 @@
                 </div>
             @endforeach
         </div>
-
     </form>
+    {{ $mails->links() }}
 @endsection
