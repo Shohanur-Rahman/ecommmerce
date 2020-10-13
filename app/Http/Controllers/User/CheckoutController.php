@@ -53,12 +53,11 @@ class CheckoutController extends Controller
 
         $data = [
             'phone' => $checkoutData['phone'],
-            'country' => $checkoutData['country'],
-            'state' => $checkoutData['state'],
-            'house' => $checkoutData['house'],
-            'road' => $checkoutData['road'],
+            'line1' => $checkoutData['line1'],
+            'line2' => $checkoutData['line2'],
             'city' => $checkoutData['city'],
             'postcode' => $checkoutData['postcode'],
+            'state' => $checkoutData['state'],
         ];
 
         if($userProfileCheck){
@@ -102,6 +101,7 @@ class CheckoutController extends Controller
                 'total_amount' => $totalCost,
                 'paid_amount' => $paymentResult->transactions[0]->amount->total,
                 'status' => 'New',
+                'seller_id' => 0,
             ]);
 
             $mailCartList = $cartItems;

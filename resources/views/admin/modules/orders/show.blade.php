@@ -114,12 +114,14 @@
                                     <address class="font-16">
                                         {{$order->user->name}}<br>
                                         {{$order->user->email}}<br>
-                                        {{$order->user->userProfile->city}}<br>
-                                        {{$order->user->userProfile->house}}
-                                        ,{{$order->user->userProfile->road}},{{$order->user->userProfile->state}}<br>
-                                        {{$order->user->userProfile->country}}<br>
-                                        Phone: {{$order->user->userProfile->phone}}<br>
-                                        Describe Address: {{$order->user->userProfile->describe_address}}<br>
+
+                                        {!!html_entity_decode($order->user->userProfile->line1 ? $order->user->userProfile->line1 . '<br/>' : '')!!}
+                                        {!!html_entity_decode($order->user->userProfile->line2 ? $order->user->userProfile->line2 . '<br/>' : '')!!}
+                                        {!!html_entity_decode($order->user->userProfile->city ? $order->user->userProfile->city . '<br/>' : '')!!}
+                                        {!!html_entity_decode($order->user->userProfile->state ? $order->user->userProfile->state . '<br/>' : '')!!}
+                                        {!!html_entity_decode($order->user->userProfile->postcode ? $order->user->userProfile->postcode . '<br/>' : '')!!}
+                                        {!!html_entity_decode($order->user->userProfile->describe_address ? $order->user->userProfile->describe_address . '<br/>' : '')!!}
+
                                     </address>
                                 </div>
                             </div>
@@ -218,14 +220,15 @@
                                     <h4 class="card-title mb-3">Shipping Address</h4>
 
                                     <address class="font-16">
-                                        {{$order->shippingAddress->name}}<br>
-                                        {{$order->shippingAddress->email}}<br>
-                                        {{$order->shippingAddress->city}}<br>
-                                        {{$order->shippingAddress->house}}
-                                        ,{{$order->shippingAddress->road}},{{$order->shippingAddress->state}}<br>
-                                        {{$order->shippingAddress->country}}<br>
-                                        Phone: {{$order->shippingAddress->phone}}<br>
-                                        Describe Address: {{$order->shippingAddress->describe_address}}<br>
+                                        {!!html_entity_decode($order->shippingAddress->title ? $order->shippingAddress->title . '' : '')!!}
+
+                                        {!!html_entity_decode($order->shippingAddress->line1 ? $order->shippingAddress->line1 . '<br/>' : '')!!}
+                                        {!!html_entity_decode($order->shippingAddress->line2 ? $order->shippingAddress->line2 . '<br/>' : '')!!}
+                                        {!!html_entity_decode($order->shippingAddress->city ? $order->shippingAddress->city . '<br/>' : '')!!}
+                                        {!!html_entity_decode($order->shippingAddress->state ? $order->shippingAddress->state . '<br/>' : '')!!}
+                                        {!!html_entity_decode($order->shippingAddress->postcode ? $order->shippingAddress->postcode . '<br/>' : '')!!}
+                                        {!!html_entity_decode($order->shippingAddress->describe_address ? $order->shippingAddress->describe_address . '<br/>' : '')!!}
+
                                     </address>
                                 </div>
                             </div>
