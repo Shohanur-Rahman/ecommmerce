@@ -42,6 +42,18 @@
                         </ul>
                     </li>
 
+                    <li class="treeview {{ request()->routeIs('orders.*','ecom-settings.*') ? 'active' : '' }}">
+                        <a href="javascript:void(0)"><i class="zmdi zmdi-settings"></i> <span>Shop</span> <i class="fa fa-angle-right"></i></a>
+                        <ul class="treeview-menu ">
+                            <li><a class=" {{activeLink('orders')}}" href="{{route('orders.index')}}">- Ordered</a></li>
+
+                            @if( $type !== 'Customer' && $type !== 'Vendor')
+                                <li><a class=" {{activeLink('ecom-settings')}}" href="{{route('ecom-settings.index')}}">- E-com Settings</a></li>
+                            @endif
+
+                        </ul>
+                    </li>
+
                     @if( $type !== 'Customer' && $type !== 'Vendor')
                         <li class="treeview {{ request()->routeIs('main-sliders.*') ? 'active' : '' }}" >
                             <a href="javascript:void(0)"><i class="zmdi zmdi-collection-folder-image"></i> <span>Sliders</span> <i class="fa fa-angle-right"></i></a>
@@ -76,17 +88,7 @@
                         </li>
                     @endif
 
-                    <li class="treeview {{ request()->routeIs('orders.*','ecom-settings.*') ? 'active' : '' }}">
-                        <a href="javascript:void(0)"><i class="zmdi zmdi-settings"></i> <span>Shop</span> <i class="fa fa-angle-right"></i></a>
-                        <ul class="treeview-menu ">
-                            <li><a class=" {{activeLink('orders')}}" href="{{route('orders.index')}}">- Ordered</a></li>
 
-                            @if( $type !== 'Customer' && $type !== 'Vendor')
-                                <li><a class=" {{activeLink('ecom-settings')}}" href="{{route('ecom-settings.index')}}">- E-com Settings</a></li>
-                            @endif
-
-                        </ul>
-                    </li>
 
                     @if( $type !== 'Customer' && $type !== 'Vendor')
                         <li><a  class="{{activeLink('mails')}}" href="{{route('mails.index')}}"><i class="zmdi zmdi-view-web"></i> <span>Mail</span></a></li>
