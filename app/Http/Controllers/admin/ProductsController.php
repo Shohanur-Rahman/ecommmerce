@@ -31,11 +31,10 @@ class ProductsController extends HelperController
         if (strtolower($userType) == "vendor") {
             $products = Products::with('user')->where('user_id', Auth::id())->get();
 
-        }else{
+        } else {
             $products = Products::with('user')->get();
 
         }
-
 
 
         return view('admin.modules.products.index', compact("products"));
@@ -506,6 +505,43 @@ class ProductsController extends HelperController
         }
 
         return redirect(route('products.index'))->with('success', 'Your product has been successfully updated.');
+
+    }
+
+    public function destroy($id)
+    {
+        /*
+         *
+         * Delete product galleries
+         *
+         */
+        $imgGallery = ProductGalleryMap::where('product_id', $id)->get();
+        $deleteGalery = ProductGalleryMap::where('product_id', $id)->delete();
+        foreach ($imgGallery as $key) {
+            @unlink($key->image_url);
+        }
+
+
+        /*
+        *
+        *Delete existing categories**/
+        $deleteCat = ProductCategoryMap::where('product_id', $id)->delete();
+
+        /*
+       *
+       *Delete existing tags*/
+        $deleteTag = ProductTagMap::where('product_id', $id)->delete();
+
+        /*Delete existing tags*/
+        $deleteColor = ProductColorMap::where('product_id', $id)->delete();
+
+        /*Delete existing tags*/
+        $deleteColor = ProductSizeMap::where('product_id', $id)->delete();
+
+        $product= Products::findOrFail($id);
+
+        $product->delete();
+        return redirect(route('products.index'))->with('success', 'Your product has been successfully deleted.');
 
     }
 }
