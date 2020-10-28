@@ -20,6 +20,10 @@ Route::get('/home', 'HomeController@index')->name('home');
 
 Route::get('/test', 'TestController@test_page')->name('test_page');
 
+
+Route::get('login/facebook', 'UserController@redirectToProvider');
+Route::get('login/facebook/callback', 'UserController@handleProviderCallback');
+
 Route::get('/login','UserController@login')->name('login');
 Route::post('/login','UserController@show')->name('show');
 Route::get('/register','UserController@register')->name('register');

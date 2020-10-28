@@ -14,6 +14,7 @@ use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Session;
 use Illuminate\Support\Str;
+use Laravel\Socialite\Facades\Socialite;
 
 class UserController extends Controller
 {
@@ -60,7 +61,7 @@ class UserController extends Controller
             'avatar' => $data['phone']
         ])->create();*/
 
-       //dd($user);
+        //dd($user);
 
 
         $email = $data['email'];
@@ -90,14 +91,14 @@ class UserController extends Controller
         $remember_me = $request['remember'] ? true : false;
         $attempts = ['email' => $request['email'], 'password' => $request['password'], 'is_active' => 1];
 
-        if(Auth::attempt($attempts, $remember_me) == false){
+        if (Auth::attempt($attempts, $remember_me) == false) {
 
             $attemptActivate = ['email' => $request['email'], 'password' => $request['password']];
-            if(Auth::attempt($attemptActivate, $remember_me) == true){
+            if (Auth::attempt($attemptActivate, $remember_me) == true) {
 
                 return redirect()->back()->with('error-message', 'Your account has been disabled. Please contact your administrator.');
             }
-        }else{
+        } else {
 
             $this->wishLists();
             return redirect(route('profiles.index'));
@@ -203,8 +204,30 @@ class UserController extends Controller
                 ->get();
 
             $newWishList->each(function ($wishList) {
-                $wishList->update(['user_id' => Auth::id(),'session_id'=>null]);
+                $wishList->update(['user_id' => Auth::id(), 'session_id' => null]);
             });
         }
+    }
+
+
+    public function redirectToProvider()
+    {
+        return Socialite::driver('facebook')->redirect();
+
+    }
+
+    public function handleProviderCallback()
+    {
+
+        try {
+            $socialUser = Socialite::driver('facebook')->user();
+        } catch (\Exception $ex) {
+            return redirect()->route('app.home');
+        }
+        //$user = Socialite::driver('facebook')->user();
+
+        $socialProvider = $socialProvider::where('provider_id', $socialUser->getId())->first();
+
+        // $user->token;
     }
 }
