@@ -15,6 +15,9 @@ use PayPal\Api\Payer;
 use PayPal\Api\Payment;
 use PayPal\Api\RedirectUrls;
 use PayPal\Api\Transaction;
+use PayPal\Api\Refund;
+use PayPal\Api\RefundRequest;
+use PayPal\Api\Sale;
 
 use PayPal\Api\PaymentExecution;
 use PHPUnit\TextUI\ResultPrinter;
@@ -92,7 +95,7 @@ class PaymentController extends Controller
             ->setInvoiceNumber(uniqid());
 
 
-        $baseUrl = "http://localhost/ecommmerce";
+        $baseUrl = env('APP_URL');
 
 
         $redirectUrls = new RedirectUrls();
@@ -219,4 +222,5 @@ class PaymentController extends Controller
     {
 
     }
+
 }

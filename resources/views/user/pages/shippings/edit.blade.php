@@ -41,15 +41,15 @@
 
 
                         <div class="form-group col-4">
-                            <label class="float-left" for="postcode">City</label>
+                            <label class="float-left" for="city">City</label>
                             <input class="form-control" type="text" name="city" id="city"
                                    value="{{$shippingAddress->city}}"
-                                   placeholder="Enter PostCode Number" required="required"
-                                   data-parsley-error-message="Enter PostCode Number">
+                                   placeholder="City" required="required"
+                                   data-parsley-error-message="Enter your city">
                         </div>
 
                         <div class="form-group col-4">
-                            <label class="float-left" for="postcode">State</label>
+                            <label class="float-left" for="state">State</label>
                             <select required="" name="state" id="state" class="form-control" value="{{$shippingAddress->state}}">
                                 <option value=""></option>
                                 <option value="AL">Alabama (AL)</option>
@@ -110,8 +110,8 @@
                             <label class="float-left" for="postcode">zipcode</label>
                             <input class="form-control zipcode" type="text" name="postcode" id="postcode"
                                    value="{{$shippingAddress->postcode}}"
-                                   placeholder="Enter PostCode Number" required="required"
-                                   data-parsley-error-message="Enter PostCode Number">
+                                   placeholder="Enter zipcode" required="required"
+                                   data-parsley-error-message="Enter your zipcode">
                         </div>
 
 

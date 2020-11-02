@@ -32,7 +32,39 @@
                                                        <p class="mb-0 font-weight-bold font-15">NID Number : <span class="text-dark font-14">{{$profile->user->userProfile->nid}}</span></p>
                                                        <img src="{{asset($profile->user->userProfile->nid_image)}}" alt="" style="width: 180px; height: 120px">
 
-                                                       <div class="mt-5">
+
+                                                       <div class="mt-3">
+                                                           <div class="">
+                                                               <h3>Company Information</h3>
+                                                           </div>
+                                                           <div class="">
+                                                               <div class="">
+                                                                   <div class="">
+                                                                       <div class="d-flex">
+                                                                           @if($company->company_img)
+                                                                           <img class="rounded-circle" style="width: 40px;height: 40px" src="{{asset($company->company_img)}}" alt="">
+                                                                           
+                                       @else
+                                       <p class="text-danger">Company logo not found</p>
+                                                                           @endif
+                                                                           <h3 class="ml-2">{{$company->company_name}}</h3>
+                                                                       </div>
+
+                                                                       <p> {{$company->company_number}}<br> </p>
+                                                                       <address>
+                                                                           {!!html_entity_decode($company->line1 ? $company->line1 . ',' : '')!!}
+                                                                           {!!html_entity_decode($company->line2 ? $company->line2 . ',' : '')!!}
+                                                                           {!!html_entity_decode($company->state ? $company->state . ',' : '')!!}
+                                                                           {!!html_entity_decode($company->city ? $company->city . '<br/>' : '')!!}
+                                                                           {!!html_entity_decode($company->postcode ? $company->postcode . '<br/>' : '')!!}
+                                                                           {!!html_entity_decode($company->describe_address ? $company->describe_address . '<br/>' : '')!!}
+                                                                       </address>
+                                                                   </div>
+                                                               </div>
+                                                           </div>
+                                                       </div>
+
+                                                       <div class="mt-2">
                                                            <form action="{{route('vendor-applications.update',$profile->id)}}" method="post">
                                                                @method('PATCH')
                                                                @csrf
@@ -51,18 +83,19 @@
                                                    </div>
                                                </div>
                                             </div>
-                                        </div>s
+                                        </div>
 
                                         <div class="">
                                             <h5>Contact Information</h5>
                                             <address>
                                                 {{$profile->user->name}}<br>
                                                 {{$profile->user->email}}<br>
-                                                {{$profile->user->userProfile->city}}<br>
-                                                {{$profile->user->userProfile->house}},{{$profile->user->userProfile->road}},{{$profile->user->userProfile->state}}<br>
-                                                {{$profile->user->userProfile->country}}<br>
-                                                Secondary Phone: {{$profile->user->userProfile->phone}}<br>
-                                                Describe Address: {{$profile->user->userProfile->describe_address}}<br>
+                                               {!!html_entity_decode($profile->user->userProfile->line1 ? $profile->user->userProfile->line1 . '<br/>' : '')!!}
+{!!html_entity_decode($profile->user->userProfile->line2 ? $profile->user->userProfile->line2 . '<br/>' : '')!!}
+{!!html_entity_decode($profile->user->userProfile->city ? Auth::user()->userProfile->city . '<br/>' : '')!!}
+{!!html_entity_decode($profile->user->userProfile->state ? Auth::user()->userProfile->state . '<br/>' : '')!!}
+{!!html_entity_decode($profile->user->userProfile->postcode ? $profile->user->userProfile->postcode . '<br/>' : '')!!}
+{!!html_entity_decode($profile->user->userProfile->describe_address ? $profile->user->userProfile->describe_address . '<br/>' : '')!!}
                                             </address>
                                         </div>
                                     </div>

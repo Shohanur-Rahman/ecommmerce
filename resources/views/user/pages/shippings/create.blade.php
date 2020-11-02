@@ -43,11 +43,11 @@
                         </div>
 
                         <div class="form-group col-4">
-                            <label class="float-left" for="postcode">City</label>
+                            <label class="float-left" for="city">City</label>
                             <input class="form-control" type="text" name="city" id="city"
                                    value="{{old('city')}}"
-                                   placeholder="Enter PostCode Number" required="required"
-                                   data-parsley-error-message="Enter PostCode Number">
+                                   placeholder="City" required="required"
+                                   data-parsley-error-message="Enter your city">
                         </div>
 
                         <div class="form-group col-4">
@@ -112,8 +112,8 @@
                             <label class="float-left" for="postcode">Zipcode</label>
                             <input class="form-control zipcode" type="text" name="postcode" id="postcode"
                                    value=""
-                                   placeholder="Enter PostCode Number" required="required"
-                                   data-parsley-error-message="Enter PostCode Number">
+                                   placeholder="Enter zipcode" required="required"
+                                   data-parsley-error-message="Enter your zipcode">
                         </div>
 
 

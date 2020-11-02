@@ -235,6 +235,7 @@ class ProductController extends Controller
 
         $productReviews = ProductReview::where('product_id', $product->id)->get();
 
+
         return view('user.pages.products.details', compact('product', 'categoryList', 'galleries', 'productReviews'));
     }
 

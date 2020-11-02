@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\admin;
 
 use App\Http\Controllers\Controller;
+use App\Models\Company;
 use App\Models\User\ApplyVendor;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Mail;
@@ -21,8 +22,9 @@ class VendorApplicationController extends Controller
 
 
         $profile = $applyVendor->with('user.userProfile')->where('id',$applyVendor->id)->first();
+        $company = Company::where('user_id',$applyVendor->user_id)->first();
 
-        return view('admin.modules.vendor_applications.show',compact('profile'));
+        return view('admin.modules.vendor_applications.show',compact('profile','company'));
 
 
     }

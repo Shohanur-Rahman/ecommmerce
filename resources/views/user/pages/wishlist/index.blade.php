@@ -159,11 +159,6 @@
                                 </tr>
 
                                 <tr>
-                                    <td>Coupon Discount:</td>
-                                    <td><span>$0.00</span></td>
-                                </tr>
-
-                                <tr>
                                     <td>Shipping Charge:</td>
                                     <td>@if($shippingCharge <= 0) Free Delivery @else ${{$shippingCharge}} @endif</td>
                                 </tr>

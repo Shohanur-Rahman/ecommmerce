@@ -73,7 +73,7 @@
                                         <label>PHONE</label>
                                     </div>
                                     <div class="col-lg-9">
-                                        <input type="text" name="phone"
+                                        <input type="text" name="phone" class="phone-formate"
                                                value="{{$user->userProfile->phone ?? old('phone')}}"
                                                placeholder="Enter your phone number" maxlength="15" required
                                                data-parsley-required-message="Phone filed is required">
@@ -112,8 +112,8 @@
                                                 <label class="float-left" for="postcode">City</label>
                                                 <input class="form-control" type="text" name="city" id="city"
                                                        value="{{$user->userProfile->city}}"
-                                                       placeholder="Enter PostCode Number" required="required"
-                                                       data-parsley-error-message="Enter PostCode Number">
+                                                       placeholder="City" required="required"
+                                                       data-parsley-error-message="Enter your city">
                                             </div>
 
                                             <div class="form-group col-4">
@@ -182,8 +182,8 @@
                                                 <input class="form-control zipcode" type="text" name="postcode"
                                                        id="postcode"
                                                        value="{{$user->userProfile->postcode}}"
-                                                       placeholder="Enter PostCode Number" required="required"
-                                                       data-parsley-error-message="Enter PostCode Number">
+                                                       placeholder="Enter zipcode" required="required"
+                                                       data-parsley-error-message="Enter your zipcode">
                                             </div>
                                         </div>
                                     </div>

@@ -2,7 +2,9 @@
 
 namespace App\Http\Controllers\User;
 
+use App\Http\Controllers\admin\HelperController;
 use App\Http\Controllers\Controller;
+use App\Models\User\UserProfile;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Mail;
@@ -23,24 +25,22 @@ class ApplyVendorController extends Controller
             $message->to($email)->subject('Verify Your Email Code');
         });
 
-        return redirect(route('apply-vendors.create'));
+        return redirect(route('verify-code.create'));
     }
 
-    public function create()
+    public function verifyCodeCreate()
     {
 
         $code  = Session::get('verify_code');
 
         if(Session::has('verify_code')){
-            return view('user.pages.apply-vendors.create', compact('code'));
+            return view('user.pages.apply-vendors.verify_code', compact('code'));
         }
-
-
 
         return redirect(route('profiles.index'));
     }
 
-    public function store(Request $request)
+    public function verifyCodeStore(Request $request)
     {
         $user = Auth::user();
         $code = Session::get('verify_code');

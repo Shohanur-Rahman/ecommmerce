@@ -3,6 +3,7 @@
 namespace App;
 
 use App\Models\ProductCategory;
+use App\Models\SocialProvider;
 use App\Models\User\ApplyVendor;
 use App\Models\User\Order;
 use App\Models\User\ShippingAddress;
@@ -77,5 +78,10 @@ class User extends Authenticatable
 
     public function orders(){
         return $this->hasMany(Order::class,'customer_id');
+    }
+
+    public function socialProviders()
+    {
+        return $this->hasMany(SocialProvider::class);
     }
 }

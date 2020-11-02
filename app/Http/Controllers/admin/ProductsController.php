@@ -4,6 +4,7 @@ namespace App\Http\Controllers\admin;
 
 use App\Http\Controllers\Controller;
 use App\Http\Controllers\admin\HelperController;
+use App\Models\DeliveryTime;
 use App\Models\ProductColorMap;
 use App\Models\ProductSizeMap;
 use Illuminate\Http\Request;
@@ -29,10 +30,10 @@ class ProductsController extends HelperController
         $userType = Auth::user()->user_type;
 
         if (strtolower($userType) == "vendor") {
-            $products = Products::with('user')->where('user_id', Auth::id())->get();
+            $products = Products::orderBy('id','desc')->with('user')->where('user_id', Auth::id())->get();
 
         } else {
-            $products = Products::with('user')->get();
+            $products = Products::orderBy('id','desc')->with('user')->get();
 
         }
 
@@ -50,8 +51,8 @@ class ProductsController extends HelperController
         $tags = ProductTags::all();
         $productSizes = ProductSize::all();
         $productColors = ProductColor::all();
-
-        return view('admin.modules.products.create', compact("warehouses", "avalabilitites", "categories", "brands", "tags", "productSizes", "productColors"));
+        $deliveries = DeliveryTime::all();
+        return view('admin.modules.products.create', compact("warehouses", "avalabilitites", "categories", "brands", "tags", "productSizes", "productColors",'deliveries'));
     }
 
     public function edit($id)
@@ -67,7 +68,7 @@ class ProductsController extends HelperController
         $tags = ProductTags::all();
         $productSizes = ProductSize::all();
         $productColors = ProductColor::all();
-
+        $deliveries = DeliveryTime::all();
 
         $categoriMap = ProductCategoryMap::where('product_id', $id)->get();
         $existingCatMap = "";
@@ -118,7 +119,7 @@ class ProductsController extends HelperController
         }
 
 
-        return view('admin.modules.products.edit', compact("warehouses", "avalabilitites", "categories", "brands", "tags", "productSizes", "productColors", "aProduct", "existingCatMap", "existingTagMap", "galleryArray", 'existingColorMap', 'existingSizeMap'));
+        return view('admin.modules.products.edit', compact("warehouses", "avalabilitites", "categories", "brands", "tags", "productSizes", "productColors", "aProduct", "existingCatMap", "existingTagMap", "galleryArray", 'existingColorMap', 'existingSizeMap','deliveries'));
     }
 
     public function copy($id)
@@ -134,7 +135,7 @@ class ProductsController extends HelperController
         $tags = ProductTags::all();
         $productSizes = ProductSize::all();
         $productColors = ProductColor::all();
-
+        $deliveries = DeliveryTime::all();
 
         $categoriMap = ProductCategoryMap::where('product_id', $id)->get();
         $existingCatMap = "";
@@ -155,6 +156,25 @@ class ProductsController extends HelperController
                 $existingTagMap = $existingTagMap . "," . $key->tag_id;
         }
 
+        $colorMap = ProductColorMap::where('product_id', $id)->get();
+        $existingColorMap = "";
+        foreach ($colorMap as $key) {
+            if ($existingColorMap == "")
+                $existingColorMap = $key->color_id;
+            else
+                $existingColorMap = $existingColorMap . "," . $key->color_id;
+        }
+
+        $sizeMap = ProductSizeMap::where('product_id', $id)->get();
+
+        $existingSizeMap = "";
+        foreach ($sizeMap as $key) {
+            if ($existingSizeMap == "")
+                $existingSizeMap = $key->size_id;
+            else
+                $existingSizeMap = $existingSizeMap . "," . $key->size_id;
+        }
+
 
         $imgGallery = ProductGalleryMap::where('product_id', $id)->get();
         $galleryArray = "";
@@ -166,7 +186,7 @@ class ProductsController extends HelperController
         }
 
 
-        return view('admin.modules.products.copy', compact("warehouses", "avalabilitites", "categories", "brands", "tags", "productSizes", "productColors", "aProduct", "existingCatMap", "existingTagMap", "galleryArray"));
+        return view('admin.modules.products.copy', compact("warehouses", "avalabilitites", "categories", "brands", "tags", "productSizes", "productColors", "aProduct", "existingCatMap", "existingTagMap", "galleryArray", 'existingColorMap', 'existingSizeMap','deliveries'));
     }
 
     public function store(Request $request)
@@ -198,6 +218,10 @@ class ProductsController extends HelperController
         $product->old_price = $request->old_price;
         $product->new_price = $request->new_price;
         $product->shipping_charge = $request->shipping_charge;
+        $product->delivery_id = $request->delivery_id;
+        $product->height = $request->height;
+        $product->width = $request->width;
+        $product->weight = $request->weight;
         $product->is_published = $request->has('is_published');
         $product->is_new = $request->has('is_new');
         $product->is_feature = $request->has('is_feature');
@@ -235,7 +259,7 @@ class ProductsController extends HelperController
         /*
         *
         * Upload featured image and return path url */
-        $fileURL = $helper->uploadImage($request->file('imgInp'), 'uploads/products/u_' . Auth::id() . "/", 300, 300);
+        $fileURL = $helper->uploadImage($request->file('imgInp'), 'uploads/products/u_' . Auth::id() . "/", 220, 220);
 
         $product->featured_image = $fileURL;
 
@@ -341,6 +365,10 @@ class ProductsController extends HelperController
         $product->old_price = $request->old_price;
         $product->new_price = $request->new_price;
         $product->shipping_charge = $request->shipping_charge;
+        $product->height = $request->height;
+        $product->width = $request->width;
+        $product->weight = $request->weight;
+        $product->delivery_id = $request->delivery_id;
         $product->is_published = $request->has('is_published');
         $product->is_new = $request->has('is_new');
         $product->is_feature = $request->has('is_feature');
@@ -379,7 +407,7 @@ class ProductsController extends HelperController
         /*
         *
         * Upload featured image and return path url */
-        $fileURL = $helper->uploadImage($request->file('imgInp'), 'uploads/products/u_' . Auth::id() . "/", 300, 300);
+        $fileURL = $helper->uploadImage($request->file('imgInp'), 'uploads/products/u_' . Auth::id() . "/", 220, 220);
 
 
         /*

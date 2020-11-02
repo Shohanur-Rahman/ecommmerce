@@ -1,6 +1,8 @@
 @php
     $brandSliders = \App\Models\ProductBrands::where('is_show',true)->get();
 @endphp
+
+@if(count($brandSliders) > 0)
 <div class="container-fluid mt-60">
     <div class="brands-area">
         <div class="row">
@@ -16,3 +18,4 @@
         </div>
     </div>
 </div>
+@endif

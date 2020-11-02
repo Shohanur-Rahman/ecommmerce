@@ -145,6 +145,8 @@ textarea.parsley-error {
 
 .product-item-listed-image {
     max-height: 220px;
+    margin: 0 auto;
+    display: block;
     overflow: hidden;
     transition: .3s;
 }
@@ -358,4 +360,48 @@ textarea:-moz-placeholder
 
 .row-eq-height  [class^=col]:first-of-type .product-single {
     flex-grow: 1;
+}
+.fn-influencer {
+    background: #ffe8e5;
+    padding: 40px 0px;
+    overflow: hidden;
+}
+.rating-info-box{
+    width: 100%;
+}
+.rating-info img {
+    height: 50px;
+    width: 50px;
+}
+.rating-list ul.list-none {
+    border: 1px solid #ddd;
+    margin-top: 15px;
+    padding: 15px;
+}
+
+.upload-preview img {
+    max-height: 50px;
+}
+
+.slick-initialized .slick-slide img {
+    max-height: 70px;
+}
+
+.product-title h4 a {
+    color: #252525;
+    display: block;
+    overflow: hidden;
+    white-space: nowrap;
+}
+
+a.faq-titles {
+    display: block;
+    border-bottom: 1px solid #ccc;
+    padding: 5px;
+    margin-bottom: 10px;
+    cursor: pointer;
+}
+
+.modal-textbox ul, .modal-textbox ol {
+    padding-left: 15px;
 }

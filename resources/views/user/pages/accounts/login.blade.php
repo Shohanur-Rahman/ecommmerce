@@ -9,8 +9,14 @@
                 <div class="middle-box">
                     <div class="card">
                         <div class="card-body p-4">
-
-                            <x-inform-users></x-inform-users>
+                            @if(session()->get("error-message"))
+                                    <div class="alert alert-danger alert-dismissible bg-danger text-white border-0 fade show" role="alert">
+                                        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                                            <span aria-hidden="true">×</span>
+                                        </button>
+                                        <strong>{{session()->get("error-message")}}</strong>
+                                    </div>
+                                @endif
                             <h4 class="font-24 mb-1">Login.</h4>
                             <p class="mb-30">Sign in to your account to continue.</p>
 
@@ -56,6 +62,11 @@
                             </form>
 
                             <!-- end card -->
+                        </div>
+
+                        <div class="card-footer">
+                            <a href="{{route('socialite.provider', 'facebook')}}" class="btn btn-info">LOGIN WITH FACEBOOK</a>
+                            <a href="{{route('socialite.provider', 'google')}}" class="btn btn-warning">LOGIN WITH GOOGLE</a>
                         </div>
                     </div>
                 </div>

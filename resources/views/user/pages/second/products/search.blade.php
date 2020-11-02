@@ -188,7 +188,7 @@ function makeURL($queryString, $key, $value)
                                     $ratingCount = \App\Models\Products::ratingCount($product->id)
                                 @endphp
                                 <div
-                                    class="col-xl-4 col-md-4 col-sm-6 product-item">
+                                    class="col-xl-4 col-md-4 col-sm-6 product-item" title="{{$product->title}}">
                                     <div class="product-single wow {{ ($itemCount % 2) != 0 ?'slideInDown': 'slideInUp'}}">
                                         <div class="product-title">
                                             <h4>

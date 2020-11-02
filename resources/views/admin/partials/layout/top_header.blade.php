@@ -188,7 +188,7 @@
                     <div class="user-profile-area">
                         <a href="{{route('app.home')}}" target="_blank" class="dropdown-item"><i class="zmdi zmdi-globe profile-icon" aria-hidden="true"></i> Visit Site</a>
                         <a href="{{route('admin-profiles.create')}}" class="dropdown-item"><i class="zmdi zmdi-account profile-icon" aria-hidden="true"></i> My profile</a>
-                        <a href="#" class="dropdown-item"><i class="zmdi zmdi-email-open profile-icon" aria-hidden="true"></i> Messages</a>
+                        
                         <a href="{{route('admin-change-password.edit')}}" class="dropdown-item"><i class="zmdi zmdi-brightness-7 profile-icon" aria-hidden="true"></i> Account settings</a>
                         <a href="{{ route('logout') }}" class="dropdown-item" onclick="event.preventDefault(); document.getElementById('logout-form').submit();"><i class="ti-unlink profile-icon" aria-hidden="true"></i> Sign-out</a>
                              <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">

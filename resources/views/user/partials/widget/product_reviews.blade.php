@@ -1,14 +1,15 @@
 <div class="row show m-2">
+    @if(count($productReviews) > 0)
     <div class="col-md-7  product-comments mt-0">
-        <div>
+        <div class="rating-list">
             <ul class="list-none">
                 @foreach($productReviews as $productReview)
 
-                    <li class="row mb-4">
-                        <div class="col-md-3">
+                    <li class="row">
+                        <div class="col-md-4">
                           <div class="d-flex flex-column align-items-lg-start">
-                              <div class="d-flex">
-                                  <div  style="height: 50px;width: 50px">
+                              <div class="d-flex rating-info-box">
+                                  <div class="rating-info">
 
                                       @if(Auth::id() && Auth()->user()->userProfile->avatar != null)
                                           <img class="rounded-circle"  src="{{asset(Auth()->user()->userProfile->avatar)}}" alt="">
@@ -26,9 +27,10 @@
                                             data-rating-input="#dataReadonlyInput">
                                       </div>
 
+                                      <div>{{$productReview->created_at->format('d M Y')}}</div>
                                   </div>
                               </div>
-                              <div>{{$productReview->created_at->format('d M Y')}}</div>
+
                           </div>
                         </div>
                         <div class="comment-desc col-md-7 ">
@@ -41,9 +43,10 @@
             </ul>
         </div>
     </div>
+    @endif
     <div class="col-md-4 blog-comment-form product-comment-form ">
         <div class="">
-            <h4>Add Review</h4>
+            <h4 class="text-uppercase">Place your review</h4>
             <form action="{{route('product-reviews.store',$product->id)}}" method="post">
                 <div class="row mt-10">
                     @csrf

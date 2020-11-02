@@ -74,11 +74,11 @@
                                     </div>
 
                                     <div class="form-group col-4">
-                                        <label class="float-left" for="postcode">City</label>
+                                        <label class="float-left" for="city">City</label>
                                         <input class="form-control" type="text" name="city" id="city"
                                                value="{{$siteSetting->city}}"
-                                               placeholder="Enter PostCode Number" required="required"
-                                               data-parsley-error-message="Enter PostCode Number">
+                                               placeholder="City" required="required"
+                                               data-parsley-error-message="Enter your city">
                                     </div>
 
                                     <div class="form-group col-4">
@@ -144,8 +144,8 @@
                                         <label class="float-left" for="postcode">Zipcode</label>
                                         <input class="form-control zipcode" type="text" name="postcode" id="postcode"
                                                value="{{$siteSetting->postcode ?? old('postcode')}}"
-                                               placeholder="Enter your PostCode"
-                                               data-parsley-error-message="Enter your PostCode" required>
+                                               placeholder="Enter your zipcode"
+                                               data-parsley-error-message="Enter your zipcode" required>
                                     </div>
 
                                     <div class="form-group col-12">
@@ -170,9 +170,9 @@
                                                data-parsley-error-message="Upload E-commerce Support image"/>
                                     </div>
 
-
-                                    <button type="submit" class="btn btn-success mr-2 float-right">Site Setting Update
-                                    </button>
+                                </div>
+                                <button type="submit" class="btn btn-success mr-2 float-right">Site Setting Update
+                                </button>
                             </form>
 
                             <a href="{{route('dashboard')}}" class="btn btn-danger float-left">Back to Dashboard</a>

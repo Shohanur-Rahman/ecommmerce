@@ -7,16 +7,19 @@
                     <img
                         src="{{$siteSetting != null ? asset($siteSetting->logo_url) : asset('user/assets/images/logos/logo-blue.png')}}"
                         alt="logo"/>
-                    <p>
-                        {!!html_entity_decode($siteSetting->line1 ? $siteSetting->line1 . ', ' : '')!!}
-                        {!!html_entity_decode($siteSetting->line2 ? $siteSetting->line2 . '<br/>' : '')!!}
-                        {!!html_entity_decode($siteSetting->city ? $siteSetting->city . ', ' : '')!!}
-                        {!!html_entity_decode($siteSetting->state ? $siteSetting->state . ', ' : '')!!}
-                        {!!html_entity_decode($siteSetting->postcode ? $siteSetting->postcode . '<br/>' : '')!!}
-                        {!!html_entity_decode($siteSetting->address ? $siteSetting->address . '' : '')!!}
-                    </p>
-                    <p>Phone: {{$siteSetting != null ? $siteSetting->phone : 'XXX XXXX XXXX'}}</p>
-                    <p>Email: {{$siteSetting !=null ? $siteSetting->email : 'email@email.com'}}</p>
+                    @if($siteSetting)
+                        <p>
+
+                            {!!html_entity_decode($siteSetting->line1 ? $siteSetting->line1 . ', ' : '')!!}
+                            {!!html_entity_decode($siteSetting->line2 ? $siteSetting->line2 . '<br/>' : '')!!}
+                            {!!html_entity_decode($siteSetting->city ? $siteSetting->city . ', ' : '')!!}
+                            {!!html_entity_decode($siteSetting->state ? $siteSetting->state . ', ' : '')!!}
+                            {!!html_entity_decode($siteSetting->postcode ? $siteSetting->postcode . '<br/>' : '')!!}
+                            {!!html_entity_decode($siteSetting->address ? $siteSetting->address . '' : '')!!}
+                        </p>
+                        <p>Phone: {{$siteSetting != null ? $siteSetting->phone : 'XXX XXXX XXXX'}}</p>
+                        <p>Email: {{$siteSetting !=null ? $siteSetting->email : 'email@email.com'}}</p>
+                    @endif
                 </div>
                 <div class="copyright">
                     <p>Copyright {{ date('Y') }} &copy; <a href="#">HOBO</a>. All rights reserved.</p>
@@ -46,7 +49,7 @@
                             <li><a href="{{route('profiles.index')}}" target="_blank">My Account</a></li>
                             <li><a href="{{route('orders-details.index')}}" target="_blank">Order History</a></li>
                             <li><a href="{{route('wish-lists.index')}}" target="_blank">Wish List</a></li>
-                            <li><a href="{{route('pages.contact')}}" target="_blank" target="_blank">Customer
+                            <li><a href="{{route('customer-supports.create')}}" target="_blank" target="_blank">Customer
                                     Service</a></li>
                             <li><a href="{{route('pages.faq')}}" target="_blank">FAQs</a></li>
                         </ul>

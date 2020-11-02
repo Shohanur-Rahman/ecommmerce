@@ -17,7 +17,7 @@ class CreateUserProfilesTable extends Migration
             $table->id();
             $table->unsignedMediumInteger('user_id');
             $table->string('avatar')->nullable();
-            $table->string('secondary_email')->unique()->nullable();
+            $table->string('secondary_email')->nullable();
             $table->string('dob')->nullable();
             $table->string('nid')->nullable();
             $table->string('nid_image')->nullable();

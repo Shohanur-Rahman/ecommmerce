@@ -214,7 +214,7 @@
                         labels: {
                             format: "N0"
                         },
-                        majorUnit: 200,
+                        majorUnit: 5000,
                         line: {
                             visible: false
                         }
@@ -259,7 +259,7 @@
                         [{
                             field: "orders",
                             categoryField: "month",
-                            name: "Monthly Sell"
+                            name: "Daily Sell"
                         }],
                     categoryAxis: {
                         labels: {
@@ -273,7 +273,7 @@
                         labels: {
                             format: "N0"
                         },
-                        majorUnit: 200,
+                        majorUnit: 2000,
                         line: {
                             visible: false
                         }
@@ -360,7 +360,7 @@
                         }
                     },
                     title: {
-                        text: "Sales on category"
+                        text: "Products on category"
                     },
                     chartArea: {
                         background: ""

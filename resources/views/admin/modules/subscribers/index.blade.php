@@ -16,11 +16,6 @@
                         that will interact with a DataTable. The core library provides the based framework upon which plug-ins can built.
                     </p>
 
-                    <p>
-                        <a class="btn btn-primary" href="{{route('product-colors.create')}}">New Product Color</a>
-                    </p>
-
-
                     <table id="datatable-buttons" class="table table-striped dt-responsive js-exportable nowrap w-100">
                         <thead>
                         <tr>

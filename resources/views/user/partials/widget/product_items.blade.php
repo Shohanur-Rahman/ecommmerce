@@ -5,10 +5,10 @@
         $ratingCount = \App\Models\Products::ratingCount($product->id)
     @endphp
     <div class="col-xl-3 col-md-4 col-sm-6 product-item">
-        <div class="product-single wow {{ ($itemCount % 2) != 0 ?'slideInDown': 'slideInUp'}}">
+        <div class="product-single wow {{ ($itemCount % 2) != 0 ?'slideInDown': 'slideInUp'}}" title="{{$product->title}}">
             <div class="product-title">
                 <h4>
-                    <a href="{{route('product.details', ["category" => $productCategory->slug ,"slug" => $product->slug])}}">{{$product->title}}</a>
+                    <a title="{{$product->title}}" href="{{route('product.details', ["category" => $productCategory->slug ,"slug" => $product->slug])}}">{{$product->title}}</a>
                 </h4>
             </div>
             <div class="product-thumb">

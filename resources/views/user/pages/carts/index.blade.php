@@ -159,11 +159,6 @@
                                     </tr>
 
                                     <tr>
-                                        <td>Coupon Discount <b>(-)</b>:</td>
-                                        <td><span>$0.00</span></td>
-                                    </tr>
-
-                                    <tr>
                                         <td>Shipping Charge <b>(+)</b>:</td>
                                         <td><span>${{$shippingCharge}}</span></td>
                                     </tr>

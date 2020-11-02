@@ -3,10 +3,12 @@
 namespace App\Http\Controllers;
 
 use App\Http\Controllers\Controller;
+use App\Models\SocialProvider;
 use App\Models\User\UserProfile;
 use App\Models\User\Wishlist;
 use App\User;
 use Carbon\Carbon;
+use Illuminate\Contracts\Auth\Authenticatable;
 use Illuminate\Http\Request;
 use Illuminate\Support\Arr;
 use Illuminate\Support\Facades\Auth;
@@ -16,7 +18,7 @@ use Illuminate\Support\Facades\Session;
 use Illuminate\Support\Str;
 use Laravel\Socialite\Facades\Socialite;
 
-class UserController extends Controller
+class UserController  extends Controller
 {
 
     public function login()
@@ -104,7 +106,6 @@ class UserController extends Controller
             return redirect(route('profiles.index'));
 
         }
-
 
         return redirect()->back()->with('error-message', 'Email or Password is Wrong');
     }
@@ -210,24 +211,61 @@ class UserController extends Controller
     }
 
 
-    public function redirectToProvider()
+    public function redirectToProvider($provider)
     {
-        return Socialite::driver('facebook')->redirect();
-
+        return Socialite::driver($provider)->redirect();
     }
 
-    public function handleProviderCallback()
+    public function handleProviderCallback($provider)
     {
-
         try {
-            $socialUser = Socialite::driver('facebook')->user();
+            $socialUser = Socialite::driver($provider)->user();
         } catch (\Exception $ex) {
             return redirect()->route('app.home');
         }
-        //$user = Socialite::driver('facebook')->user();
 
-        $socialProvider = $socialProvider::where('provider_id', $socialUser->getId())->first();
+        /*
+         *
+         * Check social user already exist in our database
+         */
 
-        // $user->token;
+
+        $dbUser = SocialProvider::where('provider_id', $socialUser->getId())->first();
+
+        if (!$dbUser) {
+            $existingUser = User::where('email',$socialUser->getEmail())->first();
+            if(!$existingUser){
+                $user = User::create([
+                    'name' => $socialUser->getName(),
+                    'email' => $socialUser->getEmail(),
+                ]);
+
+                $user->socialProviders()->create([
+                    'provider_id' => $socialUser->getId(),
+                    'provider' => $provider,
+                ]);
+
+                $user->userProfile()->create();
+            }else{
+                $existingUser->socialProviders()->create([
+                    'provider_id' => $socialUser->getId(),
+                    'provider' => $provider,
+                ]);
+
+                $user=$existingUser;
+            }
+
+
+
+
+        }else
+            $user =$dbUser->user;
+
+
+        Auth::login($user, true);
+
+        return redirect()->route('profiles.index');
+
+
     }
 }

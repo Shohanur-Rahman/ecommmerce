@@ -79,6 +79,16 @@ Route::group(['middleware' => ['auth','isCustomer']], function() {
     });
 
 
+    Route::group(['prefix'=>'delivery-times'], function(){
+        Route::get('','DeliveryTimesController@index')->name('delivery.times.index');
+        Route::get('/create','DeliveryTimesController@create')->name('delivery.times.create');
+        Route::post('','DeliveryTimesController@store')->name('delivery.times.store');
+        Route::get('/{deliveryTime}/edit','DeliveryTimesController@edit')->name('delivery.times.edit');
+        Route::patch('/{deliveryTime}','DeliveryTimesController@update')->name('delivery.times.update');
+        Route::delete('/{deliveryTime}','DeliveryTimesController@destroy')->name('delivery.times.destroy');
+    });
+
+
     Route::group(['middleware' => 'isAdmin'], function() {
         Route::group(['prefix'=>'product-availabilities'], function(){
             Route::get('','ProductAvailabilityController@index')->name('product-availabilities.index');
@@ -178,6 +188,36 @@ Route::group(['middleware' => ['auth','isCustomer']], function() {
             Route::get('{applyVendor}/show','VendorApplicationController@show')->name('vendor-applications.show');
             Route::patch('{applyVendor}','VendorApplicationController@update')->name('vendor-applications.update');
         });
+
+
+        Route::group(['prefix' => 'case-types'], function () {
+            Route::get('/', 'CaseTypeController@index')->name('case-types.index');
+            Route::get('/create', 'CaseTypeController@create')->name('case-types.create');
+            Route::post('/', 'CaseTypeController@store')->name('case-types.store');
+            Route::get('/{caseType}/edit', 'CaseTypeController@edit')->name('case-types.edit');
+            Route::patch('/{caseType}', 'CaseTypeController@update')->name('case-types.update');
+            Route::delete('/{caseType}', 'CaseTypeController@destroy')->name('case-types.destroy');
+
+        });
+
+        Route::group(['prefix' => 'case-categories'], function () {
+            Route::get('/', 'CaseCategoryController@index')->name('case-categories.index');
+            Route::get('/create', 'CaseCategoryController@create')->name('case-categories.create');
+            Route::post('/', 'CaseCategoryController@store')->name('case-categories.store');
+            Route::get('/{caseCategory}/edit', 'CaseCategoryController@edit')->name('case-categories.edit');
+            Route::patch('/{caseCategory}', 'CaseCategoryController@update')->name('case-categories.update');
+            Route::delete('/{caseCategory}', 'CaseCategoryController@destroy')->name('case-categories.destroy');
+
+        });
+
+        Route::group(['prefix' => 'customer-supports'], function () {
+            Route::get('/', 'CustomerSupportController@index')->name('customer-supports.index');
+            Route::get('/{customerSupport}', 'CustomerSupportController@show')->name('customer-supports.show');
+            Route::get('/{customerSupport}/user-profile', 'CustomerSupportController@profileShow')->name('profile-show.show');
+            Route::delete('/{customerSupport}', 'CustomerSupportController@destroy')->name('customer-supports.destroy');
+        });
+
+
     });
 
     Route::group(['prefix'=>'orders'], function(){
@@ -194,6 +234,11 @@ Route::group(['middleware' => ['auth','isCustomer']], function() {
         Route::patch('/change-password','ProfileController@passwordUpdate')->name('admin-change-password.update');
     });
 
+    Route::group(['prefix'=>'refunds'], function(){
+        Route::get('/','PaypalRefundController@index')->name('refunds.index');
+        Route::get('/create','PaypalRefundController@create')->name('refunds.create');
+        Route::post('/create','PaypalRefundController@store')->name('refunds.store');
+    });
 });
 
 

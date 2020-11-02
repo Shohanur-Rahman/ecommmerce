@@ -63,10 +63,9 @@ $(document).ready(function () {
             }
         });
     });
-
-
-
-
+    
+    
+    
     $(".zipcode").keydown(function (event) {
 
         $(this).attr('maxlength', 5);
@@ -136,7 +135,7 @@ $(document).ready(function () {
         });
 
 
-})
+});
 
 
 function LoadCartList(cartList) {

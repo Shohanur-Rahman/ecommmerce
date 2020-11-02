@@ -20,7 +20,7 @@
     var pathURL = window.location.pathname; // Returns path only (/path/example.html)
     var pageURL = window.location.href;     // Returns full URL (https://example.com/path/example.html)
     var domainURL = window.location.origin;   // Returns base URL (https://example.com)
-    var absoulatePath = domainURL + "/ecommmerce";
+    var absoulatePath = "{{env('APP_URL')}}";
 
 </script>
 <script src="{{asset('admin/js/bootstrap.min.js')}}"></script>

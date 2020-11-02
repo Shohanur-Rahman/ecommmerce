@@ -8,7 +8,8 @@
             <div class="col-md-9 col-sm-8 col-xs-12 col-sm-push-4 col-md-push-3 pb-4">
                 <x-inform-users></x-inform-users>
                 @include('user.pages.profiles.partial.details')
-
+                
+@if(count($shippingAddresses) > 0)
                 <div class="card px-3 py-3 mt-3">
                     <div class="row">
                         @foreach($shippingAddresses as $shippingAddress)
@@ -30,6 +31,8 @@
                         @endforeach
                     </div>
                 </div>
+                
+                @endif
 
                 <div class="card border-0 pt-5">
                     <div class="bg-white">
@@ -71,8 +74,8 @@
                             <label class="float-left" for="postcode">City</label>
                             <input class="form-control" type="text" name="city" id="city"
                                    value="{{old('city')}}"
-                                   placeholder="Enter PostCode Number" required="required"
-                                   data-parsley-error-message="Enter PostCode Number">
+                                   placeholder="City" required="required"
+                                   data-parsley-error-message="Enter your city">
                         </div>
                         <div class="form-group col-4">
                             <label class="float-left" for="state">State</label>
@@ -136,7 +139,7 @@
                             <label class="float-left" for="postcode">Zipcode</label>
                             <input class="form-control zipcode" type="text" name="postcode" id="postcode"
                                    value="{{old('postcode')}}"
-                                   placeholder="Enter your PostCode" data-parsley-error-message="Enter your PostCode" required>
+                                   placeholder="Enter your zipcode" data-parsley-error-message="Enter your zipcode" required>
                         </div>
 
 

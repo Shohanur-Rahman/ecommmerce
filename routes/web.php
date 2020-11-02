@@ -20,9 +20,8 @@ Route::get('/home', 'HomeController@index')->name('home');
 
 Route::get('/test', 'TestController@test_page')->name('test_page');
 
-
-Route::get('login/facebook', 'UserController@redirectToProvider');
-Route::get('login/facebook/callback', 'UserController@handleProviderCallback');
+Route::get('login/{provider}', 'UserController@redirectToProvider')->name('socialite.provider');
+Route::get('login/{provider}/callback', 'UserController@handleProviderCallback')->name('socialite.callback');
 
 Route::get('/login','UserController@login')->name('login');
 Route::post('/login','UserController@show')->name('show');
@@ -73,9 +72,15 @@ Route::group(['middleware'=>'auth'],function(){
     });
 
     Route::group(['prefix'=>'profiles/apply-vendors'],function(){
-        Route::post('/verify-email','User\ApplyVendorController@verifyEmail')->name('verify-email.store');
-        Route::get('/','User\ApplyVendorController@create')->name('apply-vendors.create');
-        Route::post('/','User\ApplyVendorController@store')->name('apply-vendors.store');
+        Route::get('/verify-email','User\ApplyVendorController@verifyEmail')->name('verify-email.store');
+        Route::get('/code','User\ApplyVendorController@verifyCodeCreate')->name('verify-code.create');
+        Route::post('/code','User\ApplyVendorController@verifyCodeStore')->name('verify-code.store');
+    });
+
+    Route::group(['prefix'=>'companies'],function (){
+        Route::get('/','User\CompanyController@create')->name('companies.create');
+        Route::post('/','User\CompanyController@store')->name('companies.store');
+
     });
 
     Route::group(['prefix'=>'profiles/apply-vendors'],function(){
@@ -103,8 +108,6 @@ Route::group(['middleware'=>'auth'],function(){
         Route::post('/','User\NewsLetterController@store');
     });
 
-
-
 });
 
 Route::group(['prefix'=>'wish-lists'], function(){
@@ -123,4 +126,13 @@ Route::group(['middleware'=>'auth'],function(){
     Route::patch('/cart', 'User\ProductCartController@update')->name('cart.update');
     Route::get('/clear', 'User\ProductCartController@clear')->name('cart.clear');
     Route::post('/wish-list/carts', 'User\ProductCartController@wishListCartStore')->name('wish-lists-carts.store');
+
+    Route::group(['prefix' => 'customer-supports'], function () {
+        Route::get('/', 'User\CustomerSupportController@create')->name('customer-supports.create');
+        Route::post('/', 'User\CustomerSupportController@store')->name('customer-supports.store');
+        Route::get('/case-category', 'User\CustomerSupportController@caseCategory');
+    });
+
+
+
 });

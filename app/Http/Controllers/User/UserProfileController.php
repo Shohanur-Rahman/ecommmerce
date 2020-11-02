@@ -4,6 +4,7 @@ namespace App\Http\Controllers\User;
 
 use App\Http\Controllers\admin\HelperController;
 use App\Http\Controllers\Controller;
+use App\Models\Company;
 use App\Models\User\Country;
 use App\Models\User\Order;
 use App\Models\User\ShippingAddress;
@@ -25,6 +26,8 @@ class UserProfileController extends Controller
 
         $shippingAddresses = ShippingAddress::where('user_id',$userId)->get();
 
+        $company = Company::where('user_id',$userId)->first();
+
         $arrayProfiles = DB::table('user_profiles')
             ->select('avatar', 'dob', 'nid','nid_image','describe_address')
             ->where('user_id',$userId)
@@ -40,7 +43,7 @@ class UserProfileController extends Controller
 
         $orders = Order::where('customer_id',Auth::id())->with('shippingAddress')->get();
 
-        return view('user.pages.profiles.index',compact('shippingAddresses','user','orders','fillUp'));
+        return view('user.pages.profiles.index',compact('shippingAddresses','user','orders','fillUp','company'));
     }
 
     public function edit()

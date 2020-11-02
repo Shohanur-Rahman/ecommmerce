@@ -115,14 +115,6 @@
                                             <input class="form-control rounded-0 form-control-md" type="date" id="available_end_date" name="available_end_date" value="{{$aProduct->available_end_date}}" />
                                         </div>
                                     </div>
-
-                                    <div class="col-sm-3">
-                                        <div class="form-group">
-                                            <label for="shipping_charge">Shipping Charge</label>
-                                            <input class="currancy_touchspin" type="text"  name="shipping_charge" id="shipping_charge" value="{{$aProduct->shipping_charge}}" required/>
-                                            <span class="parsley-errors-list filled" id="error"></span>
-                                        </div>
-                                    </div>
                                 </div>
                             </div>
                         </div>
@@ -252,6 +244,63 @@
                 </div>
 
             </div>
+
+            <div class="tab-pane" id="tabShipping">
+
+                <div class="card mb-30">
+                    <div class="card-body py-3">
+                        <div class="d-flex align-items-center pb-3">
+                            <div class="icon font-30 text-primary">
+                                <i class="fa fa-ravelry" aria-hidden="true"></i>
+                            </div>
+                            <div class="icon-text pl-4">
+                                <h5 class="mb-0">Shipping</h5>
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="col-sm-3">
+                                <div class="form-group">
+                                    <label for="shipping_charge">Shipping Charge</label>
+                                    <input class="currancy_touchspin" type="text"  name="shipping_charge" id="shipping_charge" value="{{$aProduct->shipping_charge}}" required/>
+                                    <span class="parsley-errors-list filled" id="error"></span>
+                                </div>
+                            </div>
+                            <div class="col-sm-3">
+                                <div class="form-group">
+                                    <label for="height">Height</label>
+                                    <input class="form-control" type="text" name="height" id="height" value="{{$aProduct->height ?? old('height')}}">
+                                </div>
+                            </div>
+                            <div class="col-sm-3">
+                                <div class="form-group">
+                                    <label for="width decimal_number">Width</label>
+                                    <input class="form-control" type="text" name="width" id="width" value="{{$aProduct->width ?? old('width')}}">
+                                </div>
+                            </div>
+                            <div class="col-sm-3">
+                                <div class="form-group">
+                                    <label for="weight">Weight</label>
+                                    <input class="form-control" type="text" name="weight" id="weight" value="{{$aProduct->weight ?? old('weight')}}">
+                                </div>
+                            </div>
+                            <div class="col-sm-3">
+                                <div class="form-group">
+                                    <label for="delivery_time">Delivery Time</label>
+                                    <select id="delivery_id" class="form-control" name="delivery_id"
+                                            required="required" data-parsley-error-message="Choose your Delivery Time">
+                                        <option value="">-- Select One --</option>
+                                        @foreach($deliveries as $delivery)
+                                            <option value="{{$delivery->id}}" {{$delivery->id == $aProduct->delivery_id ? 'selected' : ''}}>{{$delivery->name}}</option>
+                                        @endforeach
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
             <div class="tab-pane" id="tabInventory">
 
                 <div class="card mb-30">
@@ -427,6 +476,9 @@
                         </a>
                         <a href="#tabMapping" data-toggle="tab" aria-expanded="true" class="list-group-item list-group-item-action nav-link">
                             Mapping
+                        </a>
+                        <a href="#tabShipping" data-toggle="tab" aria-expanded="true" class="list-group-item list-group-item-action nav-link">
+                            Shipping
                         </a>
                         <a href="#tabInventory" data-toggle="tab" aria-expanded="false" class="list-group-item list-group-item-action nav-link">
                             Inventory

@@ -28,30 +28,22 @@
     @endif
 
     <div class="row male-products row-eq-height">
-        <?php
 
+        @if ($maleProductCategory)
 
-
-
-        if ($maleProductCategory) {
-
-            $maleProducts = Illuminate\Support\Facades\DB::table('products')
+            @php $maleProducts = Illuminate\Support\Facades\DB::table('products')
                 ->join('product_category_maps', 'products.id', '=', 'product_category_maps.product_id')
                 ->select('products.*')
                 ->where('product_category_maps.is_published', 1)
                 ->where('products.show_on_home', 1)
                 ->where('product_category_maps.cat_id', $maleProductCategory->id)
                 ->take(50)
-                ->get();
-        }
+                ->get(); @endphp
 
 
+            @include('user.partials.widget.product_items', ['categoryProducts' => $maleProducts, 'productCategory' =>$maleProductCategory ])
 
-        ?>
-
-        @include('user.partials.widget.product_items', ['categoryProducts' => $maleProducts, 'productCategory' =>$maleProductCategory ])
-
-
+        @endif
     </div>
 
     @if(count($allSliders) > 0 )
@@ -67,8 +59,9 @@
     @endif
 
     <div class="row female-products">
-        <?php
-        $feMaleProducts = Illuminate\Support\Facades\DB::table('products')
+        @if($femaleProductCategory)
+
+            @php $feMaleProducts = Illuminate\Support\Facades\DB::table('products')
             ->join('product_category_maps', 'products.id', '=', 'product_category_maps.product_id')
             ->select('products.*')
             ->where('product_category_maps.is_published', 1)
@@ -76,11 +69,10 @@
             ->where('product_category_maps.cat_id', $femaleProductCategory->id)
             ->take(50)
             ->get();
+            @endphp
 
-
-        ?>
-
-        @include('user.partials.widget.product_items', ['categoryProducts' => $feMaleProducts, 'productCategory' =>$femaleProductCategory ])
+            @include('user.partials.widget.product_items', ['categoryProducts' => $feMaleProducts, 'productCategory' =>$femaleProductCategory ])
+        @endif
     </div>
 
     @if(count($allSliders) > 0 )
@@ -97,8 +89,9 @@
     @endif
 
     <div class="row">
-        <?php
-        $kidsProducts = Illuminate\Support\Facades\DB::table('products')
+        @if($kidsProductCategory)
+
+            @php $kidsProducts = Illuminate\Support\Facades\DB::table('products')
             ->join('product_category_maps', 'products.id', '=', 'product_category_maps.product_id')
             ->select('products.*')
             ->where('product_category_maps.is_published', 1)
@@ -106,11 +99,10 @@
             ->where('product_category_maps.cat_id', $kidsProductCategory->id)
             ->take(50)
             ->get();
+            @endphp
 
-
-        ?>
-
-        @include('user.partials.widget.product_items', ['categoryProducts' => $kidsProducts, 'productCategory' =>$kidsProductCategory ])
+            @include('user.partials.widget.product_items', ['categoryProducts' => $kidsProducts, 'productCategory' =>$kidsProductCategory ])
+        @endif
     </div>
 
 
@@ -127,20 +119,20 @@
     @endif
 
     <div class="row">
-        <?php
-        $othersProducts = Illuminate\Support\Facades\DB::table('products')
-            ->join('product_category_maps', 'products.id', '=', 'product_category_maps.product_id')
-            ->select('products.*')
-            ->where('product_category_maps.is_published', 1)
-            ->where('products.show_on_home', 1)
-            ->where('product_category_maps.cat_id', $othersProductCategory->id)
-            ->take(50)
-            ->get();
+        @if($othersProductCategory)
+            @php
+                $othersProducts = Illuminate\Support\Facades\DB::table('products')
+                ->join('product_category_maps', 'products.id', '=', 'product_category_maps.product_id')
+                ->select('products.*')
+                ->where('product_category_maps.is_published', 1)
+                ->where('products.show_on_home', 1)
+                ->where('product_category_maps.cat_id', $othersProductCategory->id)
+                ->take(50)
+                ->get();
+            @endphp
 
-
-        ?>
-
-        @include('user.partials.widget.product_items', ['categoryProducts' => $othersProducts, 'productCategory' =>$othersProductCategory ])
+            @include('user.partials.widget.product_items', ['categoryProducts' => $othersProducts, 'productCategory' =>$othersProductCategory ])
+        @endif
     </div>
 
 

@@ -59,9 +59,9 @@
 											<li><a href="#">My Account</a></li>
 											<li><a href="#">Order History</a></li>
 											<li><a href="#">Wish List</a></li>
-											<li><a href="#">Customer Service</a></li>
+											<li><a href="{{route('customer-supports.create')}}">Customer Service</a></li>
 											<li><a href="#">Returns / Exchange</a></li>
-											<li><a href="#">FAQs</a></li>
+											<li><a href="{{route('customer-supports.create')}}">FAQs</a></li>
 											<li><a href="#">Product Support</a></li>
 										</ul>
 									</div>
@@ -92,7 +92,7 @@
 			</div>
 		</div>
 		<!--subscribe-area-end-->
-		
+
 		<!--copyright-area start-->
 		<div class="copyright-area pd-20">
 			<div class="container">
@@ -120,7 +120,7 @@
 	<!--footer-area end-->
 
 	<!-- modernizr js -->
-	
+
 	<!-- main js -->
 	<script src="{{asset('user/assets/js/main.js')}}"></script>
 	<!-- Modal -->
@@ -217,7 +217,7 @@
 												<li>Black</li>
 												<li>Blue</li>
 											</ul>
-											
+
 										</div>
 										<div class="product-quantity mt-15">
 											<label>Quatity:</label>

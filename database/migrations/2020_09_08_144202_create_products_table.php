@@ -15,6 +15,7 @@ class CreateProductsTable extends Migration
     {
         Schema::create('products', function (Blueprint $table) {
             $table->bigIncrements('id');
+            $table->unsignedBigInteger('delivery_id');
             $table->string('title')->default('This is a demo product');
             $table->text('short_description')->nullable();
             $table->string('slug');
@@ -40,6 +41,9 @@ class CreateProductsTable extends Migration
             $table->boolean('notify_low_inventory')->nullable();
             $table->bigInteger('warehouse_id')->nullable();
             $table->float('shipping_charge')->default(0);
+            $table->float('height')->default(0);
+            $table->float('width')->default(0);
+            $table->float('weight')->default(0);
             $table->boolean('show_availability')->default(0);
             $table->integer('minimum_cart_qty')->nullable();
             $table->string('featured_image')->nullable();

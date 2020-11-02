@@ -52,9 +52,9 @@ return [
     |
     */
 
-    'url' => env('APP_URL', 'http://localhost'),
+    'url' => env('APP_URL', 'http://localhost/'),
 
-    'asset_url' => env('ASSET_URL', 'http://localhost/ecommmerce/public'),
+    'asset_url' => env('ASSET_URL', null),
 
     /*
     |--------------------------------------------------------------------------
@@ -175,8 +175,6 @@ return [
         App\Providers\EventServiceProvider::class,
         App\Providers\RouteServiceProvider::class,
         //App\Providers\TelescopeServiceProvider::class,
-
-
         \Laravel\Socialite\SocialiteServiceProvider::class,
 
     ],

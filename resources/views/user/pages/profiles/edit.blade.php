@@ -30,7 +30,7 @@
 
                         <div class="form-group col-12">
                             <label class="float-left" for="email">Secondary Email</label>
-                            <input class="form-control" type="text" name="secondary_email" id="email"
+                            <input class="form-control" type="email" name="secondary_email" id="email"
                                    value="{{$userProfile->secondary_email ?? old('secondary_email')}}"
                                    placeholder="Enter your Secondary Email"
                                    data-parsley-error-message="Enter your Secondary Email" autocomplete="off">
@@ -94,12 +94,12 @@
                                 <div class="form-group col-6">
                                     <label class="float-left" for="line1">Line 1</label>
                                     <input class="form-control" type="text" name="line1" id="line1" value="{{$userProfile->line1}}"
-                                           placeholder="Address line 1" data-parsley-error-message="Enter address line 1" required>
+                                           placeholder="Address line 1" data-parsley-error-message="Enter address line 1" maxlength="30" required>
                                 </div>
                                 <div class="form-group col-6">
                                     <label class="float-left" for="line2">Line 2</label>
                                     <input class="form-control" type="text" name="line2" id="line2" value="{{$userProfile->line2}}"
-                                           placeholder="Address line 2" data-parsley-error-message="Enter address line 2"
+                                           placeholder="Address line 2" maxlength="30"  data-parsley-error-message="Enter address line 2"
                                     >
                                 </div>
                             </div>
@@ -107,10 +107,10 @@
 
                         <div class="form-group col-4">
                             <label class="float-left" for="postcode">City</label>
-                            <input class="form-control" type="text" name="city" id="city"
+                            <input class="form-control" type="text" maxlength="50"  name="city" id="city"
                                    value="{{$userProfile->city}}"
-                                   placeholder="Enter PostCode Number" required="required"
-                                   data-parsley-error-message="Enter PostCode Number">
+                                   placeholder="City" required="required"
+                                   data-parsley-error-message="Enter your city">
                         </div>
 
                         <div class="form-group col-4">
@@ -175,7 +175,7 @@
                             <label class="float-left" for="postcode">Zipcode</label>
                             <input class="form-control zipcode" type="text" name="postcode" id="postcode"
                                    value="{{$userProfile->postcode ?? old('postcode')}}"
-                                   placeholder="Enter your PostCode" data-parsley-error-message="Enter your PostCode" required>
+                                   placeholder="Enter your zipcode" data-parsley-error-message="Enter your zipcode" required>
                         </div>
 
                         <div class="form-group col-12">
@@ -213,6 +213,9 @@
             });
 
             $("#state").val("{{$userProfile->state}}");
+            
+            
+            
 
         });
 

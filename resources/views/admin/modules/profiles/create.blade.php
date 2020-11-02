@@ -1,5 +1,5 @@
 @extends('admin.layouts.admin')
-@section('title', "E-com Setting")
+@section('title', "Profile")
 @section('content')
 
     <div class="row">
@@ -46,16 +46,17 @@
                                     <div class="">
                                         <h5>Account Information</h5>
                                         <address>
-                                            {{Auth::user()->name}}<br>
+	{{Auth::user()->name}}<br>
 
-                                            @if(Auth::user()->userProfile != null)
-                                                {{Auth::user()->userProfile->city}}<br>
-                                                {{Auth::user()->userProfile->house}}, {{Auth::user()->userProfile->road}}, {{Auth::user()->userProfile->state}}<br>
-                                                {{Auth::user()->userProfile->country}}<br>
-                                                {{Auth::user()->userProfile->describe_address}}<br>
-                                                Phone: {{Auth::user()->userProfile->phone}} <br>
-                                            @endif
-                                        </address>
+	@if(Auth::user()->userProfile != null)
+		{!!html_entity_decode(Auth::user()->userProfile->line1 ? Auth::user()->userProfile->line1 . '<br/>' : '')!!}
+		{!!html_entity_decode(Auth::user()->userProfile->line2 ? Auth::user()->userProfile->line2 . '<br/>' : '')!!}
+		{!!html_entity_decode(Auth::user()->userProfile->city ? Auth::user()->userProfile->city . '<br/>' : '')!!}
+		{!!html_entity_decode(Auth::user()->userProfile->state ? Auth::user()->userProfile->state . '<br/>' : '')!!}
+		{!!html_entity_decode(Auth::user()->postcode ? Auth::user()->postcode . '<br/>' : '')!!}
+		{!!html_entity_decode(Auth::user()->userProfile->describe_address ? Auth::user()->userProfile->describe_address . '<br/>' : '')!!}
+	@endif
+</address>
                                     </div>
                                 </div>
                             </div>
@@ -95,7 +96,7 @@
                                 <div class="form-row">
                                     <div class="form-group col-md-6">
                                         <label class="float-left" for="nid">Enter Your NID Number && NID Photo</label>
-                                        <input class="form-control" type="number" name="nid" id="nid" value="{{$userProfile->nid ?? old('nid')}}"
+                                        <input class="form-control" type="text" name="nid" id="nid" value="{{$userProfile->nid ?? old('nid')}}"
                                                placeholder="Enter Your NID Number" required="required" data-parsley-required-message="Enter Your NID Number">
 
                                         @error('nid')
@@ -142,11 +143,11 @@
                                     </div>
 
                                     <div class="form-group col-4">
-                                        <label class="float-left" for="postcode">City</label>
+                                        <label class="float-left" for="city">City</label>
                                         <input class="form-control" type="text" name="city" id="city"
                                                value="{{$userProfile->city}}"
-                                               placeholder="Enter PostCode Number" required="required"
-                                               data-parsley-error-message="Enter PostCode Number">
+                                               placeholder="City" required="required"
+                                               data-parsley-error-message="Enter your city">
                                     </div>
 
                                     <div class="form-group col-4">
@@ -211,7 +212,7 @@
                                         <label class="float-left" for="postcode">Zipcode</label>
                                         <input class="form-control zipcode" type="text" name="postcode" id="postcode"
                                                value="{{$userProfile->postcode ?? old('postcode')}}"
-                                               placeholder="Enter your PostCode" data-parsley-error-message="Enter your PostCode" required>
+                                               placeholder="Enter your zipcode" data-parsley-error-message="Enter your zipcode" required>
                                     </div>
 
                                     <div class="form-group col-12">
