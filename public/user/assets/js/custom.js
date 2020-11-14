@@ -14,6 +14,12 @@ $(window).resize(function () {
 });
 
 $(document).ready(function () {
+
+    $('.flip').hover(function(){
+        $(this).find('.card').toggleClass('flipped');
+
+    });
+
     $(".mega-menu").each(function () {
         $(this).attr("style", "left : -" + ($(this).width() + 100) + "px");
     });
@@ -63,9 +69,9 @@ $(document).ready(function () {
             }
         });
     });
-    
-    
-    
+
+
+
     $(".zipcode").keydown(function (event) {
 
         $(this).attr('maxlength', 5);

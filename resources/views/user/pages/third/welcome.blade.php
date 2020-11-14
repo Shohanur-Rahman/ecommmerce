@@ -14,7 +14,7 @@
     @endphp
 
     @if(count($allSliders) > 0 )
-        <div class="row">
+        <div class="row male-bg">
             <div class="col-lg-12 col-md-12 col-xs-12 wow fadeIn">
 
                 @php
@@ -27,7 +27,7 @@
         </div>
     @endif
 
-    <div class="row male-products row-eq-height">
+    <div class="row male-products row-eq-height male-bg">
 
         @if ($maleProductCategory)
 
@@ -47,7 +47,7 @@
     </div>
 
     @if(count($allSliders) > 0 )
-        <div class="row">
+        <div class="row female-bg">
             <div class="col-lg-12 col-md-12 col-xs-12">
                 @php
                     $femaleSlider = \App\models\MainSlider::with('category')->where('category_id',$femaleProductCategory->id)->get();
@@ -58,7 +58,7 @@
         </div>
     @endif
 
-    <div class="row female-products">
+    <div class="row female-products female-bg">
         @if($femaleProductCategory)
 
             @php $feMaleProducts = Illuminate\Support\Facades\DB::table('products')
@@ -76,7 +76,7 @@
     </div>
 
     @if(count($allSliders) > 0 )
-        <div class="row">
+        <div class="row kids-bg">
             <div class="col-lg-12 col-md-12 col-xs-12">
                 @php
                     $kidsSlider = \App\models\MainSlider::with('category')->where('category_id',$kidsProductCategory->id)->get();
@@ -88,7 +88,7 @@
 
     @endif
 
-    <div class="row">
+    <div class="row kids-bg">
         @if($kidsProductCategory)
 
             @php $kidsProducts = Illuminate\Support\Facades\DB::table('products')
@@ -107,7 +107,7 @@
 
 
     @if(count($allSliders) > 0 )
-        <div class="row">
+        <div class="row others-bg">
             <div class="col-lg-12 col-md-12 col-xs-12">
                 @php
                     $otherslider = \App\models\MainSlider::with('category')->where('category_id',$othersProductCategory->id)->get();
@@ -118,7 +118,7 @@
         </div>
     @endif
 
-    <div class="row">
+    <div class="row others-bg">
         @if($othersProductCategory)
             @php
                 $othersProducts = Illuminate\Support\Facades\DB::table('products')

@@ -37,6 +37,7 @@ Route::post('/contact-us/send-mail','User\PagesController@sendMailStore')->name(
 Route::get('/faq','User\PagesController@faq')->name('pages.faq');
 Route::get('/privacy-policy','User\PagesController@privacyPolicy')->name('pages.privacy.policy');
 Route::get('/terms-conditions','User\PagesController@termsConditions')->name('pages.terms.conditions');
+Route::get('/media-inquiries','User\PagesController@mediaInquiries')->name('pages.Media.Inquiries');
 
 
 //password recovery code

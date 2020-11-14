@@ -74,4 +74,10 @@ class PagesController extends Controller
         return view('user.pages.links.terms');
 
     }
+    public function mediaInquiries()
+    {
+
+        return view('user.pages.links.media_inquiries');
+
+    }
 }

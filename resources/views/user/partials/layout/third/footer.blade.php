@@ -52,6 +52,7 @@
                             <li><a href="{{route('customer-supports.create')}}" target="_blank" target="_blank">Customer
                                     Service</a></li>
                             <li><a href="{{route('pages.faq')}}" target="_blank">FAQs</a></li>
+                            <li><a href="{{route('pages.Media.Inquiries')}}" target="_blank">Media-inquiries</a></li>
                         </ul>
                     </div>
                 </div>
